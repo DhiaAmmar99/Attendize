@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSponsorsTable extends Migration
+class CreateShuttlesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,15 @@ class CreateSponsorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sponsors', function (Blueprint $table) {
+        Schema::create('shuttles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('image');
             $table->string('title');
+            $table->text('description');
+            $table->string('places_available');
+            $table->datetime('arrival_time');
+            $table->datetime('departure_time');
+            $table->string('station_departure_id');
+            $table->string('station_destination_id');
             $table->timestamps();
         });
     }
@@ -28,6 +33,6 @@ class CreateSponsorsTable extends Migration
      */
     public function down()
     {
-         Schema::dropIfExists('sponsors');
+        Schema::dropIfExists('shuttles');
     }
 }
