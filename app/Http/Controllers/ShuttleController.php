@@ -14,6 +14,8 @@ class ShuttleController extends Controller
         #region filter
         // Set query builder
         $data = Shuttle::query();
+        // $data = DB::table('shuttles');
+        //$data = DB::connection('mysql')->table('shuttles');
         // Search for a shuttle based on their station_departure_id.
         if ($request->has('station_departure_id')) {
             $data->where('station_departure_id', $request->input('station_departure_id'));
@@ -48,5 +50,46 @@ class ShuttleController extends Controller
                 'status' => '0',
                 'data' => $data
             ]);
+    }
+
+    public function createShuttle(Request $request)
+    {
+        $register = new Shuttle();
+        $register->title = $request->input('title');
+        $register->description = $request->input('description');
+        $register->places_available = $request->input('places_available');
+        $register->departure_time = $request->input('departure_time');
+        $register->arrival_time = $request->input('arrival_time');
+        $register->station_departure_id = $request->input('station_departure_id');
+        $register->station_destination_id = $request->input('station_destination_id');
+        $register->save();
+        return response()->json($register);
+    }
+
+    public function updateShuttle(Request $request)
+    {
+        $data = DB::connection('mysql')->table('shuttles')->where('id', $request->input('id'))
+            ->update([
+                'title' => $request->input('title'),
+                'description' => $request->input('description'),
+                'places_available' => $request->input('places_available'),
+                'departure_time' => $request->input('departure_time'),
+                'arrival_time' => $request->input('arrival_time'),
+                'station_departure_id' => $request->input('station_departure_id'),
+                'station_destination_id' => $request->input('station_destination_id')
+            ]);
+        if ($data) {
+            return Response::json([
+                'message' => 'Data shuttle updated',
+                'status' => '1',
+                'data_shuttle' => $data,
+            ]);
+        } else {
+            return Response::json([
+                'message' => 'this shuttle does not exist',
+                'status' => '0',
+                'data_shuttle' => $data,
+            ]);
+        }
     }
 }

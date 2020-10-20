@@ -70,7 +70,9 @@ Route::get('/ENcountry', [ApiregistrationController::class ,'ENcountry']);
 Route::get('/RUcountry', [ApiregistrationController::class ,'RUcountry']);
 Route::get('/EScountry', [ApiregistrationController::class ,'EScountry']);
 Route::get('/FRcountry', [ApiregistrationController::class ,'FRcountry']);
-Route::get('/shuttles', [SuttlesController::class ,'listShuttles']);
+Route::get('/shuttles', [SuttlesController::class ,'listShuttle']);
+Route::post('/shuttles', [SuttlesController::class ,'createShuttle']);
+Route::put('/shuttles', [SuttlesController::class ,'updateShuttle']);
 
 
 
