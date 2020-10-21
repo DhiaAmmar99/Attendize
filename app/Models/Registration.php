@@ -8,9 +8,9 @@ class Registration extends Model
 {
         protected $connection = 'mysql2';
         protected $table = 'registrations';
-        
-        protected $fillable =[
-                'registration_as', 
+
+        protected $fillable = [
+                'registration_as',
                 'membership_number',
                 'membership',
                 'first_name',
@@ -38,4 +38,13 @@ class Registration extends Model
                 'lead'
         ];
 
+        /**
+         * The shuttles that belong to the user.
+         *
+         * @return belongsTo
+         */
+        public function shuttles()
+        {
+                return $this->belongsToMany(Shuttle::class);
+        }
 }

@@ -16,6 +16,16 @@ class Shuttle extends Model
         'departure_time',
         'station_departure_id',
         'station_destination_id'
-      
+
     ];
+
+    /**
+     * The users that belong to the shuttle.
+     *
+     * @return belongsTo
+     */
+    public function users()
+    {
+        return $this->belongsToMany(Rgistration::class);
+    }
 }
