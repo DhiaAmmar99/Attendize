@@ -340,7 +340,7 @@ class ApiregistrationController extends Controller
     }
 
        public function Email(Request $request)
-    {
+       {
         $data = [
                 "id" => $request->input('id'),
                 "table" => $request->input('table'),
@@ -348,12 +348,16 @@ class ApiregistrationController extends Controller
                 ];
         $email  = DB::connection('mysql2')->table($data['table'])->where('id', $data['id'])->first();
         $tomail= $email->email_address;
-        $toid= $email->id;
+        if($data['table'] == 'registrations'){
+            $toid= $email->id;
+        }else{
+            $toid= $email->register_id;
+        }
         $OP = new SendMailable($toid);
         $BT = new PreRegistrationMailable($toid);
         $ED = new EditMailable($toid);
 
-        if($data['paiment'] == 'Onsite payment'){
+        if(($data['paiment'] == 'Onsite payment')||($data['paiment'] == 'Credit Card')){
             Mail::to($tomail)->send($OP);
             return response()->json([
                 'status'=>'1',
@@ -386,6 +390,30 @@ class ApiregistrationController extends Controller
                 ]);
         }
 
+    }
+
+    public function emailPassword(Request $request)
+    {
+        $data = [
+                "id" => $request->input('id'),
+                "table" => $request->input('table'),
+                "password" => $request->input('password'),
+                ];
+        $email  = DB::connection('mysql2')->table($data['table'])->where('id', $data['id'])->first();
+        $tomail= $email->email_address;
+        
+        $toid = $data['password'];
+        
+        
+        $pwd = new PasswordMailable($toid);
+
+
+            Mail::to($tomail)->send($pwd);
+            return response()->json([
+                'status'=>'1',
+                'message' => 'Password was sent',
+                'data'=>$data,
+                ]);
     }
 
      public function listSponsors()

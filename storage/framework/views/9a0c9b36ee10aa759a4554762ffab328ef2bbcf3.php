@@ -415,13 +415,13 @@ select.MP, select.payment {
 
 
 <script type="text/javascript">
-var direction=""
+var direction="https://preprodica.digitalresearch.ae"
 
 function listDelegate(val){ 
 
   jQuery.ajax({
         type: "GET",
-        url: "http://bo-ica/api/checkuser/" + val,
+        url: direction + "/api/checkuser/" + val,
         success: function(data) {
             infoUser = data.data_user;
             infoDelegate = data.data_delegate;
@@ -537,7 +537,7 @@ function sendMail(val, dl){
   val.forEach(element => {
     jQuery.ajax({
     type: "GET",
-    url: "http://bo-ica/api/send_email/registrations/"+element.id,
+    url: direction + "/api/send_email/registrations/"+element.id,
     dataType: 'jsonp',
     });
   
@@ -545,7 +545,7 @@ function sendMail(val, dl){
     if (el.register_id == element.id)
     jQuery.ajax({
     type: "GET",
-    url: "http://bo-ica/api/send_email/delegates/"+el.id,
+    url: direction + "/api/send_email/delegates/"+el.id,
     dataType: 'jsonp',
     });
   });
@@ -563,7 +563,7 @@ function paymentStatus(event, id){
     jQuery.ajax({
       type: "POST",
       data: dataTab,
-      url: "http://bo-ica/api/payment",
+      url: direction + "/api/payment",
    
     });
   location.reload();
