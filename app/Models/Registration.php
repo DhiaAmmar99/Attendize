@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Registration extends Model
 {
-        protected $connection = 'mysql2';
         protected $table = 'registrations';
 
         protected $fillable = [
@@ -35,7 +34,8 @@ class Registration extends Model
                 'eventW',
                 'guests',
                 'price',
-                'lead'
+                'lead',
+                'password'
         ];
 
         /**

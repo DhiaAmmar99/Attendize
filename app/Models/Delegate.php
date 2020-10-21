@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Delegate extends Model
 {
-    protected $connection = 'mysql2';
-
     protected $table = 'delegates';
         
     protected $fillable =[

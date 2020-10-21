@@ -20,11 +20,11 @@ class ListUsersController extends Controller
             'organiser'=> $organiser,
         ];
 
-        $BT = DB::connection('mysql2')->select('select * from registrations where mode_payment LIKE "Bank Transfer"');
-        $CC = DB::connection('mysql2')->select('select * from registrations where mode_payment LIKE "Credit Card"');
-        $OP = DB::connection('mysql2')->select('select * from registrations where mode_payment LIKE "Onsite payment"');
-        $users  = DB::connection('mysql2')->select('select * from registrations');
-        $DLS = DB::connection('mysql2')->select('select * from delegates');
+        $BT = DB::connection('mysql')->select('select * from registrations where mode_payment LIKE "Bank Transfer"');
+        $CC = DB::connection('mysql')->select('select * from registrations where mode_payment LIKE "Credit Card"');
+        $OP = DB::connection('mysql')->select('select * from registrations where mode_payment LIKE "Onsite payment"');
+        $users  = DB::connection('mysql')->select('select * from registrations');
+        $DLS = DB::connection('mysql')->select('select * from delegates');
         
         return view('ManageOrganiser.list',  $data)->with('users', $users)
                                                    ->with('DLS', $DLS)
@@ -35,7 +35,7 @@ class ListUsersController extends Controller
 
     public function invitation($id){
         
-        $email  = DB::connection('mysql2')->table('registrations')->where('id', $id)->first();
+        $email  = DB::connection('mysql')->table('registrations')->where('id', $id)->first();
         $tomail= $email->email_address;
         $toid= $email->id;
         Mail::to($tomail)->send(new SendMailable($toid));

@@ -34,8 +34,8 @@ class OrganiserDashboardController extends MyBaseController
             ];
         }
 
-        $dataGuest  = DB::connection('mysql2')->select('select * from registrations');
-        $delegateGuest  = DB::connection('mysql2')->select('select * from delegates');
+        $dataGuest  = DB::connection('mysql')->select('select * from registrations');
+        $delegateGuest  = DB::connection('mysql')->select('select * from delegates');
 
         $data = [
             'dataGuest'       => $dataGuest,

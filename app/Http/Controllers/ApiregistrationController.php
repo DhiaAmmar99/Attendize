@@ -91,7 +91,7 @@ class ApiregistrationController extends Controller
     public function edituser(Request $request, $tab, $id)
     {
         if ($tab == 'registrations'){
-        $data=DB::connection('mysql2')->table('registrations')->where('id', $id)
+        $data=DB::connection('mysql')->table('registrations')->where('id', $id)
                                 ->update([
                                     'registration_as' => $request->input('registration_as'),
                                     'membership_number' => $request->input('membership_number'),
@@ -119,7 +119,7 @@ class ApiregistrationController extends Controller
                                     'lead' => $request->input('lead'),                                 
     ]);
     }else {
-          $data=DB::connection('mysql2')->table('delegates')->where('id', $id)
+          $data=DB::connection('mysql')->table('delegates')->where('id', $id)
                                 ->update([
                                     'first_name' => $request->input('first_name'),
                                     'last_name' => $request->input('last_name'),
@@ -163,7 +163,7 @@ class ApiregistrationController extends Controller
 
     public function mail($tab, $id)
     {
-	    $email  = DB::connection('mysql2')->table($tab)->where('id', $id)->first();
+	    $email  = DB::connection('mysql')->table($tab)->where('id', $id)->first();
 	    $tomail= $email->email_address;
 	    $toid= $email->id;
 	    Mail::to($tomail)->send(new SendMailable($toid));
@@ -172,7 +172,7 @@ class ApiregistrationController extends Controller
 
      public function editMail($tab, $id)
     {
-        $email  = DB::connection('mysql2')->table($tab)->where('id', $id)->first();
+        $email  = DB::connection('mysql')->table($tab)->where('id', $id)->first();
         $tomail= $email->email_address;
         $toid= $email->id;
         Mail::to($tomail)->send(new EditMailable($toid));
@@ -181,8 +181,8 @@ class ApiregistrationController extends Controller
 
     public function checkuser($id)
     {
-        $data_u = DB::connection('mysql2')->select('select * from registrations where id =:id', ['id' => $id]);
-        $data_d = DB::connection('mysql2')->select('select * from delegates where register_id =:id', ['id' => $id]);
+        $data_u = DB::connection('mysql')->select('select * from registrations where id =:id', ['id' => $id]);
+        $data_d = DB::connection('mysql')->select('select * from delegates where register_id =:id', ['id' => $id]);
 
         if($data_u){
         return Response::json([
@@ -268,7 +268,7 @@ class ApiregistrationController extends Controller
 
     public function fetchOneEvent($id)
     {   
-        $data_u = DB::connection('mysql2')->select('select * from registrations where id =:id', ['id' => $id]);
+        $data_u = DB::connection('mysql')->select('select * from registrations where id =:id', ['id' => $id]);
         $titleP = $data_u[0]->eventP;
         $titleS = $data_u[0]->eventS;
         $titleW = $data_u[0]->eventW;
@@ -317,8 +317,8 @@ class ApiregistrationController extends Controller
 
     public function allUsers()
     {
-        $data_u = DB::connection('mysql2')->select('select * from registrations');
-        $data_d = DB::connection('mysql2')->select('select * from delegates');
+        $data_u = DB::connection('mysql')->select('select * from registrations');
+        $data_d = DB::connection('mysql')->select('select * from delegates');
 
         if($data_u){
         return Response::json([
@@ -346,7 +346,7 @@ class ApiregistrationController extends Controller
                 "table" => $request->input('table'),
                 "paiment" => $request->input('paiment'),
                 ];
-        $email  = DB::connection('mysql2')->table($data['table'])->where('id', $data['id'])->first();
+        $email  = DB::connection('mysql')->table($data['table'])->where('id', $data['id'])->first();
         $tomail= $email->email_address;
         $toid= $email->id;
         $OP = new SendMailable($toid);
@@ -428,7 +428,7 @@ class ApiregistrationController extends Controller
 
      public function payment(Request $request)
     {
-        DB::connection('mysql2')->table('registrations')->where('id', $request->id)
+        DB::connection('mysql')->table('registrations')->where('id', $request->id)
         ->update([
             'payment_status' => $request->payment,
         ]);
@@ -436,8 +436,8 @@ class ApiregistrationController extends Controller
 
     public function verifEmail(Request $request)
     {
-        $fetchR=DB::connection('mysql2')->table('registrations')->where('email_address', $request->email)->first();
-        $fetchD=DB::connection('mysql2')->table('delegates')->where('email_address', $request->email)->first();
+        $fetchR=DB::connection('mysql')->table('registrations')->where('email_address', $request->email)->first();
+        $fetchD=DB::connection('mysql')->table('delegates')->where('email_address', $request->email)->first();
 
         if(($fetchR)||($fetchD)){
             return Response::json([

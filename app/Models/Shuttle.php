@@ -26,6 +26,7 @@ class Shuttle extends Model
      */
     public function users()
     {
-        return $this->belongsToMany(Rgistration::class);
+        return $this->belongsToMany('App\Models\Registration')
+            ->withTimestamps();
     }
 }
