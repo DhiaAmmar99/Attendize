@@ -20,7 +20,6 @@ class Shuttle extends Model
     ];
 
     /**
-     * 
      * The users that belong to the shuttle.
      *
      * @return belongsTo
