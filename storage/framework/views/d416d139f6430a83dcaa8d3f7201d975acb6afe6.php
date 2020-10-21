@@ -1,0 +1,1 @@
+<?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/Shared/Layouts/ViewJavascript.blade.php ENDPATH**/ ?>

@@ -1,24 +1,22 @@
-@extends('Shared.Layouts.Master')
-
-@section('title')
+<?php $__env->startSection('title'); ?>
     Tables users
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('top_nav')
-    @include('ManageOrganiser.Partials.TopNav')
-@stop
-@section('page_title')
-    @lang( 'Table Users')
-@stop
+<?php $__env->startSection('top_nav'); ?>
+    <?php echo $__env->make('ManageOrganiser.Partials.TopNav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('page_title'); ?>
+    <?php echo app('translator')->get( 'Table Users'); ?>
+<?php $__env->stopSection(); ?>
 
-@section('menu')
-    @include('ManageOrganiser.Partials.Sidebar')
-@stop
+<?php $__env->startSection('menu'); ?>
+    <?php echo $__env->make('ManageOrganiser.Partials.Sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php $__env->stopSection(); ?>
 <head>
 <script lang="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.4/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/g/filesaver.js"></script>
 </head>
-@section('content')
+<?php $__env->startSection('content'); ?>
 
     <div>
       <div >
@@ -69,81 +67,81 @@
           </thead>
           <tbody>
 
-            @foreach($users as $user)
+            <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
-                  <td> {{ $user->id }}</td>
-                  <td> {{ $user->first_name }} </td>
-                  <td> {{ $user->last_name }} </td>
-                  <td> {{ $user->registration_as }} </td>
-                  <td> {{ $user->membership_number }} </td>
+                  <td> <?php echo e($user->id); ?></td>
+                  <td> <?php echo e($user->first_name); ?> </td>
+                  <td> <?php echo e($user->last_name); ?> </td>
+                  <td> <?php echo e($user->registration_as); ?> </td>
+                  <td> <?php echo e($user->membership_number); ?> </td>
                   <td>
-                    @if($user->membership != null)
-                    <button onclick="listDelegate({{$user->id}})" class="popup" id="{{ $user->id }}"> {{ $user->membership }} </button> 
-                    @endif
+                    <?php if($user->membership != null): ?>
+                    <button onclick="listDelegate(<?php echo e($user->id); ?>)" class="popup" id="<?php echo e($user->id); ?>"> <?php echo e($user->membership); ?> </button> 
+                    <?php endif; ?>
                   </td>
-                  <td> {{ $user->email_address }}</td>
-                  <td> {{ $user->eventS }} {{ $user->eventP }} {{ $user->eventG }} {{ $user->eventW }}</td>
-                  <td> {{ $user->postal_address }}</td>
-                  <td> {{ $user->job_title }}</td>
-                  <td> {{ $user->organization }}</td>
-                  <td> {{ $user->country }}</td>
-                  <td> {{ $user->dietary }}</td>
-                  <td> {{ $user->experience }}</td>
-                  <td> {{ $user->language_translation }}</td>
-                  <td> {{ $user->languages }}</td>
-                  <td> {{ $user->first_check }}</td>
-                  <td> {{ $user->second_check }}</td>
-                  <td> {{ $user->guests }}</td>
-                  <td style="display: none"> {{ $user->lead }}</td>
-                  <td> {{ $user->price }}</td>
-                  <td> {{ $user->mode_payment }}</td>
+                  <td> <?php echo e($user->email_address); ?></td>
+                  <td> <?php echo e($user->eventS); ?> <?php echo e($user->eventP); ?> <?php echo e($user->eventG); ?> <?php echo e($user->eventW); ?></td>
+                  <td> <?php echo e($user->postal_address); ?></td>
+                  <td> <?php echo e($user->job_title); ?></td>
+                  <td> <?php echo e($user->organization); ?></td>
+                  <td> <?php echo e($user->country); ?></td>
+                  <td> <?php echo e($user->dietary); ?></td>
+                  <td> <?php echo e($user->experience); ?></td>
+                  <td> <?php echo e($user->language_translation); ?></td>
+                  <td> <?php echo e($user->languages); ?></td>
+                  <td> <?php echo e($user->first_check); ?></td>
+                  <td> <?php echo e($user->second_check); ?></td>
+                  <td> <?php echo e($user->guests); ?></td>
+                  <td style="display: none"> <?php echo e($user->lead); ?></td>
+                  <td> <?php echo e($user->price); ?></td>
+                  <td> <?php echo e($user->mode_payment); ?></td>
                   <td>
-                    <select onchange="paymentStatus(this.value,{{ $user->id }})" class="MP">
-                      @if($user->payment_status == 'Pending')
+                    <select onchange="paymentStatus(this.value,<?php echo e($user->id); ?>)" class="MP">
+                      <?php if($user->payment_status == 'Pending'): ?>
                       <option selected value="Pending">Pending</option>
-                      @else
+                      <?php else: ?>
                       <option  value="Pending">Pending</option>
-                      @endif
-                      @if($user->payment_status == 'Successful')
+                      <?php endif; ?>
+                      <?php if($user->payment_status == 'Successful'): ?>
                       <option selected  value="Successful">Successful</option>
-                      @else
+                      <?php else: ?>
                       <option   value="Successful">Successful</option>
-                      @endif
+                      <?php endif; ?>
                     </select>
                   </td>
                   
                 </tr>
-              @foreach($DLS as $dd)
-                @if ($user->id == $dd->register_id )
+              <?php $__currentLoopData = $DLS; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $dd): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php if($user->id == $dd->register_id ): ?>
                 <tr >
-                  <td style="display: none" > {{ $dd->register_id }}</td>
-                  <td style="display: none"> {{ $dd->first_name }} </td>
-                  <td style="display: none"> {{ $dd->last_name }} </td>
-                  <td style="display: none"> {{ $user->registration_as }} </td>
-                  <td style="display: none"> {{ $user->membership_number }} </td>
-                  <td style="display: none"> {{ $user->membership }}</td>
-                  <td style="display: none"> {{ $dd->email_address }}</td>
-                  <td style="display: none"> {{ $user->eventS }} {{ $user->eventP }} {{ $user->eventG }} {{ $user->eventW }}</td>
-                  <td style="display: none"> {{ $user->postal_address }}</td>
-                  <td style="display: none"> {{ $dd->job_title }}</td>
-                  <td style="display: none"> {{ $dd->organization }}</td>
-                  <td style="display: none"> {{ $user->country }}</td>
-                  <td style="display: none"> {{ $dd->dietary }}</td>
-                  <td style="display: none"> {{ $dd->experience }}</td>
-                  <td style="display: none"> {{ $dd->language_translation }}</td>
-                  <td style="display: none"> {{ $dd->languages }}</td>
-                  <td style="display: none"> {{ $dd->first_check }}</td>
-                  <td style="display: none"> {{ $dd->second_check }}</td>
-                  <td style="display: none"> {{ $dd->guests }}</td>
-                  <td style="display: none"> {{ $dd->lead }}</td>
-                  <td style="display: none"> {{ $user->price }}</td>
-                  <td style="display: none"> {{ $user->mode_payment }}</td>
-                  <td style="display: none"> {{ $user->payment_status }}</td>
+                  <td style="display: none" > <?php echo e($dd->register_id); ?></td>
+                  <td style="display: none"> <?php echo e($dd->first_name); ?> </td>
+                  <td style="display: none"> <?php echo e($dd->last_name); ?> </td>
+                  <td style="display: none"> <?php echo e($user->registration_as); ?> </td>
+                  <td style="display: none"> <?php echo e($user->membership_number); ?> </td>
+                  <td style="display: none"> <?php echo e($user->membership); ?></td>
+                  <td style="display: none"> <?php echo e($dd->email_address); ?></td>
+                  <td style="display: none"> <?php echo e($user->eventS); ?> <?php echo e($user->eventP); ?> <?php echo e($user->eventG); ?> <?php echo e($user->eventW); ?></td>
+                  <td style="display: none"> <?php echo e($user->postal_address); ?></td>
+                  <td style="display: none"> <?php echo e($dd->job_title); ?></td>
+                  <td style="display: none"> <?php echo e($dd->organization); ?></td>
+                  <td style="display: none"> <?php echo e($user->country); ?></td>
+                  <td style="display: none"> <?php echo e($dd->dietary); ?></td>
+                  <td style="display: none"> <?php echo e($dd->experience); ?></td>
+                  <td style="display: none"> <?php echo e($dd->language_translation); ?></td>
+                  <td style="display: none"> <?php echo e($dd->languages); ?></td>
+                  <td style="display: none"> <?php echo e($dd->first_check); ?></td>
+                  <td style="display: none"> <?php echo e($dd->second_check); ?></td>
+                  <td style="display: none"> <?php echo e($dd->guests); ?></td>
+                  <td style="display: none"> <?php echo e($dd->lead); ?></td>
+                  <td style="display: none"> <?php echo e($user->price); ?></td>
+                  <td style="display: none"> <?php echo e($user->mode_payment); ?></td>
+                  <td style="display: none"> <?php echo e($user->payment_status); ?></td>
 
                 </tr>
-                @endif
-              @endforeach
-            @endforeach
+                <?php endif; ?>
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           </tbody>
         </table>
       </div>
@@ -175,42 +173,43 @@
             </tr>
           </thead>
           <tbody>
-            @foreach($BT as $user)
+            <?php $__currentLoopData = $BT; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <tr>
-              <td> {{ $user->first_name }}</td>
-              <td> {{ $user->last_name }} </td>
-              <td> {{ $user->registration_as }} </td>
-              <td> {{ $user->membership_number }} </td>
+              <td> <?php echo e($user->first_name); ?></td>
+              <td> <?php echo e($user->last_name); ?> </td>
+              <td> <?php echo e($user->registration_as); ?> </td>
+              <td> <?php echo e($user->membership_number); ?> </td>
               <td>
-                @if($user->membership != null)
-                 <button onclick="listDelegate({{$user->id}})" class="popup" id="{{ $user->id }}"> {{ $user->membership }} </button> 
-                @endif
+                <?php if($user->membership != null): ?>
+                 <button onclick="listDelegate(<?php echo e($user->id); ?>)" class="popup" id="<?php echo e($user->id); ?>"> <?php echo e($user->membership); ?> </button> 
+                <?php endif; ?>
               </td>
-              <td> {{ $user->email_address }}</td>
+              <td> <?php echo e($user->email_address); ?></td>
               
-              @if(($user->eventP != null)||($user->eventS != null)||($user->eventG != null)||($user->eventW != null))
+              <?php if(($user->eventP != null)||($user->eventS != null)||($user->eventG != null)||($user->eventW != null)): ?>
                 <td> 
-                  {{ $user->eventS }} 
-                  {{ $user->eventP }} 
-                  {{ $user->eventG }} 
-                  {{ $user->eventW }}
+                  <?php echo e($user->eventS); ?> 
+                  <?php echo e($user->eventP); ?> 
+                  <?php echo e($user->eventG); ?> 
+                  <?php echo e($user->eventW); ?>
+
                 </td>
-              @endif
-              <td> {{ $user->postal_address }}</td>
-              <td> {{ $user->job_title }}</td>
-              <td> {{ $user->organization }}</td>
-              <td> {{ $user->country }}</td>
-              <td> {{ $user->dietary }}</td>
-              <td> {{ $user->experience }}</td>
-              <td> {{ $user->language_translation }}</td>
-              <td> {{ $user->languages }}</td>
-              <td> {{ $user->first_check }}</td>
-              <td> {{ $user->second_check }}</td>
-              <td> {{ $user->guests }}</td>
-              <td> {{ $user->price }}</td>
-              <td> {{ $user->mode_payment }}</td>
+              <?php endif; ?>
+              <td> <?php echo e($user->postal_address); ?></td>
+              <td> <?php echo e($user->job_title); ?></td>
+              <td> <?php echo e($user->organization); ?></td>
+              <td> <?php echo e($user->country); ?></td>
+              <td> <?php echo e($user->dietary); ?></td>
+              <td> <?php echo e($user->experience); ?></td>
+              <td> <?php echo e($user->language_translation); ?></td>
+              <td> <?php echo e($user->languages); ?></td>
+              <td> <?php echo e($user->first_check); ?></td>
+              <td> <?php echo e($user->second_check); ?></td>
+              <td> <?php echo e($user->guests); ?></td>
+              <td> <?php echo e($user->price); ?></td>
+              <td> <?php echo e($user->mode_payment); ?></td>
             </tr>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           </tbody>
         </table>
       </div>
@@ -241,42 +240,43 @@
             </tr>
           </thead>
           <tbody>
-            @foreach($CC as $user)
+            <?php $__currentLoopData = $CC; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <tr>
-              <td> {{ $user->first_name }} </td>
-              <td> {{ $user->last_name }} </td>
-              <td> {{ $user->registration_as }} </td>
-              <td> {{ $user->membership_number }} </td>
+              <td> <?php echo e($user->first_name); ?> </td>
+              <td> <?php echo e($user->last_name); ?> </td>
+              <td> <?php echo e($user->registration_as); ?> </td>
+              <td> <?php echo e($user->membership_number); ?> </td>
               <td>
-                @if($user->membership != null)
-                 <button onclick="listDelegate({{$user->id}})" class="popup" id="{{ $user->id }}"> {{ $user->membership }} </button> 
-                @endif
+                <?php if($user->membership != null): ?>
+                 <button onclick="listDelegate(<?php echo e($user->id); ?>)" class="popup" id="<?php echo e($user->id); ?>"> <?php echo e($user->membership); ?> </button> 
+                <?php endif; ?>
               </td>
-              <td> {{ $user->email_address }}</td>
-              @if(($user->eventP != null)||($user->eventS != null)||($user->eventG != null)||($user->eventW != null))
+              <td> <?php echo e($user->email_address); ?></td>
+              <?php if(($user->eventP != null)||($user->eventS != null)||($user->eventG != null)||($user->eventW != null)): ?>
                 <td> 
-                  {{ $user->eventS }} 
-                  {{ $user->eventP }} 
-                  {{ $user->eventG }} 
-                  {{ $user->eventW }}
+                  <?php echo e($user->eventS); ?> 
+                  <?php echo e($user->eventP); ?> 
+                  <?php echo e($user->eventG); ?> 
+                  <?php echo e($user->eventW); ?>
+
                 </td>
-              @endif
-              <td> {{ $user->postal_address }}</td>
-              <td> {{ $user->job_title }}</td>
-              <td> {{ $user->organization }}</td>
-              <td> {{ $user->country }}</td>
-              <td> {{ $user->dietary }}</td>
-              <td> {{ $user->experience }}</td>
-              <td> {{ $user->language_translation }}</td>
-              <td> {{ $user->languages }}</td>
-              <td> {{ $user->first_check }}</td>
-              <td> {{ $user->second_check }}</td>
-              <td> {{ $user->guests }}</td>
-              <td> {{ $user->price }}</td>
-              <td> {{ $user->mode_payment }}</td>
+              <?php endif; ?>
+              <td> <?php echo e($user->postal_address); ?></td>
+              <td> <?php echo e($user->job_title); ?></td>
+              <td> <?php echo e($user->organization); ?></td>
+              <td> <?php echo e($user->country); ?></td>
+              <td> <?php echo e($user->dietary); ?></td>
+              <td> <?php echo e($user->experience); ?></td>
+              <td> <?php echo e($user->language_translation); ?></td>
+              <td> <?php echo e($user->languages); ?></td>
+              <td> <?php echo e($user->first_check); ?></td>
+              <td> <?php echo e($user->second_check); ?></td>
+              <td> <?php echo e($user->guests); ?></td>
+              <td> <?php echo e($user->price); ?></td>
+              <td> <?php echo e($user->mode_payment); ?></td>
 
             </tr>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           </tbody>
         </table>
       </div>
@@ -308,42 +308,43 @@
             </tr>
           </thead>
           <tbody>
-            @foreach($OP as $user)
+            <?php $__currentLoopData = $OP; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <tr>
-              <td> {{ $user->first_name }} </td>
-              <td> {{ $user->last_name }} </td>
-              <td> {{ $user->registration_as }} </td>
-              <td> {{ $user->membership_number }} </td>
+              <td> <?php echo e($user->first_name); ?> </td>
+              <td> <?php echo e($user->last_name); ?> </td>
+              <td> <?php echo e($user->registration_as); ?> </td>
+              <td> <?php echo e($user->membership_number); ?> </td>
               <td>
-                @if($user->membership != null)
-                 <button onclick="listDelegate({{$user->id}})" class="popup" id="{{ $user->id }}"> {{ $user->membership }} </button> 
-                @endif
+                <?php if($user->membership != null): ?>
+                 <button onclick="listDelegate(<?php echo e($user->id); ?>)" class="popup" id="<?php echo e($user->id); ?>"> <?php echo e($user->membership); ?> </button> 
+                <?php endif; ?>
               </td>
-              <td> {{ $user->email_address }}</td>
-              @if(($user->eventP != null)||($user->eventS != null)||($user->eventG != null)||($user->eventW != null))
+              <td> <?php echo e($user->email_address); ?></td>
+              <?php if(($user->eventP != null)||($user->eventS != null)||($user->eventG != null)||($user->eventW != null)): ?>
                 <td> 
-                  {{ $user->eventS }} 
-                  {{ $user->eventP }} 
-                  {{ $user->eventG }} 
-                  {{ $user->eventW }}
+                  <?php echo e($user->eventS); ?> 
+                  <?php echo e($user->eventP); ?> 
+                  <?php echo e($user->eventG); ?> 
+                  <?php echo e($user->eventW); ?>
+
                 </td>
-              @endif
-              <td> {{ $user->postal_address }}</td>
-              <td> {{ $user->job_title }}</td>
-              <td> {{ $user->organization }}</td>
-              <td> {{ $user->country }}</td>
-              <td> {{ $user->dietary }}</td>
-              <td> {{ $user->experience }}</td>
-              <td> {{ $user->language_translation }}</td>
-              <td> {{ $user->languages }}</td>
-              <td> {{ $user->first_check }}</td>
-              <td> {{ $user->second_check }}</td>
-              <td> {{ $user->guests }}</td>
-              <td> {{ $user->price }}</td>
-              <td> {{ $user->mode_payment }}</td>
+              <?php endif; ?>
+              <td> <?php echo e($user->postal_address); ?></td>
+              <td> <?php echo e($user->job_title); ?></td>
+              <td> <?php echo e($user->organization); ?></td>
+              <td> <?php echo e($user->country); ?></td>
+              <td> <?php echo e($user->dietary); ?></td>
+              <td> <?php echo e($user->experience); ?></td>
+              <td> <?php echo e($user->language_translation); ?></td>
+              <td> <?php echo e($user->languages); ?></td>
+              <td> <?php echo e($user->first_check); ?></td>
+              <td> <?php echo e($user->second_check); ?></td>
+              <td> <?php echo e($user->guests); ?></td>
+              <td> <?php echo e($user->price); ?></td>
+              <td> <?php echo e($user->mode_payment); ?></td>
 
             </tr>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           </tbody>
         </table>
       </div>
@@ -612,9 +613,11 @@ $('#block-2, #block-3, #block-4, #first-btn, #second-btn, #third-btn').hide();
 
     $("table").removeClass("dataTable");
 </script>
-@stop
+<?php $__env->stopSection(); ?>
 
 
 
 
 
+
+<?php echo $__env->make('Shared.Layouts.Master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/ManageOrganiser/list.blade.php ENDPATH**/ ?>

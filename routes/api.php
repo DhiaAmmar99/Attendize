@@ -48,6 +48,7 @@ Route::resource('attendees', API\AttendeesApiController::class);
  * Registration
  * ---------------
  */
+Route::post('/email/password', [ApiregistrationController::class ,'emailPassword']);
 Route::post('/verifEmail', [ApiregistrationController::class ,'verifEmail']);
 Route::post('/payment', [ApiregistrationController::class ,'payment']);
 Route::get('/listSponsors', [ApiregistrationController::class ,'listSponsors']);
