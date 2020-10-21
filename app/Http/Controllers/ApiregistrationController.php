@@ -412,7 +412,6 @@ class ApiregistrationController extends Controller
             return response()->json([
                 'status'=>'1',
                 'message' => 'Password was sent',
-                'data'=>$data,
                 ]);
     }
 
