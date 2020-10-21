@@ -419,6 +419,8 @@ class ApiregistrationController extends Controller
     {
         // if(($request->image != null) ||  ($request->title != null)){
 
+            
+
         //     $sp = new Sponsors();
         //     $sp->image = $request->input('image');
         //     $sp->title = $request->input('title');
