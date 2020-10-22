@@ -74,6 +74,7 @@ Route::get('/FRcountry', [ApiregistrationController::class ,'FRcountry']);
 Route::get('/shuttles', [SuttlesController::class ,'listShuttle']);
 Route::post('/shuttles', [SuttlesController::class ,'createShuttle']);
 Route::put('/shuttles', [SuttlesController::class ,'updateShuttle']);
+Route::get('/shuttles', [SuttlesController::class ,'findCurrentShuttle']);
 
 
 

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Registration;
 use App\Models\Shuttle;
 use DB;
 use Illuminate\Http\Request;
 use Response;
+use Illuminate\Support\Facades\Auth;
 
 class ShuttleController extends Controller
 {
@@ -68,7 +70,7 @@ class ShuttleController extends Controller
 
     public function updateShuttle(Request $request)
     {
-        $data = DB::connection('mysql')->table('shuttles')->where('id', $request->input('id'))
+        $data = Shuttle::query()->where('id', $request->input('id'))
             ->update([
                 'title' => $request->input('title'),
                 'description' => $request->input('description'),
@@ -91,5 +93,23 @@ class ShuttleController extends Controller
                 'data_shuttle' => $data,
             ]);
         }
+    }
+
+    public function findCurrentShuttle(Request $request)
+    {
+        $id = Auth::id(); 
+        $data = Registration::query()->find($id);
+        if ($data->get()) {
+            return Response::json([
+                'message' => 'success',
+                'status' => '1',
+                'data' => $data
+            ]);
+        } else
+            return Response::json([
+                'message' => 'failed',
+                'status' => '0',
+                'data' => $data
+            ]);
     }
 }

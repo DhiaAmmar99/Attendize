@@ -415,13 +415,13 @@ select.MP, select.payment {
 
 
 <script type="text/javascript">
-
+var direction="https://preprodica.digitalresearch.ae"
 
 function listDelegate(val){ 
 
   jQuery.ajax({
         type: "GET",
-        url: "http://bo-ica/api/checkuser/" + val,
+        url: direction + "/api/checkuser/" + val,
         success: function(data) {
             infoUser = data.data_user;
             infoDelegate = data.data_delegate;
@@ -495,30 +495,6 @@ function listDelegate(val){
                          });
          } 
   });
-
-  //   swal({
-  //   html: `
-  
-  //   <table  class="table table-bordered dataTable" border=1>
-  //         <thead>
-  //             <tr>
-  //                 <th>first_name </th>
-  //                 <th>Email</th>
-  //             </tr>
-  //         </thead>
-  //         <tbody>
-            
-  //           <?php $__currentLoopData = $DLS; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-  //           <?php if( $d->register_id ==  1 ): ?>
-  //             <tr>
-  //                 <td><?php echo e($d->first_name); ?></td>
-  //                 <td><?php echo e($d->email_address); ?></td>
-  //             </tr>
-  //           <?php endif; ?>
-  //           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-  // </tbody>
-  // </table>`
-  // });
 }
 
 
@@ -561,7 +537,7 @@ function sendMail(val, dl){
   val.forEach(element => {
     jQuery.ajax({
     type: "GET",
-    url: "http://bo-ica/api/send_email/registrations/"+element.id,
+    url: direction + "/api/send_email/registrations/"+element.id,
     dataType: 'jsonp',
     });
   
@@ -569,7 +545,7 @@ function sendMail(val, dl){
     if (el.register_id == element.id)
     jQuery.ajax({
     type: "GET",
-    url: "http://bo-ica/api/send_email/delegates/"+el.id,
+    url: direction + "/api/send_email/delegates/"+el.id,
     dataType: 'jsonp',
     });
   });
@@ -587,7 +563,7 @@ function paymentStatus(event, id){
     jQuery.ajax({
       type: "POST",
       data: dataTab,
-      url: "http://bo-ica/api/payment",
+      url: direction + "/api/payment",
    
     });
   location.reload();
