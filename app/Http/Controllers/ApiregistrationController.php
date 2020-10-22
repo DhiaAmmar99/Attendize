@@ -399,7 +399,7 @@ class ApiregistrationController extends Controller
                 "table" => $request->input('table'),
                 "password" => $request->input('password'),
                 ];
-        $email  = DB::connection('mysql2')->table($data['table'])->where('id', $data['id'])->first();
+        $email  = DB::connection('mysql')->table($data['table'])->where('id', $data['id'])->first();
         $tomail= $email->email_address;
         
         $toid = $data['password'];
