@@ -552,15 +552,33 @@
                                 <tbody><tr>
                                     <td valign="top" class="mcnTextContent" style="padding: 18px;color: #F2F2F2;font-family: Helvetica;font-size: 14px;font-weight: normal;text-align: center;">
                                         <div style="text-align: left;"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Registration information:</span><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-&nbsp;</div>
+                                        
+                                            <p>Full name : </p><br>
+                                            <p>Email : </p><br>
+                                            <p>Job title : </p><br>
+                                            <p>Organization: </p><br>
+                                            <p>Country : </p><br>
+                                            <p>Dietary : </p><br>
+                                            <p>Experience : </p><br>
+                                            <p>Language translation : </p><br>
+                                            <p>Languages : </p><br>
+                                            <p>Do you agree to share your name, job title and organisation in the Congress attendees list ? : </p><br>
+                                            <p>Do you agree for your name, organisation and email address to be added to the recipients list to receive event updates ? : </p><br>
+                                            <p>Postal address : </p><br>
+                                            <p>Type registration : </p><br>
+                                            <p>Membership number : </p><br>
+                                            <p>Number of delegates : </p><br>
+                                            <p>Mode of payment : </p><br>
+                                            <p>Events : </p><br>
+                                            <p>Guests : </p><br>
+
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        &nbsp;</div>
 
                                     </td>
                                 </tr>
