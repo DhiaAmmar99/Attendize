@@ -11,14 +11,16 @@ class SendMailable extends Mailable
 {
     use Queueable, SerializesModels;
    public $name; 
+   public $data; 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name)
+    public function __construct($name,  $data)
     {
          $this->name=$name;
+         $this->data=$data;
     }
 
     /**
@@ -30,6 +32,7 @@ class SendMailable extends Mailable
     {
         return $this->subject('Registration summary')->view('successMail')->with([
             'name' => $this->name,
+            'data' => $this->data,
         ]);
     }
 }

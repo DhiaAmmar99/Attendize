@@ -13,14 +13,17 @@ class EditMailable extends Mailable
 
 
     public $name; 
+    public $data;
+    
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name)
+    public function __construct($name,  $data)
     {
         $this->name=$name;
+        $this->data=$data;
     }
 
     /**
@@ -32,6 +35,7 @@ class EditMailable extends Mailable
     {
         return $this->subject('Registration')->view('EditMail')->with([
             'name' => $this->name,
+            'data' => $this->data,
 
         ]);    
      }

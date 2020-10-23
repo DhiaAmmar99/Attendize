@@ -346,18 +346,18 @@ class ApiregistrationController extends Controller
                 "table" => $request->input('table'),
                 "paiment" => $request->input('paiment'),
                 ];
-        $email  = DB::connection('mysql')->table($data['table'])->where('id', $data['id'])->first();
-        $tomail= $email->email_address;
+        $datamail  = DB::connection('mysql')->table($data['table'])->where('id', $data['id'])->first();
+        $tomail= $datamail->email_address;
         if($data['table'] == 'registrations'){
-            $toid= $email->id;
+            $toid= $datamail->id;
         }else{
-            $toid= $email->register_id;
+            $toid= $datamail->register_id;
         }
-        $OP = new SendMailable($toid);
-        $BT = new PreRegistrationMailable($toid);
-        $ED = new EditMailable($toid);
+        $OP = new SendMailable($toid, $datamail);
+        $BT = new PreRegistrationMailable($toid, $datamail);
+        $ED = new EditMailable($toid, $datamail);
 
-        if(($data['paiment'] == 'Onsite payment')||($data['paiment'] == 'Credit Card')){
+        if($data['paiment'] == 'Credit Card'){
             Mail::to($tomail)->send($OP);
             return response()->json([
                 'status'=>'1',
@@ -365,7 +365,7 @@ class ApiregistrationController extends Controller
                 'data'=>$data,
                 ]);
 
-        }else if($data['paiment'] == 'Bank Transfer'){
+        }else if(($data['paiment'] == 'Onsite payment')||($data['paiment'] == 'Bank Transfer')){
 
             Mail::to($tomail)->send($BT);
             return response()->json([
