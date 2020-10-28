@@ -17,8 +17,6 @@
                 </a>
             </li>
 
-            
-
             <li class="<?php echo e(Request::is('*users*') ? 'active' : ''); ?>">
                 <a href="<?php echo e(route('list', array('organiser_id' => $organiser->id))); ?>">
                     <span class="figure"><i class="ico-table"></i></span>

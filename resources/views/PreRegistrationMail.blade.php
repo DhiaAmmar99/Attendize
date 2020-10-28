@@ -840,16 +840,28 @@
                                                                                 <tbody>
                                                                                     <tr>
                                                                                         <td valign="top" class="mcnTextContent" style="padding: 18px;color: #F2F2F2;font-family: Helvetica;font-size: 14px;font-weight: normal;text-align: center;">
-                                                                                            <div style="text-align: left;"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Registration information:</span><br>
-                                                                                                <br>
-                                                                                                <br>
-                                                                                                <br>
-                                                                                                <br>
-                                                                                                <br>
-                                                                                                <br>
-                                                                                                <br>
-                                                                                                <br> &nbsp;
-                                                                                            </div>
+                                                                                            <div style="text-align: left;">
+                                                                                                <div style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Registration information:</div><br>
+                                                                                                <div>Full name : {{$data->first_name}} {{$data->last_name}}</div><br>
+                                                                                                <div>Email : {{$data->email_address}}</div><br>
+                                                                                                <div>Job title : {{$data->job_title}}</div><br>
+                                                                                                <div>Organization : {{$data->organization}}</div><br>
+                                                                                                <div>Country : {{$data->country}}</div><br>
+                                                                                                <div>Dietary : {{$data->dietary}}</div><br>
+                                                                                                <div>Experience : {{$data->experience}}</div><br>
+                                                                                                <div>Language translation : {{$data->language_translation}}</div><br>
+                                                                                                <div>Languages : {{$data->languages}}</div><br>
+                                                                                                <div>Do you agree to share your name, job title and organisation in the Congress attendees list ? : {{$data->first_check}}</div><br>
+                                                                                                <div>Do you agree for your name, organisation and email address to be added to the recipients list to receive event updates ? : {{$data->second_check}}</div><br>
+                                                                                                <div>Postal address : {{$data->postal_address}}</div><br>
+                                                                                                <div>Type registration : {{$data->registration_as}}</div><br>
+                                                                                                <div>Membership number : {{$data->membership_number}}</div><br>
+                                                                                                <div>Number of delegates : {{$data->membership}}</div><br>
+                                                                                                <div>Mode of payment : {{$data->mode_payment}}</div><br>
+                                                                                                <div>Events : {{$data->eventP}} {{$data->eventS}} {{$data->eventG}} {{$data->eventW}}</div><br>
+                                                                                                <div>Guests : {{$data->guests}}</div><br>
+                                                                                                <div>Price : {{$data->price}}</div><br>
+                                                                                            &nbsp;</div>
 
                                                                                         </td>
                                                                                     </tr>

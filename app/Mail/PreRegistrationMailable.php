@@ -12,15 +12,17 @@ class PreRegistrationMailable extends Mailable
     use Queueable, SerializesModels;
 
 
-    public $name; 
+    public $id; 
+    public $data; 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name)
+    public function __construct($id,  $data)
     {
-        $this->name=$name;
+        $this->id=$id;
+        $this->data=$data;
     }
 
     /**
@@ -31,7 +33,8 @@ class PreRegistrationMailable extends Mailable
     public function build()
     {
         return $this->subject('Registration')->view('PreRegistrationMail')->with([
-            'name' => $this->name,
+            'id' => $this->id,
+            'data' => $this->data,
         ]);    
      }
 }
