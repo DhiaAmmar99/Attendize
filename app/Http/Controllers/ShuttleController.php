@@ -17,7 +17,7 @@ class ShuttleController extends Controller
         // Set query builder
         $data = Shuttle::query();
         // $data = DB::table('shuttles');
-        //$data = DB::connection('mysql')->table('shuttles');
+        // $data = DB::connection('mysql')->table('shuttles');
         // Search for a shuttle based on their station_departure_id.
         if ($request->has('station_departure_id')) {
             $data->where('station_departure_id', $request->input('station_departure_id'));

@@ -207,23 +207,23 @@ class ApiregistrationController extends Controller
 
     public function ARcountry()
     {
-        return Countries::lookup('AR');
+        return Countries::lookup('ar');
     }
     public function ENcountry()
     {
-        return Countries::lookup('EN');
+        return Countries::lookup('en');
     }
     public function RUcountry()
     {
-        return Countries::lookup('RU');
+        return Countries::lookup('ru');
     }
     public function EScountry()
     {
-        return Countries::lookup('ES');
+        return Countries::lookup('es');
     }
     public function FRcountry()
     {
-        return Countries::lookup('FR');
+        return Countries::lookup('fr');
     }
 
 
