@@ -17,10 +17,11 @@ class ShuttleController extends Controller
         // Set query builder
         $data = Shuttle::query();
         // $data = DB::table('shuttles');
-        //$data = DB::connection('mysql')->table('shuttles');
+        // $data = DB::connection('mysql')->table('shuttles');
+        
         // Search for a shuttle based on their station_departure_id.
         if ($request->has('station_departure_id')) {
-            $data->where('station_departure_id', $request->input('station_departure_id'));
+             $data->where('station_departure_id', $request->input('station_departure_id'));
         }
         // Search for a shuttle based on their station_destination_id.
         if ($request->has('station_destination_id')) {
@@ -44,7 +45,7 @@ class ShuttleController extends Controller
             return Response::json([
                 'message' => 'success',
                 'status' => '1',
-                'data' => $data
+                'data' => $data->get()
             ]);
         } else
             return Response::json([
@@ -56,16 +57,16 @@ class ShuttleController extends Controller
 
     public function createShuttle(Request $request)
     {
-        $register = new Shuttle();
-        $register->title = $request->input('title');
-        $register->description = $request->input('description');
-        $register->places_available = $request->input('places_available');
-        $register->departure_time = $request->input('departure_time');
-        $register->arrival_time = $request->input('arrival_time');
-        $register->station_departure_id = $request->input('station_departure_id');
-        $register->station_destination_id = $request->input('station_destination_id');
-        $register->save();
-        return response()->json($register);
+        $shuttle = new Shuttle();
+        $shuttle->title = $request->input('title');
+        $shuttle->description = $request->input('description');
+        $shuttle->places_available = $request->input('places_available');
+        $shuttle->arrival_time = $request->input('arrival_time');
+        $shuttle->departure_time = $request->input('departure_time');
+        $shuttle->station_departure_id = $request->input('station_departure_id');
+        $shuttle->station_destination_id = $request->input('station_destination_id');
+        $shuttle->save();
+        return response()->json($shuttle);
     }
 
     public function updateShuttle(Request $request)
@@ -97,8 +98,9 @@ class ShuttleController extends Controller
 
     public function findCurrentShuttle(Request $request)
     {
-        $id = Auth::id(); 
-        $data = Registration::query()->find($id);
+        $id = "1"; 
+        // $id = Auth::id(); 
+        $data = Shuttle::query()->find($id);
         if ($data->get()) {
             return Response::json([
                 'message' => 'success',

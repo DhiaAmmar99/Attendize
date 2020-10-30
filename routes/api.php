@@ -3,6 +3,7 @@
 use App\Http\Controllers\ListUsersController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiregistrationController;
+use App\Http\Controllers\ShuttleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,10 +72,10 @@ Route::get('/ENcountry', [ApiregistrationController::class ,'ENcountry']);
 Route::get('/RUcountry', [ApiregistrationController::class ,'RUcountry']);
 Route::get('/EScountry', [ApiregistrationController::class ,'EScountry']);
 Route::get('/FRcountry', [ApiregistrationController::class ,'FRcountry']);
-Route::get('/shuttles', [SuttlesController::class ,'listShuttle']);
-Route::post('/shuttles', [SuttlesController::class ,'createShuttle']);
-Route::put('/shuttles', [SuttlesController::class ,'updateShuttle']);
-Route::get('/shuttles', [SuttlesController::class ,'findCurrentShuttle']);
+Route::get('/listShuttle', [ShuttleController::class ,'listShuttles']);
+Route::post('/shuttles', [ShuttleController::class ,'createShuttle']);
+Route::put('/shuttles', [ShuttleController::class ,'updateShuttle']);
+Route::get('/shuttles', [ShuttleController::class ,'findCurrentShuttle']);
 
 
 
