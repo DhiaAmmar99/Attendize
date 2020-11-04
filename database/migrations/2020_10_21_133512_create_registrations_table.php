@@ -30,7 +30,6 @@ class CreateRegistrationsTable extends Migration
             $table->string('language_translation');
             $table->string('languages');
             $table->string('first_check');
-            $table->string('list_congress');
             $table->string('mode_payment');
             $table->string('payment_status');
             $table->string('second_check');
@@ -42,7 +41,7 @@ class CreateRegistrationsTable extends Migration
             $table->string('price');
             $table->string('lead');
             $table->string('password');
-            // $table->timestamps();
+            $table->timestamps();
         });
     }
 

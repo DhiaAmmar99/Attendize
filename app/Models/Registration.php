@@ -24,7 +24,6 @@ class Registration extends Model
                 'language_translation',
                 'languages',
                 'first_check',
-                'list_congress',
                 'mode_payment',
                 'payment_status',
                 'second_check',

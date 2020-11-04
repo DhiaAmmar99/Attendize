@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "ica-backoffice",
+  "private_key_id": "a38edf3b625bddac9428e594f9f1c754671ca9a2",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC5y+oSxCAR62nw\nyD7Sbt/gYy8dLict1og7+Gwa4BlRpsKoWZ4KeExYTGvrwK9cEokHgITB/uILnpT2\nR71lE2mjgm5YZrE6En8UzxcFkUFWb2ezYJnXtV1hpZUplfPuSUu2PlzePVQTYsL2\nr2w4ifgr/DMz8pnzcApV8u2fJr4QkG54qxPAlL9ljbf4t7xJ1VuHDjZIfUs3ir5Z\nUwZu/3sltNUftDZ1aZJbyD0OjLov3hjsIP79e3tc7qmDDuPoZsDKyvpwaRXEabAe\nIREmq5O9a74oPEdpnayYzEMoCnxlGggRWM5S4tQ9Cy6yB7q6BXWUdhtVYb/Fr+9p\nEQPjJvPvAgMBAAECggEANyUOQuaiLB9msLgGaVfOK9/UXoFR0JmRktcfYvSrnx/z\nO5tpvGrLIhQAnhbxFU9NC4R6IsgfWFqHlPdi/8p8urKeRK+qH3XY8RisGRNtRJXJ\nPiTIVI04e6B1PsQKg+mORreIwc+LEjvoaOZVJQzSM1/l5J+3UNkqwCrbmzaZB/oM\n0Y8NKORhrMPLW2iAXsd+E1gmkviL21XCbKuOEaihvZHi/uB0a4fLucjIXPrsnwUn\noAP3dme3VTL2b9tvVIopUi7fSh4JHYbZl0dsfvY2tGQo7aJjEZnqJL3AJxovaGPx\nXcczitzE7ePgsO2xyBrBZEMBJ9LQWa8ItFNl1sZv/QKBgQDaX7scMr+OJlM5Ra4b\nmBiy0u0jrCoK2o7DgPtbdskudz0+ofZ+tkKxY2j3bGuhduuvTjAos5VwwZXacEcO\ntmMgE5X+g/Mhfe9OV6tzT9RlR3Q+6rBAhM4+O9TdM1X0Q1uJ/srsBRyWpRwYT2U/\n31Th140KxoCkbCW5I84M8LW/ZQKBgQDZzzmDl//CsyMlU8zi5Y2px0TP8up/yz6/\nm88ZqCbHDJy71qTVRgCpokysdM5JX2ITG50FnEpRbUyqhx5PlEsoyeSY8L2IkmrI\n4FcZbARcXWJJijftBQCNFCenfHMCiLysQgStT3mAfQrG6K/a8DbHfIxXIsum97Wm\nsXFyaFPiwwKBgFFNcwx8mHUEL9gS6U+8wPVTMpclckG4PY7sZqkXALAcFOFMy8lB\ncnM438u+whPLgtQx+BwvQGRKrtA1HT+NCDrZD+9CkTLXAFHasiqsfhd3EwCZwCVF\nTMQ+4nG4uzfGHD60bjiRbqNntZ4XcUrmi2PKLOjmHt8YpLLZcc2/kOtBAoGBAL3F\n1Nm4PMpaJFwoiJKE6YosqeL5RqHz5wcxbR9wp+C0N3deDB4asQcb9uwnlXjOV3hI\njeZOh14s+ih2M82oalfumHM9BhaRY+MDvD/VInOLldB3UkT8H7/L+MTwJJDnrGP1\n3XdXkIiH6jTmlhoPQ9tJxElDcudWWnoTjsHc7oHbAoGBALRStly3Fju1ZNEqfk3b\nkY7OqDyiKUfT5KWO2J3lALNlrfvFAaV5fokztkk+2knQ3xC5YhnrHfFxQ/iceE+6\nUNew6floJ0jqbE+Es/8cu9g1Bce90LTBqoOfND6ov2WHvOPLUVcXybiWy3W0DUZC\nNOoBycsUJkmaubpR+/4802Sk\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-i4fgh@ica-backoffice.iam.gserviceaccount.com",
+  "client_id": "109010100903509065066",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-i4fgh%40ica-backoffice.iam.gserviceaccount.com"
+}

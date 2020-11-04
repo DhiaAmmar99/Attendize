@@ -4,6 +4,7 @@ use App\Http\Controllers\ListUsersController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiregistrationController;
 use App\Http\Controllers\ShuttleController;
+use App\Http\Controllers\FirebaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,7 @@ Route::resource('attendees', API\AttendeesApiController::class);
  * Registration
  * ---------------
  */
+Route::post('/password', [ApiregistrationController::class ,'password']);
 Route::post('/email/password', [ApiregistrationController::class ,'emailPassword']);
 Route::post('/verifEmail', [ApiregistrationController::class ,'verifEmail']);
 Route::post('/payment', [ApiregistrationController::class ,'payment']);
@@ -76,6 +78,8 @@ Route::get('/listShuttle', [ShuttleController::class ,'listShuttles']);
 Route::post('/shuttles', [ShuttleController::class ,'createShuttle']);
 Route::put('/shuttles', [ShuttleController::class ,'updateShuttle']);
 Route::get('/shuttles', [ShuttleController::class ,'findCurrentShuttle']);
+Route::get('/firebase', [FirebaseController::class ,'index']);
+Route::get('/firestore', [FirebaseController::class ,'fire']);
 
 
 

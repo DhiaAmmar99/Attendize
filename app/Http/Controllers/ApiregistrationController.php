@@ -6,6 +6,7 @@ use App\Models\Delegate;
 use App\Mail\SendMailable;
 use App\Mail\EditMailable;
 use App\Mail\PreRegistrationMailable;
+use App\Mail\PasswordMailable;
 use App\Models\Registration;
 use App\Models\Mailapi;
 use App\Models\Sponsors;
@@ -161,12 +162,14 @@ class ApiregistrationController extends Controller
         return response()->json($mail);
     }
 
+    
+
     public function mail($tab, $id)
     {
 	    $email  = DB::connection('mysql')->table($tab)->where('id', $id)->first();
 	    $tomail= $email->email_address;
 	    $toid= $email->id;
-	    Mail::to($tomail)->send(new SendMailable($toid));
+	    Mail::to($tomail)->send(new SendMailable($toid, $email));
 	    return 'Email was sent';
     }
 
@@ -175,7 +178,7 @@ class ApiregistrationController extends Controller
         $email  = DB::connection('mysql')->table($tab)->where('id', $id)->first();
         $tomail= $email->email_address;
         $toid= $email->id;
-        Mail::to($tomail)->send(new EditMailable($toid));
+        Mail::to($tomail)->send(new EditMailable($toid, $email));
         return response()->json('Email was sent');
     }
 
@@ -348,14 +351,18 @@ class ApiregistrationController extends Controller
                 ];
         $datamail  = DB::connection('mysql')->table($data['table'])->where('id', $data['id'])->first();
         $tomail= $datamail->email_address;
+
+        
         if($data['table'] == 'registrations'){
             $toid= $datamail->id;
-        }else{
+        }else if($data['table'] == 'delegates'){
             $toid= $datamail->register_id;
         }
-        $OP = new SendMailable($toid, $datamail);
-        $BT = new PreRegistrationMailable($toid, $datamail);
-        $ED = new EditMailable($toid, $datamail);
+        
+        
+        $BT = new PreRegistrationMailable($toid, $datamail, $data['table']);
+        $ED = new EditMailable($toid, $datamail, $data['table']);
+        $OP = new SendMailable($toid, $datamail, $data['table']);
 
         if($data['paiment'] == 'Credit Card'){
             Mail::to($tomail)->send($OP);
@@ -365,7 +372,7 @@ class ApiregistrationController extends Controller
                 'data'=>$data,
                 ]);
 
-        }else if(($data['paiment'] == 'Onsite payment')||($data['paiment'] == 'Bank Transfer')){
+        }else if(($data['paiment'] == 'Onsite payment') || ($data['paiment'] == 'Bank Transfer')){
 
             Mail::to($tomail)->send($BT);
             return response()->json([
@@ -485,6 +492,14 @@ class ApiregistrationController extends Controller
             );
         }
         
+    }
+
+    public function password(Request $request)
+    {
+        DB::connection('mysql')->table('registrations')->where('id', $request->id)
+        ->update([
+            'password' => $request->password,
+        ]);
     }
    
     

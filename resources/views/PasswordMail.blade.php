@@ -476,9 +476,9 @@
                         
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
                         
-                            <h4 style="text-align: left;"><span style="font-size:16px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">You are successfully registered to attend the ICA Congress Abu Dhabi 2020.</span></span></h4>
+                            <h4 style="text-align: left;"><span style="font-size:16px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"></span></span></h4>
 
-<h1 style="text-align: left;"><span style="font-size:21px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Your unique registration number&nbsp;(URN) is:&nbsp; {{$id}}</span></span></h1>
+<h1 style="text-align: left;"><span style="font-size:21px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Your password is:   {{$data}}</span></span></h1>
 
                         </td>
                     </tr>
@@ -550,7 +550,7 @@
                         
                             <table border="0" cellspacing="0" class="mcnTextContentContainer" width="100%" style="min-width: 100% !important;background-color: #404040;">
                                 <tbody><tr>
-                                    <td valign="top" class="mcnTextContent" style="padding: 18px;color: #F2F2F2;font-family: Helvetica;font-size: 14px;font-weight: normal;text-align: center;">
+                                     {{-- <td valign="top" class="mcnTextContent" style="padding: 18px;color: #F2F2F2;font-family: Helvetica;font-size: 14px;font-weight: normal;text-align: center;">
                                         <div style="text-align: left;">
                                             <div style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Registration information:</div><br>
                                             
@@ -582,7 +582,7 @@
                                          
                                         &nbsp;</div>
 
-                                    </td>
+                                    </td>  --}}
                                 </tr>
                             </tbody></table>
                         </td>
