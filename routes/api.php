@@ -49,6 +49,7 @@ Route::resource('attendees', API\AttendeesApiController::class);
  * Registration
  * ---------------
  */
+Route::post('/password', [ApiregistrationController::class ,'password']);
 Route::post('/email/password', [ApiregistrationController::class ,'emailPassword']);
 Route::post('/verifEmail', [ApiregistrationController::class ,'verifEmail']);
 Route::post('/payment', [ApiregistrationController::class ,'payment']);
@@ -76,6 +77,7 @@ Route::get('/listShuttle', [ShuttleController::class ,'listShuttles']);
 Route::post('/shuttles', [ShuttleController::class ,'createShuttle']);
 Route::put('/shuttles', [ShuttleController::class ,'updateShuttle']);
 Route::get('/shuttles', [ShuttleController::class ,'findCurrentShuttle']);
+
 
 
 

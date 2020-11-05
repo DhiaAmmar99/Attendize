@@ -10,17 +10,19 @@ use Illuminate\Queue\SerializesModels;
 class SendMailable extends Mailable
 {
     use Queueable, SerializesModels;
-   public $name; 
+   public $id; 
    public $data; 
+   public $tabname;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name,  $data)
+    public function __construct($id,  $data, $tabname)
     {
-         $this->name=$name;
+         $this->id=$id;
          $this->data=$data;
+         $this->tabname=$tabname;
     }
 
     /**
@@ -31,8 +33,9 @@ class SendMailable extends Mailable
     public function build()
     {
         return $this->subject('Registration summary')->view('successMail')->with([
-            'name' => $this->name,
+            'id' => $this->id,
             'data' => $this->data,
+            'tabname' => $this->tabname,
         ]);
     }
 }

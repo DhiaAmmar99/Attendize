@@ -29,7 +29,7 @@ class CreateDelegatesTable extends Migration
             $table->string('guests');
             $table->string('lead');
             $table->unsignedBigInteger('register_id');
-            // $table->timestamps();
+            $table->timestamps();
         });
     }
 

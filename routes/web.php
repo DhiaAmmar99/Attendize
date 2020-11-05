@@ -39,9 +39,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\UserLogoutController;
 use App\Http\Controllers\UserSignupController;
+use App\Http\Controllers\FirebaseController;
 
 
 
+Route::get('/firebase', [FirebaseController::class ,'index']);
+Route::get('/firestore', [FirebaseController::class ,'fire']);
 
 Route::get('/{organiser_id}/listusers', 
      [ListUsersController::class, 'list']

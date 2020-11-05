@@ -756,7 +756,7 @@
                                                                             <h4 style="text-align: left;"><span style="font-size:16px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Your modifications have been taken into account.</span></span>
                                                                             </h4>
 
-                                                                        <h1 style="text-align: left;"><span style="font-size:21px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Your unique registration number&nbsp;(URN) is:&nbsp; {{$name}}</span></span>
+                                                                        <h1 style="text-align: left;"><span style="font-size:21px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Your unique registration number&nbsp;(URN) is:&nbsp; {{$id}}</span></span>
                                                                             </h1>
 
                                                                         </td>
@@ -846,21 +846,27 @@
                                                                                                 <div>Email : {{$data->email_address}}</div><br>
                                                                                                 <div>Job title : {{$data->job_title}}</div><br>
                                                                                                 <div>Organization : {{$data->organization}}</div><br>
-                                                                                                <div>Country : {{$data->country}}</div><br>
                                                                                                 <div>Dietary : {{$data->dietary}}</div><br>
                                                                                                 <div>Experience : {{$data->experience}}</div><br>
                                                                                                 <div>Language translation : {{$data->language_translation}}</div><br>
                                                                                                 <div>Languages : {{$data->languages}}</div><br>
+                                                                                                <div>Guests : {{$data->guests}}</div><br>
+                                                                                                <div>Lead : {{$data->lead}}</div><br>
                                                                                                 <div>Do you agree to share your name, job title and organisation in the Congress attendees list ? : {{$data->first_check}}</div><br>
                                                                                                 <div>Do you agree for your name, organisation and email address to be added to the recipients list to receive event updates ? : {{$data->second_check}}</div><br>
+
+                                                                                                @if ($tabname == 'registrations')
+                                                                                                
                                                                                                 <div>Postal address : {{$data->postal_address}}</div><br>
                                                                                                 <div>Type registration : {{$data->registration_as}}</div><br>
                                                                                                 <div>Membership number : {{$data->membership_number}}</div><br>
+                                                                                                <div>Country : {{$data->country}}</div><br>
                                                                                                 <div>Number of delegates : {{$data->membership}}</div><br>
                                                                                                 <div>Mode of payment : {{$data->mode_payment}}</div><br>
                                                                                                 <div>Events : {{$data->eventP}} {{$data->eventS}} {{$data->eventG}} {{$data->eventW}}</div><br>
-                                                                                                <div>Guests : {{$data->guests}}</div><br>
                                                                                                 <div>Price : {{$data->price}}</div><br>
+
+                                                                                                @endif
                                                                                             &nbsp;</div>
 
                                                                                         </td>
