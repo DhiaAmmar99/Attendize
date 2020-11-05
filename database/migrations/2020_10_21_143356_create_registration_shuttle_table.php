@@ -21,6 +21,7 @@ class CreateRegistrationShuttleTable extends Migration
                 $table->bigInteger('shuttle_id')->unsigned();
             $table->foreign('shuttle_id')->references('id')->on('shuttles')
                 ->onDelete('cascade');
+            $table->string('nb_places');
             $table->timestamps();
         });
     }

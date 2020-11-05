@@ -23,7 +23,7 @@
         "guzzlehttp/guzzle": "^6.4",
         "guzzlehttp/psr7": "^1.6",
         "intervention/image": "^2.5",
-        "kreait/firebase-php": "^5.11",
+        "kreait/firebase-php": "4.0",
         "laracasts/utilities": "^3.0",
         "laravel/framework": "^6.5",
         "laravel/socialite": "^4.3",
