@@ -98,8 +98,8 @@ class ShuttleController extends Controller
 
     public function findCurrentShuttle(Request $request)
     {
-        $id = "1"; 
-        // $id = Auth::id(); 
+        // $id = "1"; 
+        $id = Auth::id(); 
         $data = Shuttle::query()->find($id);
         if ($data->get()) {
             return Response::json([

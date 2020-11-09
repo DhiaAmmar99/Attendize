@@ -476,9 +476,23 @@
                         
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
                         
-                            <h4 style="text-align: left;"><span style="font-size:16px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">You are successfully registered to attend the ICA Congress Abu Dhabi 2020.</span></span></h4>
+                            Institution                             <h4 style="text-align: left;"><span style="font-size:16px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">
+                                
+                                @if ($tabname == 'registrations')
+                                You are successfully registered to attend the ICA Congress Abu Dhabi 2020.
+                                @else
+                                You have been successfully registered as a group delegation under Institution Members
+                                @endif
+                            </span></span></h4>
 
-<h1 style="text-align: left;"><span style="font-size:21px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Your unique registration number&nbsp;(URN) is:&nbsp; {{$id}}</span></span></h1>
+                            <h1 style="text-align: left;"><span style="font-size:21px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">
+                                @if ($tabname == 'registrations')
+                                Your unique registration number&nbsp;(URN) is:
+                                @else
+                                your unique registration number under group is:
+                                @endif
+                                
+                                &nbsp; {{$id}}</span></span></h1>
 
                         </td>
                     </tr>

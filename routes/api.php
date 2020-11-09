@@ -85,7 +85,7 @@ Route::get('/FRcountry', [ApiregistrationController::class ,'FRcountry']);
 
 /*
  * ---------------
- * Shuttle
+ * Shuttles
  * ---------------
  */
 
