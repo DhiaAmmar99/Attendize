@@ -258,144 +258,144 @@
               font-weight:normal;
               text-decoration:underline;
         }
-    @media only screen and (min-width:768px){
+    @media  only screen and (min-width:768px){
         .templateContainer{
             width:600px !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         body,table,td,p,a,li,blockquote{
             -webkit-text-size-adjust:none !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         body{
             width:100% !important;
             min-width:100% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnRetinaImage{
             max-width:100% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnImage{
             width:100% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnCartContainer,.mcnCaptionTopContent,.mcnRecContentContainer,.mcnCaptionBottomContent,.mcnTextContentContainer,.mcnBoxedTextContentContainer,.mcnImageGroupContentContainer,.mcnCaptionLeftTextContentContainer,.mcnCaptionRightTextContentContainer,.mcnCaptionLeftImageContentContainer,.mcnCaptionRightImageContentContainer,.mcnImageCardLeftTextContentContainer,.mcnImageCardRightTextContentContainer,.mcnImageCardLeftImageContentContainer,.mcnImageCardRightImageContentContainer{
             max-width:100% !important;
             width:100% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnBoxedTextContentContainer{
             min-width:100% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnImageGroupContent{
             padding:9px !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnCaptionLeftContentOuter .mcnTextContent,.mcnCaptionRightContentOuter .mcnTextContent{
             padding-top:9px !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnImageCardTopImageContent,.mcnCaptionBottomContent:last-child .mcnCaptionBottomImageContent,.mcnCaptionBlockInner .mcnCaptionTopContent:last-child .mcnTextContent{
             padding-top:18px !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnImageCardBottomImageContent{
             padding-bottom:9px !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnImageGroupBlockInner{
             padding-top:0 !important;
             padding-bottom:0 !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnImageGroupBlockOuter{
             padding-top:9px !important;
             padding-bottom:9px !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnTextContent,.mcnBoxedTextContentColumn{
             padding-right:18px !important;
             padding-left:18px !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnImageCardLeftImageContent,.mcnImageCardRightImageContent{
             padding-right:18px !important;
             padding-bottom:0 !important;
             padding-left:18px !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcpreview-image-uploader{
             display:none !important;
             width:100% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
     
         h1{
               font-size:30px !important;
               line-height:125% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
     
         h2{
               font-size:26px !important;
               line-height:125% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
 
         h3{
               font-size:20px !important;
               line-height:150% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
 
         h4{
               font-size:18px !important;
               line-height:150% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
     
         .mcnBoxedTextContentContainer .mcnTextContent,.mcnBoxedTextContentContainer .mcnTextContent p{
               font-size:14px !important;
               line-height:150% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
     
         .headerContainer .mcnTextContent,.headerContainer .mcnTextContent p{
               font-size:16px !important;
               line-height:150% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
 
         .bodyContainer .mcnTextContent,.bodyContainer .mcnTextContent p{
               font-size:16px !important;
               line-height:150% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
 
         .footerContainer .mcnTextContent,.footerContainer .mcnTextContent p{
               font-size:14px !important;
@@ -476,23 +476,23 @@
                         
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
                         
-                                <h4 style="text-align: left;"><span style="font-size:16px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">
+                            Institution                             <h4 style="text-align: left;"><span style="font-size:16px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">
                                 
-                                @if ($tabname == 'registrations')
+                                <?php if($tabname == 'registrations'): ?>
                                 You are successfully registered to attend the ICA Congress Abu Dhabi 2020.
-                                @else
+                                <?php else: ?>
                                 You have been successfully registered as a group delegation under Institution Members
-                                @endif
+                                <?php endif; ?>
                             </span></span></h4>
 
                             <h1 style="text-align: left;"><span style="font-size:21px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">
-                                @if ($tabname == 'registrations')
+                                <?php if($tabname == 'registrations'): ?>
                                 Your unique registration number&nbsp;(URN) is:
-                                @else
+                                <?php else: ?>
                                 your unique registration number under group is:
-                                @endif
+                                <?php endif; ?>
                                 
-                                &nbsp; {{$id}}</span></span></h1>
+                                &nbsp; <?php echo e($id); ?></span></span></h1>
 
                         </td>
                     </tr>
@@ -568,31 +568,31 @@
                                         <div style="text-align: left;">
                                             <div style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Registration information:</div><br>
                                             
-                                            <div>Full name : {{$data->first_name}} {{$data->last_name}}</div><br>
-                                            <div>Email : {{$data->email_address}}</div><br>
-                                            <div>Job title : {{$data->job_title}}</div><br>
-                                            <div>Organization : {{$data->organization}}</div><br>
-                                            <div>Dietary : {{$data->dietary}}</div><br>
-                                            <div>Experience : {{$data->experience}}</div><br>
-                                            <div>Language translation : {{$data->language_translation}}</div><br>
-                                            <div>Languages : {{$data->languages}}</div><br>
-                                            <div>Guests : {{$data->guests}}</div><br>
-                                            <div>Lead : {{$data->lead}}</div><br>
-                                            <div>Do you agree to share your name, job title and organisation in the Congress attendees list ? : {{$data->first_check}}</div><br>
-                                            <div>Do you agree for your name, organisation and email address to be added to the recipients list to receive event updates ? : {{$data->second_check}}</div><br>
+                                            <div>Full name : <?php echo e($data->first_name); ?> <?php echo e($data->last_name); ?></div><br>
+                                            <div>Email : <?php echo e($data->email_address); ?></div><br>
+                                            <div>Job title : <?php echo e($data->job_title); ?></div><br>
+                                            <div>Organization : <?php echo e($data->organization); ?></div><br>
+                                            <div>Dietary : <?php echo e($data->dietary); ?></div><br>
+                                            <div>Experience : <?php echo e($data->experience); ?></div><br>
+                                            <div>Language translation : <?php echo e($data->language_translation); ?></div><br>
+                                            <div>Languages : <?php echo e($data->languages); ?></div><br>
+                                            <div>Guests : <?php echo e($data->guests); ?></div><br>
+                                            <div>Lead : <?php echo e($data->lead); ?></div><br>
+                                            <div>Do you agree to share your name, job title and organisation in the Congress attendees list ? : <?php echo e($data->first_check); ?></div><br>
+                                            <div>Do you agree for your name, organisation and email address to be added to the recipients list to receive event updates ? : <?php echo e($data->second_check); ?></div><br>
 
-                                            @if ($tabname == 'registrations')
+                                            <?php if($tabname == 'registrations'): ?>
                                             
-                                            <div>Postal address : {{$data->postal_address}}</div><br>
-                                            <div>Type registration : {{$data->registration_as}}</div><br>
-                                            <div>Membership number : {{$data->membership_number}}</div><br>
-                                            <div>Country : {{$data->country}}</div><br>
-                                            <div>Number of delegates : {{$data->membership}}</div><br>
-                                            <div>Mode of payment : {{$data->mode_payment}}</div><br>
-                                            <div>Events : {{$data->eventP}} {{$data->eventS}} {{$data->eventG}} {{$data->eventW}}</div><br>
-                                            <div>Price : {{$data->price}}</div><br>
+                                            <div>Postal address : <?php echo e($data->postal_address); ?></div><br>
+                                            <div>Type registration : <?php echo e($data->registration_as); ?></div><br>
+                                            <div>Membership number : <?php echo e($data->membership_number); ?></div><br>
+                                            <div>Country : <?php echo e($data->country); ?></div><br>
+                                            <div>Number of delegates : <?php echo e($data->membership); ?></div><br>
+                                            <div>Mode of payment : <?php echo e($data->mode_payment); ?></div><br>
+                                            <div>Events : <?php echo e($data->eventP); ?> <?php echo e($data->eventS); ?> <?php echo e($data->eventG); ?> <?php echo e($data->eventW); ?></div><br>
+                                            <div>Price : <?php echo e($data->price); ?></div><br>
 
-                                            @endif
+                                            <?php endif; ?>
                                          
                                         &nbsp;</div>
 
@@ -1069,3 +1069,4 @@ A copy of your registration invoice will be emailed to you separately to your re
         </center>
     </body>
 </html>
+<?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/successMail.blade.php ENDPATH**/ ?>
