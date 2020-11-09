@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Registration;
+use App\Models\ReservedShuttle;
 use App\Models\Shuttle;
 use DB;
 use Illuminate\Http\Request;
@@ -114,4 +114,15 @@ class ShuttleController extends Controller
                 'data' => $data
             ]);
     }
+
+    public function ReservationShuttle(Request $request)
+    {
+        $reservation = new ReservedShuttle();
+        $reservation->registration_id = $request->input('registration_id');
+        $reservation->shuttle_id = $request->input('shuttle_id');
+        $reservation->nb_places = $request->input('nb_places');
+        $reservation->save();
+        return response()->json($reservation);
+    }
+
 }

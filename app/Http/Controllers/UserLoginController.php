@@ -63,5 +63,6 @@ class UserLoginController extends Controller
         }
 
         return redirect()->intended(route('showSelectOrganiser'));
+        // return redirect('1/listusers');
     }
 }

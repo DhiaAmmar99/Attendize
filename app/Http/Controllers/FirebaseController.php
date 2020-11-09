@@ -11,28 +11,6 @@ use Google\Cloud\Firestore\FirestoreClient;
 
 class FirebaseController extends Controller
 {
-    
-    // public function index()
-    // {
-    //     $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/firebaseKey.json');
-    //     $firebase = (new Factory)
-    //     ->withServiceAccount($serviceAccount)
-    //     ->withDatabaseUri("https://ica-2020.firebaseio.com/")
-    //     ->create();
-
-    //     $database = $firebase->getDatabase('subjects');
-
-    //     $ref = $database->getReference('ICA-2020');
-    //     $sub = $ref->getValue();
-    //     foreach($sub as $s){
-    //         $all_subject[] = $s;
-    //     }
-    //     return json_encode($all_subject) ;
-       
-       
-        
-    // }
-
 
     public function index(){
 
@@ -40,30 +18,38 @@ class FirebaseController extends Controller
 
 		$firebase= (new Factory)->withServiceAccount($serviceAccount)->withDatabaseUri('https://ica-2020.firebaseio.com')->create();
 
-		$database= $firebase->getDatabase()->getReference();
+		$database= $firebase->getDatabase()->getReference()->getvalue();
 
       
         dd($database);
 
-		// print_r($newPost);
+		// print_r($database);
     }
     
 
     public function fire()
     {
-        // $db = new FirestoreClient();
-        $db = new FirestoreClient([
-            'projectId' => 'Chats',
-        ]);
+        $db = new FirestoreClient();
+        // $db = new FirestoreClient([
+        //     'projectId' => 'ica-2020',
+        // ]);
 
-        $Ref = $db->collection('Chats');
+        $ref = $db->collection('Chats');
 
-        $snapshot = $Ref->documents();
-        foreach ($snapshot as $user) {
-            printf('Document returned by query '. $user->id());
-        }
-
-        dd ($Ref);
+        $documents = $ref->documents();
+        // foreach ($documents as $user) {
+            // if ($user->exists()) {
+            //     printf('Document data for document %s:');
+            //     print_r($user->data());
+            //     printf(PHP_EOL);
+            // } else {
+            //     printf('Document %s does not exist!');
+            // }
+            // printf('Document returned by query '. $user->id());
+            
+        // }
+        dd ('Document returned by query '. $documents);
+        
         
     }
     
