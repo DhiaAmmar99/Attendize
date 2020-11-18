@@ -40,7 +40,7 @@ use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\UserLogoutController;
 use App\Http\Controllers\UserSignupController;
 use App\Http\Controllers\FirebaseController;
-
+use App\Http\Controllers\ApiregistrationController;
 
 
 Route::get('/firebase', [FirebaseController::class ,'index']);

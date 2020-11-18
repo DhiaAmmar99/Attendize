@@ -29,27 +29,29 @@ class FirebaseController extends Controller
 
     public function fire()
     {
-        $db = new FirestoreClient();
-        // $db = new FirestoreClient([
-        //     'projectId' => 'ica-2020',
-        // ]);
-
-        $ref = $db->collection('Chats');
-
-        $documents = $ref->documents();
-        // foreach ($documents as $user) {
-            // if ($user->exists()) {
-            //     printf('Document data for document %s:');
-            //     print_r($user->data());
-            //     printf(PHP_EOL);
-            // } else {
-            //     printf('Document %s does not exist!');
-            // }
-            // printf('Document returned by query '. $user->id());
-            
-        // }
-        dd ('Document returned by query '. $documents);
+        // $db = new FirestoreClient();
+        $db = new FirestoreClient([
+            'projectId' => 'ica-2020',
         
+        ]);
+
+        $ref = $db->collection('Chats')->listDocuments();
+        
+
+        // $documents = $ref->documents();
+        
+        // foreach ($documents as $user) {
+        //     if ($user->exists()) {
+        //         printf('Document data for document %s:');
+        //         print_r($user->data());
+        //         printf(PHP_EOL);
+        //     } else {
+        //         printf('Document %s does not exist!');
+        //     }
+            // printf('Document returned by query '. $document->id());
+        // json_encode($document->data());
+        // }
+        dd($ref);
         
     }
     

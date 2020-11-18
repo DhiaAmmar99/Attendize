@@ -590,7 +590,7 @@
                                             <div>Number of delegates : {{$data->membership}}</div><br>
                                             <div>Mode of payment : {{$data->mode_payment}}</div><br>
                                             <div>Events : {{$data->eventP}} {{$data->eventS}} {{$data->eventG}} {{$data->eventW}}</div><br>
-                                            <div>Price : {{$data->price}}</div><br>
+                                            <div>Price : {{$data->price}} EUR</div><br>
 
                                             @endif
                                          

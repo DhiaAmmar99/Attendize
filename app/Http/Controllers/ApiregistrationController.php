@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Countries;
 use Response;
-use Page;
+use PDF;
 
 class ApiregistrationController extends Controller
 {
@@ -500,6 +500,104 @@ class ApiregistrationController extends Controller
         ->update([
             'password' => $request->password,
         ]);
+    }
+
+    public function generatepdf(Request $request)
+    {
+        $req='<div id="evnetPDF" style="text-align: right !important;">
+        <div id="event" class="pre-registration">
+            <p> الاسم الكامل :<span>Ramzi</span> <span> touati<span></span></span>
+            </p>
+            <p>البريد الإلكتروني : ramzitouati1@gmail.com</p>
+            <p>المسمى الوظيفي : dev</p>
+            <p>المنظمة: test</p>
+            <p>الدولة : الأرجنتين</p>
+            <p>التغذية : None</p>
+            <p>تجربة : no</p>
+            <p>الترجمة اللغوية : no</p>
+            <p>اللغة : None</p>
+            <p>هل توافق على مشاركة اسمك والمسمى الوظيفي الخاص بك والمنظمة التي تعمل لديها في قائمة حضور الكونجرس ؟ : yes</p>
+            <p>هل توافق على إضافة اسمك والمنظمة التي تعمل لديها وعنوان بريدك الإلكتروني إلى قائمة الأشخاص الذين يتلقّون آخر المستجدات حول الحدث؟: yes</p>
+            <p> العنوان البريدي: test</p>
+            <p>التسجيل : institution</p>
+            <p>رقم العضوية : d5210</p>
+            <p>عددالعضوية : 3</p>
+            <p>طريقة الدفع : Credit Card</p>
+            <p>الأحداث : </p>
+            <p>المندوب : no</p>
+            <p>السعر : 702 $ / 600 يورو / 2586 د.إ</p>
+
+            <p> الاسم الكامل :<span>Ramzi</span> <span> touati<span></span></span>
+            </p>
+            <p>البريد الإلكتروني : ramzitouati1@gmail.com</p>
+            <p>المسمى الوظيفي : dev</p>
+            <p>المنظمة: test</p>
+            <p>الدولة : الأرجنتين</p>
+            <p>التغذية : None</p>
+            <p>تجربة : no</p>
+            <p>الترجمة اللغوية : no</p>
+            <p>اللغة : None</p>
+            <p>هل توافق على مشاركة اسمك والمسمى الوظيفي الخاص بك والمنظمة التي تعمل لديها في قائمة حضور الكونجرس ؟ : yes</p>
+            <p>هل توافق على إضافة اسمك والمنظمة التي تعمل لديها وعنوان بريدك الإلكتروني إلى قائمة الأشخاص الذين يتلقّون آخر المستجدات حول الحدث؟: yes</p>
+            <p> العنوان البريدي: test</p>
+            <p>التسجيل : institution</p>
+            <p>رقم العضوية : d5210</p>
+            <p>عددالعضوية : 3</p>
+            <p>طريقة الدفع : Bank Transfer</p>
+            <p>الأحداث : </p>
+            <p>المندوب : no</p>
+            <p>السعر : 702 $ / 600 يورو / 2586 د.إ</p>
+        </div>
+        <div id="eventDelegate" class="pre-registration">
+            <p> الاسم الكامل :<span>test</span> <span> test<span></span></span>
+            </p>
+            <p>البريد الإلكتروني : ramzitouati1@gmail.com</p>
+            <p>المسمى الوظيفي : test</p>
+            <p>المنظمة: test</p>
+            <p>الدولة : الأرجنتين</p>
+            <p>التغذية : None</p>
+            <p> العنوان البريدي: test</p>
+            <p>السعر : 702 $ / 600 EURO / 2586 AED </p>
+
+            <p> الاسم الكامل :<span>test</span> <span> test<span></span></span>
+            </p>
+            <p>البريد الإلكتروني : ramzitouati1@gmail.com</p>
+            <p>المسمى الوظيفي : test</p>
+            <p>المنظمة: test</p>
+            <p>الدولة : الأرجنتين</p>
+            <p>التغذية : None</p>
+            <p> العنوان البريدي: test</p>
+            <p>السعر : 702 $ / 600 EURO / 2586 AED </p>
+
+            <p> الاسم الكامل :<span>test</span> <span> test<span></span></span>
+            </p>
+            <p>البريد الإلكتروني : ramzitouati1@gmail.com</p>
+            <p>المسمى الوظيفي : test</p>
+            <p>المنظمة: test</p>
+            <p>الدولة : الأرجنتين</p>
+            <p>التغذية : None</p>
+            <p> العنوان البريدي: test</p>
+            <p>السعر : 702 $ / 600 EURO / 2586 AED </p>
+
+            <p> الاسم الكامل :<span>test</span> <span> test<span></span></span>
+            </p>
+            <p>البريد الإلكتروني : ramzitouati1@gmail.com</p>
+            <p>المسمى الوظيفي : test</p>
+            <p>المنظمة: test</p>
+            <p>الدولة : الأرجنتين</p>
+            <p>التغذية : None</p>
+            <p> العنوان البريدي: test</p>
+            <p>السعر : 702 $ / 600 EURO / 2586 AED </p>
+        </div>
+        <div id="allPrice">
+            <strong>Total price : 2106 $  /  1800 EURO   /  7758 AED </strong>
+        </div>
+    </div>';
+        
+        $data = ['title' => $req];
+        $pdf = PDF::loadView('pdf', $data);
+  
+        return $pdf->download('Nicesnippets.pdf');
     }
    
     
