@@ -595,9 +595,11 @@ class ApiregistrationController extends Controller
     </div>';
         
         $data = ['title' => $req];
-        $pdf = PDF::loadView('pdf', $data);
+        // $pdf = PDF::loadView('pdf', $data);
   
-        return $pdf->download('Nicesnippets.pdf');
+        // return $pdf->download('Nicesnippets.pdf');
+
+        return view('pdf', $data );
     }
    
     
