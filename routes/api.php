@@ -50,7 +50,7 @@ Route::resource('attendees', API\AttendeesApiController::class);
  * ---------------
  */
 
-
+Route::post('/download', [ApiregistrationController::class, 'generatepdf']);
 Route::post('/registration/mail', [ApiregistrationController::class, 'mailapi']);
 Route::post('/newDelegate', [ApiregistrationController::class ,'newdelegate']);
 Route::post('/registration', [ApiregistrationController::class ,'create']);

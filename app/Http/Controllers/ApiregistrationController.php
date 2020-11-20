@@ -17,6 +17,8 @@ use Illuminate\Http\Request;
 use Countries;
 use Response;
 use PDF;
+use Spipu\Html2Pdf\Html2Pdf;
+use Illuminate\Support\Facades\Redirect;
 
 class ApiregistrationController extends Controller
 {
@@ -502,105 +504,40 @@ class ApiregistrationController extends Controller
         ]);
     }
 
+    
+    
+
     public function generatepdf(Request $request)
     {
-        $req='<div id="evnetPDF" style="text-align: right !important;">
-        <div id="event" class="pre-registration">
-            <p> الاسم الكامل :<span>Ramzi</span> <span> touati<span></span></span>
-            </p>
-            <p>البريد الإلكتروني : ramzitouati1@gmail.com</p>
-            <p>المسمى الوظيفي : dev</p>
-            <p>المنظمة: test</p>
-            <p>الدولة : الأرجنتين</p>
-            <p>التغذية : None</p>
-            <p>تجربة : no</p>
-            <p>الترجمة اللغوية : no</p>
-            <p>اللغة : None</p>
-            <p>هل توافق على مشاركة اسمك والمسمى الوظيفي الخاص بك والمنظمة التي تعمل لديها في قائمة حضور الكونجرس ؟ : yes</p>
-            <p>هل توافق على إضافة اسمك والمنظمة التي تعمل لديها وعنوان بريدك الإلكتروني إلى قائمة الأشخاص الذين يتلقّون آخر المستجدات حول الحدث؟: yes</p>
+        $req='
+        <div class="bg-txt boxStyle-2" style="font-family: DejaVu Sans, sans-serif; direction: rtl !important;">
+               
+            <img src="https://front-ica.digitalresearch.ae/wp-content/uploads/2019/07/Groupe-10387.png" style="text-align: center;" class="rounded mx-auto d-block style-img">
+                   
             <p> العنوان البريدي: test</p>
             <p>التسجيل : institution</p>
             <p>رقم العضوية : d5210</p>
             <p>عددالعضوية : 3</p>
-            <p>طريقة الدفع : Credit Card</p>
-            <p>الأحداث : </p>
-            <p>المندوب : no</p>
-            <p>السعر : 702 $ / 600 يورو / 2586 د.إ</p>
 
-            <p> الاسم الكامل :<span>Ramzi</span> <span> touati<span></span></span>
-            </p>
-            <p>البريد الإلكتروني : ramzitouati1@gmail.com</p>
-            <p>المسمى الوظيفي : dev</p>
-            <p>المنظمة: test</p>
-            <p>الدولة : الأرجنتين</p>
-            <p>التغذية : None</p>
-            <p>تجربة : no</p>
-            <p>الترجمة اللغوية : no</p>
-            <p>اللغة : None</p>
-            <p>هل توافق على مشاركة اسمك والمسمى الوظيفي الخاص بك والمنظمة التي تعمل لديها في قائمة حضور الكونجرس ؟ : yes</p>
-            <p>هل توافق على إضافة اسمك والمنظمة التي تعمل لديها وعنوان بريدك الإلكتروني إلى قائمة الأشخاص الذين يتلقّون آخر المستجدات حول الحدث؟: yes</p>
-            <p> العنوان البريدي: test</p>
-            <p>التسجيل : institution</p>
-            <p>رقم العضوية : d5210</p>
-            <p>عددالعضوية : 3</p>
-            <p>طريقة الدفع : Bank Transfer</p>
-            <p>الأحداث : </p>
-            <p>المندوب : no</p>
-            <p>السعر : 702 $ / 600 يورو / 2586 د.إ</p>
         </div>
-        <div id="eventDelegate" class="pre-registration">
-            <p> الاسم الكامل :<span>test</span> <span> test<span></span></span>
-            </p>
-            <p>البريد الإلكتروني : ramzitouati1@gmail.com</p>
-            <p>المسمى الوظيفي : test</p>
-            <p>المنظمة: test</p>
-            <p>الدولة : الأرجنتين</p>
-            <p>التغذية : None</p>
-            <p> العنوان البريدي: test</p>
-            <p>السعر : 702 $ / 600 EURO / 2586 AED </p>
+';
 
-            <p> الاسم الكامل :<span>test</span> <span> test<span></span></span>
-            </p>
-            <p>البريد الإلكتروني : ramzitouati1@gmail.com</p>
-            <p>المسمى الوظيفي : test</p>
-            <p>المنظمة: test</p>
-            <p>الدولة : الأرجنتين</p>
-            <p>التغذية : None</p>
-            <p> العنوان البريدي: test</p>
-            <p>السعر : 702 $ / 600 EURO / 2586 AED </p>
 
-            <p> الاسم الكامل :<span>test</span> <span> test<span></span></span>
-            </p>
-            <p>البريد الإلكتروني : ramzitouati1@gmail.com</p>
-            <p>المسمى الوظيفي : test</p>
-            <p>المنظمة: test</p>
-            <p>الدولة : الأرجنتين</p>
-            <p>التغذية : None</p>
-            <p> العنوان البريدي: test</p>
-            <p>السعر : 702 $ / 600 EURO / 2586 AED </p>
+        // $html = file_get_contents('test.html');
+            
+        $html2pdf = new Html2Pdf();
+        $html2pdf->writeHTML($request->getContent()); // pass in the HTML
+        $html2pdf->output('myPdf.pdf', 'D'); // Generate the PDF and start download
 
-            <p> الاسم الكامل :<span>test</span> <span> test<span></span></span>
-            </p>
-            <p>البريد الإلكتروني : ramzitouati1@gmail.com</p>
-            <p>المسمى الوظيفي : test</p>
-            <p>المنظمة: test</p>
-            <p>الدولة : الأرجنتين</p>
-            <p>التغذية : None</p>
-            <p> العنوان البريدي: test</p>
-            <p>السعر : 702 $ / 600 EURO / 2586 AED </p>
-        </div>
-        <div id="allPrice">
-            <strong>Total price : 2106 $  /  1800 EURO   /  7758 AED </strong>
-        </div>
-    </div>';
-        
-        $data = ['title' => $req];
+
         // $pdf = PDF::loadView('pdf', $data);
-  
         // return $pdf->download('Nicesnippets.pdf');
 
-        return view('pdf', $data );
+        // view('pdf', $data );
+        // return Redirect("https://api.html2pdf.app/v1/generate?url=http://127.0.0.1:8000/download&apiKey=59f37cced1175defe052c4ce86317efe759ed23b7c538121753a4d4a732780ed");
     }
+
+    
    
     
 }

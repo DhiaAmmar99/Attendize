@@ -42,7 +42,6 @@ use App\Http\Controllers\UserSignupController;
 use App\Http\Controllers\FirebaseController;
 use App\Http\Controllers\ApiregistrationController;
 
-Route::get('/download', [ApiregistrationController::class, 'generatepdf']);
 Route::get('/firebase', [FirebaseController::class ,'index']);
 Route::get('/firestore', [FirebaseController::class ,'fire']);
 

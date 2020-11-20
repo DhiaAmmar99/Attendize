@@ -2,8 +2,9 @@
 <html>
 <head>
     <title>NiceSnippets</title>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+       <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
        <style type="text/css">
            * { 
                 font-family: DejaVu Sans, sans-serif;
@@ -24,6 +25,12 @@
                         <p class="pre-registration Preregistered" data-translate="pre-registration" id="txt-In-order" style="text-align: center; display: block;">لإكمال التسجيل ، يرجى إجراء التحويل المصرفي إلى تفاصيل الحساب في فاتورتك ، مع تحديد رقم الفاتورة في موضوع الطلب</p>
                         <p data-translate="below_parag" class="parag Preregistered" style="text-align: center; display: block;">يرجى الاطلاع على ملخص التسجيل المسبق الخاص بك</p>
                         <p data-translate="below_parag2" class="parag registered" style="text-align: center; display: none;"></p>
+                        <div id="dataReq">
+                          
+                                
+                                <?php echo $title ?>
+                           
+                        </div>
                         
                         
 
@@ -38,5 +45,12 @@
     </fieldset>
 
 </body>
-
+<script>
+    
+    jQuery(document).ready(function(){
+        console.log("test");
+        // jQuery("#dataReq").empty();
+        
+    });
+</script>
 </html><?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/pdf.blade.php ENDPATH**/ ?>
