@@ -430,7 +430,7 @@
                         <tbody><tr>
                             <td class="mcnImageContent" valign="top" style="padding-right: 9px; padding-left: 9px; padding-top: 0; padding-bottom: 0; text-align:center;">
                                 
-                                    <a href="https://www.abudhabi2020.ae/en/home/" title="" class="" target="_blank">
+                                    <a href="https://devica.digitalresearch.ae/en/home/" title="" class="" target="_blank">
                                         <img align="center" alt="" src="https://mcusercontent.com/2517f76c7a25b70b05180ff78/images/446f1a69-2e70-49b1-a0cc-07ad3517dde7.jpg" width="564" style="max-width:2500px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
                                     </a>
                                 
@@ -476,9 +476,23 @@
                         
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
                         
-                            <h4 style="text-align: left;"><span style="font-size:16px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">You are successfully registered to attend the ICA Congress Abu Dhabi 2020.</span></span></h4>
+                                <h4 style="text-align: left;"><span style="font-size:16px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">
+                                
+                                @if ($tabname == 'registrations')
+                                You are successfully registered to attend the ICA Congress Abu Dhabi 2020.
+                                @else
+                                You have been successfully registered as a group delegation under Institution Members
+                                @endif
+                            </span></span></h4>
 
-<h1 style="text-align: left;"><span style="font-size:21px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Your unique registration number&nbsp;(URN) is:&nbsp; {{$id}}</span></span></h1>
+                            <h1 style="text-align: left;"><span style="font-size:21px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">
+                                @if ($tabname == 'registrations')
+                                Your unique registration number&nbsp;(URN) is:
+                                @else
+                                your unique registration number under group is:
+                                @endif
+                                
+                                &nbsp; {{$id}}</span></span></h1>
 
                         </td>
                     </tr>
@@ -576,7 +590,7 @@
                                             <div>Number of delegates : {{$data->membership}}</div><br>
                                             <div>Mode of payment : {{$data->mode_payment}}</div><br>
                                             <div>Events : {{$data->eventP}} {{$data->eventS}} {{$data->eventG}} {{$data->eventW}}</div><br>
-                                            <div>Price : {{$data->price}}</div><br>
+                                            <div>Price : {{$data->price}} EUR</div><br>
 
                                             @endif
                                          
@@ -639,7 +653,7 @@
                     <tbody>
                         <tr>
                             <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Roboto, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px; padding: 10px;">
-                                <a class="mcnButton " title="To modify your registration, click here." href="https://www.abudhabi2020.ae/en/modify-registration/" target="_blank" style="font-weight: normal;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">To modify your registration, click here.</a>
+                                <a class="mcnButton " title="To modify your registration, click here." href="https://devica.digitalresearch.ae/en/modify-registration/" target="_blank" style="font-weight: normal;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">To modify your registration, click here.</a>
                             </td>
                         </tr>
                     </tbody>
@@ -657,7 +671,7 @@
                             <tbody><tr>
                                 <td class="mcnImageGroupContent" valign="top" style="padding-left: 9px; padding-top: 0; padding-bottom: 0;">
                                 
-                                    <a href="https://www.abudhabi2020.ae/en/home/" title="" class="" target="_blank">
+                                    <a href="https://devica.digitalresearch.ae/en/home/" title="" class="" target="_blank">
                                         <img alt="" src="https://mcusercontent.com/2517f76c7a25b70b05180ff78/images/4493f0ab-ab06-4b95-8408-3ff3b04b8b32.jpg" width="564" style="max-width:600px; padding-bottom: 0;" class="mcnImage">
                                     </a>
                                 
@@ -675,7 +689,7 @@
                             <tbody><tr>
                                 <td class="mcnImageGroupContent" valign="top" style="padding-left: 9px; padding-top: 0; padding-bottom: 0;">
                                 
-                                    <a href="https://www.abudhabi2020.ae/en/travel-information-for-ica-congress-abu-dhabi-2020/" title="" class="" target="_blank">
+                                    <a href="https://devica.digitalresearch.ae/en/travel-information-for-ica-congress-abu-dhabi-2020/" title="" class="" target="_blank">
                                         <img alt="" src="https://mcusercontent.com/2517f76c7a25b70b05180ff78/images/953dffca-2969-49ce-8613-8ff0cee4684f.png" width="264" style="max-width:1042px; padding-bottom: 0;" class="mcnImage">
                                     </a>
                                 
@@ -778,7 +792,7 @@ A copy of your registration invoice will be emailed to you separately to your re
                         <tbody><tr>
                             <td class="mcnImageContent" valign="top" style="padding-right: 9px; padding-left: 9px; padding-top: 0; padding-bottom: 0; text-align:center;">
                                 
-                                    <a href="https://www.abudhabi2020.ae/en/home/" title="" class="" target="_blank">
+                                    <a href="https://devica.digitalresearch.ae/en/home/" title="" class="" target="_blank">
                                         <img align="center" alt="" src="https://mcusercontent.com/2517f76c7a25b70b05180ff78/images/ffa703a1-45c3-4c51-bfe2-c490e356096d.png" width="564" style="max-width:2500px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
                                     </a>
                                 

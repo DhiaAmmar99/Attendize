@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Countries;
 use Response;
-use Page;
+use PDF;
+use Spipu\Html2Pdf\Html2Pdf;
+use Illuminate\Support\Facades\Redirect;
 
 class ApiregistrationController extends Controller
 {
@@ -501,6 +503,41 @@ class ApiregistrationController extends Controller
             'password' => $request->password,
         ]);
     }
+
+    
+    
+
+    public function generatepdf(Request $request)
+    {
+        $req='
+        <div class="bg-txt boxStyle-2" style="font-family: DejaVu Sans, sans-serif; direction: rtl !important;">
+               
+            <img src="https://front-ica.digitalresearch.ae/wp-content/uploads/2019/07/Groupe-10387.png" style="text-align: center;" class="rounded mx-auto d-block style-img">
+                   
+            <p> العنوان البريدي: test</p>
+            <p>التسجيل : institution</p>
+            <p>رقم العضوية : d5210</p>
+            <p>عددالعضوية : 3</p>
+
+        </div>
+';
+
+
+        // $html = file_get_contents('test.html');
+            
+        $html2pdf = new Html2Pdf();
+        $html2pdf->writeHTML($request->getContent()); // pass in the HTML
+        $html2pdf->output('myPdf.pdf', 'D'); // Generate the PDF and start download
+
+
+        // $pdf = PDF::loadView('pdf', $data);
+        // return $pdf->download('Nicesnippets.pdf');
+
+        // view('pdf', $data );
+        // return Redirect("https://api.html2pdf.app/v1/generate?url=http://127.0.0.1:8000/download&apiKey=59f37cced1175defe052c4ce86317efe759ed23b7c538121753a4d4a732780ed");
+    }
+
+    
    
     
 }

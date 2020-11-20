@@ -49,15 +49,20 @@ Route::resource('attendees', API\AttendeesApiController::class);
  * Registration
  * ---------------
  */
+
+Route::post('/download', [ApiregistrationController::class, 'generatepdf']);
+Route::post('/registration/mail', [ApiregistrationController::class, 'mailapi']);
+Route::post('/newDelegate', [ApiregistrationController::class ,'newdelegate']);
+Route::post('/registration', [ApiregistrationController::class ,'create']);
+Route::post('/edituser/{tab}/{id}', [ApiregistrationController::class ,'edituser']);
+Route::post('/email', [ApiregistrationController::class ,'Email']);
 Route::post('/password', [ApiregistrationController::class ,'password']);
 Route::post('/email/password', [ApiregistrationController::class ,'emailPassword']);
 Route::post('/verifEmail', [ApiregistrationController::class ,'verifEmail']);
 Route::post('/payment', [ApiregistrationController::class ,'payment']);
 Route::get('/listSponsors', [ApiregistrationController::class ,'listSponsors']);
 Route::get('/listProgram', [ApiregistrationController::class ,'listProgram']);
-Route::post('/email', [ApiregistrationController::class ,'Email']);
 Route::get('/allusers', [ApiregistrationController::class ,'allUsers']);
-Route::post('/edituser/{tab}/{id}', [ApiregistrationController::class ,'edituser']);
 Route::get('/listspeakers', [ApiregistrationController::class ,'listSpeakers']);
 Route::get('/listEvent', [ApiregistrationController::class ,'listNamesEvent']);
 Route::get('/event/{id}', [ApiregistrationController::class ,'fetchOneEvent']);
@@ -65,18 +70,31 @@ Route::get('/invitation/{id}', [ListUsersController::class ,'invitation']);
 Route::get('/checkuser/{id}', [ApiregistrationController::class ,'checkuser']);
 Route::get('/send_email/{tab}/{id}', [ApiregistrationController::class ,'mail']);
 Route::get('/edit_email/{tab}/{id}', [ApiregistrationController::class ,'editMail']);
-Route::post('/registration/mail', [ApiregistrationController::class, 'mailapi']);
-Route::post('/newDelegate', [ApiregistrationController::class ,'newdelegate']);
-Route::post('/registration', [ApiregistrationController::class ,'create']);
+
+
+/*
+ * ---------------
+ * Country APIs
+ * ---------------
+ */
+
 Route::get('/ARcountry', [ApiregistrationController::class ,'ARcountry']);
 Route::get('/ENcountry', [ApiregistrationController::class ,'ENcountry']);
 Route::get('/RUcountry', [ApiregistrationController::class ,'RUcountry']);
 Route::get('/EScountry', [ApiregistrationController::class ,'EScountry']);
 Route::get('/FRcountry', [ApiregistrationController::class ,'FRcountry']);
-Route::get('/listShuttle', [ShuttleController::class ,'listShuttles']);
-Route::post('/shuttles', [ShuttleController::class ,'createShuttle']);
+
+/*
+ * ---------------
+ * Shuttles
+ * ---------------
+ */
+
 Route::put('/shuttles', [ShuttleController::class ,'updateShuttle']);
+Route::get('/listShuttle', [ShuttleController::class ,'listShuttles']);
 Route::get('/shuttles', [ShuttleController::class ,'findCurrentShuttle']);
+Route::post('/reservationShuttle', [ShuttleController::class ,'ReservationShuttle']);
+Route::post('/shuttles', [ShuttleController::class ,'createShuttle']);
 
 
 
