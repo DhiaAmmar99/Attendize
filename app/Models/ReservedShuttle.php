@@ -11,7 +11,7 @@ class ReservedShuttle extends Model
     protected $fillable = [
         'registration_id',
         'shuttle_id',
-        'nb_places',      
+        'nb_places'      
 
     ];
 }

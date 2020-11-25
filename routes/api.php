@@ -92,7 +92,7 @@ Route::get('/FRcountry', [ApiregistrationController::class ,'FRcountry']);
 
 Route::put('/shuttles', [ShuttleController::class ,'updateShuttle']);
 Route::get('/listShuttle', [ShuttleController::class ,'listShuttles']);
-Route::get('/shuttles', [ShuttleController::class ,'findCurrentShuttle']);
+Route::get('/shuttles/{id}', [ShuttleController::class ,'findCurrentShuttle']);
 Route::post('/reservationShuttle', [ShuttleController::class ,'ReservationShuttle']);
 Route::post('/shuttles', [ShuttleController::class ,'createShuttle']);
 

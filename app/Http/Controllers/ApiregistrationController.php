@@ -427,41 +427,48 @@ class ApiregistrationController extends Controller
      public function listSponsors()
     {
         // if(($request->image != null) ||  ($request->title != null)){
-
-            
-
         //     $sp = new Sponsors();
         //     $sp->image = $request->input('image');
         //     $sp->title = $request->input('title');
         //     $sp->save();
         // }
         $results = Sponsors::all();
+     
 
-        return response()->json([
-            'status'=>'1',
-            'message' => 'success',
-            'data'=>$results
-            ]);
+        if(!$results->isEmpty()){
+            return response()->json([
+                'status'=>'1',
+                'message' => 'success',
+                'data'=>$results
+                ]);
+        }else{
+            return response()->json([
+                'status'=>'0',
+                'message' => 'success',
+                'data'=>$results
+                ]);
+        }
         
     }
 
 
     public function listProgram()
     {
-        // if ($request->title != null) {
-        //     $sp = new Program();
-        //     $sp->description = $request->input('description');
-        //     $sp->title = $request->input('title');
-        //     $sp->start_date = $request->input('start_date');
-        //     $sp->end_date = $request->input('end_date');
-        //     $sp->save();
-        // }
+       
         $results = Program::all();
-        return response()->json([
-            'status'=>'1',
-            'message' => 'success',
-            'data'=>$results
-            ]);
+        if($results){
+            return response()->json([
+                'status'=>'1',
+                'message' => 'success',
+                'data'=>$results
+                ]);
+        }else{
+            return response()->json([
+                'status'=>'0',
+                'message' => 'success',
+                'data'=>$results
+                ]);
+        }
     }
 
      public function payment(Request $request)
