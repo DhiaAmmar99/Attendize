@@ -46,4 +46,13 @@ class Registration extends Model
         {
                 return $this->belongsToMany(Shuttle::class);
         }
+        /**
+         * The programs that belong to the user.
+         *
+         * @return belongsTo
+         */
+        public function programs()
+        {
+                return $this->belongsToMany(program::class);
+        }
 }
