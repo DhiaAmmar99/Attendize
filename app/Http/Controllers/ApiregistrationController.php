@@ -359,7 +359,7 @@ class ApiregistrationController extends Controller
             $toid= $datamail->register_id;
         }
 
-        $BT = new PreRegistrationMailable($toid, $datamail, $data['table']);
+        $BT = new PreRegistrationMailable($toid, $datamail, $data['table'], $data['paiment']);
         $ED = new EditMailable($toid, $datamail, $data['table']);
         $OP = new SendMailable($toid, $datamail, $data['table']);
 
