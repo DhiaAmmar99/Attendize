@@ -468,18 +468,7 @@
                     <tbody><tr>
                         
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
-                            <strong style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">
-                            You are successfully pre-registered to attend the ICA Congress Abu Dhabi 2020.
                             
-
-                            <?php if($tabname == 'registrations'): ?>
-                            Your unique registration number (URN) is:
-                            <?php else: ?>
-                            your unique registration number under group is:
-                            <?php endif; ?>
-                            &nbsp; <?php echo e($id); ?>
-
-                            </strong><br>
                             <span style="font-size:13px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Thank you for your registration.<br>
                                 <?php if($payment == 'Onsite payment'): ?>
                                 <strong><span style="color:#FF0000">This is a confirmation that you have selected to pay for your delegate registration onsite upon entrance at the venue. 
