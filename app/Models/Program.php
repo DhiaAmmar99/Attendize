@@ -12,7 +12,7 @@ class Program extends Model
         'title', 
         'description',
         'start_date',
-        'end_date',
+        'end_date'
     ];
 
     /**

@@ -103,8 +103,8 @@ Route::post('/shuttles', [ShuttleController::class ,'createShuttle']);
  */
 
 Route::put('/program', [ProgramController::class ,'updateProgram']);
-Route::get('/listprogram', [ProgramController::class ,'listProgram']);
-// Route::get('/program/{id}', [ProgramController::class ,'findCurrentShuttle']);
+Route::get('/listprograms', [ProgramController::class ,'listProgram']);
+Route::post('/myprogram', [ProgramController::class ,'MyProgram']);
 Route::post('/createMyProgram', [ProgramController::class ,'createMyProgram']);
 Route::post('/createprogram', [ProgramController::class ,'createProgram']);
 

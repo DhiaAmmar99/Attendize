@@ -15,8 +15,8 @@ class ProgramController extends Controller
         $p = new Program();
         $p->title = $request->input('title');
         $p->description = $request->input('description');
-        $p->arrival_time = $request->input('start_date');
-        $p->departure_time = $request->input('end_date');
+        $p->start_date = $request->input('start_date');
+        $p->end_date = $request->input('end_date');
 
         $p->save();
         return response()->json($p);
@@ -45,9 +45,29 @@ class ProgramController extends Controller
     {
         $reservation = new RegistrationProgram();
         $reservation->registration_id = $request->input('registration_id');
-        $reservation->shuttle_id = $request->input('program_id');
+        $reservation->program_id = $request->input('program_id');
         $reservation->save();
         return response()->json($reservation);
+    }
+
+    public function MyProgram(Request $request)
+    {
+       
+        $results = RegistrationProgram::all()->where('registration_id', $request->input('id'));
+        
+        if($results){
+            return Response::json([
+                'status'=>'1',
+                'message' => 'success',
+                'data'=>$results
+                ]);
+        }else{
+            return Response::json([
+                'status'=>'0',
+                'message' => 'failed',
+                'data'=>$results
+                ]);
+        }
     }
 
     public function updateProgram(Request $request)
@@ -63,13 +83,13 @@ class ProgramController extends Controller
             return Response::json([
                 'message' => 'Data program updated',
                 'status' => '1',
-                'data_shuttle' => $data,
+                'data' => $data,
             ]);
         } else {
             return Response::json([
                 'message' => 'this program does not exist',
                 'status' => '0',
-                'data_shuttle' => $data,
+                'data' => $data,
             ]);
         }
     }
