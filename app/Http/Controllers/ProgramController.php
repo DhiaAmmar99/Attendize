@@ -87,7 +87,7 @@ class ProgramController extends Controller
             ]);
         } else {
             return Response::json([
-                'message' => 'this program does not exist',
+                'message' => 'This program does not exist',
                 'status' => '0',
                 'data' => $data,
             ]);
