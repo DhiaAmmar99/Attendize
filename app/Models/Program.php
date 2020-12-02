@@ -12,6 +12,17 @@ class Program extends Model
         'title', 
         'description',
         'start_date',
-        'end_date',
+        'end_date'
     ];
+
+    /**
+     * The users that belong to the program.
+     *
+     * @return belongsTo
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\Registration')
+            ->withTimestamps();
+    }
 }

@@ -10,7 +10,6 @@ use App\Mail\PasswordMailable;
 use App\Models\Registration;
 use App\Models\Mailapi;
 use App\Models\Sponsors;
-use App\Models\Program;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -354,14 +353,12 @@ class ApiregistrationController extends Controller
         $datamail  = DB::connection('mysql')->table($data['table'])->where('id', $data['id'])->first();
         $tomail= $datamail->email_address;
 
-        
         if($data['table'] == 'registrations'){
             $toid= $datamail->id;
         }else if($data['table'] == 'delegates'){
             $toid= $datamail->register_id;
         }
-        
-        
+
         $BT = new PreRegistrationMailable($toid, $datamail, $data['table']);
         $ED = new EditMailable($toid, $datamail, $data['table']);
         $OP = new SendMailable($toid, $datamail, $data['table']);
@@ -427,44 +424,31 @@ class ApiregistrationController extends Controller
      public function listSponsors()
     {
         // if(($request->image != null) ||  ($request->title != null)){
-
-            
-
         //     $sp = new Sponsors();
         //     $sp->image = $request->input('image');
         //     $sp->title = $request->input('title');
         //     $sp->save();
         // }
         $results = Sponsors::all();
+     
 
-        return response()->json([
-            'status'=>'1',
-            'message' => 'success',
-            'data'=>$results
-            ]);
+        if(!$results->isEmpty()){
+            return response()->json([
+                'status'=>'1',
+                'message' => 'success',
+                'data'=>$results
+                ]);
+        }else{
+            return response()->json([
+                'status'=>'0',
+                'message' => 'success',
+                'data'=>$results
+                ]);
+        }
         
     }
 
-
-    public function listProgram()
-    {
-        // if ($request->title != null) {
-        //     $sp = new Program();
-        //     $sp->description = $request->input('description');
-        //     $sp->title = $request->input('title');
-        //     $sp->start_date = $request->input('start_date');
-        //     $sp->end_date = $request->input('end_date');
-        //     $sp->save();
-        // }
-        $results = Program::all();
-        return response()->json([
-            'status'=>'1',
-            'message' => 'success',
-            'data'=>$results
-            ]);
-    }
-
-     public function payment(Request $request)
+    public function payment(Request $request)
     {
         DB::connection('mysql')->table('registrations')->where('id', $request->id)
         ->update([
@@ -509,26 +493,12 @@ class ApiregistrationController extends Controller
 
     public function generatepdf(Request $request)
     {
-        $req='
-        <div class="bg-txt boxStyle-2" style="font-family: DejaVu Sans, sans-serif; direction: rtl !important;">
-               
-            <img src="https://front-ica.digitalresearch.ae/wp-content/uploads/2019/07/Groupe-10387.png" style="text-align: center;" class="rounded mx-auto d-block style-img">
-                   
-            <p> العنوان البريدي: test</p>
-            <p>التسجيل : institution</p>
-            <p>رقم العضوية : d5210</p>
-            <p>عددالعضوية : 3</p>
-
-        </div>
-';
-
 
         // $html = file_get_contents('test.html');
             
         $html2pdf = new Html2Pdf();
         $html2pdf->writeHTML($request->getContent()); // pass in the HTML
-        $html2pdf->output('myPdf.pdf', 'D'); // Generate the PDF and start download
-
+        $html2pdf->output('summary.pdf', 'D'); // Generate the PDF and start download
 
         // $pdf = PDF::loadView('pdf', $data);
         // return $pdf->download('Nicesnippets.pdf');
