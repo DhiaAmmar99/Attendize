@@ -469,12 +469,12 @@
                         
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
                             <strong style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">
-                            You are successfully pre-registered to attend the ICA Congress Abu Dhabi 2020.
                             
-
                             @if ($tabname == 'registrations')
+                            You are successfully pre-registered to attend the ICA Congress Abu Dhabi 2020.
                             Your unique registration number (URN) is:
                             @else
+                            You have been successfully pre-registered as a group delegation under Institution Members
                             your unique registration number under group is:
                             @endif
                             &nbsp; {{$id}}
