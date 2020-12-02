@@ -479,9 +479,9 @@
                                 <h4 style="text-align: left;"><span style="font-size:16px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">
                                 
                                 @if ($tabname == 'registrations')
-                                You are successfully registered to attend the ICA Congress Abu Dhabi 2020.
+                                You are successfully pre-registered to attend the ICA Congress Abu Dhabi 2020.
                                 @else
-                                You have been successfully registered as a group delegation under Institution Members
+                                You have been successfully pre-registered as a group delegation under Institution Members
                                 @endif
                             </span></span></h4>
 
@@ -767,7 +767,7 @@
                         <td valign="top" class="mcnTextContent" style="padding: 0px 18px 9px; line-height: 125%;">
                         
                             <span style="font-size:13px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><strong>Useful information:</strong><br>
-A copy of your registration invoice will be emailed to you separately to your registered email address. At a closer date to the event, travel and accommodation offers and special events information will also be sent directly to your email.<br>
+A copy of your registration invoice will be emailed to you separately to your pre-registered email address. At a closer date to the event, travel and accommodation offers and special events information will also be sent directly to your email.<br>
 <br>
 <strong>NOTE - the official travel and event partner of the ICA Congress Abu Dhabi 2020 is Nirvana Travel and Tourism</strong>. Your invoice for registration will be issued under the same company name and is safe and reliable.</span></span>
                         </td>

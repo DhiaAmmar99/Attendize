@@ -249,144 +249,144 @@
 			/*@editable*/font-weight:normal;
 			/*@editable*/text-decoration:underline;
 		}
-	@media only screen and (min-width:768px){
+	@media  only screen and (min-width:768px){
 		.templateContainer{
 			width:600px !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		body,table,td,p,a,li,blockquote{
 			-webkit-text-size-adjust:none !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		body{
 			width:100% !important;
 			min-width:100% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnRetinaImage{
 			max-width:100% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnImage{
 			width:100% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnCartContainer,.mcnCaptionTopContent,.mcnRecContentContainer,.mcnCaptionBottomContent,.mcnTextContentContainer,.mcnBoxedTextContentContainer,.mcnImageGroupContentContainer,.mcnCaptionLeftTextContentContainer,.mcnCaptionRightTextContentContainer,.mcnCaptionLeftImageContentContainer,.mcnCaptionRightImageContentContainer,.mcnImageCardLeftTextContentContainer,.mcnImageCardRightTextContentContainer,.mcnImageCardLeftImageContentContainer,.mcnImageCardRightImageContentContainer{
 			max-width:100% !important;
 			width:100% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnBoxedTextContentContainer{
 			min-width:100% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnImageGroupContent{
 			padding:9px !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnCaptionLeftContentOuter .mcnTextContent,.mcnCaptionRightContentOuter .mcnTextContent{
 			padding-top:9px !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnImageCardTopImageContent,.mcnCaptionBottomContent:last-child .mcnCaptionBottomImageContent,.mcnCaptionBlockInner .mcnCaptionTopContent:last-child .mcnTextContent{
 			padding-top:18px !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnImageCardBottomImageContent{
 			padding-bottom:9px !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnImageGroupBlockInner{
 			padding-top:0 !important;
 			padding-bottom:0 !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnImageGroupBlockOuter{
 			padding-top:9px !important;
 			padding-bottom:9px !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnTextContent,.mcnBoxedTextContentColumn{
 			padding-right:18px !important;
 			padding-left:18px !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnImageCardLeftImageContent,.mcnImageCardRightImageContent{
 			padding-right:18px !important;
 			padding-bottom:0 !important;
 			padding-left:18px !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcpreview-image-uploader{
 			display:none !important;
 			width:100% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 	
 		h1{
 			/*@editable*/font-size:30px !important;
 			/*@editable*/line-height:125% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 	
 		h2{
 			/*@editable*/font-size:26px !important;
 			/*@editable*/line-height:125% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 	
 		h3{
 			/*@editable*/font-size:20px !important;
 			/*@editable*/line-height:150% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 	
 		h4{
 			/*@editable*/font-size:18px !important;
 			/*@editable*/line-height:150% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 
 		.mcnBoxedTextContentContainer .mcnTextContent,.mcnBoxedTextContentContainer .mcnTextContent p{
 			/*@editable*/font-size:14px !important;
 			/*@editable*/line-height:150% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 
 		.headerContainer .mcnTextContent,.headerContainer .mcnTextContent p{
 			/*@editable*/font-size:16px !important;
 			/*@editable*/line-height:150% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 	
 		.bodyContainer .mcnTextContent,.bodyContainer .mcnTextContent p{
 			/*@editable*/font-size:16px !important;
 			/*@editable*/line-height:150% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 	
 		.footerContainer .mcnTextContent,.footerContainer .mcnTextContent p{
 			/*@editable*/font-size:14px !important;
@@ -472,24 +472,25 @@
                             You are successfully pre-registered to attend the ICA Congress Abu Dhabi 2020.
                             
 
-                            @if ($tabname == 'registrations')
+                            <?php if($tabname == 'registrations'): ?>
                             Your unique registration number (URN) is:
-                            @else
+                            <?php else: ?>
                             your unique registration number under group is:
-                            @endif
-                            &nbsp; {{$id}}
+                            <?php endif; ?>
+                            &nbsp; <?php echo e($id); ?>
+
                             </strong><br>
                             <span style="font-size:13px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Thank you for your registration.<br>
-                                @if ($payment == 'Onsite payment')
+                                <?php if($payment == 'Onsite payment'): ?>
                                 <strong><span style="color:#FF0000">This is a confirmation that you have selected to pay for your delegate registration onsite upon entrance at the venue. 
                                     Please ensure to visit one of the registration counters to ensure a smooth experience onsite.&nbsp;</span></strong><br>
                                     <br>
                                     If you prefer to make a bank transfer payment ahead of your arrival, please use the below wire transfer instructions.<br>
                                     <br>
                                     - - - - - - - - - - - - - -&nbsp;<br>
-                                @else
+                                <?php else: ?>
                                 <strong>As you have selected to pay for your delegate resgistration via bank transfer, please find below the transfer information.</strong><br>
-                                @endif
+                                <?php endif; ?>
 
 <br>
 <span style="color:#FF0000"><strong>OPTION 1 - For payment in AED (UAE Dirhams Currency):</strong></span></span></span>
@@ -889,3 +890,4 @@ ACCOUNT NUMBER: 019000058343</span></span>
         </center>
     </body>
 </html>
+<?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/PreRegistrationMail.blade.php ENDPATH**/ ?>
