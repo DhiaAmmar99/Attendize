@@ -19,7 +19,6 @@
 <script src="https://cdn.jsdelivr.net/g/filesaver.js"></script>
 </head>
 @section('content')
-
     <div>
       <div >
         <p id="btnsList">
@@ -63,8 +62,7 @@
               <th class="th-sm">Price</th>
               <th class="th-sm">Payment method</th>
               <th class="th-sm">Payment status</th>
-              
-
+             
             </tr>
           </thead>
           <tbody>
@@ -115,7 +113,7 @@
                 </tr>
               @foreach($DLS as $dd)
                 @if ($user->id == $dd->register_id )
-                <tr >
+                <tr>
                   <td style="display: none" > {{ $dd->register_id }}</td>
                   <td style="display: none"> {{ $dd->first_name }} </td>
                   <td style="display: none"> {{ $dd->last_name }} </td>
@@ -139,7 +137,6 @@
                   <td style="display: none"> {{ $user->price }}</td>
                   <td style="display: none"> {{ $user->mode_payment }}</td>
                   <td style="display: none"> {{ $user->payment_status }}</td>
-
                 </tr>
                 @endif
               @endforeach
@@ -414,18 +411,18 @@ select.MP, select.payment {
 
 
 <script type="text/javascript">
-var direction="https://preprodica.digitalresearch.ae"
+
 
 function listDelegate(val){ 
 
   jQuery.ajax({
         type: "GET",
-        url: direction + "/api/checkuser/" + val,
+        url: "http://127.0.0.1:8000/api/checkuser/" + val,
         success: function(data) {
             infoUser = data.data_user;
             infoDelegate = data.data_delegate;
                    swal({html: `
-                   	<strang style="float: left; padding: 20px; font-size: 18px;">Delegates</strang>
+                          <strang style="float: left; padding: 20px; font-size: 18px;">Delegates</strang>
                           <table  style="width:95%;overflow:auto; display:block;" class="table table-bordered dataTable" border=1>
                             <thead>
                               <tr>
@@ -446,7 +443,6 @@ function listDelegate(val){
                               </tr>
                             </thead>
                           <tbody id='tabDLS'>
-                                
                           </tbody>
                         </table>`
                         });
@@ -471,7 +467,7 @@ function listDelegate(val){
                               </tr>
                               `);
                          });
-                        infoUser.forEach(el => {
+                         infoUser.forEach(el => {
                             jQuery("#tabDLS").append(`  
                               <tr>
                                 <td> ${el.first_name} </td>
@@ -486,7 +482,11 @@ function listDelegate(val){
                                 <td> ${el.first_check} </td>
                                 <td> ${el.second_check} </td>
                                 <td> ${el.guests} </td>
-                                <td> ${el.lead} </td>
+                                <td> 
+                                  
+                                  ${el.lead} 
+                                  
+                                </td>
                                 <td style="display: none;" > ${el.register_id} </td>
                                
                               </tr>
@@ -529,14 +529,12 @@ jQuery("#third-btn").click(function(){
 });
 
 
-
-
 function sendMail(val, dl){
 
   val.forEach(element => {
     jQuery.ajax({
     type: "GET",
-    url: direction + "/api/send_email/registrations/"+element.id,
+    url: "http://127.0.0.1:8000/api/send_email/registrations/"+element.id,
     dataType: 'jsonp',
     });
   
@@ -544,7 +542,7 @@ function sendMail(val, dl){
     if (el.register_id == element.id)
     jQuery.ajax({
     type: "GET",
-    url: direction + "/api/send_email/delegates/"+el.id,
+    url: "http://127.0.0.1:8000/api/send_email/delegates/"+el.id,
     dataType: 'jsonp',
     });
   });
@@ -562,14 +560,19 @@ function paymentStatus(event, id){
     jQuery.ajax({
       type: "POST",
       data: dataTab,
-      url: direction + "/api/payment",
-   
+      url: "http://127.0.0.1:8000/api/payment",
+      success: function(data) {
+        location.reload();
+      }
     });
-  location.reload();
-}
  
 
+}
+
+
+
 /*     Export table to excel       */ 
+
 
 function s2ab(s) {
   var buf = new ArrayBuffer(s.length);
@@ -578,13 +581,17 @@ function s2ab(s) {
   return buf;
   }
 $("#Expo").click(function(){
-  $(".MP").remove();
+  $('.MP').remove();
   $('.payment').show();
   var wb = XLSX.utils.table_to_book(document.getElementById('dtBasicExample-1'), {sheet:"Sheet JS"});
   var wbout = XLSX.write(wb, {bookType:'xlsx', bookSST:true, type: 'binary'});
   saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'tableUsers.xlsx');
   location.reload();
 });
+
+
+
+
 
 /*     on change select       */ 
 
@@ -613,8 +620,3 @@ $('#block-2, #block-3, #block-4, #first-btn, #second-btn, #third-btn').hide();
     $("table").removeClass("dataTable");
 </script>
 @stop
-
-
-
-
-

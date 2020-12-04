@@ -18,7 +18,7 @@
 <i class="ico-bullhorn mr5"></i>
 @lang("Event.promote_event")
 @stop
-
+ 
 
 @section('content')
 <div class='row'>

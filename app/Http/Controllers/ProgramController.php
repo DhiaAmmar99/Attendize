@@ -26,7 +26,7 @@ class ProgramController extends Controller
     {
        
         $results = Program::all();
-        if($results){
+        if(!$results->isEmpty()){
             return response()->json([
                 'status'=>'1',
                 'message' => 'success',
@@ -55,7 +55,7 @@ class ProgramController extends Controller
        
         $results = RegistrationProgram::all()->where('registration_id', $request->input('id'));
         
-        if($results){
+        if(!$results->isEmpty()){
             return Response::json([
                 'status'=>'1',
                 'message' => 'success',
