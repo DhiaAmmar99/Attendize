@@ -6,9 +6,38 @@ use Illuminate\Http\Request;
 use App\Models\Program;
 use App\Models\RegistrationProgram;
 use Response;
+use App\Models\Organiser;
 
 class ProgramController extends Controller
 {
+
+     /**
+     * Show the 'Create Program' Modal
+     *
+     * @param Request $request
+     * @return \Illuminate\View\View
+     */
+    public function showCreateProgram(Request $request)
+    {
+        $data = [
+            'modal_id'     => $request->get('modal_id'),
+            'organisers'   => Organiser::scope()->pluck('name', 'id'),
+            'organiser_id' => $request->get('organiser_id') ? $request->get('organiser_id') : false,
+        ];
+       
+        return view('ManageOrganiser.Modals.CreateProgram', $data);
+    }
+
+
+    public function programs($organiser_id){
+
+        $organiser = Organiser::scope()->findOrFail($organiser_id);
+        $data = [
+            'organiser'=> $organiser,
+        ];
+        
+        return view('ManageOrganiser.Programs', $data);
+    }
     
     public function createProgram(Request $request)
     {

@@ -25,6 +25,12 @@
             </li> --}}
 
             <li class="{{ Request::is('*users*') ? 'active' : '' }}">
+                <a href="{{route('programs', array('organiser_id' => $organiser->id))}}">
+                    <span class="figure"><i class="ico-code"></i></span>
+                    <span class="text">Program</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('*users*') ? 'active' : '' }}">
                 <a href="{{route('list', array('organiser_id' => $organiser->id))}}">
                     <span class="figure"><i class="ico-table"></i></span>
                     <span class="text">users registrations</span>

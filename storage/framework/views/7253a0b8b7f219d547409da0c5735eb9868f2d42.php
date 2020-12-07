@@ -1,1 +1,0 @@
-<?php /**PATH C:\wamp64\www\laravel\backoffice\resources\views/Shared/Layouts/ViewJavascript.blade.php ENDPATH**/ ?>
