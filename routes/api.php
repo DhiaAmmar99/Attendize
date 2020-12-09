@@ -6,6 +6,7 @@ use App\Http\Controllers\ApiregistrationController;
 use App\Http\Controllers\ShuttleController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -118,6 +119,16 @@ Route::post('/createprogram', [ProgramController::class ,'createProgram']);
 
 
 Route::post('/PaymentConfirmation', [PaymentController::class ,'PaymentEmail']);
+
+/*
+ * ---------------
+ * ADD Image to user
+ * ---------------
+ */
+
+
+Route::post('/addImage/{id}', [ImageController::class ,'addImg']);
+Route::post('/updateImage/{id}', [ImageController::class ,'updateImg']);
 
 
 /*

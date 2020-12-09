@@ -25,7 +25,7 @@
           <button id="Expo" class="btn btn-success ">Export data table to excel</button>
           <button type="button" id="first-btn" class="btn btn-success " style="display: none">Send invitation</button>
           <button type="button" id="second-btn" class="btn btn-success " style="display: none">Send invitation</button>
-          <button type="button" id="third-btn" class="btn btn-success " style="display: none">Send invitation</button>
+          <button type="button" id="third-btn" class="btn btn-success " style="display: none">Send invitation</button>      
         </p>
         <p class="choice">Mode payment: &nbsp;<select id="selectEvent">
           <option value="select" selected>All</option>
@@ -96,25 +96,31 @@
                   <td> {{ $user->price }}</td>
                   <td> {{ $user->mode_payment }}</td>
                   <td>
-                    <select onchange="paymentStatus(this.value,{{ $user->id }})" class="MP">
-                      @if($user->payment_status == 'Pending')
-                      <option selected value="Pending">Pending</option>
-                      @else
-                      <option  value="Pending">Pending</option>
-                      @endif
-                      @if($user->payment_status == 'Successful')
-                      <option selected  value="Successful">Successful</option>
-                      @else
-                      <option   value="Successful">Successful</option>
-                      @endif
-                    </select>
+                    @if($user->mode_payment != 'Credit Card')
+                      <select onchange="paymentStatus(this.value,{{ $user->id }})" class="MP">
+                        @if($user->payment_status == 'Pending')
+                        <option selected value="Pending">Pending</option>
+                        @else
+                        <option  value="Pending">Pending</option>
+                        @endif
+                        @if($user->payment_status == 'Successful')
+                        <option selected  value="Successful">Successful</option>
+                        @else
+                        <option   value="Successful">Successful</option>
+                        @endif
+                      </select>
+                    @else
+
+                    <span id="P_status"></span>
+                    
+                    @endif
                   </td>
                   
                 </tr>
               @foreach($DLS as $dd)
                 @if ($user->id == $dd->register_id )
                 <tr>
-                  <td style="display: none" > {{ $dd->register_id }}</td>
+                  <td style="display: none"> {{ $dd->register_id }}</td>
                   <td style="display: none"> {{ $dd->first_name }} </td>
                   <td style="display: none"> {{ $dd->last_name }} </td>
                   <td style="display: none"> {{ $user->registration_as }} </td>
@@ -169,6 +175,7 @@
               <th class="th-sm">Guests</th>
               <th class="th-sm">Price</th>
               <th class="th-sm">Payment method</th>
+              <th class="th-sm">Payment status</th>
             </tr>
           </thead>
           <tbody>
@@ -185,14 +192,14 @@
               </td>
               <td> {{ $user->email_address }}</td>
               
-              @if(($user->eventP != null)||($user->eventS != null)||($user->eventG != null)||($user->eventW != null))
-                <td> 
-                  {{ $user->eventS }} 
-                  {{ $user->eventP }} 
-                  {{ $user->eventG }} 
-                  {{ $user->eventW }}
-                </td>
-              @endif
+              <td> 
+                @if(($user->eventP != null)||($user->eventS != null)||($user->eventG != null)||($user->eventW != null))
+                {{ $user->eventS }} 
+                {{ $user->eventP }} 
+                {{ $user->eventG }} 
+                {{ $user->eventW }}
+                @endif
+              </td>
               <td> {{ $user->postal_address }}</td>
               <td> {{ $user->job_title }}</td>
               <td> {{ $user->organization }}</td>
@@ -206,6 +213,7 @@
               <td> {{ $user->guests }}</td>
               <td> {{ $user->price }}</td>
               <td> {{ $user->mode_payment }}</td>
+              <td> {{ $user->payment_status }}</td>
             </tr>
             @endforeach
           </tbody>
@@ -235,6 +243,7 @@
               <th class="th-sm">Guests</th>
               <th class="th-sm">Price</th>
               <th class="th-sm">Payment method</th>
+              <th class="th-sm">Payment status</th>
             </tr>
           </thead>
           <tbody>
@@ -250,14 +259,14 @@
                 @endif
               </td>
               <td> {{ $user->email_address }}</td>
-              @if(($user->eventP != null)||($user->eventS != null)||($user->eventG != null)||($user->eventW != null))
-                <td> 
-                  {{ $user->eventS }} 
-                  {{ $user->eventP }} 
-                  {{ $user->eventG }} 
-                  {{ $user->eventW }}
-                </td>
-              @endif
+              <td> 
+                @if(($user->eventP != null)||($user->eventS != null)||($user->eventG != null)||($user->eventW != null))
+                {{ $user->eventS }} 
+                {{ $user->eventP }} 
+                {{ $user->eventG }} 
+                {{ $user->eventW }}
+                @endif
+              </td>
               <td> {{ $user->postal_address }}</td>
               <td> {{ $user->job_title }}</td>
               <td> {{ $user->organization }}</td>
@@ -271,6 +280,7 @@
               <td> {{ $user->guests }}</td>
               <td> {{ $user->price }}</td>
               <td> {{ $user->mode_payment }}</td>
+              <td> {{ $user->payment_status }}</td>
 
             </tr>
             @endforeach
@@ -301,6 +311,7 @@
               <th class="th-sm">Guests</th>
               <th class="th-sm">Price</th>
               <th class="th-sm">Payment method</th>
+              <th class="th-sm">Payment status</th>
 
             </tr>
           </thead>
@@ -317,14 +328,17 @@
                 @endif
               </td>
               <td> {{ $user->email_address }}</td>
-              @if(($user->eventP != null)||($user->eventS != null)||($user->eventG != null)||($user->eventW != null))
+              
                 <td> 
+                  @if(($user->eventP != null)||($user->eventS != null)||($user->eventG != null)||($user->eventW != null))
                   {{ $user->eventS }} 
                   {{ $user->eventP }} 
                   {{ $user->eventG }} 
                   {{ $user->eventW }}
+                  @endif
                 </td>
-              @endif
+                
+              
               <td> {{ $user->postal_address }}</td>
               <td> {{ $user->job_title }}</td>
               <td> {{ $user->organization }}</td>
@@ -338,7 +352,7 @@
               <td> {{ $user->guests }}</td>
               <td> {{ $user->price }}</td>
               <td> {{ $user->mode_payment }}</td>
-
+              <td> {{ $user->payment_status }}</td>
             </tr>
             @endforeach
           </tbody>
@@ -561,9 +575,9 @@ function paymentStatus(event, id){
       type: "POST",
       data: dataTab,
       url: "http://127.0.0.1:8000/api/payment",
-      success: function(data) {
-        location.reload();
-      }
+      // success: function(data) {
+      //   location.reload();
+      // }
     });
  
 
@@ -590,6 +604,50 @@ $("#Expo").click(function(){
 });
 
 
+/*     login for payment      */ 
+function paymentLogin(id) {
+    var login_data = {
+        'username': "inforapi",
+        'password': "inforapiuat"
+    };
+
+    jQuery.ajax({
+        type: "POST",
+        url: "https://uat.ntravel.ae/api/Login",
+        data: JSON.stringify(login_data),
+        contentType: "application/json",
+        dataType: 'json',
+        success: function(data) {
+            var token = data.token;
+            payment(id, token);
+        }
+    });
+}
+
+function payment(id, token) {
+    var login_data = {
+        'reference_number': id
+    };
+
+    jQuery.ajax({
+        type: "POST",
+        url: "https://uat.ntravel.ae/api/GatewayPayment",
+        data: JSON.stringify(login_data),
+        contentType: "application/json",
+        dataType: 'json',
+        headers: {
+          "authorization_token": token,
+          "authorization": "Basic aW5mb3JhcGk6aW5mb3JhcGl1YXQ=",
+        },
+        success: function(data) {
+          if(data.gatewaypaymentresponse.length != 0){
+            $('#P_status').append('Successful');
+          }else{
+            $('#P_status').append('Pending');
+          }
+        }
+    });
+}
 
 
 
@@ -618,5 +676,8 @@ $('#block-2, #block-3, #block-4, #first-btn, #second-btn, #third-btn').hide();
     });
 
     $("table").removeClass("dataTable");
+
+
+    
 </script>
 @stop

@@ -34,7 +34,8 @@ class Registration extends Model
                 'guests',
                 'price',
                 'lead',
-                'password'
+                'password',
+                'image'
         ];
 
         /**
@@ -54,5 +55,13 @@ class Registration extends Model
         public function programs()
         {
                 return $this->belongsToMany(program::class);
+        }
+
+        /**
+         * the image associated with the user.
+         */
+        public function Images()
+        {
+                return $this->hasOne(ImagesUser::class);
         }
 }

@@ -42,14 +42,15 @@
     </div> --}}
 @stop
 
-{{-- @section('content')
+@section('content')
 
-    @if($events->count())
+{{-- 
+    @if($programs->count())
         <div class="row">
             <div class="col-md-3 col-xs-6">
                 <div class="order_options">
                     <span class="event_count">
-                        @lang("Event.num_events", ["num" => $organiser->events->count()])
+                        @lang("Event.num_events", ["num" => $organiser->programs->count()])
                     </span>
                 </div>
             </div>
@@ -64,26 +65,27 @@
                 </div>
             </div>
         </div>
-    @endif
+    @endif --}}
 
     <div class="row">
-        @if($events->count())
-            @foreach($events as $event)
+        @if($programs->count())
+            @foreach($programs as $program)
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    @include('ManageOrganiser.Partials.EventPanel')
+                    @include('ManageOrganiser.Partials.ProgramPanel')
+                   
                 </div>
             @endforeach
         @else
-            @if($search['q'])
+            {{-- @if($search['q'])
                 @include('Shared.Partials.NoSearchResults')
             @else
                 @include('ManageOrganiser.Partials.EventsBlankSlate')
-            @endif
+            @endif --}}
         @endif
     </div>
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-md-12">
-            {!! $events->appends(['q' =>$search['q'], 'past' => $search['showPast']])->render() !!}
+            {!! $programs->appends(['q' =>$search['q'], 'past' => $search['showPast']])->render() !!}
         </div>
-    </div>
-@stop --}}
+    </div> --}}
+@stop

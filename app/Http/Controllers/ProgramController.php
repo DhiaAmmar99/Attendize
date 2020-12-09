@@ -20,8 +20,6 @@ class ProgramController extends Controller
     public function showCreateProgram(Request $request)
     {
         $data = [
-            'modal_id'     => $request->get('modal_id'),
-            'organisers'   => Organiser::scope()->pluck('name', 'id'),
             'organiser_id' => $request->get('organiser_id') ? $request->get('organiser_id') : false,
         ];
        
@@ -35,8 +33,8 @@ class ProgramController extends Controller
         $data = [
             'organiser'=> $organiser,
         ];
-        
-        return view('ManageOrganiser.Programs', $data);
+        $programs = Program::all();
+        return view('ManageOrganiser.Programs', $data)->with('programs', $programs);
     }
     
     public function createProgram(Request $request)

@@ -364,9 +364,13 @@
             <div class="modal-footer">
                 <span class="uploadProgress"></span>
                 {!! Form::button(trans("basic.cancel"), ['class'=>"btn modal-close btn-danger",'data-dismiss'=>'modal']) !!}
+                
                 {!! Form::submit("create program", ['class'=>"btn btn-success"]) !!}
+                
+                
+
             </div>
         </div>
-        {{-- {!! Form::close() !!} --}}
+        
     </div>
 </div>

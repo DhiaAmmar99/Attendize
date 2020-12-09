@@ -3093,7 +3093,7 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@github.com:NitMedia/wkhtml2pdf.git",
+                "url": "https://github.com/NitMedia/wkhtml2pdf.git",
                 "reference": "586df81dcbeb75b092dc35f9e8b3ef940d66e05a"
             },
             "dist": {

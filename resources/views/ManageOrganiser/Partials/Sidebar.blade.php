@@ -24,7 +24,7 @@
                 </a>
             </li> --}}
 
-            <li class="{{ Request::is('*users*') ? 'active' : '' }}">
+            <li class="{{ Request::is('*program*') ? 'active' : '' }}">
                 <a href="{{route('programs', array('organiser_id' => $organiser->id))}}">
                     <span class="figure"><i class="ico-code"></i></span>
                     <span class="text">Program</span>
