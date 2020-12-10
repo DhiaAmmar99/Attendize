@@ -29,55 +29,50 @@ class ImageController extends Controller
         $img->save('public/bar.jpg');
     }
 
-    public function addImg(Request $request, $id){
-      
-        $img = new ImagesUser();
-        if($file = $request->hasFile('image')) {
-            
-
-            $file = $request->file('image') ;
-
-            $fileName = $file->getClientOriginalName() ;
-            $destinationPath = public_path().'/assets/imgUsers/' ;
-            $file->move($destinationPath,$fileName);
-            $img->image = '/assets/imgUsers/'.$fileName ;
-        }
-        $img->id_registration = $id;
-        
-        $img->save();
-        return response()->json($img);
-    }
-
 
     public function updateImg(Request $request, $id){
-        if($file = $request->hasFile('image')) {
-            
-            $img = new ImagesUser();
-            $file = $request->file('image') ;
+        // $random = mt_rand(1000, 9999);
+        $time=date('Y-m-d-H-i-s');
+        $res = DB::select('select * from img_registration where id_registration =:id', ['id' => $id]);
+        if($res){
+            if($file = $request->hasFile('image')) {
+                
+                $img = new ImagesUser();
+                $file = $request->file('image') ;
 
-            $fileName = $file->getClientOriginalName() ;
-            $destinationPath = public_path().'/assets/imgUsers/' ;
-            $file->move($destinationPath,$fileName);
-            $img->image = '/assets/imgUsers/'.$fileName ;
-            $data=ImagesUser::where('id_registration', $id)->update(['image' => $img->image]);
-        }
-        
-        
-        
-        
-        
-        if($data){
+                $fN = $file->getClientOriginalName() ;
+                $fileName = $time."_".$fN ;
+                
+                $destinationPath = public_path().'/assets/imgUsers/' ;
+                $file->move($destinationPath,$fileName);
+                $img->image = '/assets/imgUsers/'.$fileName ;
+                ImagesUser::where('id_registration', $id)->update(['image' => $img->image]);
+            }
             return Response::json([
-                'message'=>'Data user updated',
+                'message'=>'Image user updated',
                 'status'=>'1',
                 ]
             );
-            }else{
+        
+        }else{
+            $img = new ImagesUser();
+            if($file = $request->hasFile('image')) {
+                $file = $request->file('image') ;
+                $fileName = $file->getClientOriginalName() ;
+                $destinationPath = public_path().'/assets/imgUsers/' ;
+                $file->move($destinationPath,$fileName);
+                $img->image = '/assets/imgUsers/'.$fileName ;
+            }
+            $img->id_registration = $id;
+            
+            $img->save();
+
             return Response::json([
-                'message'=>'this user does not exist',
-                'status'=>'0',
+                'message'=>'Image user added',
+                'status'=>'2',
                 ]
             );
-            }
+        }
+        
     }
 }

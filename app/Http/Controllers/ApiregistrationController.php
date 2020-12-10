@@ -188,13 +188,13 @@ class ApiregistrationController extends Controller
     {
         $data_u = DB::connection('mysql')->select('select * from registrations where id =:id', ['id' => $id]);
         $data_d = DB::connection('mysql')->select('select * from delegates where register_id =:id', ['id' => $id]);
-        $img = ImagesUser::find($id)->image;
-
+        $img = ImagesUser::select('image')->where("id_registration",$id)->first();
+        
         if($data_u){
         return Response::json([
             'message'=>'Your URN is valid',
             'status'=>'1',
-            'image'=>$img,
+            'image'=>$img['image'],
             'data_user'=>$data_u,
             'data_delegate'=>$data_d,
             ]
@@ -203,8 +203,6 @@ class ApiregistrationController extends Controller
         return Response::json([
             'message'=>'this user does not exist',
             'status'=>'0',
-            'data_user'=>$data_u,
-            'data_delegate'=>$data_d,
             ]
         );
         }
@@ -499,7 +497,7 @@ class ApiregistrationController extends Controller
             
         $html2pdf = new Html2Pdf();
         $html2pdf->writeHTML($request->getContent()); // pass in the HTML
-        $html2pdf->output('summary.pdf', 'D'); // Generate the PDF and start download
+        $html2pdf->output('Bank transfer registration summary - ICA Congress Abu Dhabi 2020.pdf', 'D'); // Generate the PDF and start download
 
         // $pdf = PDF::loadView('pdf', $data);
         // return $pdf->download('Nicesnippets.pdf');

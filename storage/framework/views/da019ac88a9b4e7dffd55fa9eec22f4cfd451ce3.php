@@ -258,144 +258,144 @@
               font-weight:normal;
               text-decoration:underline;
         }
-    @media only screen and (min-width:768px){
+    @media  only screen and (min-width:768px){
         .templateContainer{
             width:600px !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         body,table,td,p,a,li,blockquote{
             -webkit-text-size-adjust:none !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         body{
             width:100% !important;
             min-width:100% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnRetinaImage{
             max-width:100% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnImage{
             width:100% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnCartContainer,.mcnCaptionTopContent,.mcnRecContentContainer,.mcnCaptionBottomContent,.mcnTextContentContainer,.mcnBoxedTextContentContainer,.mcnImageGroupContentContainer,.mcnCaptionLeftTextContentContainer,.mcnCaptionRightTextContentContainer,.mcnCaptionLeftImageContentContainer,.mcnCaptionRightImageContentContainer,.mcnImageCardLeftTextContentContainer,.mcnImageCardRightTextContentContainer,.mcnImageCardLeftImageContentContainer,.mcnImageCardRightImageContentContainer{
             max-width:100% !important;
             width:100% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnBoxedTextContentContainer{
             min-width:100% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnImageGroupContent{
             padding:9px !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnCaptionLeftContentOuter .mcnTextContent,.mcnCaptionRightContentOuter .mcnTextContent{
             padding-top:9px !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnImageCardTopImageContent,.mcnCaptionBottomContent:last-child .mcnCaptionBottomImageContent,.mcnCaptionBlockInner .mcnCaptionTopContent:last-child .mcnTextContent{
             padding-top:18px !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnImageCardBottomImageContent{
             padding-bottom:9px !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnImageGroupBlockInner{
             padding-top:0 !important;
             padding-bottom:0 !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnImageGroupBlockOuter{
             padding-top:9px !important;
             padding-bottom:9px !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnTextContent,.mcnBoxedTextContentColumn{
             padding-right:18px !important;
             padding-left:18px !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcnImageCardLeftImageContent,.mcnImageCardRightImageContent{
             padding-right:18px !important;
             padding-bottom:0 !important;
             padding-left:18px !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
         .mcpreview-image-uploader{
             display:none !important;
             width:100% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
     
         h1{
               font-size:30px !important;
               line-height:125% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
     
         h2{
               font-size:26px !important;
               line-height:125% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
 
         h3{
               font-size:20px !important;
               line-height:150% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
 
         h4{
               font-size:18px !important;
               line-height:150% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
     
         .mcnBoxedTextContentContainer .mcnTextContent,.mcnBoxedTextContentContainer .mcnTextContent p{
               font-size:14px !important;
               line-height:150% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
     
         .headerContainer .mcnTextContent,.headerContainer .mcnTextContent p{
               font-size:16px !important;
               line-height:150% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
 
         .bodyContainer .mcnTextContent,.bodyContainer .mcnTextContent p{
               font-size:16px !important;
               line-height:150% !important;
         }
 
-}   @media only screen and (max-width: 480px){
+}   @media  only screen and (max-width: 480px){
 
         .footerContainer .mcnTextContent,.footerContainer .mcnTextContent p{
               font-size:14px !important;
@@ -478,7 +478,7 @@
                         
                             <h4 style="text-align: left;"><span style="font-size:16px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"></span></span></h4>
 
-<h1 style="text-align: left;"><span style="font-size:21px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Your password is:   {{$data}}</span></span></h1>
+<h1 style="text-align: left;"><span style="font-size:21px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Your password is:   <?php echo e($data); ?></span></span></h1>
 
                         </td>
                     </tr>
@@ -500,3 +500,4 @@
 
     </body>
 </html>
+<?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/PasswordMail.blade.php ENDPATH**/ ?>
