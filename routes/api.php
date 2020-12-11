@@ -64,7 +64,7 @@ Route::post('/email/password', [ApiregistrationController::class ,'emailPassword
 Route::post('/verifEmail', [ApiregistrationController::class ,'verifEmail']);
 Route::post('/payment', [ApiregistrationController::class ,'payment']);
 Route::get('/listSponsors', [ApiregistrationController::class ,'listSponsors']);
-Route::post('/allusers', [ApiregistrationController::class ,'allUsers']);
+Route::get('/allusers', [ApiregistrationController::class ,'allUsers']);
 Route::get('/listspeakers', [ApiregistrationController::class ,'listSpeakers']);
 Route::get('/listEvent', [ApiregistrationController::class ,'listNamesEvent']);
 Route::get('/event/{id}', [ApiregistrationController::class ,'fetchOneEvent']);

@@ -514,6 +514,7 @@ function listDelegate(val){
 
 $(document).ready(function() {
 var valSelect;
+var dtBasicExample = [];
 var dataDLS = <?php echo json_encode($DLS);?>;
 var dataBT = <?php echo json_encode($BT); ?>;
 var dataCC = <?php echo json_encode($CC); ?>;
@@ -524,10 +525,15 @@ for (let i=1; i<=4; i++){
   $(`#dtBasicExample-${i}`).DataTable();
 }
 
+dataUsers.forEach(element => dtBasicExample.push(element));
+dataDLS.forEach(element => dtBasicExample.push(element));
+
+jQuery("#Expo").click(function(){
+  ex(dtBasicExample);
+});
+
+
 dataUsers.forEach(paymentLogin);
-
-
-
 /*        Send Email         */
 
 
@@ -590,46 +596,31 @@ function paymentStatus(event, id){
 
 
 /*     Export table to excel       */ 
-var dtBasicExample = [
-    {"firstName":"John", "lastName":"Doe"}, 
-    {"firstName":"Anna", "lastName":"Smith"},
-    {"firstName":"Peter", "lastName":"Jones"}
-]
+// var dtBasicExample = [
+    // {"firstName":"John", "lastName":"Doe"}, 
+    // {"firstName":"Anna", "lastName":"Smith"},
+    // {"firstName":"Peter", "lastName":"Jones"}
+// ]
 
-function geUsers() {
-  jQuery.ajax({
-        type: "POST",
-        url: "http://127.0.0.1:8000/api/allusers",
-        dataType: 'json',
-        success: function(dd) {
-
-          console.log(dd);
-        },
-        error: function(dd) {
-
-          console.log(dd);
-        }
-    });
-}
 function s2ab(s) {
   var buf = new ArrayBuffer(s.length);
   var view = new Uint8Array(buf);
   for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
   return buf;
   }
-$("#Expo").click(function(){
+function ex(data){
   $('.MP').remove();
   $('.payment').show();
   var wb = XLSX.utils.table_to_book(document.getElementById('dtBasicExample-1'), {sheet:"SheetJS"});
-  var wb2 = XLSX.utils.json_to_sheet(dtBasicExample, {sheet:"Sheet JS"});
+  var wb2 = XLSX.utils.json_to_sheet(data, {sheet:"Sheet JS"});
   wb.Sheets.SheetJS = wb2;
-  geUsers();
+
   // console.log(wb.Sheets.SheetJS);
   // console.log('111',wb2);
-  // var wbout = XLSX.write(wb, {bookType:'xlsx', bookSST:true, type: 'binary'});
-  // saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'tableUsers.xlsx');
-  // location.reload();
-});
+  var wbout = XLSX.write(wb, {bookType:'xlsx', bookSST:true, type: 'binary'});
+  saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'tableUsers.xlsx');
+  location.reload();
+}
 
 
 /*     login for payment      */ 
