@@ -17,6 +17,19 @@
                 </a>
             </li>
 
+            {{-- <li class="{{ Request::is('*customize*') ? 'active' : '' }}">
+                <a href="{{route('showOrganiserCustomize', array('organiser_id' => $organiser->id))}}">
+                    <span class="figure"><i class="ico-cog"></i></span>
+                    <span class="text"> CUSTOMIZE</span>
+                </a>
+            </li> --}}
+
+            <li class="{{ Request::is('*program*') ? 'active' : '' }}">
+                <a href="{{route('programs', array('organiser_id' => $organiser->id))}}">
+                    <span class="figure"><i class="ico-code"></i></span>
+                    <span class="text">Program</span>
+                </a>
+            </li>
             <li class="{{ Request::is('*users*') ? 'active' : '' }}">
                 <a href="{{route('list', array('organiser_id' => $organiser->id))}}">
                     <span class="figure"><i class="ico-table"></i></span>

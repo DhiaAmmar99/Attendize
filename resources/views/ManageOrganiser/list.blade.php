@@ -19,14 +19,13 @@
 <script src="https://cdn.jsdelivr.net/g/filesaver.js"></script>
 </head>
 @section('content')
-
     <div>
       <div >
         <p id="btnsList">
           <button id="Expo" class="btn btn-success ">Export data table to excel</button>
           <button type="button" id="first-btn" class="btn btn-success " style="display: none">Send invitation</button>
           <button type="button" id="second-btn" class="btn btn-success " style="display: none">Send invitation</button>
-          <button type="button" id="third-btn" class="btn btn-success " style="display: none">Send invitation</button>
+          <button type="button" id="third-btn" class="btn btn-success " style="display: none">Send invitation</button>      
         </p>
         <p class="choice">Mode payment: &nbsp;<select id="selectEvent">
           <option value="select" selected>All</option>
@@ -63,8 +62,7 @@
               <th class="th-sm">Price</th>
               <th class="th-sm">Payment method</th>
               <th class="th-sm">Payment status</th>
-              
-
+             
             </tr>
           </thead>
           <tbody>
@@ -98,25 +96,31 @@
                   <td> {{ $user->price }}</td>
                   <td> {{ $user->mode_payment }}</td>
                   <td>
-                    <select onchange="paymentStatus(this.value,{{ $user->id }})" class="MP">
-                      @if($user->payment_status == 'Pending')
-                      <option selected value="Pending">Pending</option>
-                      @else
-                      <option  value="Pending">Pending</option>
-                      @endif
-                      @if($user->payment_status == 'Successful')
-                      <option selected  value="Successful">Successful</option>
-                      @else
-                      <option   value="Successful">Successful</option>
-                      @endif
-                    </select>
+                    @if($user->mode_payment != 'Credit Card')
+                      <select onchange="paymentStatus(this.value,{{ $user->id }})" class="MP">
+                        @if($user->payment_status == 'Pending')
+                        <option selected value="Pending">Pending</option>
+                        @else
+                        <option  value="Pending">Pending</option>
+                        @endif
+                        @if($user->payment_status == 'Successful')
+                        <option selected  value="Successful">Successful</option>
+                        @else
+                        <option   value="Successful">Successful</option>
+                        @endif
+                      </select>
+                    @else
+
+                    <span id="P_status"></span>
+                    
+                    @endif
                   </td>
                   
                 </tr>
               @foreach($DLS as $dd)
                 @if ($user->id == $dd->register_id )
-                <tr >
-                  <td style="display: none" > {{ $dd->register_id }}</td>
+                <tr>
+                  <td style="display: none"> {{ $dd->register_id }}</td>
                   <td style="display: none"> {{ $dd->first_name }} </td>
                   <td style="display: none"> {{ $dd->last_name }} </td>
                   <td style="display: none"> {{ $user->registration_as }} </td>
@@ -139,7 +143,6 @@
                   <td style="display: none"> {{ $user->price }}</td>
                   <td style="display: none"> {{ $user->mode_payment }}</td>
                   <td style="display: none"> {{ $user->payment_status }}</td>
-
                 </tr>
                 @endif
               @endforeach
@@ -172,6 +175,7 @@
               <th class="th-sm">Guests</th>
               <th class="th-sm">Price</th>
               <th class="th-sm">Payment method</th>
+              <th class="th-sm">Payment status</th>
             </tr>
           </thead>
           <tbody>
@@ -188,14 +192,14 @@
               </td>
               <td> {{ $user->email_address }}</td>
               
-              @if(($user->eventP != null)||($user->eventS != null)||($user->eventG != null)||($user->eventW != null))
-                <td> 
-                  {{ $user->eventS }} 
-                  {{ $user->eventP }} 
-                  {{ $user->eventG }} 
-                  {{ $user->eventW }}
-                </td>
-              @endif
+              <td> 
+                @if(($user->eventP != null)||($user->eventS != null)||($user->eventG != null)||($user->eventW != null))
+                {{ $user->eventS }} 
+                {{ $user->eventP }} 
+                {{ $user->eventG }} 
+                {{ $user->eventW }}
+                @endif
+              </td>
               <td> {{ $user->postal_address }}</td>
               <td> {{ $user->job_title }}</td>
               <td> {{ $user->organization }}</td>
@@ -209,6 +213,7 @@
               <td> {{ $user->guests }}</td>
               <td> {{ $user->price }}</td>
               <td> {{ $user->mode_payment }}</td>
+              <td> {{ $user->payment_status }}</td>
             </tr>
             @endforeach
           </tbody>
@@ -238,6 +243,7 @@
               <th class="th-sm">Guests</th>
               <th class="th-sm">Price</th>
               <th class="th-sm">Payment method</th>
+              <th class="th-sm">Payment status</th>
             </tr>
           </thead>
           <tbody>
@@ -253,14 +259,14 @@
                 @endif
               </td>
               <td> {{ $user->email_address }}</td>
-              @if(($user->eventP != null)||($user->eventS != null)||($user->eventG != null)||($user->eventW != null))
-                <td> 
-                  {{ $user->eventS }} 
-                  {{ $user->eventP }} 
-                  {{ $user->eventG }} 
-                  {{ $user->eventW }}
-                </td>
-              @endif
+              <td> 
+                @if(($user->eventP != null)||($user->eventS != null)||($user->eventG != null)||($user->eventW != null))
+                {{ $user->eventS }} 
+                {{ $user->eventP }} 
+                {{ $user->eventG }} 
+                {{ $user->eventW }}
+                @endif
+              </td>
               <td> {{ $user->postal_address }}</td>
               <td> {{ $user->job_title }}</td>
               <td> {{ $user->organization }}</td>
@@ -274,6 +280,7 @@
               <td> {{ $user->guests }}</td>
               <td> {{ $user->price }}</td>
               <td> {{ $user->mode_payment }}</td>
+              <td> {{ $user->payment_status }}</td>
 
             </tr>
             @endforeach
@@ -304,6 +311,7 @@
               <th class="th-sm">Guests</th>
               <th class="th-sm">Price</th>
               <th class="th-sm">Payment method</th>
+              <th class="th-sm">Payment status</th>
 
             </tr>
           </thead>
@@ -320,14 +328,17 @@
                 @endif
               </td>
               <td> {{ $user->email_address }}</td>
-              @if(($user->eventP != null)||($user->eventS != null)||($user->eventG != null)||($user->eventW != null))
+              
                 <td> 
+                  @if(($user->eventP != null)||($user->eventS != null)||($user->eventG != null)||($user->eventW != null))
                   {{ $user->eventS }} 
                   {{ $user->eventP }} 
                   {{ $user->eventG }} 
                   {{ $user->eventW }}
+                  @endif
                 </td>
-              @endif
+                
+              
               <td> {{ $user->postal_address }}</td>
               <td> {{ $user->job_title }}</td>
               <td> {{ $user->organization }}</td>
@@ -341,7 +352,7 @@
               <td> {{ $user->guests }}</td>
               <td> {{ $user->price }}</td>
               <td> {{ $user->mode_payment }}</td>
-
+              <td> {{ $user->payment_status }}</td>
             </tr>
             @endforeach
           </tbody>
@@ -414,18 +425,18 @@ select.MP, select.payment {
 
 
 <script type="text/javascript">
-var direction="https://preprodica.digitalresearch.ae"
+
 
 function listDelegate(val){ 
 
   jQuery.ajax({
         type: "GET",
-        url: direction + "/api/checkuser/" + val,
+        url: "http://127.0.0.1:8000/api/checkuser/" + val,
         success: function(data) {
             infoUser = data.data_user;
             infoDelegate = data.data_delegate;
                    swal({html: `
-                   	<strang style="float: left; padding: 20px; font-size: 18px;">Delegates</strang>
+                          <strang style="float: left; padding: 20px; font-size: 18px;">Delegates</strang>
                           <table  style="width:95%;overflow:auto; display:block;" class="table table-bordered dataTable" border=1>
                             <thead>
                               <tr>
@@ -446,7 +457,6 @@ function listDelegate(val){
                               </tr>
                             </thead>
                           <tbody id='tabDLS'>
-                                
                           </tbody>
                         </table>`
                         });
@@ -471,7 +481,7 @@ function listDelegate(val){
                               </tr>
                               `);
                          });
-                        infoUser.forEach(el => {
+                         infoUser.forEach(el => {
                             jQuery("#tabDLS").append(`  
                               <tr>
                                 <td> ${el.first_name} </td>
@@ -486,7 +496,11 @@ function listDelegate(val){
                                 <td> ${el.first_check} </td>
                                 <td> ${el.second_check} </td>
                                 <td> ${el.guests} </td>
-                                <td> ${el.lead} </td>
+                                <td> 
+                                  
+                                  ${el.lead} 
+                                  
+                                </td>
                                 <td style="display: none;" > ${el.register_id} </td>
                                
                               </tr>
@@ -499,17 +513,26 @@ function listDelegate(val){
 
 $(document).ready(function() {
 var valSelect;
+var dtBasicExample = [];
 var dataDLS = <?php echo json_encode($DLS);?>;
 var dataBT = <?php echo json_encode($BT); ?>;
 var dataCC = <?php echo json_encode($CC); ?>;
 var dataOP = <?php echo json_encode($OP); ?>;
+var dataUsers = <?php echo json_encode($users); ?>;
 
 for (let i=1; i<=4; i++){
   $(`#dtBasicExample-${i}`).DataTable();
 }
 
+dataUsers.forEach(element => dtBasicExample.push(element));
+dataDLS.forEach(element => dtBasicExample.push(element));
+
+jQuery("#Expo").click(function(){
+  ex(dtBasicExample);
+});
 
 
+dataUsers.forEach(paymentLogin);
 /*        Send Email         */
 
 
@@ -529,14 +552,12 @@ jQuery("#third-btn").click(function(){
 });
 
 
-
-
 function sendMail(val, dl){
 
   val.forEach(element => {
     jQuery.ajax({
     type: "GET",
-    url: direction + "/api/send_email/registrations/"+element.id,
+    url: "http://127.0.0.1:8000/api/send_email/registrations/"+element.id,
     dataType: 'jsonp',
     });
   
@@ -544,7 +565,7 @@ function sendMail(val, dl){
     if (el.register_id == element.id)
     jQuery.ajax({
     type: "GET",
-    url: direction + "/api/send_email/delegates/"+el.id,
+    url: "http://127.0.0.1:8000/api/send_email/delegates/"+el.id,
     dataType: 'jsonp',
     });
   });
@@ -562,14 +583,23 @@ function paymentStatus(event, id){
     jQuery.ajax({
       type: "POST",
       data: dataTab,
-      url: direction + "/api/payment",
-   
+      url: "http://127.0.0.1:8000/api/payment",
+      // success: function(data) {
+      //   location.reload();
+      // }
     });
-  location.reload();
-}
  
 
+}
+
+
+
 /*     Export table to excel       */ 
+// var dtBasicExample = [
+    // {"firstName":"John", "lastName":"Doe"}, 
+    // {"firstName":"Anna", "lastName":"Smith"},
+    // {"firstName":"Peter", "lastName":"Jones"}
+// ]
 
 function s2ab(s) {
   var buf = new ArrayBuffer(s.length);
@@ -577,14 +607,68 @@ function s2ab(s) {
   for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
   return buf;
   }
-$("#Expo").click(function(){
-  $(".MP").remove();
+function ex(data){
+  $('.MP').remove();
   $('.payment').show();
-  var wb = XLSX.utils.table_to_book(document.getElementById('dtBasicExample-1'), {sheet:"Sheet JS"});
+  var wb = XLSX.utils.table_to_book(document.getElementById('dtBasicExample-1'), {sheet:"SheetJS"});
+  var wb2 = XLSX.utils.json_to_sheet(data, {sheet:"Sheet JS"});
+  wb.Sheets.SheetJS = wb2;
+
+  // console.log(wb.Sheets.SheetJS);
+  // console.log('111',wb2);
   var wbout = XLSX.write(wb, {bookType:'xlsx', bookSST:true, type: 'binary'});
   saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'tableUsers.xlsx');
   location.reload();
-});
+}
+
+
+/*     login for payment      */ 
+function paymentLogin(id) {
+    var login_data = {
+        'username': "inforapi",
+        'password': "inforapiuat"
+    };
+   if(id['mode_payment'] === 'Credit Card'){
+    jQuery.ajax({
+        type: "POST",
+        url: "https://uat.ntravel.ae/api/Login",
+        data: JSON.stringify(login_data),
+        contentType: "application/json",
+        dataType: 'json',
+        success: function(data) {
+            var token = data.token;
+            payment(id['id'], token);
+            }
+    });
+  }
+}
+
+function payment(id, token) {
+    var login_data = {
+        'reference_number': id
+    };
+
+    jQuery.ajax({
+        type: "POST",
+        url: "https://uat.ntravel.ae/api/GatewayPayment",
+        data: JSON.stringify(login_data),
+        contentType: "application/json",
+        dataType: 'json',
+        headers: {
+          "authorization_token": token,
+          "authorization": "Basic aW5mb3JhcGk6aW5mb3JhcGl1YXQ=",
+        },
+        success: function(data) {
+          if(data.gatewaypaymentresponse.length != 0){
+            $('#P_status').append('Successful');
+          }else{
+            $('#P_status').append('Pending');
+          }
+        }
+    });
+}
+
+
 
 /*     on change select       */ 
 
@@ -611,10 +695,8 @@ $('#block-2, #block-3, #block-4, #first-btn, #second-btn, #third-btn').hide();
     });
 
     $("table").removeClass("dataTable");
+
+
+    
 </script>
 @stop
-
-
-
-
-

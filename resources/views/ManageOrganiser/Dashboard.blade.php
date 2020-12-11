@@ -98,7 +98,7 @@
             <div id="calendar"></div>
 
 
-            {{-- <h4 style="margin-bottom: 25px;margin-top: 20px;">@lang("Public_ViewOrganiser.upcoming_events")</h4>
+            <h4 style="margin-bottom: 25px;margin-top: 20px;">@lang("Public_ViewOrganiser.upcoming_events")</h4>
             @if($upcoming_events->count())
                 @foreach($upcoming_events as $event)
                     @include('ManageOrganiser.Partials.EventPanel')
@@ -109,9 +109,9 @@
                                                      data-href="{{route('showCreateEvent', ['organiser_id' => $organiser->id])}}"
                                                      class=" loadModal">@lang("Organiser.no_upcoming_events_click")</a>
                 </div>
-            @endif --}}
+            @endif
         </div>
-        {{-- <div class="col-md-4">
+        <div class="col-md-4">
             <h4 style="margin-bottom: 25px;margin-top: 20px;">@lang("Order.recent_orders")</h4>
             @if($organiser->orders->count())
                 <ul class="list-group">
@@ -143,6 +143,6 @@
                     @endif
                 </ul>
 
-        </div> --}}
+        </div>
     </div>
 @stop

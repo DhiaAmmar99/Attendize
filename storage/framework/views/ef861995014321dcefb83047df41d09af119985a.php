@@ -17,6 +17,14 @@
                 </a>
             </li>
 
+            
+
+            <li class="<?php echo e(Request::is('*program*') ? 'active' : ''); ?>">
+                <a href="<?php echo e(route('programs', array('organiser_id' => $organiser->id))); ?>">
+                    <span class="figure"><i class="ico-code"></i></span>
+                    <span class="text">Program</span>
+                </a>
+            </li>
             <li class="<?php echo e(Request::is('*users*') ? 'active' : ''); ?>">
                 <a href="<?php echo e(route('list', array('organiser_id' => $organiser->id))); ?>">
                     <span class="figure"><i class="ico-table"></i></span>

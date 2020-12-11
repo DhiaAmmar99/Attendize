@@ -478,19 +478,19 @@
                         
                                 <h4 style="text-align: left;"><span style="font-size:16px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">
                                 
-                                @if ($tabname == 'registrations')
-                                You are successfully pre-registered to attend the ICA Congress Abu Dhabi 2020.
-                                @else
+                                {{-- @if ($tabname == 'registrations') --}}
+                                You are successfully registered to attend the ICA Congress Abu Dhabi 2020.
+                                {{-- @else
                                 You have been successfully pre-registered as a group delegation under Institution Members
-                                @endif
+                                @endif --}}
                             </span></span></h4>
 
                             <h1 style="text-align: left;"><span style="font-size:21px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">
-                                @if ($tabname == 'registrations')
+                                {{-- @if ($tabname == 'registrations') --}}
                                 Your unique registration number&nbsp;(URN) is:
-                                @else
+                                {{-- @else
                                 your unique registration number under group is:
-                                @endif
+                                @endif --}}
                                 
                                 &nbsp; {{$id}}</span></span></h1>
 
@@ -568,31 +568,50 @@
                                         <div style="text-align: left;">
                                             <div style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Registration information:</div><br>
                                             
-                                            <div>Full name : {{$data->first_name}} {{$data->last_name}}</div><br>
-                                            <div>Email : {{$data->email_address}}</div><br>
-                                            <div>Job title : {{$data->job_title}}</div><br>
-                                            <div>Organization : {{$data->organization}}</div><br>
-                                            <div>Dietary : {{$data->dietary}}</div><br>
-                                            <div>Experience : {{$data->experience}}</div><br>
-                                            <div>Language translation : {{$data->language_translation}}</div><br>
-                                            <div>Languages : {{$data->languages}}</div><br>
-                                            <div>Guests : {{$data->guests}}</div><br>
-                                            <div>Lead : {{$data->lead}}</div><br>
-                                            <div>Do you agree to share your name, job title and organisation in the Congress attendees list ? : {{$data->first_check}}</div><br>
-                                            <div>Do you agree for your name, organisation and email address to be added to the recipients list to receive event updates ? : {{$data->second_check}}</div><br>
-
-                                            @if ($tabname == 'registrations')
+                                            <div>Full name : {{$dataLead->first_name}} {{$dataLead->last_name}}</div><br>
+                                            <div>Email : {{$dataLead->email_address}}</div><br>
+                                            <div>Job title : {{$dataLead->job_title}}</div><br>
+                                            <div>Organization : {{$dataLead->organization}}</div><br>
+                                            <div>Dietary : {{$dataLead->dietary}}</div><br>
+                                            <div>Experience : {{$dataLead->experience}}</div><br>
+                                            <div>Language translation : {{$dataLead->language_translation}}</div><br>
+                                            <div>Languages : {{$dataLead->languages}}</div><br>
+                                            <div>Guests : {{$dataLead->guests}}</div><br>
+                                            <div>Lead : {{$dataLead->lead}}</div><br>
+                                            <div>Do you agree to share your name, job title and organisation in the Congress attendees list ? : {{$dataLead->first_check}}</div><br>
+                                            <div>Do you agree for your name, organisation and email address to be added to the recipients list to receive event updates ? : {{$dataLead->second_check}}</div><br>
+                                            <div>Postal address : {{$dataLead->postal_address}}</div><br>
+                                            <div>Type registration : {{$dataLead->registration_as}}</div><br>
+                                            <div>Membership number : {{$dataLead->membership_number}}</div><br>
+                                            <div>Country : {{$dataLead->country}}</div><br>
+                                            <div>Number of delegates : {{$dataLead->membership}}</div><br>
+                                            <div>Mode of payment : {{$dataLead->mode_payment}}</div><br>
+                                            <div>Events : {{$dataLead->eventP}} {{$dataLead->eventS}} {{$dataLead->eventG}} {{$dataLead->eventW}}</div><br>
+                                            <div>Price : {{$dataLead->price}} EUR</div><br>
                                             
-                                            <div>Postal address : {{$data->postal_address}}</div><br>
-                                            <div>Type registration : {{$data->registration_as}}</div><br>
-                                            <div>Membership number : {{$data->membership_number}}</div><br>
-                                            <div>Country : {{$data->country}}</div><br>
-                                            <div>Number of delegates : {{$data->membership}}</div><br>
-                                            <div>Mode of payment : {{$data->mode_payment}}</div><br>
-                                            <div>Events : {{$data->eventP}} {{$data->eventS}} {{$data->eventG}} {{$data->eventW}}</div><br>
-                                            <div>Price : {{$data->price}} EUR</div><br>
-
-                                            @endif
+                                            
+                                            
+                                            @forelse($tabDelegate as $key => $val)
+                                                <div>Delegate {{ $key + 1 }} :</div><br>
+                                              
+                                                <div>Full name : {{$val->first_name}} {{$val->last_name}}</div><br>
+                                                <div>Email : {{$val->email_address}}</div><br>
+                                                <div>Job title : {{$val->job_title}}</div><br>
+                                                <div>Organization : {{$val->organization}}</div><br>
+                                                <div>Dietary : {{$val->dietary}}</div><br>
+                                                <div>Experience : {{$val->experience}}</div><br>
+                                                <div>Language translation : {{$val->language_translation}}</div><br>
+                                                <div>Languages : {{$val->languages}}</div><br>
+                                                <div>Guests : {{$val->guests}}</div><br>
+                                                <div>Do you agree to share your name, job title and organisation in the Congress attendees list ? : {{$val->first_check}}</div><br>
+                                                <div>Do you agree for your name, organisation and email address to be added to the recipients list to receive event updates ? : {{$val->second_check}}</div><br>
+                                                
+                                                
+                                               
+                                           
+                                            @empty
+                                                <p></p>
+                                            @endforelse
                                          
                                         &nbsp;</div>
 

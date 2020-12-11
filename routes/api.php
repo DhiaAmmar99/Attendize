@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\ApiregistrationController;
 use App\Http\Controllers\ShuttleController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -109,6 +111,23 @@ Route::post('/createMyProgram', [ProgramController::class ,'createMyProgram']);
 Route::post('/createprogram', [ProgramController::class ,'createProgram']);
 
 
+/*
+ * ---------------
+ * Payment Email
+ * ---------------
+ */
+
+
+Route::post('/PaymentConfirmation', [PaymentController::class ,'PaymentEmail']);
+
+/*
+ * ---------------
+ * ADD Image to user
+ * ---------------
+ */
+
+
+Route::post('/updateImage/{id}', [ImageController::class ,'updateImg']);
 
 
 /*

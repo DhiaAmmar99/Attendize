@@ -103,9 +103,55 @@
             <div id="calendar"></div>
 
 
-            
+            <h4 style="margin-bottom: 25px;margin-top: 20px;"><?php echo app('translator')->get("Public_ViewOrganiser.upcoming_events"); ?></h4>
+            <?php if($upcoming_events->count()): ?>
+                <?php $__currentLoopData = $upcoming_events; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $event): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php echo $__env->make('ManageOrganiser.Partials.EventPanel', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php else: ?>
+                <div class="alert alert-success alert-lg">
+                    <?php echo app('translator')->get("Organiser.no_upcoming_events"); ?> <a href="#"
+                                                     data-href="<?php echo e(route('showCreateEvent', ['organiser_id' => $organiser->id])); ?>"
+                                                     class=" loadModal"><?php echo app('translator')->get("Organiser.no_upcoming_events_click"); ?></a>
+                </div>
+            <?php endif; ?>
         </div>
-        
+        <div class="col-md-4">
+            <h4 style="margin-bottom: 25px;margin-top: 20px;"><?php echo app('translator')->get("Order.recent_orders"); ?></h4>
+            <?php if($organiser->orders->count()): ?>
+                <ul class="list-group">
+                    <?php $__currentLoopData = $organiser->orders()->orderBy('created_at', 'desc')->take(5)->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <li class="list-group-item">
+                            <h6 class="ellipsis">
+                                <a href="<?php echo e(route('showEventDashboard', ['event_id' => $order->event->id])); ?>">
+                                    <?php echo e($order->event->title); ?>
+
+                                </a>
+                            </h6>
+                            <p class="list-group-text">
+                                <a href="<?php echo e(route('showEventOrders', ['event_id' => $order->event_id, 'q' => $order->order_reference])); ?>">
+                                    <b>#<?php echo e($order->order_reference); ?></b></a> -
+                                <a href="<?php echo e(route('showEventAttendees', ['event_id'=>$order->event->id,'q'=>$order->order_reference])); ?>">
+                                    <strong><?php echo e($order->full_name); ?></strong>
+                                </a> <?php echo e(@trans("Order.registered")); ?>
+
+                                    <?php echo e($order->attendees()->withTrashed()->count()); ?> <?php echo e(@trans("Order.tickets")); ?>
+
+                            </p>
+                            <h6>
+                                <?php echo e($order->created_at->diffForHumans()); ?> &bull; <span
+                                        style="color: green;"><?php echo e($order->event->currency_symbol); ?><?php echo e($order->amount); ?></span>
+                            </h6>
+                        </li>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php else: ?>
+                        <div class="alert alert-success alert-lg">
+                            <?php echo app('translator')->get("Order.no_recent_orders"); ?>
+                        </div>
+                    <?php endif; ?>
+                </ul>
+
+        </div>
     </div>
 <?php $__env->stopSection(); ?>
 

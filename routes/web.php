@@ -40,7 +40,7 @@ use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\UserLogoutController;
 use App\Http\Controllers\UserSignupController;
 use App\Http\Controllers\FirebaseController;
-use App\Http\Controllers\ApiregistrationController;
+use App\Http\Controllers\ProgramController;
 
 Route::get('/firebase', [FirebaseController::class ,'index']);
 Route::get('/firestore', [FirebaseController::class ,'fire']);
@@ -48,6 +48,36 @@ Route::get('/firestore', [FirebaseController::class ,'fire']);
 Route::get('/{organiser_id}/listusers', 
      [ListUsersController::class, 'list']
      )->name('list');
+
+Route::get('/{organiser_id}/programs', 
+     [ProgramController::class, 'programs']
+     )->name('programs');
+
+
+
+        Route::group(['prefix' => 'programs'], function () {
+
+            /*
+             * ----------
+             * Create Program
+             * ----------
+             */
+            Route::get('/createprog',
+                [ProgramController::class, 'showCreateProgram']
+            )->name('showCreateProgram');
+
+            Route::post('/createprog',
+                [ProgramController::class, 'createProgram']
+            )->name('createProgram');
+        });
+
+
+
+
+
+
+
+
 
 
 Route::post('/new',
