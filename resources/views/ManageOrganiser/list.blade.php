@@ -117,7 +117,7 @@
                   </td>
                   
                 </tr>
-              @foreach($DLS as $dd)
+              {{-- @foreach($DLS as $dd)
                 @if ($user->id == $dd->register_id )
                 <tr>
                   <td style="display: none"> {{ $dd->register_id }}</td>
@@ -145,7 +145,7 @@
                   <td style="display: none"> {{ $user->payment_status }}</td>
                 </tr>
                 @endif
-              @endforeach
+              @endforeach --}}
             @endforeach
           </tbody>
         </table>
@@ -513,7 +513,8 @@ function listDelegate(val){
 
 $(document).ready(function() {
 var valSelect;
-var dtBasicExample = [];
+var dtu = [];
+var dtD = [];
 var dataDLS = <?php echo json_encode($DLS);?>;
 var dataBT = <?php echo json_encode($BT); ?>;
 var dataCC = <?php echo json_encode($CC); ?>;
@@ -524,8 +525,9 @@ for (let i=1; i<=4; i++){
   $(`#dtBasicExample-${i}`).DataTable();
 }
 
-dataUsers.forEach(element => dtBasicExample.push(element));
-dataDLS.forEach(element => dtBasicExample.push(element));
+dataUsers.forEach(element => dtu.push(element));
+dataDLS.forEach(element => dtD.push(element));
+dtBasicExample=trietab(dtu,dtD);
 
 jQuery("#Expo").click(function(){
   ex(dtBasicExample);
@@ -533,6 +535,8 @@ jQuery("#Expo").click(function(){
 
 
 dataUsers.forEach(paymentLogin);
+
+
 /*        Send Email         */
 
 
@@ -550,6 +554,35 @@ jQuery("#third-btn").click(function(){
 
 
 });
+
+
+function trietab(tab, tt){
+  datatab=[];
+  for (let i = 0; i < tab.length; i++) {
+    delete tab[i].password 
+    delete tab[i].created_at 
+    delete tab[i].updated_at 
+    datatab.push(tab[i]);
+    for (let j = 0; j < tt.length; j++) {
+      if(tab[i].id == tt[j].register_id){
+        tt[j].id = tt[j].register_id
+        tt[j].country = tab[i].country
+        tt[j].postal_address = tab[i].postal_address
+        tt[j].price = tab[i].price
+        tt[j].mode_payment = tab[i].mode_payment
+        tt[j].payment_status = tab[i].payment_status
+        tt[j].registration_as = tab[i].registration_as
+        tt[j].membership_number = tab[i].membership_number
+        tt[j].membership = tab[i].membership
+        delete tt[j].register_id 
+        delete tt[j].created_at 
+        delete tt[j].updated_at 
+        datatab.push(tt[j]);
+      }
+    }
+  }
+  return datatab;
+}
 
 
 function sendMail(val, dl){

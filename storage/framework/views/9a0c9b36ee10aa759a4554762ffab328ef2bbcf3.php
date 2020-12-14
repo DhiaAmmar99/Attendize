@@ -115,35 +115,7 @@
                   </td>
                   
                 </tr>
-              <?php $__currentLoopData = $DLS; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $dd): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <?php if($user->id == $dd->register_id ): ?>
-                <tr>
-                  <td style="display: none"> <?php echo e($dd->register_id); ?></td>
-                  <td style="display: none"> <?php echo e($dd->first_name); ?> </td>
-                  <td style="display: none"> <?php echo e($dd->last_name); ?> </td>
-                  <td style="display: none"> <?php echo e($user->registration_as); ?> </td>
-                  <td style="display: none"> <?php echo e($user->membership_number); ?> </td>
-                  <td style="display: none"> <?php echo e($user->membership); ?></td>
-                  <td style="display: none"> <?php echo e($dd->email_address); ?></td>
-                  <td style="display: none"> <?php echo e($user->eventS); ?> <?php echo e($user->eventP); ?> <?php echo e($user->eventG); ?> <?php echo e($user->eventW); ?></td>
-                  <td style="display: none"> <?php echo e($user->postal_address); ?></td>
-                  <td style="display: none"> <?php echo e($dd->job_title); ?></td>
-                  <td style="display: none"> <?php echo e($dd->organization); ?></td>
-                  <td style="display: none"> <?php echo e($user->country); ?></td>
-                  <td style="display: none"> <?php echo e($dd->dietary); ?></td>
-                  <td style="display: none"> <?php echo e($dd->experience); ?></td>
-                  <td style="display: none"> <?php echo e($dd->language_translation); ?></td>
-                  <td style="display: none"> <?php echo e($dd->languages); ?></td>
-                  <td style="display: none"> <?php echo e($dd->first_check); ?></td>
-                  <td style="display: none"> <?php echo e($dd->second_check); ?></td>
-                  <td style="display: none"> <?php echo e($dd->guests); ?></td>
-                  <td style="display: none"> <?php echo e($dd->lead); ?></td>
-                  <td style="display: none"> <?php echo e($user->price); ?></td>
-                  <td style="display: none"> <?php echo e($user->mode_payment); ?></td>
-                  <td style="display: none"> <?php echo e($user->payment_status); ?></td>
-                </tr>
-                <?php endif; ?>
-              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+              
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           </tbody>
         </table>
@@ -514,7 +486,8 @@ function listDelegate(val){
 
 $(document).ready(function() {
 var valSelect;
-var dtBasicExample = [];
+var dtu = [];
+var dtD = [];
 var dataDLS = <?php echo json_encode($DLS);?>;
 var dataBT = <?php echo json_encode($BT); ?>;
 var dataCC = <?php echo json_encode($CC); ?>;
@@ -525,8 +498,9 @@ for (let i=1; i<=4; i++){
   $(`#dtBasicExample-${i}`).DataTable();
 }
 
-dataUsers.forEach(element => dtBasicExample.push(element));
-dataDLS.forEach(element => dtBasicExample.push(element));
+dataUsers.forEach(element => dtu.push(element));
+dataDLS.forEach(element => dtD.push(element));
+dtBasicExample=trietab(dtu,dtD);
 
 jQuery("#Expo").click(function(){
   ex(dtBasicExample);
@@ -551,6 +525,35 @@ jQuery("#third-btn").click(function(){
 
 
 });
+
+
+function trietab(tab, tt){
+  datatab=[];
+  for (let i = 0; i < tab.length; i++) {
+    delete tab[i].password 
+    delete tab[i].created_at 
+    delete tab[i].updated_at 
+    datatab.push(tab[i]);
+    for (let j = 0; j < tt.length; j++) {
+      if(tab[i].id == tt[j].register_id){
+        tt[j].id = tt[j].register_id
+        tt[j].country = tab[i].country
+        tt[j].postal_address = tab[i].postal_address
+        tt[j].price = tab[i].price
+        tt[j].mode_payment = tab[i].mode_payment
+        tt[j].payment_status = tab[i].payment_status
+        tt[j].registration_as = tab[i].registration_as
+        tt[j].membership_number = tab[i].membership_number
+        tt[j].membership = tab[i].membership
+        delete tt[j].register_id 
+        delete tt[j].created_at 
+        delete tt[j].updated_at 
+        datatab.push(tt[j]);
+      }
+    }
+  }
+  return datatab;
+}
 
 
 function sendMail(val, dl){

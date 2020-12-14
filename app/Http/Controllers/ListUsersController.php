@@ -23,11 +23,8 @@ class ListUsersController extends Controller
         $BT = DB::connection('mysql')->select('select * from registrations where mode_payment LIKE "Bank Transfer"');
         $CC = DB::connection('mysql')->select('select * from registrations where mode_payment LIKE "Credit Card"');
         $OP = DB::connection('mysql')->select('select * from registrations where mode_payment LIKE "Onsite payment"');
-        $users  = DB::connection('mysql')->select('select id, first_name, last_name, registration_as, membership_number , membership, email_address, 
-        eventS, eventP, eventG, eventW, postal_address, job_title, organization, country, dietary, experience ,language_translation, languages, first_check, 
-        second_check, guests, lead, price, mode_payment,payment_status from registrations');
-        $DLS = DB::connection('mysql')->select('select id, first_name, last_name, email_address, job_title, organization, dietary, experience ,language_translation, 
-        languages, first_check, second_check, guests, lead, register_id from delegates');
+        $users  = DB::connection('mysql')->select('select * from registrations');
+        $DLS = DB::connection('mysql')->select('select * from delegates');
         
         return view('ManageOrganiser.list',  $data)->with('users', $users)
                                                    ->with('DLS', $DLS)
