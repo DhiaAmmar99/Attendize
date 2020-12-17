@@ -459,13 +459,17 @@ class ApiregistrationController extends Controller
     {
         $fetchR=DB::connection('mysql')->table('registrations')->where('email_address', $request->email)->first();
         $fetchD=DB::connection('mysql')->table('delegates')->where('email_address', $request->email)->first();
+        
 
         if(($fetchR)||($fetchD)){
+            $data_d = DB::connection('mysql')->select('select * from delegates where register_id =:id', ['id' => $fetchR->id]);
+            $img = ImagesUser::select('image')->where("id_registration",$fetchR->id)->first();
             return Response::json([
-                
+                'image'=>$img['image'],
+                'data_user'=>$fetchR,
+                'data_delegate'=>$data_d,
                 'status'=>'0',
                 'message'=>'Email address is already registered',
-                
                 ]
             );
         }else{
@@ -496,14 +500,9 @@ class ApiregistrationController extends Controller
         // $html = file_get_contents('test.html');
             
         $html2pdf = new Html2Pdf();
-        $html2pdf->writeHTML($request->getContent()); // pass in the HTML
+        $html2pdf->writeHTML($request->text_box); // pass in the HTML
         $html2pdf->output('Bank transfer registration summary - ICA Congress Abu Dhabi 2020.pdf', 'D'); // Generate the PDF and start download
 
-        // $pdf = PDF::loadView('pdf', $data);
-        // return $pdf->download('Nicesnippets.pdf');
-
-        // view('pdf', $data );
-        // return Redirect("https://api.html2pdf.app/v1/generate?url=http://127.0.0.1:8000/download&apiKey=59f37cced1175defe052c4ce86317efe759ed23b7c538121753a4d4a732780ed");
     }
 
     

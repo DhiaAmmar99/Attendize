@@ -94,7 +94,13 @@
                   <td> {{ $user->guests }}</td>
                   <td style="display: none"> {{ $user->lead }}</td>
                   <td> {{ $user->price }}</td>
-                  <td> {{ $user->mode_payment }}</td>
+                  <td> 
+                    @if($user->mode_payment != 'edit')
+                    {{ $user->mode_payment }}
+                    @else
+                    Free visitor
+                    @endif
+                  </td>
                   <td>
                     @if($user->mode_payment != 'Credit Card')
                       <select onchange="paymentStatus(this.value,{{ $user->id }})" class="MP">
@@ -111,7 +117,7 @@
                       </select>
                     @else
 
-                    <span id="P_status"></span>
+                    <span id="P_status-{{ $user->id }}"></span>
                     
                     @endif
                   </td>
@@ -425,13 +431,15 @@ select.MP, select.payment {
 
 
 <script type="text/javascript">
+var direction = 'http://127.0.0.1:8000';
+
 
 
 function listDelegate(val){ 
 
   jQuery.ajax({
         type: "GET",
-        url: "http://127.0.0.1:8000/api/checkuser/" + val,
+        url: direction + "/api/checkuser/" + val,
         success: function(data) {
             infoUser = data.data_user;
             infoDelegate = data.data_delegate;
@@ -521,20 +529,18 @@ var dataCC = <?php echo json_encode($CC); ?>;
 var dataOP = <?php echo json_encode($OP); ?>;
 var dataUsers = <?php echo json_encode($users); ?>;
 
+
 for (let i=1; i<=4; i++){
   $(`#dtBasicExample-${i}`).DataTable();
 }
 
-dataUsers.forEach(element => dtu.push(element));
-dataDLS.forEach(element => dtD.push(element));
-dtBasicExample=trietab(dtu,dtD);
-
-jQuery("#Expo").click(function(){
-  ex(dtBasicExample);
-});
 
 
-dataUsers.forEach(paymentLogin);
+paymentLogin(dataUsers,0); 
+
+
+
+
 
 
 /*        Send Email         */
@@ -553,10 +559,23 @@ jQuery("#third-btn").click(function(){
 });
 
 
+
+jQuery("#Expo").click(function(){
+  dataUsers.forEach(element => dtu.push(element));
+  dataDLS.forEach(element => dtD.push(element));
+  dtBasicExample=trietab(dtu,dtD);
+  exportXL(dtBasicExample);
 });
 
+});
+
+// $("#dtBasicExample-1_paginate a").click(function() {
+//   console.log('test click');
+//    paymentLogin(dataUsers,0); 
+// });
 
 function trietab(tab, tt){
+
   datatab=[];
   for (let i = 0; i < tab.length; i++) {
     delete tab[i].password 
@@ -588,22 +607,33 @@ function trietab(tab, tt){
 function sendMail(val, dl){
 
   val.forEach(element => {
+    
     jQuery.ajax({
-    type: "GET",
-    url: "http://127.0.0.1:8000/api/send_email/registrations/"+element.id,
-    dataType: 'jsonp',
+    type: "POST",
+    data: {
+      "id" : element.id,
+      "table" : "registrations",
+      "paiment" : element.mode_payment
+    },
+    url: direction + "/api/email",
+    dataType: 'json',
     });
   
   dl.forEach(el => {
     if (el.register_id == element.id)
     jQuery.ajax({
-    type: "GET",
-    url: "http://127.0.0.1:8000/api/send_email/delegates/"+el.id,
-    dataType: 'jsonp',
+    type: "POST",
+    data: {
+      "id" : el.id,
+      "table" : "delegates",
+      "paiment" : element.mode_payment
+    },
+    url: direction + "/api/email",
+    dataType: 'json',
     });
   });
   });
- swal("", "Invitation Letter has been sent", "success");
+  swal("", "Invitation Letter has been sent", "success");
 
 }
 
@@ -616,10 +646,7 @@ function paymentStatus(event, id){
     jQuery.ajax({
       type: "POST",
       data: dataTab,
-      url: "http://127.0.0.1:8000/api/payment",
-      // success: function(data) {
-      //   location.reload();
-      // }
+      url: direction + "/api/payment",
     });
  
 
@@ -628,11 +655,7 @@ function paymentStatus(event, id){
 
 
 /*     Export table to excel       */ 
-// var dtBasicExample = [
-    // {"firstName":"John", "lastName":"Doe"}, 
-    // {"firstName":"Anna", "lastName":"Smith"},
-    // {"firstName":"Peter", "lastName":"Jones"}
-// ]
+
 
 function s2ab(s) {
   var buf = new ArrayBuffer(s.length);
@@ -640,15 +663,12 @@ function s2ab(s) {
   for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
   return buf;
   }
-function ex(data){
+function exportXL(data){
   $('.MP').remove();
   $('.payment').show();
   var wb = XLSX.utils.table_to_book(document.getElementById('dtBasicExample-1'), {sheet:"SheetJS"});
   var wb2 = XLSX.utils.json_to_sheet(data, {sheet:"Sheet JS"});
   wb.Sheets.SheetJS = wb2;
-
-  // console.log(wb.Sheets.SheetJS);
-  // console.log('111',wb2);
   var wbout = XLSX.write(wb, {bookType:'xlsx', bookSST:true, type: 'binary'});
   saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'tableUsers.xlsx');
   location.reload();
@@ -656,47 +676,44 @@ function ex(data){
 
 
 /*     login for payment      */ 
-function paymentLogin(id) {
-    var login_data = {
-        'username': "inforapi",
-        'password': "inforapiuat"
-    };
-   if(id['mode_payment'] === 'Credit Card'){
-    jQuery.ajax({
+ function paymentLogin(tab,i=0) {
+  let token;
+  let id = tab[i].id;
+   jQuery.ajax({
         type: "POST",
         url: "https://uat.ntravel.ae/api/Login",
-        data: JSON.stringify(login_data),
+        data: JSON.stringify({
+        'username': "inforapi",
+        'password': "inforapiuat"
+        }),
         contentType: "application/json",
         dataType: 'json',
         success: function(data) {
-            var token = data.token;
-            payment(id['id'], token);
-            }
-    });
-  }
-}
-
-function payment(id, token) {
-    var login_data = {
-        'reference_number': id
-    };
-
-    jQuery.ajax({
-        type: "POST",
-        url: "https://uat.ntravel.ae/api/GatewayPayment",
-        data: JSON.stringify(login_data),
-        contentType: "application/json",
-        dataType: 'json',
-        headers: {
-          "authorization_token": token,
-          "authorization": "Basic aW5mb3JhcGk6aW5mb3JhcGl1YXQ=",
-        },
-        success: function(data) {
-          if(data.gatewaypaymentresponse.length != 0){
-            $('#P_status').append('Successful');
-          }else{
-            $('#P_status').append('Pending');
-          }
+          token =  data.token;
+          jQuery.ajax({
+              type: "POST",
+              url: "https://uat.ntravel.ae/api/GatewayPayment",
+              data: JSON.stringify({
+              'reference_number': id
+              }),
+              contentType: "application/json",
+              dataType: 'json',
+              headers: {
+                "authorization_token": token,
+                "authorization": "Basic aW5mb3JhcGk6aW5mb3JhcGl1YXQ=",
+              },
+              success: function(data) {
+                if(data.gatewaypaymentresponse.length != 0){
+                  $(`#P_status-${id}`).text('Successful');
+                }else{
+                  $(`#P_status-${id}`).text('Pending');
+                }
+                
+                if(i<tab.length-1){
+                  paymentLogin(tab,++i)
+                }
+              }
+          });
         }
     });
 }
