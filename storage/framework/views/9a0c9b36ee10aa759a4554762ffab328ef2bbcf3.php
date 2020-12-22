@@ -34,7 +34,13 @@
       </div>
 
       <div id="block-1" class="block" >
-        <table id="dtBasicExample-1" style="width:100%; height: 80vh; overflow:auto; display:block;" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+        
+
+
+
+
+
+        <table id="tableAllUsers" style="width:100%; height: 80vh; overflow:auto; display:block;" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
           <thead>
             <tr>
               <th class="th-sm">URN</th>
@@ -56,7 +62,6 @@
               <th class="th-sm">Share your information</th>
               <th class="th-sm">Added to the recipients</th>
               <th class="th-sm">Guests</th>
-              <th class="th-sm" style="display: none">Lead representative</th>
               <th class="th-sm">Price</th>
               <th class="th-sm">Payment method</th>
               <th class="th-sm">Payment status</th>
@@ -64,68 +69,12 @@
             </tr>
           </thead>
           <tbody>
-
-            <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <tr>
-                  <td> <?php echo e($user->id); ?></td>
-                  <td> <?php echo e($user->first_name); ?> </td>
-                  <td> <?php echo e($user->last_name); ?> </td>
-                  <td> <?php echo e($user->registration_as); ?> </td>
-                  <td> <?php echo e($user->membership_number); ?> </td>
-                  <td>
-                    <?php if($user->membership != null): ?>
-                    <button onclick="listDelegate(<?php echo e($user->id); ?>)" class="popup" id="<?php echo e($user->id); ?>"> <?php echo e($user->membership); ?> </button> 
-                    <?php endif; ?>
-                  </td>
-                  <td> <?php echo e($user->email_address); ?></td>
-                  <td> <?php echo e($user->eventS); ?> <?php echo e($user->eventP); ?> <?php echo e($user->eventG); ?> <?php echo e($user->eventW); ?></td>
-                  <td> <?php echo e($user->postal_address); ?></td>
-                  <td> <?php echo e($user->job_title); ?></td>
-                  <td> <?php echo e($user->organization); ?></td>
-                  <td> <?php echo e($user->country); ?></td>
-                  <td> <?php echo e($user->dietary); ?></td>
-                  <td> <?php echo e($user->experience); ?></td>
-                  <td> <?php echo e($user->language_translation); ?></td>
-                  <td> <?php echo e($user->languages); ?></td>
-                  <td> <?php echo e($user->first_check); ?></td>
-                  <td> <?php echo e($user->second_check); ?></td>
-                  <td> <?php echo e($user->guests); ?></td>
-                  <td style="display: none"> <?php echo e($user->lead); ?></td>
-                  <td> <?php echo e($user->price); ?></td>
-                  <td> 
-                    <?php if($user->mode_payment != 'edit'): ?>
-                    <?php echo e($user->mode_payment); ?>
-
-                    <?php else: ?>
-                    Free visitor
-                    <?php endif; ?>
-                  </td>
-                  <td>
-                    <?php if($user->mode_payment != 'Credit Card'): ?>
-                      <select onchange="paymentStatus(this.value,<?php echo e($user->id); ?>)" class="MP">
-                        <?php if($user->payment_status == 'Pending'): ?>
-                        <option selected value="Pending">Pending</option>
-                        <?php else: ?>
-                        <option  value="Pending">Pending</option>
-                        <?php endif; ?>
-                        <?php if($user->payment_status == 'Successful'): ?>
-                        <option selected  value="Successful">Successful</option>
-                        <?php else: ?>
-                        <option   value="Successful">Successful</option>
-                        <?php endif; ?>
-                      </select>
-                    <?php else: ?>
-
-                    <span id="P_status-<?php echo e($user->id); ?>"></span>
-                    
-                    <?php endif; ?>
-                  </td>
-                  
-                </tr>
-              
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           </tbody>
         </table>
+
+    
+
+
       </div>
       <div id="block-2" class="block">
         <table id="dtBasicExample-2" style="width:100%;overflow:auto; display:block;"  class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
@@ -198,7 +147,7 @@
         </table>
       </div>
       <div id="block-3" class="block">
-        <table id="dtBasicExample-3" style="width:100%;overflow:auto; display:block;"  class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+        <table id="tableUsersCC" style="width:100%;overflow:auto; display:block;"  class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
           <thead>
             <tr>
               <th class="th-sm">First name</th>
@@ -225,44 +174,7 @@
             </tr>
           </thead>
           <tbody>
-            <?php $__currentLoopData = $CC; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <tr>
-              <td> <?php echo e($user->first_name); ?> </td>
-              <td> <?php echo e($user->last_name); ?> </td>
-              <td> <?php echo e($user->registration_as); ?> </td>
-              <td> <?php echo e($user->membership_number); ?> </td>
-              <td>
-                <?php if($user->membership != null): ?>
-                 <button onclick="listDelegate(<?php echo e($user->id); ?>)" class="popup" id="<?php echo e($user->id); ?>"> <?php echo e($user->membership); ?> </button> 
-                <?php endif; ?>
-              </td>
-              <td> <?php echo e($user->email_address); ?></td>
-              <td> 
-                <?php if(($user->eventP != null)||($user->eventS != null)||($user->eventG != null)||($user->eventW != null)): ?>
-                <?php echo e($user->eventS); ?> 
-                <?php echo e($user->eventP); ?> 
-                <?php echo e($user->eventG); ?> 
-                <?php echo e($user->eventW); ?>
-
-                <?php endif; ?>
-              </td>
-              <td> <?php echo e($user->postal_address); ?></td>
-              <td> <?php echo e($user->job_title); ?></td>
-              <td> <?php echo e($user->organization); ?></td>
-              <td> <?php echo e($user->country); ?></td>
-              <td> <?php echo e($user->dietary); ?></td>
-              <td> <?php echo e($user->experience); ?></td>
-              <td> <?php echo e($user->language_translation); ?></td>
-              <td> <?php echo e($user->languages); ?></td>
-              <td> <?php echo e($user->first_check); ?></td>
-              <td> <?php echo e($user->second_check); ?></td>
-              <td> <?php echo e($user->guests); ?></td>
-              <td> <?php echo e($user->price); ?></td>
-              <td> <?php echo e($user->mode_payment); ?></td>
-              <td> <?php echo e($user->payment_status); ?></td>
-
-            </tr>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            
           </tbody>
         </table>
       </div>
@@ -497,7 +409,7 @@ $(document).ready(function() {
 var valSelect;
 var dtu = [];
 var dtD = [];
-var dataDLS = <?php echo json_encode($DLS);?>;
+var dataDLS = <?php echo json_encode($DLS); ?>;
 var dataBT = <?php echo json_encode($BT); ?>;
 var dataCC = <?php echo json_encode($CC); ?>;
 var dataOP = <?php echo json_encode($OP); ?>;
@@ -509,30 +421,38 @@ for (let i=1; i<=4; i++){
 }
 
 
-
-paymentLogin(dataCC,0); 
-
-
-
-
+paymentLogin(dataCC, dataUsers,0);
 
 
 /*        Send Email         */
 
 
 jQuery("#first-btn").click(function(){
-  sendMail(dataBT, dataDLS);
+  if(dataBT.length == 0){
+    swal("", "No data available in table", "error");
+  }else{
+    sendMail(dataBT, dataDLS);
+  }
 });
 
 jQuery("#second-btn").click(function(){
+  if(dataCC.length == 0){
+    swal("", "No data available in table", "error");
+  }else{
   sendMail(dataCC, dataDLS);
+  }
 });
 
 jQuery("#third-btn").click(function(){
+  if(dataOP.length == 0){
+    swal("", "No data available in table", "error");
+  }else{
   sendMail(dataOP, dataDLS);
+  }
 });
 
 
+/*        Export xl         */
 
 jQuery("#Expo").click(function(){
   dataUsers.forEach(element => dtu.push(element));
@@ -543,10 +463,96 @@ jQuery("#Expo").click(function(){
 
 });
 
-$("#dtBasicExample-1_paginate a").click(function() {
-  console.log('test click');
-  // paymentLogin(dataUsers,0); 
-});
+
+
+function initUsers(){
+  jQuery.ajax({
+  type: "GET",
+  url: direction + "/api/allusers",
+    success:  function(data) {
+      tab = data.data_user;
+      var el;
+      var Spay;
+      var Mpay;
+      var t = $('#tableAllUsers').DataTable();
+      var tbCC = $('#tableUsersCC').DataTable();
+        for (let i=0; i < tab.length; i++){
+          if(tab[i].membership != null){
+            el = `<button onclick="listDelegate(${tab[i].id})" class="popup" id="${ tab[i].id }"> ${ tab[i].membership } </button> `
+          }else{
+            el = tab[i].membership;
+          }
+          if(tab[i].mode_payment != 'Credit Card'){
+            if(tab[i].payment_status == 'Pending'){
+            Spay =  `<select onchange="paymentStatus(this.value,${ tab[i].id })" class="MP">
+                      <option selected> Pending</option>
+                      <option> Successful</option>
+                    </select>`
+            }else{
+              Spay =  `<select onchange="paymentStatus(this.value,${ tab[i].id })" class="MP">
+                      <option> Pending</option>
+                      <option selected> Successful</option>
+                    </select>`
+            }
+          }else{
+            Spay = tab[i].payment_status;
+            tbCC.row.add([
+              tab[i].first_name,
+              tab[i].last_name,
+              tab[i].registration_as,
+              tab[i].membership_number,
+              el,
+              tab[i].email_address,
+              tab[i].eventS,
+              tab[i].postal_address,
+              tab[i].job_title,
+              tab[i].organization,
+              tab[i].country,
+              tab[i].dietary,
+              tab[i].experience,
+              tab[i].language_translation,
+              tab[i].languages,
+              tab[i].first_check,
+              tab[i].second_check,
+              tab[i].guests,
+              tab[i].price,
+              tab[i].mode_payment,
+              tab[i].payment_status
+            ]).draw( false );
+          }
+          if(tab[i].mode_payment == 'edit'){
+            Mpay =  "Free";
+          }else{
+            Mpay =  tab[i].mode_payment;
+          }
+          t.row.add([
+              tab[i].id,
+              tab[i].first_name,
+              tab[i].last_name,
+              tab[i].registration_as,
+              tab[i].membership_number,
+              el,
+              tab[i].email_address,
+              tab[i].eventS,
+              tab[i].postal_address,
+              tab[i].job_title,
+              tab[i].organization,
+              tab[i].country,
+              tab[i].dietary,
+              tab[i].experience,
+              tab[i].language_translation,
+              tab[i].languages,
+              tab[i].first_check,
+              tab[i].second_check,
+              tab[i].guests,
+              tab[i].price,
+              Mpay,
+              Spay
+            ]).draw( false );
+        }
+    }
+  });
+}
 
 function trietab(tab, tt){
 
@@ -650,7 +656,7 @@ function exportXL(data){
 
 
 /*     login for payment      */ 
- function paymentLogin(tab,i=0) {
+function paymentLogin(tab, dataAll,i=0) {
   let token;
   let id = tab[i].id;
    jQuery.ajax({
@@ -678,15 +684,25 @@ function exportXL(data){
               },
               success: function(data) {
                 if(data.gatewaypaymentresponse.length != 0){
-                  $(`#P_status-${id}`).text('Successful');
+                  jQuery.ajax({
+                    type: "POST",
+                    data: {"id" : id, "payment" : 'Successful'},
+                    url: direction + "/api/payment",
+                    success: function(data) {
+                      if(i<tab.length-1){
+                        paymentLogin(tab , dataAll, ++i)
+                      }else{             
+                        initUsers(dataAll);
+                      }
+                    }
+                  });
                 }else{
-                  $(`#P_status-${id}`).text('Pending');
-                }
-                
-                if(i<tab.length-1){
                   
-                    paymentLogin(tab,++i)
-                  
+                  if(i<tab.length-1){
+                    paymentLogin(tab, dataAll, ++i)
+                  }else{             
+                    initUsers(dataAll);
+                  }
                 }
               }
           });

@@ -36,7 +36,7 @@
       </div>
 
       <div id="block-1" class="block" >
-        <table id="dtBasicExample-1" style="width:100%; height: 80vh; overflow:auto; display:block;" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+        {{--<table id="dtBasicExample-1" style="width:100%; height: 80vh; overflow:auto; display:block;" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
           <thead>
             <tr>
               <th class="th-sm">URN</th>
@@ -67,63 +67,64 @@
           </thead>
           <tbody>
 
-            @foreach($users as $user)
+            @foreach($users as $u)
                 <tr>
-                  <td> {{ $user->id }}</td>
-                  <td> {{ $user->first_name }} </td>
-                  <td> {{ $user->last_name }} </td>
-                  <td> {{ $user->registration_as }} </td>
-                  <td> {{ $user->membership_number }} </td>
+                  <td> {{ $u->id }}</td>
+                  <td> {{ $u->first_name }} </td>
+                  <td> {{ $u->last_name }} </td>
+                  <td> {{ $u->registration_as }} </td>
+                  <td> {{ $u->membership_number }} </td>
                   <td>
-                    @if($user->membership != null)
-                    <button onclick="listDelegate({{$user->id}})" class="popup" id="{{ $user->id }}"> {{ $user->membership }} </button> 
+                    @if($u->membership != null)
+                    <button onclick="listDelegate({{$u->id}})" class="popup" id="{{ $u->id }}"> {{ $u->membership }} </button> 
                     @endif
                   </td>
-                  <td> {{ $user->email_address }}</td>
-                  <td> {{ $user->eventS }} {{ $user->eventP }} {{ $user->eventG }} {{ $user->eventW }}</td>
-                  <td> {{ $user->postal_address }}</td>
-                  <td> {{ $user->job_title }}</td>
-                  <td> {{ $user->organization }}</td>
-                  <td> {{ $user->country }}</td>
-                  <td> {{ $user->dietary }}</td>
-                  <td> {{ $user->experience }}</td>
-                  <td> {{ $user->language_translation }}</td>
-                  <td> {{ $user->languages }}</td>
-                  <td> {{ $user->first_check }}</td>
-                  <td> {{ $user->second_check }}</td>
-                  <td> {{ $user->guests }}</td>
-                  <td style="display: none"> {{ $user->lead }}</td>
-                  <td> {{ $user->price }}</td>
+                  <td> {{ $u->email_address }}</td>
+                  <td> {{ $u->eventS }} {{ $u->eventP }} {{ $u->eventG }} {{ $u->eventW }}</td>
+                  <td> {{ $u->postal_address }}</td>
+                  <td> {{ $u->job_title }}</td>
+                  <td> {{ $u->organization }}</td>
+                  <td> {{ $u->country }}</td>
+                  <td> {{ $u->dietary }}</td>
+                  <td> {{ $u->experience }}</td>
+                  <td> {{ $u->language_translation }}</td>
+                  <td> {{ $u->languages }}</td>
+                  <td> {{ $u->first_check }}</td>
+                  <td> {{ $u->second_check }}</td>
+                  <td> {{ $u->guests }}</td>
+                  <td style="display: none"> {{ $u->lead }}</td>
+                  <td> {{ $u->price }}</td>
                   <td> 
-                    @if($user->mode_payment != 'edit')
-                    {{ $user->mode_payment }}
+                    @if($u->mode_payment != 'edit')
+                    {{ $u->mode_payment }}
                     @else
                     Free visitor
                     @endif
                   </td>
                   <td>
-                    @if($user->mode_payment != 'Credit Card')
-                      <select onchange="paymentStatus(this.value,{{ $user->id }})" class="MP">
-                        @if($user->payment_status == 'Pending')
+                    @if($u->mode_payment != 'Credit Card')
+                      <select onchange="paymentStatus(this.value,{{ $u->id }})" class="MP">
+                        @if($u->payment_status == 'Pending')
                         <option selected value="Pending">Pending</option>
                         @else
                         <option  value="Pending">Pending</option>
                         @endif
-                        @if($user->payment_status == 'Successful')
+                        @if($u->payment_status == 'Successful')
                         <option selected  value="Successful">Successful</option>
                         @else
                         <option   value="Successful">Successful</option>
                         @endif
                       </select>
                     @else
+                    {{ $u->payment_status }}
 
-                    <span id="P_status-{{ $user->id }}"></span>
+                    <span id="P_status-{{ $u->id }}"></span> 
                     
                     @endif
                   </td>
                   
-                </tr>
-              {{-- @foreach($DLS as $dd)
+                </tr> 
+               @foreach($DLS as $dd)
                 @if ($user->id == $dd->register_id )
                 <tr>
                   <td style="display: none"> {{ $dd->register_id }}</td>
@@ -151,10 +152,50 @@
                   <td style="display: none"> {{ $user->payment_status }}</td>
                 </tr>
                 @endif
-              @endforeach --}}
-            @endforeach
+              @endforeach 
+            @endforeach 
+          </tbody>
+        </table>--}}
+
+
+
+
+
+        <table id="tableAllUsers" style="width:100%; height: 80vh; overflow:auto; display:block;" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th class="th-sm">URN</th>
+              <th class="th-sm">First name</th>
+              <th class="th-sm">Last name</th>
+              <th class="th-sm">type registration</th>
+              <th class="th-sm">Membership number</th>
+              <th class="th-sm">Number of delegates</th>
+              <th class="th-sm">Email</th>
+              <th class="th-sm">events</th>
+              <th class="th-sm">Postal address</th>
+              <th class="th-sm">Job title</th>
+              <th class="th-sm">Organization</th>
+              <th class="th-sm">Country</th>
+              <th class="th-sm">dietary</th>
+              <th class="th-sm">experience</th>
+              <th class="th-sm">language translation</th>
+              <th class="th-sm">languages</th>
+              <th class="th-sm">Share your information</th>
+              <th class="th-sm">Added to the recipients</th>
+              <th class="th-sm">Guests</th>
+              <th class="th-sm">Price</th>
+              <th class="th-sm">Payment method</th>
+              <th class="th-sm">Payment status</th>
+             
+            </tr>
+          </thead>
+          <tbody>
           </tbody>
         </table>
+
+    
+
+
       </div>
       <div id="block-2" class="block">
         <table id="dtBasicExample-2" style="width:100%;overflow:auto; display:block;"  class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
@@ -226,7 +267,7 @@
         </table>
       </div>
       <div id="block-3" class="block">
-        <table id="dtBasicExample-3" style="width:100%;overflow:auto; display:block;"  class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+        <table id="tableUsersCC" style="width:100%;overflow:auto; display:block;"  class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
           <thead>
             <tr>
               <th class="th-sm">First name</th>
@@ -253,7 +294,7 @@
             </tr>
           </thead>
           <tbody>
-            @foreach($CC as $user)
+            {{-- @foreach($CC as $user)
             <tr>
               <td> {{ $user->first_name }} </td>
               <td> {{ $user->last_name }} </td>
@@ -289,7 +330,7 @@
               <td> {{ $user->payment_status }}</td>
 
             </tr>
-            @endforeach
+            @endforeach --}}
           </tbody>
         </table>
       </div>
@@ -523,7 +564,7 @@ $(document).ready(function() {
 var valSelect;
 var dtu = [];
 var dtD = [];
-var dataDLS = <?php echo json_encode($DLS);?>;
+var dataDLS = <?php echo json_encode($DLS); ?>;
 var dataBT = <?php echo json_encode($BT); ?>;
 var dataCC = <?php echo json_encode($CC); ?>;
 var dataOP = <?php echo json_encode($OP); ?>;
@@ -535,30 +576,38 @@ for (let i=1; i<=4; i++){
 }
 
 
-
-paymentLogin(dataUsers,0); 
-
-
-
-
+paymentLogin(dataCC, dataUsers,0);
 
 
 /*        Send Email         */
 
 
 jQuery("#first-btn").click(function(){
-  sendMail(dataBT, dataDLS);
+  if(dataBT.length == 0){
+    swal("", "No data available in table", "error");
+  }else{
+    sendMail(dataBT, dataDLS);
+  }
 });
 
 jQuery("#second-btn").click(function(){
+  if(dataCC.length == 0){
+    swal("", "No data available in table", "error");
+  }else{
   sendMail(dataCC, dataDLS);
+  }
 });
 
 jQuery("#third-btn").click(function(){
+  if(dataOP.length == 0){
+    swal("", "No data available in table", "error");
+  }else{
   sendMail(dataOP, dataDLS);
+  }
 });
 
 
+/*        Export xl         */
 
 jQuery("#Expo").click(function(){
   dataUsers.forEach(element => dtu.push(element));
@@ -569,10 +618,96 @@ jQuery("#Expo").click(function(){
 
 });
 
-// $("#dtBasicExample-1_paginate a").click(function() {
-//   console.log('test click');
-//    paymentLogin(dataUsers,0); 
-// });
+
+
+function initUsers(){
+  jQuery.ajax({
+  type: "GET",
+  url: direction + "/api/allusers",
+    success:  function(data) {
+      tab = data.data_user;
+      var el;
+      var Spay;
+      var Mpay;
+      var t = $('#tableAllUsers').DataTable();
+      var tbCC = $('#tableUsersCC').DataTable();
+        for (let i=0; i < tab.length; i++){
+          if(tab[i].membership != null){
+            el = `<button onclick="listDelegate(${tab[i].id})" class="popup" id="${ tab[i].id }"> ${ tab[i].membership } </button> `
+          }else{
+            el = tab[i].membership;
+          }
+          if(tab[i].mode_payment != 'Credit Card'){
+            if(tab[i].payment_status == 'Pending'){
+            Spay =  `<select onchange="paymentStatus(this.value,${ tab[i].id })" class="MP">
+                      <option selected> Pending</option>
+                      <option> Successful</option>
+                    </select>`
+            }else{
+              Spay =  `<select onchange="paymentStatus(this.value,${ tab[i].id })" class="MP">
+                      <option> Pending</option>
+                      <option selected> Successful</option>
+                    </select>`
+            }
+          }else{
+            Spay = tab[i].payment_status;
+            tbCC.row.add([
+              tab[i].first_name,
+              tab[i].last_name,
+              tab[i].registration_as,
+              tab[i].membership_number,
+              el,
+              tab[i].email_address,
+              tab[i].eventS,
+              tab[i].postal_address,
+              tab[i].job_title,
+              tab[i].organization,
+              tab[i].country,
+              tab[i].dietary,
+              tab[i].experience,
+              tab[i].language_translation,
+              tab[i].languages,
+              tab[i].first_check,
+              tab[i].second_check,
+              tab[i].guests,
+              tab[i].price,
+              tab[i].mode_payment,
+              tab[i].payment_status
+            ]).draw( false );
+          }
+          if(tab[i].mode_payment == 'edit'){
+            Mpay =  "Free";
+          }else{
+            Mpay =  tab[i].mode_payment;
+          }
+          t.row.add([
+              tab[i].id,
+              tab[i].first_name,
+              tab[i].last_name,
+              tab[i].registration_as,
+              tab[i].membership_number,
+              el,
+              tab[i].email_address,
+              tab[i].eventS,
+              tab[i].postal_address,
+              tab[i].job_title,
+              tab[i].organization,
+              tab[i].country,
+              tab[i].dietary,
+              tab[i].experience,
+              tab[i].language_translation,
+              tab[i].languages,
+              tab[i].first_check,
+              tab[i].second_check,
+              tab[i].guests,
+              tab[i].price,
+              Mpay,
+              Spay
+            ]).draw( false );
+        }
+    }
+  });
+}
 
 function trietab(tab, tt){
 
@@ -676,7 +811,7 @@ function exportXL(data){
 
 
 /*     login for payment      */ 
- function paymentLogin(tab,i=0) {
+function paymentLogin(tab, dataAll,i=0) {
   let token;
   let id = tab[i].id;
    jQuery.ajax({
@@ -704,13 +839,25 @@ function exportXL(data){
               },
               success: function(data) {
                 if(data.gatewaypaymentresponse.length != 0){
-                  $(`#P_status-${id}`).text('Successful');
+                  jQuery.ajax({
+                    type: "POST",
+                    data: {"id" : id, "payment" : 'Successful'},
+                    url: direction + "/api/payment",
+                    success: function(data) {
+                      if(i<tab.length-1){
+                        paymentLogin(tab , dataAll, ++i)
+                      }else{             
+                        initUsers(dataAll);
+                      }
+                    }
+                  });
                 }else{
-                  $(`#P_status-${id}`).text('Pending');
-                }
-                
-                if(i<tab.length-1){
-                  paymentLogin(tab,++i)
+                  
+                  if(i<tab.length-1){
+                    paymentLogin(tab, dataAll, ++i)
+                  }else{             
+                    initUsers(dataAll);
+                  }
                 }
               }
           });
