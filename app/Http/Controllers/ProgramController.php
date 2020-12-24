@@ -40,13 +40,35 @@ class ProgramController extends Controller
     public function createProgram(Request $request)
     {
         $p = new Program();
-        $p->title = $request->input('title');
-        $p->description = $request->input('description');
+        $p->day = $request->input('day');
         $p->start_date = $request->input('start_date');
         $p->end_date = $request->input('end_date');
 
         $p->save();
         return response()->json($p);
+    }
+
+    public function updateProgram(Request $request)
+    {
+        $data = Program::query()->where('id', $request->input('id'))
+            ->update([
+                'day' => $request->input('day'),
+                'start_date' => $request->input('start_date'),
+                'end_date' => $request->input('end_date')
+            ]);
+        if ($data) {
+            return Response::json([
+                'message' => 'Data program updated',
+                'status' => '1',
+                'data' => $data,
+            ]);
+        } else {
+            return Response::json([
+                'message' => 'This program does not exist',
+                'status' => '0',
+                'data' => $data,
+            ]);
+        }
     }
 
     public function listProgram()
@@ -97,27 +119,5 @@ class ProgramController extends Controller
         }
     }
 
-    public function updateProgram(Request $request)
-    {
-        $data = Program::query()->where('id', $request->input('id'))
-            ->update([
-                'title' => $request->input('title'),
-                'description' => $request->input('description'),
-                'start_date' => $request->input('start_date'),
-                'end_date' => $request->input('end_date')
-            ]);
-        if ($data) {
-            return Response::json([
-                'message' => 'Data program updated',
-                'status' => '1',
-                'data' => $data,
-            ]);
-        } else {
-            return Response::json([
-                'message' => 'This program does not exist',
-                'status' => '0',
-                'data' => $data,
-            ]);
-        }
-    }
+   
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProgramTable extends Migration
+class CreateChairs extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class CreateProgramTable extends Migration
      */
     public function up()
     {
-        Schema::create('program', function (Blueprint $table) {
+        Schema::create('chairs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('day');
-            $table->datetime('start_date');
-            $table->datetime('end_date');
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->string('email');
+            $table->string('country');
+            $table->string('organization');
+            $table->binary('image');
+            $table->string('description');
             $table->timestamps();
         });
     }
@@ -29,6 +33,6 @@ class CreateProgramTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('program');
+        Schema::dropIfExists('chairs');
     }
 }

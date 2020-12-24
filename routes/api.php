@@ -7,6 +7,10 @@ use App\Http\Controllers\ShuttleController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\StreamController;
+use App\Http\Controllers\SpeakerController;
+use App\Http\Controllers\TypeofsessionController;
+use App\Http\Controllers\ChairController;
 
 /*
 |--------------------------------------------------------------------------
@@ -128,6 +132,59 @@ Route::post('/PaymentConfirmation', [PaymentController::class ,'PaymentEmail']);
 
 
 Route::post('/updateImage/{id}', [ImageController::class ,'updateImg']);
+
+
+/*
+ * ---------------
+ * Streams
+ * ---------------
+ */
+
+
+ Route::post('/createStream', [StreamController::class ,'create']);
+ Route::put('/updateStream', [StreamController::class ,'update']);
+ Route::get('/stream', [StreamController::class ,'listStream']);
+
+
+/*
+ * ---------------
+ * Speaker
+ * ---------------
+ */
+
+
+ Route::post('/SessionSpeaker', [SpeakerController::class ,'SessionSpeaker']);
+ Route::post('/createSpeaker', [SpeakerController::class ,'create']);
+ Route::post('/updateSpeaker', [SpeakerController::class ,'update']);
+ Route::get('/speaker', [SpeakerController::class ,'listSpeaker']);
+ Route::get('/SearchSessionSpeaker', [SpeakerController::class ,'SearchSessionSpeaker']);
+ 
+
+/*
+ * ---------------
+ * Chair
+ * ---------------
+ */
+
+
+ Route::post('/SessionChair', [ChairController::class ,'SessionChair']);
+ Route::post('/createChair', [ChairController::class ,'create']);
+ Route::post('/updateChair', [ChairController::class ,'update']);
+ Route::get('/Chair', [ChairController::class ,'listChair']);
+ Route::get('/SearchSessionChair', [ChairController::class ,'SearchSessionChair']);
+ 
+
+
+/*
+ * ---------------
+ * Type of session
+ * ---------------
+ */
+
+
+ Route::post('/create_tos', [TypeofsessionController::class ,'create']);
+ Route::put('/update_tos', [TypeofsessionController::class ,'update']);
+ Route::get('/typeofsession', [TypeofsessionController::class ,'listTypeofsession']);
 
 
 /*

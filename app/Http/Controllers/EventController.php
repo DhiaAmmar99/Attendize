@@ -447,7 +447,7 @@ class EventController extends MyBaseController
  public function newEvent(Request $request)
    {
         $event = Event::createNew();
-        $speaker = new Speaker();
+        // $speaker = new Speaker();
 
         if (!$event->validate($request->all())) {
             return response()->json([
@@ -494,13 +494,13 @@ class EventController extends MyBaseController
         $event->save();
        
         
-        $speaker->firstName = $request->get('fisrtName');
-        $speaker->lastName = $request->get('lastName');
-        $speaker->email = $request->get('email');
-        $speaker->phone = $request->get('phone');
-        $speaker->id_event = $event->id;
-        $speaker->description = strip_tags($request->get('desc'));
-        $speaker->save();
+        // $speaker->firstName = $request->get('fisrtName');
+        // $speaker->lastName = $request->get('lastName');
+        // $speaker->email = $request->get('email');
+        // $speaker->phone = $request->get('phone');
+        // $speaker->id_event = $event->id;
+        // $speaker->description = strip_tags($request->get('desc'));
+        // $speaker->save();
     
 
         return response()->json([
