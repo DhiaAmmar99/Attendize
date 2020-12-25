@@ -89,28 +89,7 @@
                         <div>
                             
                         </div>
-                        <div>
-                            <label for="fisrtName" class="required  control-label">Fisrt name</label>
-                            <input type="text" id="fisrtName" name="fisrtName" class="form-control" />
-
-                            <label for="lastName" class="required control-label">Last name</label>
-                            <input type="text" id="lastName" name="lastName" class="form-control"/>
-
-                            <label for="email" class="required control-label">Email</label>
-                            <input type="email" id="email" name="email" class="form-control"/>
-
-                            <label for="phone" class="required control-label">Phone</label>
-                            <input type="tel" pattern="[0-9]{8}" id="phone" name="phone" class="form-control"/>
-
-                            <label for="desc" class="required control-label">Discription</label>
-                            
-                            <?php echo Form::textarea('desc', old('desc'),
-                                        array(
-                                        'class'=>'form-control  editable',
-                                        'rows' => 5
-                                        )); ?>
-
-                        </div>
+                        
 
                         
                         

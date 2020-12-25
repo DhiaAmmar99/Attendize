@@ -11,6 +11,8 @@ use App\Http\Controllers\StreamController;
 use App\Http\Controllers\SpeakerController;
 use App\Http\Controllers\TypeofsessionController;
 use App\Http\Controllers\ChairController;
+use App\Http\Controllers\EventSearchController;
+use App\Http\Controllers\RegistrationScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +42,7 @@ Route::post('/inscription',  [ListUsersController::class, 'inscrit']);
  * ---------------
  */
 Route::resource('events', API\EventsApiController::class);
-
+Route::get('/eventSearch',  [EventSearchController::class, 'listEvent']);
 
 /*
  * ---------------
@@ -189,9 +191,13 @@ Route::post('/updateImage/{id}', [ImageController::class ,'updateImg']);
 
 /*
  * ---------------
- * Orders
+ * Schedule
  * ---------------
  */
+
+ Route::post('/createMySchedule', [RegistrationScheduleController::class ,'createMySchedule']);
+ Route::get('/myschedule', [RegistrationScheduleController::class ,'MySchedule']);
+
 
 /*
  * ---------------

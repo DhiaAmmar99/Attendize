@@ -5,7 +5,7 @@
             <li class="event-title">
                 <h4>
                 
-                    <?php echo e(Str::limit($program->title, $limit = 75, $end = '...')); ?>
+                    <?php echo e(Str::limit($program->day, $limit = 75, $end = '...')); ?>
 
                 </h4>
             </li>

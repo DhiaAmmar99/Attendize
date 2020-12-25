@@ -12,7 +12,7 @@
             <li class="event-title">
                 <h4>
                 {{-- <h4 title="{{{$program->title}}}" href="{{route('showEventDashboard', ['event_id'=>$program->id])}}"> --}}
-                    {{{ Str::limit($program->title, $limit = 75, $end = '...') }}}
+                    {{{ Str::limit($program->day, $limit = 75, $end = '...') }}}
                 </h4>
             </li>
             {{-- <li class="event-organiser">

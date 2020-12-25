@@ -113,7 +113,7 @@
                         <div>
                             
                         </div>
-                        <div>
+                        {{-- <div>
                             <label for="fisrtName" class="required  control-label">Fisrt name</label>
                             <input type="text" id="fisrtName" name="fisrtName" class="form-control" />
 
@@ -133,7 +133,7 @@
                                         'class'=>'form-control  editable',
                                         'rows' => 5
                                         ))  !!}
-                        </div>
+                        </div> --}}
 
                         {{-- <div class="form-group">
                             {!! Form::label('event_image', trans("Event.event_image"), array('class'=>'control-label ')) !!}

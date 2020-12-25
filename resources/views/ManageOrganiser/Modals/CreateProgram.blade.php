@@ -65,8 +65,8 @@
 
 
                         <div class="form-group">
-                            {!! Form::label('title', "Program title", array('class'=>'control-label required')) !!}
-                            {!!  Form::text('title', old('title'),array('class'=>'form-control','placeholder'=>trans("Event.event_title_placeholder", ["name"=>Auth::user()->first_name]) ))  !!}
+                            {!! Form::label('DAY', "DAY", array('class'=>'control-label required')) !!}
+                            {!!  Form::text('DAY', old('title'),array('class'=>'form-control','placeholder'=>trans("Event.event_title_placeholder", ["name"=>Auth::user()->first_name]) ))  !!}
                         </div>
 
                         <div class="form-group custom-theme">

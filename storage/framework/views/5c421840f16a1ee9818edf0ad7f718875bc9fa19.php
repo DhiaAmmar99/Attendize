@@ -22,9 +22,9 @@
 
 
                         <div class="form-group">
-                            <?php echo Form::label('title', "Program title", array('class'=>'control-label required')); ?>
+                            <?php echo Form::label('DAY', "DAY", array('class'=>'control-label required')); ?>
 
-                            <?php echo Form::text('title', old('title'),array('class'=>'form-control','placeholder'=>trans("Event.event_title_placeholder", ["name"=>Auth::user()->first_name]) )); ?>
+                            <?php echo Form::text('DAY', old('title'),array('class'=>'form-control','placeholder'=>trans("Event.event_title_placeholder", ["name"=>Auth::user()->first_name]) )); ?>
 
                         </div>
 
