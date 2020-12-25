@@ -42,7 +42,7 @@ Route::post('/inscription',  [ListUsersController::class, 'inscrit']);
  * ---------------
  */
 Route::resource('events', API\EventsApiController::class);
-Route::get('/eventSearch',  [EventSearchController::class, 'listEvent']);
+Route::get('/SessionSearch',  [EventSearchController::class, 'listEvent']);
 
 /*
  * ---------------
@@ -111,9 +111,9 @@ Route::post('/shuttles', [ShuttleController::class ,'createShuttle']);
  */
 
 Route::put('/program', [ProgramController::class ,'updateProgram']);
-Route::get('/listprograms', [ProgramController::class ,'listProgram']);
-Route::post('/myprogram', [ProgramController::class ,'MyProgram']);
-Route::post('/createMyProgram', [ProgramController::class ,'createMyProgram']);
+Route::get('/programs', [ProgramController::class ,'listProgram']);
+// Route::post('/myprogram', [ProgramController::class ,'MyProgram']);
+// Route::post('/createMyProgram', [ProgramController::class ,'createMyProgram']);
 Route::post('/createprogram', [ProgramController::class ,'createProgram']);
 
 

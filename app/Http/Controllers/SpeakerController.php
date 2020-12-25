@@ -14,7 +14,7 @@ class SpeakerController extends Controller
     {
         $speaker = new Speaker();
         $time=date('Y-m-d-H-i-s');
-        $speaker->firstname = $request->get('fisrtname');
+        $speaker->firstname = $request->get('firstname');
         $speaker->lastname = $request->get('lastname');
         $speaker->email = $request->get('email');
         $speaker->Country = $request->get('country');

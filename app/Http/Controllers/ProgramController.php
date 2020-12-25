@@ -71,9 +71,25 @@ class ProgramController extends Controller
         }
     }
 
-    public function listProgram()
+    public function listProgram(Request $request)
     {
-       
+        // Search by id.
+        if ($request->has('id')) {
+            $data = Program::query();
+             $data->where('id', $request->input('id'));
+             if ($data->get()) {
+                return Response::json([
+                    'message' => 'success',
+                    'status' => '1',
+                    'data' => $data->get()
+                ]);
+            } else
+                return Response::json([
+                    'message' => 'failed',
+                    'status' => '0',
+                    'data' => $data
+                ]);
+        }else {
         $results = Program::all();
         if(!$results->isEmpty()){
             return response()->json([
@@ -88,36 +104,37 @@ class ProgramController extends Controller
                 'data'=>$results
                 ]);
         }
-    }
-
-    public function createMyProgram(Request $request)
-    {
-        $reservation = new RegistrationProgram();
-        $reservation->registration_id = $request->input('registration_id');
-        $reservation->program_id = $request->input('program_id');
-        $reservation->save();
-        return response()->json($reservation);
-    }
-
-    public function MyProgram(Request $request)
-    {
-       
-        $results = RegistrationProgram::all()->where('registration_id', $request->input('id'));
-        
-        if(!$results->isEmpty()){
-            return Response::json([
-                'status'=>'1',
-                'message' => 'success',
-                'data'=>$results
-                ]);
-        }else{
-            return Response::json([
-                'status'=>'0',
-                'message' => 'failed',
-                'data'=>$results
-                ]);
         }
     }
+
+    // public function createMyProgram(Request $request)
+    // {
+    //     $reservation = new RegistrationProgram();
+    //     $reservation->registration_id = $request->input('registration_id');
+    //     $reservation->program_id = $request->input('program_id');
+    //     $reservation->save();
+    //     return response()->json($reservation);
+    // }
+
+    // public function MyProgram(Request $request)
+    // {
+       
+    //     $results = RegistrationProgram::all()->where('registration_id', $request->input('id'));
+        
+    //     if(!$results->isEmpty()){
+    //         return Response::json([
+    //             'status'=>'1',
+    //             'message' => 'success',
+    //             'data'=>$results
+    //             ]);
+    //     }else{
+    //         return Response::json([
+    //             'status'=>'0',
+    //             'message' => 'failed',
+    //             'data'=>$results
+    //             ]);
+    //     }
+    // }
 
    
 }

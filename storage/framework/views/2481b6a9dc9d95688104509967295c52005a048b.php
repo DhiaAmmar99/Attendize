@@ -4,7 +4,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('page_title'); ?>
-   <p> Events</p>
+   <p> Session</p>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('top_nav'); ?>
@@ -26,7 +26,7 @@
     <div class="col-md-9">
         <div class="btn-toolbar">
             <div class="btn-group btn-group-responsive">
-                <a href="#" data-modal-id="CreateEvent" data-href="<?php echo e(route('showCreateEvent', ['organiser_id' => @$organiser->id])); ?>" class="btn btn-success loadModal"><i class="ico-plus"></i> <?php echo app('translator')->get("Event.create_event"); ?></a>
+                <a href="#" data-modal-id="CreateEvent" data-href="<?php echo e(route('showCreateEvent', ['organiser_id' => @$organiser->id])); ?>" class="btn btn-success loadModal"><i class="ico-plus"></i>create Session</a>
             </div>
         </div>
     </div>
@@ -34,7 +34,7 @@
         <?php echo Form::open(array('url' => route('showOrganiserEvents', ['organiser_id'=>$organiser->id]), 'method' => 'get')); ?>
 
         <div class="input-group">
-            <input name="q" value="<?php echo e($search['q'] or ''); ?>" placeholder="<?php echo app('translator')->get('Organiser.search_placeholder'); ?>" type="text" class="form-control">
+            <input name="q" value="<?php echo e($search['q'] or ''); ?>" placeholder="Search Session" type="text" class="form-control">
         <span class="input-group-btn">
             <button class="btn btn-default" type="submit"><i class="ico-search"></i></button>
         </span>
@@ -47,28 +47,7 @@
 
 <?php $__env->startSection('content'); ?>
 
-    <?php if($events->count()): ?>
-        <div class="row">
-            <div class="col-md-3 col-xs-6">
-                <div class="order_options">
-                    <span class="event_count">
-                        <?php echo app('translator')->get("Event.num_events", ["num" => $organiser->events->count()]); ?>
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-2 col-xs-6 col-md-offset-7">
-                <div class="order_options">
-                    <?php echo Form::select('sort_by_select', [
-                        'start_date' => trans("Controllers.sort.start_date"),
-                        'created_at' => trans("Controllers.sort.created_at"),
-                        'title' => trans("Controllers.sort.event_title")
-
-                        ], $search['sort_by'], ['class' => 'form-control pull right']); ?>
-
-                </div>
-            </div>
-        </div>
-    <?php endif; ?>
+    
 
     <div class="row">
         <?php if($events->count()): ?>

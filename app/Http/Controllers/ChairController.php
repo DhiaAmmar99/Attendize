@@ -13,8 +13,8 @@ class ChairController extends Controller
     {
         $chair = new Chair();
         $time=date('Y-m-d-H-i-s');
-        $chair->firstName = $request->get('fisrtName');
-        $chair->lastName = $request->get('lastName');
+        $chair->firstName = $request->get('firstname');
+        $chair->lastName = $request->get('lastname');
         $chair->email = $request->get('email');
         $chair->Country = $request->get('country');
         $chair->organization = $request->get('organization');
