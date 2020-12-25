@@ -9,13 +9,13 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h3 class="modal-title">
                     <i class="ico-calendar"></i>
-                    @lang("Event.create_event")</h3>
+                    Create Session</h3>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group" id="group-check">
-                        {!! Form::label('title', 'event type', array('class'=>'control-label required event_type')) !!}<br/>
+                        {!! Form::label('title', 'Session type', array('class'=>'control-label required event_type')) !!}<br/>
                             <input type="checkbox" name="program" id="program" value="P">
                             <label for="program" class="checkEvent">Professional program </label>
                             <input type="checkbox" name="Social_events" id="Social_events" value="S">
@@ -65,12 +65,12 @@
 
 
                         <div class="form-group">
-                            {!! Form::label('title', trans("Event.event_title"), array('class'=>'control-label required')) !!}
+                            {!! Form::label('title', "Session title", array('class'=>'control-label required')) !!}
                             {!!  Form::text('title', old('title'),array('class'=>'form-control','placeholder'=>trans("Event.event_title_placeholder", ["name"=>Auth::user()->first_name]) ))  !!}
                         </div>
 
                         <div class="form-group custom-theme">
-                            {!! Form::label('description', trans("Event.event_description"), array('class'=>'control-label required')) !!}
+                            {!! Form::label('description', "Session description", array('class'=>'control-label required')) !!}
                             {!!  Form::textarea('description', old('description'),
                                         array(
                                         'class'=>'form-control  editable',
@@ -80,7 +80,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    {!! Form::label('start_date', trans("Event.event_start_date"), array('class'=>'required control-label')) !!}
+                                    {!! Form::label('start_date', "Session start date", array('class'=>'required control-label')) !!}
                                     {!!  Form::text('start_date', old('start_date'),
                                                         [
                                                     'class'=>'form-control start hasDatepicker ',
@@ -94,7 +94,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    {!!  Form::label('end_date', trans("Event.event_end_date"),
+                                    {!!  Form::label('end_date', "Session end date",
                                                 [
                                             'class'=>'required control-label '
                                         ])  !!}
@@ -113,7 +113,7 @@
                         <div>
                             
                         </div>
-                        <div>
+                        {{-- <div>
                             <label for="fisrtName" class="required  control-label">Fisrt name</label>
                             <input type="text" id="fisrtName" name="fisrtName" class="form-control" />
 
@@ -133,7 +133,7 @@
                                         'class'=>'form-control  editable',
                                         'rows' => 5
                                         ))  !!}
-                        </div>
+                        </div> --}}
 
                         {{-- <div class="form-group">
                             {!! Form::label('event_image', trans("Event.event_image"), array('class'=>'control-label ')) !!}

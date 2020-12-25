@@ -6,7 +6,7 @@
 @stop
 
 @section('page_title')
-   <p> Events</p>
+   <p> Session</p>
 @stop
 
 @section('top_nav')
@@ -26,14 +26,14 @@
     <div class="col-md-9">
         <div class="btn-toolbar">
             <div class="btn-group btn-group-responsive">
-                <a href="#" data-modal-id="CreateEvent" data-href="{{route('showCreateEvent', ['organiser_id' => @$organiser->id])}}" class="btn btn-success loadModal"><i class="ico-plus"></i> @lang("Event.create_event")</a>
+                <a href="#" data-modal-id="CreateEvent" data-href="{{route('showCreateEvent', ['organiser_id' => @$organiser->id])}}" class="btn btn-success loadModal"><i class="ico-plus"></i>create Session</a>
             </div>
         </div>
     </div>
     <div class="col-md-3">
         {!! Form::open(array('url' => route('showOrganiserEvents', ['organiser_id'=>$organiser->id]), 'method' => 'get')) !!}
         <div class="input-group">
-            <input name="q" value="{{$search['q'] or ''}}" placeholder="@lang('Organiser.search_placeholder')" type="text" class="form-control">
+            <input name="q" value="{{$search['q'] or ''}}" placeholder="Search Session" type="text" class="form-control">
         <span class="input-group-btn">
             <button class="btn btn-default" type="submit"><i class="ico-search"></i></button>
         </span>
@@ -45,7 +45,7 @@
 
 @section('content')
 
-    @if($events->count())
+    {{-- @if($events->count())
         <div class="row">
             <div class="col-md-3 col-xs-6">
                 <div class="order_options">
@@ -65,7 +65,7 @@
                 </div>
             </div>
         </div>
-    @endif
+    @endif --}}
 
     <div class="row">
         @if($events->count())

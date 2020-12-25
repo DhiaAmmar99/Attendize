@@ -9,11 +9,10 @@
                     <span class="text">DASHBOARD</span>
                 </a>
             </li>
-            <li class="{{ Request::is('*events*') ? 'active' : '' }}">
+            <li class="{{ Request::is('*Session*') ? 'active' : '' }}">
                 <a href="{{route('showOrganiserEvents', array('organiser_id' => $organiser->id))}}">
                     <span class="figure"><i class="ico-calendar"></i></span>
-                    <!-- <span class="text">@lang("Organiser.event")</span> -->
-                    <span class="text">EVENT</span>
+                    <span class="text">Session</span>
                 </a>
             </li>
 

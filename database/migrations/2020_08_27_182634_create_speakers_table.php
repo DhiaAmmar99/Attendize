@@ -15,12 +15,13 @@ class CreateSpeakersTable extends Migration
     {
         Schema::create('speakers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('firstName');
-            $table->string('lastName');
+            $table->string('firstname');
+            $table->string('lastname');
             $table->string('email');
-            $table->string('phone');
+            $table->string('country');
+            $table->string('organization');
+            $table->binary('image');
             $table->string('description');
-            $table->string('id_event');
             $table->timestamps();
         });
     }

@@ -31,7 +31,7 @@ class ImageController extends Controller
 
 
     public function updateImg(Request $request, $id){
-        // $random = mt_rand(1000, 9999);
+
         $time=date('Y-m-d-H-i-s');
         $res = DB::select('select * from img_registration where id_registration =:id', ['id' => $id]);
         if($res){
@@ -58,7 +58,8 @@ class ImageController extends Controller
             $img = new ImagesUser();
             if($file = $request->hasFile('image')) {
                 $file = $request->file('image') ;
-                $fileName = $file->getClientOriginalName() ;
+                $fN = $file->getClientOriginalName() ;
+                $fileName = $time."_".$fN ;
                 $destinationPath = public_path().'/assets/imgUsers/' ;
                 $file->move($destinationPath,$fileName);
                 $img->image = '/assets/imgUsers/'.$fileName ;

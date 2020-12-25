@@ -7,6 +7,12 @@ use App\Http\Controllers\ShuttleController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\StreamController;
+use App\Http\Controllers\SpeakerController;
+use App\Http\Controllers\TypeofsessionController;
+use App\Http\Controllers\ChairController;
+use App\Http\Controllers\EventSearchController;
+use App\Http\Controllers\RegistrationScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +42,7 @@ Route::post('/inscription',  [ListUsersController::class, 'inscrit']);
  * ---------------
  */
 Route::resource('events', API\EventsApiController::class);
-
+Route::get('/SessionSearch',  [EventSearchController::class, 'listEvent']);
 
 /*
  * ---------------
@@ -105,9 +111,9 @@ Route::post('/shuttles', [ShuttleController::class ,'createShuttle']);
  */
 
 Route::put('/program', [ProgramController::class ,'updateProgram']);
-Route::get('/listprograms', [ProgramController::class ,'listProgram']);
-Route::post('/myprogram', [ProgramController::class ,'MyProgram']);
-Route::post('/createMyProgram', [ProgramController::class ,'createMyProgram']);
+Route::get('/programs', [ProgramController::class ,'listProgram']);
+// Route::post('/myprogram', [ProgramController::class ,'MyProgram']);
+// Route::post('/createMyProgram', [ProgramController::class ,'createMyProgram']);
 Route::post('/createprogram', [ProgramController::class ,'createProgram']);
 
 
@@ -132,9 +138,66 @@ Route::post('/updateImage/{id}', [ImageController::class ,'updateImg']);
 
 /*
  * ---------------
- * Orders
+ * Streams
  * ---------------
  */
+
+
+ Route::post('/createStream', [StreamController::class ,'create']);
+ Route::put('/updateStream', [StreamController::class ,'update']);
+ Route::get('/stream', [StreamController::class ,'listStream']);
+
+
+/*
+ * ---------------
+ * Speaker
+ * ---------------
+ */
+
+
+ Route::post('/SessionSpeaker', [SpeakerController::class ,'SessionSpeaker']);
+ Route::post('/createSpeaker', [SpeakerController::class ,'create']);
+ Route::post('/updateSpeaker', [SpeakerController::class ,'update']);
+ Route::get('/speaker', [SpeakerController::class ,'listSpeaker']);
+ Route::get('/SearchSessionSpeaker', [SpeakerController::class ,'SearchSessionSpeaker']);
+ 
+
+/*
+ * ---------------
+ * Chair
+ * ---------------
+ */
+
+
+ Route::post('/SessionChair', [ChairController::class ,'SessionChair']);
+ Route::post('/createChair', [ChairController::class ,'create']);
+ Route::post('/updateChair', [ChairController::class ,'update']);
+ Route::get('/Chair', [ChairController::class ,'listChair']);
+ Route::get('/SearchSessionChair', [ChairController::class ,'SearchSessionChair']);
+ 
+
+
+/*
+ * ---------------
+ * Type of session
+ * ---------------
+ */
+
+
+ Route::post('/create_tos', [TypeofsessionController::class ,'create']);
+ Route::put('/update_tos', [TypeofsessionController::class ,'update']);
+ Route::get('/typeofsession', [TypeofsessionController::class ,'listTypeofsession']);
+
+
+/*
+ * ---------------
+ * Schedule
+ * ---------------
+ */
+
+ Route::post('/createMySchedule', [RegistrationScheduleController::class ,'createMySchedule']);
+ Route::get('/myschedule', [RegistrationScheduleController::class ,'MySchedule']);
+
 
 /*
  * ---------------
