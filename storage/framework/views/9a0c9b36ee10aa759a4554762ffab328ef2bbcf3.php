@@ -407,8 +407,8 @@ function listDelegate(val){
 
 $(document).ready(function() {
 var valSelect;
-var dtu = [];
-var dtD = [];
+// var dtu = [];
+// var dtD = [];
 var dataDLS = <?php echo json_encode($DLS); ?>;
 var dataBT = <?php echo json_encode($BT); ?>;
 var dataCC = <?php echo json_encode($CC); ?>;
@@ -454,23 +454,26 @@ jQuery("#third-btn").click(function(){
 
 /*        Export xl         */
 
-jQuery("#Expo").click(function(){
-  dataUsers.forEach(element => dtu.push(element));
-  dataDLS.forEach(element => dtD.push(element));
-  dtBasicExample=trietab(dtu,dtD);
-  exportXL(dtBasicExample);
-});
+// jQuery("#Expo").click(function(){
+//   dataUsers.forEach(element => dtu.push(element));
+//   dataDLS.forEach(element => dtD.push(element));
+//   dtBasicExample=trietab(dtu,dtD);
+//   exportXL(dtBasicExample);
+// });
 
 });
 
 
 
 function initUsers(){
+  var tab = [];
+  var tabDEL = [];
   jQuery.ajax({
   type: "GET",
   url: direction + "/api/allusers",
     success:  function(data) {
       tab = data.data_user;
+      tabDEL = data.data_delegate;
       var el;
       var Spay;
       var Mpay;
@@ -552,30 +555,41 @@ function initUsers(){
         }
     }
   });
+  /*        Export xl         */
+
+jQuery("#Expo").click( async function(){
+  var dtu = [];
+  var dtD = [];
+  tab.forEach(element => dtu.push(element));
+  tabDEL.forEach(element => dtD.push(element));
+  dtBasicExample = await trietab(dtu,dtD);
+  exportXL(dtBasicExample);
+
+});
 }
 
 function trietab(tab, tt){
-
+  
   datatab=[];
   for (let i = 0; i < tab.length; i++) {
-    delete tab[i].password 
-    delete tab[i].created_at 
-    delete tab[i].updated_at 
+    delete tab[i].password ;
+    delete tab[i].created_at ;
+    delete tab[i].updated_at ;
     datatab.push(tab[i]);
     for (let j = 0; j < tt.length; j++) {
       if(tab[i].id == tt[j].register_id){
-        tt[j].id = tt[j].register_id
-        tt[j].country = tab[i].country
-        tt[j].postal_address = tab[i].postal_address
-        tt[j].price = tab[i].price
-        tt[j].mode_payment = tab[i].mode_payment
-        tt[j].payment_status = tab[i].payment_status
-        tt[j].registration_as = tab[i].registration_as
-        tt[j].membership_number = tab[i].membership_number
-        tt[j].membership = tab[i].membership
-        delete tt[j].register_id 
-        delete tt[j].created_at 
-        delete tt[j].updated_at 
+        tt[j].id = tt[j].register_id;
+        tt[j].country = tab[i].country;
+        tt[j].postal_address = tab[i].postal_address;
+        tt[j].price = tab[i].price;
+        tt[j].mode_payment = tab[i].mode_payment;
+        tt[j].payment_status = tab[i].payment_status;
+        tt[j].registration_as = tab[i].registration_as;
+        tt[j].membership_number = tab[i].membership_number;
+        tt[j].membership = tab[i].membership;
+        delete tt[j].register_id ;
+        delete tt[j].created_at ;
+        delete tt[j].updated_at ;
         datatab.push(tt[j]);
       }
     }
@@ -643,12 +657,13 @@ function s2ab(s) {
   for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
   return buf;
   }
+
 function exportXL(data){
   $('.MP').remove();
   $('.payment').show();
-  var wb = XLSX.utils.table_to_book(document.getElementById('dtBasicExample-1'), {sheet:"SheetJS"});
+  var wb = XLSX.utils.table_to_book(document.getElementById('tableAllUsers'), {sheet:"SheetJS"});
   var wb2 = XLSX.utils.json_to_sheet(data, {sheet:"Sheet JS"});
-  wb.Sheets.SheetJS = wb2;
+  wb.Sheets.SheetJS = wb2; 
   var wbout = XLSX.write(wb, {bookType:'xlsx', bookSST:true, type: 'binary'});
   saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'tableUsers.xlsx');
   location.reload();
@@ -658,7 +673,12 @@ function exportXL(data){
 /*     login for payment      */ 
 function paymentLogin(tab, dataAll,i=0) {
   let token;
-  let id = tab[i].id;
+  let id
+  if(tab.length !=0){
+    id = tab[i].id;
+  }else{
+    id = null;
+  }
    jQuery.ajax({
         type: "POST",
         url: "https://uat.ntravel.ae/api/Login",
