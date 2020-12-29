@@ -77,7 +77,7 @@ class SpeakerController extends Controller
        if ($request->has('id')) {
             $data = Speaker::query();
             $data->where('id', $request->input('id'));
-            if ($data->get()) {
+            if (! $data->get()->isEmpty()) {
                 return Response::json([
                     'message' => 'success',
                     'status' => '1',
@@ -136,7 +136,7 @@ class SpeakerController extends Controller
         }
        
 
-        if ($data->get()) {
+        if (! $data->get()->isEmpty()) {
             return Response::json([
                 'message' => 'success',
                 'status' => '1',
