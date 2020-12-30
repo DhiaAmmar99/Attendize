@@ -159,7 +159,7 @@ Route::post('/updateImage/{id}', [ImageController::class ,'updateImg']);
  Route::post('/createSpeaker', [SpeakerController::class ,'create']);
  Route::post('/updateSpeaker', [SpeakerController::class ,'update']);
  Route::get('/speaker', [SpeakerController::class ,'listSpeaker']);
- Route::get('/SearchSessionSpeaker', [SpeakerController::class ,'SearchSessionSpeaker']);
+//  Route::get('/SearchSessionSpeaker', [SpeakerController::class ,'SearchSessionSpeaker']);
  
 
 /*
@@ -201,9 +201,12 @@ Route::post('/updateImage/{id}', [ImageController::class ,'updateImg']);
 
 /*
  * ---------------
- * Users
+ * Notification mobile
  * ---------------
  */
+
+Route::get('/notification', [RegistrationScheduleController::class ,'notification']);
+
 
 /*
  * ---------------

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\sessionSpeaker;
 use App\Models\Speaker;
+use App\Models\Event;
+use App\Models\Program;
+use App\Models\Stream;
+use App\Models\Typeofsession;
 use Illuminate\Http\Request;
 use Response;
 
@@ -75,13 +79,32 @@ class SpeakerController extends Controller
 
         // Search by Id.
        if ($request->has('id')) {
-            $data = Speaker::query();
-            $data->where('id', $request->input('id'));
-            if (! $data->get()->isEmpty()) {
+            
+            $data = Speaker::where('id', $request->input('id'))->get();
+            if(!$data->isEmpty()){
+                foreach ($data as  $p) {
+                    $session = sessionSpeaker::where('speaker_id', $p->id)->get("session_id AS session");
+                    $p["sessions"] = $session;
+                    foreach ($p->sessions as  $l) {
+                        $sp = Event::select('id', 'title', 'description', 'start_date', 'end_date', 'language', 'room', 'nb_session', 'id_stream AS stream', 'id_TOS AS TypeOfSession', 'id_program AS program')->where('id', $l->session)->get();
+                        $l->session = $sp;
+                        
+                        foreach ($sp as  $c) {
+                            $dataStream = Stream::query()->where('id', $c->stream)->get();
+                            $c->stream = $dataStream;
+                
+                            $dataTOS = Typeofsession::query()->where('id', $c->TypeOfSession)->get();
+                            $c->TypeOfSession = $dataTOS;
+                
+                            $dataProgram = Program::query()->where('id', $c->program)->get();
+                            $c->program = $dataProgram; 
+                        }
+                    }
+                }
                 return Response::json([
                     'message' => 'success',
                     'status' => '1',
-                    'data' => $data->get()
+                    'data' => $data
                 ]);
             } else
                 return Response::json([
@@ -96,6 +119,25 @@ class SpeakerController extends Controller
         else{
             $data = Speaker::all();
         if ($data) {
+            foreach ($data as  $p) {
+                $session = sessionSpeaker::where('speaker_id', $p->id)->get("session_id AS session");
+                $p["sessions"] = $session;
+                foreach ($p->sessions as  $l) {
+                    $sp = Event::select('id', 'title', 'description', 'start_date', 'end_date', 'language', 'room', 'nb_session', 'id_stream AS stream', 'id_TOS AS TypeOfSession', 'id_program AS program')->where('id', $l->session)->get();
+                    $l->session = $sp;
+                    
+                    foreach ($sp as  $c) {
+                        $dataStream = Stream::query()->where('id', $c->stream)->get();
+                        $c->stream = $dataStream;
+            
+                        $dataTOS = Typeofsession::query()->where('id', $c->TypeOfSession)->get();
+                        $c->TypeOfSession = $dataTOS;
+            
+                        $dataProgram = Program::query()->where('id', $c->program)->get();
+                        $c->program = $dataProgram; 
+                    }
+                }
+            }
             return Response::json([
                 'message' => 'success',
                 'status' => '1',
@@ -119,35 +161,35 @@ class SpeakerController extends Controller
         return response()->json($ss);
     }
 
-    public function SearchSessionSpeaker(Request $request)
-    {
+    // public function SearchSessionSpeaker(Request $request)
+    // {
        
-        // Set query builder
-        $data = sessionSpeaker::query();
+    //     // Set query builder
+    //     $data = sessionSpeaker::query();
   
         
-        // Search by session_id.
-        if ($request->has('session_id')) {
-             $data->where('session_id', $request->input('session_id'));
-        }
-        // Search by speaker_id.
-        if ($request->has('speaker_id')) {
-            $data->where('speaker_id', $request->input('speaker_id'));
-        }
+    //     // Search by session_id.
+    //     if ($request->has('session_id')) {
+    //          $data->where('session_id', $request->input('session_id'))->get();
+    //     }
+    //     // Search by speaker_id.
+    //     if ($request->has('speaker_id')) {
+    //         $data->where('speaker_id', $request->input('speaker_id'))->get();
+    //     }
        
 
-        if (! $data->get()->isEmpty()) {
-            return Response::json([
-                'message' => 'success',
-                'status' => '1',
-                'data' => $data->get()
-            ]);
-        } else
-            return Response::json([
-                'message' => 'failed',
-                'status' => '0',
+    //     if(!$data->isEmpty()){
+    //         return Response::json([
+    //             'message' => 'success',
+    //             'status' => '1',
+    //             'data' => $data
+    //         ]);
+    //     } else
+    //         return Response::json([
+    //             'message' => 'failed',
+    //             'status' => '0',
                
-            ]);
-    }
+    //         ]);
+    // }
 
 }

@@ -252,7 +252,7 @@ class EventSearchController extends Controller
                 ]);
         }
 
-        // all Speaker.
+        // all sessions.
 
         else{
             $data = Event::all('id', 'title', 'description', 'start_date', 'end_date', 'language', 'room', 'nb_session', 'id_stream AS stream', 'id_TOS AS TypeOfSession', 'id_program AS program');
