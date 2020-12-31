@@ -41,8 +41,7 @@ class ProgramController extends Controller
     {
         $p = new Program();
         $p->day = $request->input('day');
-        $p->start_date = $request->input('start_date');
-        $p->end_date = $request->input('end_date');
+        $p->date = $request->input('date');
 
         $p->save();
         return response()->json($p);
@@ -53,8 +52,7 @@ class ProgramController extends Controller
         $data = Program::query()->where('id', $request->input('id'))
             ->update([
                 'day' => $request->input('day'),
-                'start_date' => $request->input('start_date'),
-                'end_date' => $request->input('end_date')
+                'date' => $request->input('date'),
             ]);
         if ($data) {
             return Response::json([

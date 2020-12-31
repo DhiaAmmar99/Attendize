@@ -13,6 +13,7 @@ use App\Http\Controllers\TypeofsessionController;
 use App\Http\Controllers\ChairController;
 use App\Http\Controllers\EventSearchController;
 use App\Http\Controllers\RegistrationScheduleController;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -205,7 +206,7 @@ Route::post('/updateImage/{id}', [ImageController::class ,'updateImg']);
  * ---------------
  */
 
-Route::get('/notification', [RegistrationScheduleController::class ,'notification']);
+Route::get('/notification', [NotificationController::class ,'notification']);
 
 
 /*

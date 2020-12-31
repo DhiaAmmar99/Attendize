@@ -10,8 +10,7 @@ class Program extends Model
         
     protected $fillable =[
         'day', 
-        'start_date',
-        'end_date'
+        'date'
     ];
 
     /**

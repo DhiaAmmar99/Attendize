@@ -9,6 +9,7 @@ use App\Models\sessionSpeaker;
 use App\Models\Speaker;
 use App\Models\Typeofsession;
 use App\Models\Stream;
+use App\Models\Chair;
 use Illuminate\Http\Request;
 use Response;
 
@@ -27,13 +28,13 @@ class EventSearchController extends Controller
                 foreach ($data as  $p) {
                 
                     $dataStream = Stream::query()->where('id', $p->stream)->get();
-                    $p->stream = $dataStream;
+                    $p->stream = $dataStream[0];
     
                     $dataTOS = Typeofsession::query()->where('id', $p->TypeOfSession)->get();
-                    $p->TypeOfSession = $dataTOS;
+                    $p->TypeOfSession = $dataTOS[0];
     
                     $dataProgram = Program::query()->where('id', $p->program)->get();
-                    $p->program = $dataProgram;
+                    $p->program = $dataProgram[0];
     
                     $speaker = sessionSpeaker::where('session_id', $p->id)->get("speaker_id AS speaker");
                     $p["speakers"] = $speaker;
@@ -44,12 +45,19 @@ class EventSearchController extends Controller
                     foreach ($p->speakers as  $l) {
                         $sp = Speaker::where('id', $l->speaker)->get();
                         $l->speaker = $sp;
+                        $dataspeaker [] = $l->speaker[0];
+                        $p["speakers"] = $dataspeaker;
+                        
                     }
+                    $dataspeaker  = [];
     
                     foreach ($p->chairs as  $c) {
-                        $sp = Speaker::where('id', $c->chair)->get();
+                        $sp = Chair::where('id', $c->chair)->get();
                         $c->chair = $sp;
+                        $datachair [] = $c->chair[0];
+                        $p["chairs"] = $datachair;
                     }
+                    $datachair  = [];
                   
                 }
                 return Response::json([
@@ -74,13 +82,13 @@ class EventSearchController extends Controller
                 foreach ($data as  $p) {
                 
                     $dataStream = Stream::query()->where('id', $p->stream)->get();
-                    $p->stream = $dataStream;
+                    $p->stream = $dataStream[0];
     
                     $dataTOS = Typeofsession::query()->where('id', $p->TypeOfSession)->get();
-                    $p->TypeOfSession = $dataTOS;
+                    $p->TypeOfSession = $dataTOS[0];
     
                     $dataProgram = Program::query()->where('id', $p->program)->get();
-                    $p->program = $dataProgram;
+                    $p->program = $dataProgram[0];
     
                     $speaker = sessionSpeaker::where('session_id', $p->id)->get("speaker_id AS speaker");
                     $p["speakers"] = $speaker;
@@ -91,12 +99,19 @@ class EventSearchController extends Controller
                     foreach ($p->speakers as  $l) {
                         $sp = Speaker::where('id', $l->speaker)->get();
                         $l->speaker = $sp;
+                        $dataspeaker [] = $l->speaker[0];
+                        $p["speakers"] = $dataspeaker;
+                        
                     }
+                    $dataspeaker  = [];
     
                     foreach ($p->chairs as  $c) {
-                        $sp = Speaker::where('id', $c->chair)->get();
+                        $sp = Chair::where('id', $c->chair)->get();
                         $c->chair = $sp;
+                        $datachair [] = $c->chair[0];
+                        $p["chairs"] = $datachair;
                     }
+                    $datachair  = [];
                   
                 }
                 
@@ -121,13 +136,13 @@ class EventSearchController extends Controller
                 foreach ($data as  $p) {
                 
                     $dataStream = Stream::query()->where('id', $p->stream)->get();
-                    $p->stream = $dataStream;
+                    $p->stream = $dataStream[0];
     
                     $dataTOS = Typeofsession::query()->where('id', $p->TypeOfSession)->get();
-                    $p->TypeOfSession = $dataTOS;
+                    $p->TypeOfSession = $dataTOS[0];
     
                     $dataProgram = Program::query()->where('id', $p->program)->get();
-                    $p->program = $dataProgram;
+                    $p->program = $dataProgram[0];
     
                     $speaker = sessionSpeaker::where('session_id', $p->id)->get("speaker_id AS speaker");
                     $p["speakers"] = $speaker;
@@ -138,12 +153,19 @@ class EventSearchController extends Controller
                     foreach ($p->speakers as  $l) {
                         $sp = Speaker::where('id', $l->speaker)->get();
                         $l->speaker = $sp;
+                        $dataspeaker [] = $l->speaker[0];
+                        $p["speakers"] = $dataspeaker;
+                        
                     }
+                    $dataspeaker  = [];
     
                     foreach ($p->chairs as  $c) {
-                        $sp = Speaker::where('id', $c->chair)->get();
+                        $sp = Chair::where('id', $c->chair)->get();
                         $c->chair = $sp;
+                        $datachair [] = $c->chair[0];
+                        $p["chairs"] = $datachair;
                     }
+                    $datachair  = [];
                   
                 }
                 return Response::json([
@@ -168,13 +190,13 @@ class EventSearchController extends Controller
                 foreach ($data as  $p) {
                 
                     $dataStream = Stream::query()->where('id', $p->stream)->get();
-                    $p->stream = $dataStream;
+                    $p->stream = $dataStream[0];
     
                     $dataTOS = Typeofsession::query()->where('id', $p->TypeOfSession)->get();
-                    $p->TypeOfSession = $dataTOS;
+                    $p->TypeOfSession = $dataTOS[0];
     
                     $dataProgram = Program::query()->where('id', $p->program)->get();
-                    $p->program = $dataProgram;
+                    $p->program = $dataProgram[0];
     
                     $speaker = sessionSpeaker::where('session_id', $p->id)->get("speaker_id AS speaker");
                     $p["speakers"] = $speaker;
@@ -185,12 +207,19 @@ class EventSearchController extends Controller
                     foreach ($p->speakers as  $l) {
                         $sp = Speaker::where('id', $l->speaker)->get();
                         $l->speaker = $sp;
+                        $dataspeaker [] = $l->speaker[0];
+                        $p["speakers"] = $dataspeaker;
+                        
                     }
+                    $dataspeaker  = [];
     
                     foreach ($p->chairs as  $c) {
-                        $sp = Speaker::where('id', $c->chair)->get();
+                        $sp = Chair::where('id', $c->chair)->get();
                         $c->chair = $sp;
+                        $datachair [] = $c->chair[0];
+                        $p["chairs"] = $datachair;
                     }
+                    $datachair  = [];
                   
                 }
                 return Response::json([
@@ -214,13 +243,13 @@ class EventSearchController extends Controller
                 foreach ($data as  $p) {
                 
                     $dataStream = Stream::query()->where('id', $p->stream)->get();
-                    $p->stream = $dataStream;
+                    $p->stream = $dataStream[0];
     
                     $dataTOS = Typeofsession::query()->where('id', $p->TypeOfSession)->get();
-                    $p->TypeOfSession = $dataTOS;
+                    $p->TypeOfSession = $dataTOS[0];
     
                     $dataProgram = Program::query()->where('id', $p->program)->get();
-                    $p->program = $dataProgram;
+                    $p->program = $dataProgram[0];
     
                     $speaker = sessionSpeaker::where('session_id', $p->id)->get("speaker_id AS speaker");
                     $p["speakers"] = $speaker;
@@ -231,12 +260,19 @@ class EventSearchController extends Controller
                     foreach ($p->speakers as  $l) {
                         $sp = Speaker::where('id', $l->speaker)->get();
                         $l->speaker = $sp;
+                        $dataspeaker [] = $l->speaker[0];
+                        $p["speakers"] = $dataspeaker;
+                        
                     }
+                    $dataspeaker  = [];
     
                     foreach ($p->chairs as  $c) {
-                        $sp = Speaker::where('id', $c->chair)->get();
+                        $sp = Chair::where('id', $c->chair)->get();
                         $c->chair = $sp;
+                        $datachair [] = $c->chair[0];
+                        $p["chairs"] = $datachair;
                     }
+                    $datachair  = [];
                   
                 }
                 return Response::json([
@@ -262,13 +298,13 @@ class EventSearchController extends Controller
             foreach ($data as  $p) {
                 
                 $dataStream = Stream::query()->where('id', $p->stream)->get();
-                $p->stream = $dataStream;
+                $p->stream = $dataStream[0];
 
                 $dataTOS = Typeofsession::query()->where('id', $p->TypeOfSession)->get();
-                $p->TypeOfSession = $dataTOS;
+                $p->TypeOfSession = $dataTOS[0];
 
                 $dataProgram = Program::query()->where('id', $p->program)->get();
-                $p->program = $dataProgram;
+                $p->program = $dataProgram[0];
 
                 $speaker = sessionSpeaker::where('session_id', $p->id)->get("speaker_id AS speaker");
                 $p["speakers"] = $speaker;
@@ -279,12 +315,19 @@ class EventSearchController extends Controller
                 foreach ($p->speakers as  $l) {
                     $sp = Speaker::where('id', $l->speaker)->get();
                     $l->speaker = $sp;
+                    $dataspeaker [] = $l->speaker[0];
+                    $p["speakers"] = $dataspeaker;
+                    
                 }
+                $dataspeaker  = [];
 
                 foreach ($p->chairs as  $c) {
-                    $sp = Speaker::where('id', $c->chair)->get();
+                    $sp = Chair::where('id', $c->chair)->get();
                     $c->chair = $sp;
+                    $datachair [] = $c->chair[0];
+                    $p["chairs"] = $datachair;
                 }
+                $datachair  = [];
               
             }
      
