@@ -52,7 +52,9 @@ Route::get('/{organiser_id}/listusers',
 Route::get('/{organiser_id}/programs', 
      [ProgramController::class, 'programs']
      )->name('programs');
-
+Route::post('/updateProg',
+     [ProgramController::class, 'updateProgram']
+     )->name('updateProgram');
 
 
         Route::group(['prefix' => 'programs'], function () {
@@ -69,10 +71,15 @@ Route::get('/{organiser_id}/programs',
             Route::post('/createprog',
                 [ProgramController::class, 'createProgram']
             )->name('createProgram');
+
+
+
+            Route::get('/updateprog', [ProgramController::class, 'showUpdateProgram'])->name('showUpdateProgram');
+            
         });
+            
 
-
-
+        
 
 
 

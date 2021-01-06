@@ -111,7 +111,7 @@ Route::post('/shuttles', [ShuttleController::class ,'createShuttle']);
  * ---------------
  */
 
-Route::put('/program', [ProgramController::class ,'updateProgram']);
+// Route::put('/program', [ProgramController::class ,'updateProgram']);
 Route::get('/programs', [ProgramController::class ,'listProgram']);
 // Route::post('/myprogram', [ProgramController::class ,'MyProgram']);
 // Route::post('/createMyProgram', [ProgramController::class ,'createMyProgram']);

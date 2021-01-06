@@ -80,6 +80,13 @@ jQuery('#workshops').click(function() {
         jQuery("#workshopsSelect").hide();
      }
 });
+
+
+    /*        JS update program         */
+
+    
+
+
 </script>
 <style>
     .editor-toolbar {

@@ -674,7 +674,7 @@ function exportXL(data){
 function paymentLogin(tab, dataAll,i=0) {
   let token;
   let id
-  if(tab.length !=0){
+  if(tab.length != 0){
     id = tab[i].id;
   }else{
     id = null;

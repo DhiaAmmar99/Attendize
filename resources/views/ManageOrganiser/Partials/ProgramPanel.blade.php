@@ -27,28 +27,26 @@
             <li>
                 <div class="section">
                     <h4 class="nm">
-                        {{$program->start_date}} 
+                        {{$program->date}} 
                     </h4>
-                    <p class="nm text-muted">Start date</p>
+                    {{-- <p class="nm text-muted">Date</p> --}}
                 </div>
             </li>
            
-             <li>
+             {{-- <li>
                 <div class="section">
                     <h4 class="nm">
                         {{$program->end_date}} 
                     </h4>
                     <p class="nm text-muted">End date</p>
                 </div>
-            </li> 
+            </li>  --}}
         </ul>
     </div>
     <div class="panel-footer">
         <ul class="nav nav-section nav-justified">
             <li>
-                <a href="">
-                    <i class="ico-edit"></i> @lang("basic.edit")
-                </a>
+                <a href="" data-modal-id="updateProgram" data-href="{{route('showUpdateProgram', ['organiser_id' => @$organiser->id, 'prog_id' => $program->id  ])}}" class="loadModal" id="{{$program->id}}"><i class="ico-edit"></i> @lang("basic.edit")</a>
             </li>
 
              {{-- <li>

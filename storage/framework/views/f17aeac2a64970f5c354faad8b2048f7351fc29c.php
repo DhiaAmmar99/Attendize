@@ -19,28 +19,19 @@
             <li>
                 <div class="section">
                     <h4 class="nm">
-                        <?php echo e($program->start_date); ?> 
+                        <?php echo e($program->date); ?> 
                     </h4>
-                    <p class="nm text-muted">Start date</p>
+                    
                 </div>
             </li>
            
-             <li>
-                <div class="section">
-                    <h4 class="nm">
-                        <?php echo e($program->end_date); ?> 
-                    </h4>
-                    <p class="nm text-muted">End date</p>
-                </div>
-            </li> 
+             
         </ul>
     </div>
     <div class="panel-footer">
         <ul class="nav nav-section nav-justified">
             <li>
-                <a href="">
-                    <i class="ico-edit"></i> <?php echo app('translator')->get("basic.edit"); ?>
-                </a>
+                <a href="" data-modal-id="updateProgram" data-href="<?php echo e(route('showUpdateProgram', ['organiser_id' => @$organiser->id, 'prog_id' => $program->id  ])); ?>" class="loadModal" id="<?php echo e($program->id); ?>"><i class="ico-edit"></i> <?php echo app('translator')->get("basic.edit"); ?></a>
             </li>
 
              

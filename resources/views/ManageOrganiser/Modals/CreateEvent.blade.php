@@ -14,61 +14,13 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="form-group" id="group-check">
-                        {!! Form::label('title', 'Session type', array('class'=>'control-label required event_type')) !!}<br/>
-                            <input type="checkbox" name="program" id="program" value="P">
-                            <label for="program" class="checkEvent">Professional program </label>
-                            <input type="checkbox" name="Social_events" id="Social_events" value="S">
-                            <label for="Social_events" class="checkEvent">Social events  </label>
-                            <input type="checkbox" name="Gala_dinner" id="Gala_dinner" value="G">
-                            <label for="Gala_dinner" class="checkEvent">Gala dinner</label>
-                            <input type="checkbox" name="workshops" id="workshops" value="W">
-                            <label for="workshops" class="checkEvent">Workshops</label>  
-                            <div id="event_error" style="color: #ED5466;"></div>  
-                        </div>
-
-                        {{-- <div class="form-group" id="selectBox">
-                            <div id="programSelect">
-                                <select class="form-control selectevent">
-                                    <option disabled selected>select program</option>
-                                    @foreach($events['program'] as $e)
-                                    <option>{{ $e->title }}</option>
-                                    @endforeach
-                                </select>
+                        
+                            <div class="form-group">
+                                {!! Form::label('title', "Session title", array('class'=>'control-label required')) !!}
+                                {!!  Form::text('title', old('title'),array('class'=>'form-control','placeholder'=>"Enter your title session " ))  !!}
                             </div>
-                            <div id="socialSelect">
-                                <select class="form-control selectevent">
-                                    <option disabled selected>select social events</option>
-                                    @foreach($events['social'] as $e)
-                                    <option>{{ $e->title }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div id="dinnerSelect">
-                                <select class="form-control selectevent">
-                                    <option disabled selected>select gala dinner</option>
-                                    @foreach($events['gala'] as $e)
-                                    <option>{{ $e->title }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div id="workshopsSelect">
-                                <select class="form-control selectevent">
-                                    <option disabled selected>select workshops</option>
-                                    @foreach($events['workshops'] as $e)
-                                    <option>{{ $e->title }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div> --}}
-
-
-
-                        <div class="form-group">
-                            {!! Form::label('title', "Session title", array('class'=>'control-label required')) !!}
-                            {!!  Form::text('title', old('title'),array('class'=>'form-control','placeholder'=>trans("Event.event_title_placeholder", ["name"=>Auth::user()->first_name]) ))  !!}
-                        </div>
-
+                        
+                        
                         <div class="form-group custom-theme">
                             {!! Form::label('description', "Session description", array('class'=>'control-label required')) !!}
                             {!!  Form::textarea('description', old('description'),
@@ -110,8 +62,55 @@
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {!! Form::label("","number of session", array('class'=>'required control-label')) !!}
+                                    <input  type="text" class="form-control" name="nb_session" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {!! Form::label("","language", array('class'=>'required control-label')) !!}
+                                    <input  type="text" class="form-control" name="language" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {!! Form::label("","room", array('class'=>'required control-label')) !!}
+                                    <input  type="text" class="form-control" name="room" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {!! Form::label("","stream", array('class'=>'required control-label')) !!}
+                                    <input  type="text" class="form-control" name="stream" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {!! Form::label("","TypeOfSession", array('class'=>'required control-label')) !!}
+                                    <input  type="text" class="form-control" name="TypeOfSession" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {!! Form::label("","program", array('class'=>'required control-label')) !!}
+                                    <input  type="text" class="form-control" name="program" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {!! Form::label("","speakers", array('class'=>'required control-label')) !!}
+                                    <input  type="text" class="form-control" name="speakers" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {!! Form::label("","chairs", array('class'=>'required control-label')) !!}
+                                    <input  type="text" class="form-control" name="chairs" />
+                                </div>
+                            </div>
                         </div>
                         {{-- <div>
                             <label for="fisrtName" class="required  control-label">Fisrt name</label>
@@ -277,7 +276,7 @@
                         @endif--}}
 
                         {{-- @if($organiser_id) --}}
-                            {!! Form::hidden('organiser_id', $organiser_id) !!}
+                            
                         {{-- @else --}}
                              {{--<div class="create_organiser" style="{{$organisers->isEmpty() ? '' : 'display:none;'}}">
                                 <h5>
@@ -360,6 +359,7 @@
                                 </span> 
                             @endif
                         @endif--}}
+                        {!! Form::hidden('organiser_id', $organiser_id) !!}
                     </div>
                 </div>
             </div>

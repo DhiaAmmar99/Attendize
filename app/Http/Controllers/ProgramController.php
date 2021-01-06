@@ -21,6 +21,7 @@ class ProgramController extends Controller
     {
         $data = [
             'organiser_id' => $request->get('organiser_id') ? $request->get('organiser_id') : false,
+            
         ];
        
         return view('ManageOrganiser.Modals.CreateProgram', $data);
@@ -47,12 +48,25 @@ class ProgramController extends Controller
         return response()->json($p);
     }
 
+    public function showUpdateProgram(Request $request)
+    {
+        $data = [
+            'organiser_id' => $request->get('organiser_id') ? $request->get('organiser_id') : false,
+            'prog_id' => $request->get('prog_id')
+        ];
+
+        $dataProg = Program::where('id', $data['prog_id'])->get();
+                
+       
+        return view('ManageOrganiser.Modals.updateProgram', $data)->with('program', $dataProg[0]);
+    }
+
     public function updateProgram(Request $request)
     {
         $data = Program::query()->where('id', $request->input('id'))
             ->update([
                 'day' => $request->input('day'),
-                'date' => $request->input('date'),
+                //'date' => $request->input('date') + "00:00:00",
             ]);
         if ($data) {
             return Response::json([
