@@ -145,7 +145,7 @@ Route::post('/updateImage/{id}', [ImageController::class ,'updateImg']);
 
 
  Route::post('/createStream', [StreamController::class ,'create']);
- Route::put('/updateStream', [StreamController::class ,'update']);
+ Route::post('/updateStream', [StreamController::class ,'update']);
  Route::get('/stream', [StreamController::class ,'listStream']);
 
 

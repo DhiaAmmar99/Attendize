@@ -10,11 +10,20 @@ class StreamController extends Controller
 {
     public function create(Request $request)
     {
+        $time=date('Y-m-d-H-i-s');
         $stream = new Stream();
         $stream->title = $request->input('title');
-        $stream->icon = $request->input('icon');
         $stream->couleur = $request->input('couleur');
         $stream->description = $request->input('description');
+
+        if($file = $request->hasFile('icon')) {
+            $file = $request->file('icon') ;
+            $fN = $file->getClientOriginalName() ;
+            $fileName = $time."_".$fN ;
+            $destinationPath = public_path().'/assets/icons/' ;
+            $file->move($destinationPath,$fileName);
+            $stream->icon = '/assets/icons/'.$fileName ;
+        }
         $stream->save();
         return response()->json($stream);
     }
@@ -22,14 +31,24 @@ class StreamController extends Controller
 
     public function update(Request $request)
     {
-        $data = Stream::query()->where('id', $request->input('id'))
-            ->update([
+        if($file = $request->hasFile('icon')) {
+            $time=date('Y-m-d-H-i-s');
+            $stream = new Stream();
+            $file = $request->file('icon') ;
+            $fN = $file->getClientOriginalName() ;
+            $fileName = $time."_".$fN ;
+            $destinationPath = public_path().'/assets/icons/' ;
+            $file->move($destinationPath,$fileName);
+            $stream->icon = '/assets/icons/'.$fileName ;
+        
+        $data = Stream::where('id', $request->input('id'))->update([
                 'title' => $request->input('title'),
-                'icon' => $request->input('icon'),
                 'couleur' => $request->input('couleur'),
                 'description' => $request->input('description'),
+                'icon' => $stream->icon,
             ]);
-        if ($data) {
+        
+        if ($data) 
             return Response::json([
                 'message' => 'Data Stream updated',
                 'status' => '1',

@@ -34,24 +34,20 @@ class RegistrationScheduleController extends Controller
 
         if(!$data->isEmpty()){
             foreach ($data as  $p) {
-                // $user = Registration::where('id', $request->input('registration_id'))->get();
-                // $data["user"] = $user;
-
                 $session = Event::select('id', 'title', 'description', 'start_date', 'end_date', 'language', 'room', 'nb_session', 'id_stream AS stream', 'id_TOS AS TypeOfSession', 'id_program AS program')->where('id', $p->session)->get();
                 $p["session"] = $session;
-            
-
+                $datasession [] = $p->session[0];
+                $data = $datasession;
+                
                 foreach ($p->session as  $l) {
-
-                        $dataStream = Stream::query()->where('id', $l->stream)->get();
-                        $l->stream = $dataStream[0];
+                    $dataStream = Stream::query()->where('id', $l->stream)->get();
+                    $l->stream = $dataStream[0];
             
-                        $dataTOS = Typeofsession::query()->where('id', $l->TypeOfSession)->get();
-                        $l->TypeOfSession = $dataTOS[0];
+                    $dataTOS = Typeofsession::query()->where('id', $l->TypeOfSession)->get();
+                    $l->TypeOfSession = $dataTOS[0];
             
-                        $dataProgram = Program::query()->where('id', $l->program)->get();
-                        $l->program = $dataProgram[0]; 
-                   
+                    $dataProgram = Program::query()->where('id', $l->program)->get();
+                    $l->program = $dataProgram[0]; 
                 }
             }
             return Response::json([

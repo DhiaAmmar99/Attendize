@@ -59,8 +59,8 @@ class SpeakerController extends Controller
                 'description' => $request->input('description'),
                 'image' => $speaker->image,
             ]);
-        }
-        if ($data) {
+        
+        if ($data) 
             return Response::json([
                 'message' => 'Data Speaker updated',
                 'status' => '1',

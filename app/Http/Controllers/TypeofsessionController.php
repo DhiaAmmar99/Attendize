@@ -10,10 +10,20 @@ class TypeofsessionController extends Controller
 {
     public function create(Request $request)
     {
+        $time=date('Y-m-d-H-i-s');
         $tos = new Typeofsession();
         $tos->title = $request->input('title');
-        $tos->icon = $request->input('icon');
         $tos->description = $request->input('description');
+
+        if($file = $request->hasFile('icon')) {
+            $file = $request->file('icon') ;
+            $fN = $file->getClientOriginalName() ;
+            $fileName = $time."_".$fN ;
+            $destinationPath = public_path().'/assets/TOSicons/' ;
+            $file->move($destinationPath,$fileName);
+            $tos->icon = '/assets/TOSicons/'.$fileName ;
+        }
+        
         $tos->save();
         return response()->json($tos);
     }
@@ -21,13 +31,24 @@ class TypeofsessionController extends Controller
 
     public function update(Request $request)
     {
+        $time=date('Y-m-d-H-i-s');
+        if($file = $request->hasFile('icon')) {
+            $time=date('Y-m-d-H-i-s');
+            $tos = new Typeofsession();
+            $file = $request->file('icon') ;
+            $fN = $file->getClientOriginalName() ;
+            $fileName = $time."_".$fN ;
+            $destinationPath = public_path().'/assets/TOSicons/' ;
+            $file->move($destinationPath,$fileName);
+            $tos->icon = '/assets/TOSicons/'.$fileName ;
+
         $data = Typeofsession::query()->where('id', $request->input('id'))
             ->update([
                 'title' => $request->input('title'),
-                'icon' => $request->input('icon'),
+                'icon' => $tos->icon,
                 'description' => $request->input('description'),
             ]);
-        if ($data) {
+        if ($data) 
             return Response::json([
                 'message' => 'Data type of session updated',
                 'status' => '1',
