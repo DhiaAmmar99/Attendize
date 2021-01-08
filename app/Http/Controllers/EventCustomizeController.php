@@ -25,7 +25,7 @@ class EventCustomizeController extends MyBaseController
     public function getEventViewData($event_id, $additional_data = [])
     {
         $event = Event::scope()->findOrFail($event_id);
-        $speaker = Speaker::where('id_event', $event_id)->get();
+        //$speaker = Speaker::where('id_event', $event_id)->get();
 
         $image_path = $event->organiser->full_logo_path;
         if ($event->images->first() != null) {
@@ -33,7 +33,7 @@ class EventCustomizeController extends MyBaseController
         }
 
         return array_merge([
-            'speaker'    => $speaker,
+            //'speaker'    => $speaker,
             'event'      => $event,
             'questions'  => $event->questions()->get(),
             'image_path' => $image_path,

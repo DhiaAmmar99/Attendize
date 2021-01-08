@@ -457,24 +457,34 @@ class ApiregistrationController extends Controller
 
     public function verifEmail(Request $request)
     {
-        $fetchR=DB::connection('mysql')->table('registrations')->where('email_address', $request->email)->first();
-        $fetchD=DB::connection('mysql')->table('delegates')->where('email_address', $request->email)->first();
-        
-
-        if(($fetchR)||($fetchD)){
-            $data_d = DB::connection('mysql')->select('select * from delegates where register_id =:id', ['id' => $fetchR->id]);
-            $img = ImagesUser::select('image')->where("id_registration",$fetchR->id)->first();
+        $fetchR = Registration::where('email_address', $request->input('email'))->get();
+        $fetchD = Delegate::where('email_address', $request->input('email'))->get();
+       
+        if(!$fetchR->isEmpty()){
+            $data_d = Delegate::where('register_id', $fetchR[0]->id)->get();
+            $img = ImagesUser::select('image')->where("id_registration",$fetchR[0]->id)->first();
             return Response::json([
                 'image'=>$img['image'],
-                'data_user'=>$fetchR,
+                'data_user'=>$fetchR[0],
                 'data_delegate'=>$data_d,
+                'status'=>'0',
+                'message'=>'Email address is already registered',
+                ]
+            );
+        }else if(!$fetchD->isEmpty()){
+            $data_d = Registration::where('id', $fetchD[0]->register_id)->get();
+            $data = Delegate::where('register_id', $data_d[0]->id)->get();
+            $img = ImagesUser::select('image')->where("id_registration",$fetchD[0]->register_id)->first();
+            return Response::json([
+                'image'=>$img['image'],
+                'data_user'=>$data_d[0],
+                'data_delegate'=>$data,
                 'status'=>'0',
                 'message'=>'Email address is already registered',
                 ]
             );
         }else{
             return Response::json([
-                
                 'status'=>'1',
                 'message'=>'Email address is valid',
                 ]

@@ -23,7 +23,7 @@
                         <div class="form-group">
                             <?php echo Form::label(' PROGRAM date', "PROGRAM date", array('class'=>'control-label required')); ?>
 
-                            <input type="date" class="form-control" name="date"  value="<?php echo e($program->date); ?>" required>
+                            <input type="datetime" class="form-control" name="date"  value="<?php echo e($program->date); ?>" required>
                         </div>
                     </div>
                 </div>
@@ -57,11 +57,4 @@
 
 </style>
 
-<script>
-jQuery(document).ready(function() {
-
-
-
-});
-</script>
 <?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/ManageOrganiser/Modals/updateProgram.blade.php ENDPATH**/ ?>

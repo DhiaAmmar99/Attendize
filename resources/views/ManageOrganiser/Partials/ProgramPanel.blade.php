@@ -48,6 +48,9 @@
             <li>
                 <a href="" data-modal-id="updateProgram" data-href="{{route('showUpdateProgram', ['organiser_id' => @$organiser->id, 'prog_id' => $program->id  ])}}" class="loadModal" id="{{$program->id}}"><i class="ico-edit"></i> @lang("basic.edit")</a>
             </li>
+            <li>
+                <a href="" data-modal-id="removeProgram" data-href="{{route('removeProgram', ['id' => $program->id  ])}}"  id="{{$program->id}}"><i class="ico-remove"></i>remove</a>
+            </li>
 
              {{-- <li>
                 <a href="{{route('showEventDashboard', ['event_id' => $program->id])}}">

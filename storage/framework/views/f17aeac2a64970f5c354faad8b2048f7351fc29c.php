@@ -33,6 +33,9 @@
             <li>
                 <a href="" data-modal-id="updateProgram" data-href="<?php echo e(route('showUpdateProgram', ['organiser_id' => @$organiser->id, 'prog_id' => $program->id  ])); ?>" class="loadModal" id="<?php echo e($program->id); ?>"><i class="ico-edit"></i> <?php echo app('translator')->get("basic.edit"); ?></a>
             </li>
+            <li>
+                <a href="" data-modal-id="removeProgram" data-href="<?php echo e(route('removeProgram', ['id' => $program->id  ])); ?>"  id="<?php echo e($program->id); ?>"><i class="ico-remove"></i>remove</a>
+            </li>
 
              
         </ul>

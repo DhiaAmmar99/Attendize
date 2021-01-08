@@ -45,7 +45,13 @@ class ProgramController extends Controller
         $p->date = $request->input('date');
 
         $p->save();
-        return response()->json($p);
+        // return response()->json($p);
+        return response()->json([
+            'status'      => 'success',
+            'redirectUrl' => route('programs', [
+                'organiser_id'  => 2,
+            ]),
+        ]);
     }
 
     public function showUpdateProgram(Request $request)
@@ -66,7 +72,7 @@ class ProgramController extends Controller
         $data = Program::query()->where('id', $request->input('id'))
             ->update([
                 'day' => $request->input('day'),
-                //'date' => $request->input('date') + "00:00:00",
+                'date' => $request->input('date'),
             ]);
         if ($data) {
             return Response::json([
@@ -86,6 +92,7 @@ class ProgramController extends Controller
     public function listProgram(Request $request)
     {
         // Search by id.
+        
         if ($request->has('id')) {
             $data = Program::query();
              $data->where('id', $request->input('id'));
@@ -117,6 +124,31 @@ class ProgramController extends Controller
                 ]);
         }
         }
+    }
+
+    public function removeProgram(Request $request)
+    {
+        // remove by id.
+        if ($request->has('id')) {
+            
+            $data = Program::where('id', $request->input('id'))->delete();
+            if ($data) {
+                return Response::json([
+                    'message' => 'success',
+                    'status' => '1',
+                ]);
+            } else
+                return Response::json([
+                    'message' => 'failed',
+                    'status' => '0'
+                ]);
+        }else{
+            return response()->json([
+                'status'=>'0',
+                'message' => 'failed'
+                ]);
+        }
+        
     }
 
     // public function createMyProgram(Request $request)

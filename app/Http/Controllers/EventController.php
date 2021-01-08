@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chair;
 use Log;
 use Auth;
 use Image;
@@ -10,6 +11,11 @@ use App\Models\Event;
 use App\Models\Speaker;
 use App\Models\Organiser;
 use App\Models\EventImage;
+use App\Models\Program;
+use App\Models\sessionChair;
+use App\Models\sessionSpeaker;
+use App\Models\Stream;
+use App\Models\Typeofsession;
 use Illuminate\Http\Request;
 use Spatie\GoogleCalendar\Event as GCEvent;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +36,19 @@ class EventController extends MyBaseController
             'organiser_id' => $request->get('organiser_id') ? $request->get('organiser_id') : false,
         ];
         $events = $this->listEventSelect();
-        return view('ManageOrganiser.Modals.CreateEvent', $data)->with('events', $events);
+        $programs = Program::all();
+        $streams = Stream::all();
+        $tos = Typeofsession::all();
+        $speakers = Speaker::all();
+        $chairs = Chair::all();
+        return view('ManageOrganiser.Modals.CreateEvent', $data)->with([
+            'events'=> $events,
+            'programs'=> $programs,
+            'streams'=> $streams,
+            'tos'=> $tos,
+            'speakers'=> $speakers,
+            'chairs'=> $chairs,
+            ]);
     }
 
     /**
@@ -451,7 +469,7 @@ class EventController extends MyBaseController
  public function newEvent(Request $request)
    {
         $event = Event::createNew();
-        // $speaker = new Speaker();
+        
 
         if (!$event->validate($request->all())) {
             return response()->json([
@@ -459,53 +477,61 @@ class EventController extends MyBaseController
                 'messages' => $event->errors(),
             ]);
         }
+        
 
         $event->title = $request->get('title');
         $event->description = strip_tags($request->get('description'));
         $event->start_date = $request->get('start_date');
         $event->end_date = $request->get('end_date');
+        $event->language = $request->get('language');
+        $event->room = $request->get('room') ;
+        $event->nb_session = $request->get('nb_session') ;
+        $event->id_stream = $request->get('stream') ;
+        $event->id_TOS = $request->get('TypeOfSession') ;
+        $event->id_program = $request->get('program') ;
 
         $event->account_id = $request->get('organiser_id');
         $event->user_id = $request->get('organiser_id');
         $event->currency_id = $request->get('currency_id');
         $event->organiser_id = $request->get('organiser_id');
-
-        $event->language = 'EN' ;
-        $event->bg_color = '#ffffff' ;
-        $event->room = 'S4' ;
-        $event->nb_session = '4' ;
-        $event->id_stream = '1' ;
-        $event->id_TOS = '1' ;
-        $event->id_program = '1' ;
-        
         $event->venue_name = $request->get('title');
-
-        if ($request->get('program')){
-            $event->program_event = '1';
-        }else{
-            $event->program_event = '0'; 
-        }
-        if( $request->get('Social_events')) {
-            $event->social_event = '1';
-        }else{
-            $event->social_event = '0'; 
-        }
-        if( $request->get('Gala_dinner') ) {
-            $event->gala_event = '1';
-        }else{
-            $event->gala_event = '0'; 
-        }
-        if( $request->get('workshops') ) {
-            $event->workshops_event = '1';
-        }else{
-            $event->workshops_event = '0'; 
-        }
-
-        if(($event->program_event === '0')&&($event->social_event === '0')&&($event->gala_event === '0')&&($event->workshops_event === '0')){
-            return 'error';
-        }
-        $event->save();
        
+        $event->save();
+        $id_event = $event->id;
+        
+        $chairs = $request->get('chair');
+        $speakers = $request->get('speaker');
+        
+        if ($id_event != null)
+        {
+            foreach($speakers as  $sp){
+                $ss = new sessionSpeaker();
+        
+                $ss->session_id = $id_event;
+                $ss->speaker_id = $sp;
+                $ss->save();
+            }
+            foreach($chairs as  $ch){
+                $sc = new sessionChair();
+                $sc->session_id = $id_event;
+                $sc->chair_id = $ch;
+                $sc->save();
+            }
+
+            return response()->json([
+                'status'      => 'success',
+                'id'          => $id_event,
+                'redirectUrl' => route('showOrganiserDashboard', [
+                    'organiser_id'  => $event->organiser->id,
+                    
+                ]),
+            ]);
+
+        }
+       
+        
+
+        
         
         // $speaker->firstName = $request->get('fisrtName');
         // $speaker->lastName = $request->get('lastName');
@@ -516,14 +542,7 @@ class EventController extends MyBaseController
         // $speaker->save();
     
 
-        return response()->json([
-            'status'      => 'success',
-            'id'          => $event->id,
-            'redirectUrl' => route('showOrganiserDashboard', [
-                'organiser_id'  => $event->organiser->id,
-                
-            ]),
-        ]);
+        
     }
 }
 

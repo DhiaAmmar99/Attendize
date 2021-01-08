@@ -44,18 +44,7 @@
                 <?php echo Form::button(trans("basic.cancel"), ['class'=>"btn modal-close btn-danger",'data-dismiss'=>'modal']); ?>
 
                 
-                <?php echo Form::submit("create program", ['class'=>"btn btn-success"]); ?>
-
-                
-                
-                <script>
-                     if ( data['success'] ) 
-                        {
-                            alert(data['success']);
-                            location.reload();
-                        } 
-                </script>
-                
+                <?php echo Form::submit("create program", ['class'=>"btn btn-success"]); ?>               
 
             </div>
         </div>

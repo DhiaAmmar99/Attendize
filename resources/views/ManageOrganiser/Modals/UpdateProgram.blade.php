@@ -20,7 +20,7 @@
                         </div>
                         <div class="form-group">
                             {!! Form::label(' PROGRAM date', "PROGRAM date", array('class'=>'control-label required')) !!}
-                            <input type="date" class="form-control" name="date"  value="{{ $program->date }}" required>
+                            <input type="datetime" class="form-control" name="date"  value="{{ $program->date }}" required>
                         </div>
                     </div>
                 </div>
