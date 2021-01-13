@@ -72,6 +72,7 @@ class EventController extends MyBaseController
         $sessionChair = sessionChair::where('session_id', $event[0]->id)->get();
         return view('ManageOrganiser.Modals.updateEvent', $data)
         ->with([
+            'organiser_id'=> $data['organiser_id'],
             'event'=> $event[0],
             'programs'=> $programs,
             'streams'=> $streams,
@@ -306,18 +307,7 @@ class EventController extends MyBaseController
         // $event->currency_id = $request->get('currency_id');
         // $event->google_tag_manager_code = $request->get('google_tag_manager_code');
 
-        $event = Event::where('id', $request->input('id'))->update([
-                'title' => $request->input('title'),
-                'description' => strip_tags($request->input('description')),
-                'start_date' => $request->input('start_date'),
-                'end_date' => $request->input('end_date'),
-                'language' => $request->input('language'),
-                'room' => $request->input('room') ,
-                'nb_session' => $request->input('nb_session') ,
-                'id_stream' => $request->input('stream') ,
-                'id_TOS' => $request->input('TypeOfSession') ,
-                'id_program' => $request->input('program') ,
-        ]);
+        
         
        
         // $event->save();
@@ -404,15 +394,26 @@ class EventController extends MyBaseController
         //     'phone' => $request->get('phone'),
         //     'description' => strip_tags($request->get('desc')),
         // ]);
+        $event = Event::where('id', $request->input('id'))->update([
+                'title' => $request->input('title'),
+                'description' => strip_tags($request->input('description')),
+                'start_date' => $request->input('start_date'),
+                'end_date' => $request->input('end_date'),
+                'language' => $request->input('language'),
+                'room' => $request->input('room') ,
+                'nb_session' => $request->input('nb_session') ,
+                'id_stream' => $request->input('stream') ,
+                'id_TOS' => $request->input('TypeOfSession') ,
+                'id_program' => $request->input('program') ,
+        ]);
 
         return response()->json([
             'status'      => 'success',
-            //'id'          => $event->id,
-            //'message'     => trans("Controllers.event_successfully_updated"),
-            //'redirectUrl' => route('showOrganiserDashboard', [
-                //'organiser_id'  => $event->organiser->id,
-                
-            //]),
+            'id'          => $request->input('id'),
+            'message'     => trans("Controllers.event_successfully_updated"),
+            'redirectUrl' => route('showOrganiserDashboard', [
+                'organiser_id'  => $request->input('organiser_id'),
+            ]),
         ]);
     }
 

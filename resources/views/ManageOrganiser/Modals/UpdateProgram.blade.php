@@ -14,6 +14,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <input  type="hidden" name="id" value="{{ $program->id }}">
+                            <input  type="hidden" name="organiser_id" value="{{ $organiser_id }}">
 
                             {!! Form::label(' PROGRAM title', "PROGRAM title", array('class'=>'control-label required')) !!}
                             <input class="form-control" placeholder="Enter your title program" name="day" type="text" value="{{ $program->day }}">

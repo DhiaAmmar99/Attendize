@@ -10,6 +10,7 @@ use App\Models\Stream;
 use App\Models\Typeofsession;
 use Illuminate\Http\Request;
 use Response;
+use Redirect;
 use App\Models\Organiser;
 
 class SpeakerController extends Controller
@@ -56,7 +57,13 @@ class SpeakerController extends Controller
         }
 
         $speaker->save();
-        return response()->json($speaker);
+
+        return response()->json([
+            'status'      => 'success',
+            'redirectUrl' => route('speakers', [
+                'organiser_id'  => $request->get('organiser_id'),
+            ]),
+        ]);
     }
 
 
@@ -71,7 +78,11 @@ class SpeakerController extends Controller
                 
        
         return view('ManageOrganiser.Modals.updatespeaker', $data)
-        ->with('speaker', $dataSP[0]);
+        ->with([
+            'organiser_id'=> $data['organiser_id'],
+            'speaker'=> $dataSP[0],
+
+            ]);
     }
 
     public function update(Request $request)
@@ -97,10 +108,17 @@ class SpeakerController extends Controller
             ]);
         
         if ($data) 
-            return Response::json([
-                'message' => 'Data Speaker updated',
-                'status' => '1',
-            ]);
+        return view('ManageOrganiser.Speakers', [
+                    'organiser_id'  => $request->input('organiser_id'),
+                    'organiser'  => $request->input('organiser_id'),
+                    'id'  => $request->input('organiser_id'),
+                ]);
+            // return response()->json([
+            //     'status'      => 'Data Speaker updated',
+            //     'redirectUrl' => route('speakers', [
+            //         'organiser_id'  => $request->input('organiser_id'),
+            //     ]),
+            // ]);
         } else {
             return Response::json([
                 'message' => 'this Speaker does not exist',

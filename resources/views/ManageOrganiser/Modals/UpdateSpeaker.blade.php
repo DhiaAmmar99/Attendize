@@ -14,6 +14,7 @@
                     <div class="col-md-12">
                         <div class="row">
                             <input  type="hidden" name="id" value="{{ $speaker->id }}">
+                            <input  type="hidden" name="organiser_id" value="{{ $organiser_id }}">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {!! Form::label('first name', "first name", array('class'=>'control-label required')) !!}

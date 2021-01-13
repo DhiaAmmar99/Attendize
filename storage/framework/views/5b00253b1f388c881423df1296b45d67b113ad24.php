@@ -15,6 +15,7 @@
                     <div class="col-md-12">
                         <div class="row">
                             <input  type="hidden" name="id" value="<?php echo e($speaker->id); ?>">
+                            <input  type="hidden" name="organiser_id" value="<?php echo e($organiser_id); ?>">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <?php echo Form::label('first name', "first name", array('class'=>'control-label required')); ?>

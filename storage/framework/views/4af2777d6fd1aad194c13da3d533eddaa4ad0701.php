@@ -15,6 +15,7 @@
                     <div class="col-md-12">
                         <div class="row">
                             <input  type="hidden" name="id" value="<?php echo e($event->id); ?>">
+                            <input  type="hidden" name="organiser_id" value="<?php echo e($organiser_id); ?>">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <?php echo Form::label('title', "Session title", array('class'=>'control-label required')); ?>
@@ -67,8 +68,6 @@
                                         <?php else: ?> 
                                             <option value="3">16:00 - 18:00</option>
                                         <?php endif; ?>
-                                        
-                                        
                                     </select>
 
                                 </div>
