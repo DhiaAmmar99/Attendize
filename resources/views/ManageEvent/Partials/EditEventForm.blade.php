@@ -6,7 +6,7 @@
     <div class="col-md-12">
         <div class="form-group" id="group-check">
             
-            {!! Form::label('title', 'event type', array('class'=>'control-label required event_type')) !!}<br/>
+            {{-- {!! Form::label('title', 'event type', array('class'=>'control-label required event_type')) !!}<br/>
          
             
                 @if ($event->program_event == 1)
@@ -38,7 +38,7 @@
                 <label for="workshops" class="checkEvent">Workshops</label>  
                 
                 <div id="event_error" style="color: #ED5466;"></div>  
-        </div>
+        </div> --}}
 
 
         {{-- <div class="form-group">
@@ -184,7 +184,7 @@
                 </div>
             </div>
         </div>
-        <div>
+        {{-- <div>
             <label for="fisrtName" class="required  control-label">Fisrt name</label>
             <input type="text" id="firstName" name="firstName" value="{{ $speaker[0]->firstName }}" class="form-control" />
 
@@ -206,7 +206,7 @@
                         ))  !!} -->
 
             <textarea class="form-control  editable" id="desc" name="desc">{{ $speaker[0]->description }}</textarea>
-        </div>
+        </div> --}}
 
         {{-- <div class="row">
             <div class="col-md-6">

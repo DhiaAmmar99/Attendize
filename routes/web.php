@@ -41,6 +41,7 @@ use App\Http\Controllers\UserLogoutController;
 use App\Http\Controllers\UserSignupController;
 use App\Http\Controllers\FirebaseController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\SpeakerController;
 
 Route::get('/firebase', [FirebaseController::class ,'index']);
 Route::get('/firestore', [FirebaseController::class ,'fire']);
@@ -49,11 +50,52 @@ Route::get('/{organiser_id}/listusers',
      [ListUsersController::class, 'list']
      )->name('list');
 
+
+/*
+ * ----------
+ * speakers
+ * ----------
+ */            
+Route::get('/{organiser_id}/speakers', [SpeakerController::class, 'speakers'])->name('speakers');
+Route::get('/removeSpeaker', [SpeakerController::class ,'removeSpeaker']);
+Route::group(['prefix' => 'speakers'], function () {
+
+    /*
+     * ----------
+     * Create speakers
+     * ----------
+     */
+    Route::get('/create',
+        [SpeakerController::class, 'showCreateSpeaker']
+    )->name('showCreateSpeaker');
+
+    Route::post('/create',
+        [SpeakerController::class, 'create']
+    )->name('create');
+
+    Route::get('/update',
+        [SpeakerController::class, 'showUpdateSpeaker']
+    )->name('showUpdateSpeaker');
+
+    Route::post('/update',
+        [SpeakerController::class, 'update']
+    )->name('update');
+    
+});
+
+
+
 Route::get('/{organiser_id}/programs', 
      [ProgramController::class, 'programs']
      )->name('programs');
 
+Route::post('/updateProg',
+     [ProgramController::class, 'updateProgram']
+     )->name('updateProgram');
 
+Route::get('/removeProgram', 
+     [ProgramController::class ,'removeProgram']
+     )->name('removeProgram');
 
         Route::group(['prefix' => 'programs'], function () {
 
@@ -69,10 +111,34 @@ Route::get('/{organiser_id}/programs',
             Route::post('/createprog',
                 [ProgramController::class, 'createProgram']
             )->name('createProgram');
+
+            Route::get('/updateprog', [ProgramController::class, 'showUpdateProgram'])->name('showUpdateProgram');
+            
         });
 
+     
 
 
+        /*
+         * ----------
+         * Session
+         * ----------
+         */
+
+Route::get('/removeSession', 
+     [EventController::class ,'removeSession']
+     )->name('removeSession');
+            
+
+        
+     Route::group(['prefix' => 'events'], function () {
+
+        
+        
+        Route::get('/updateEvent', [EventController::class, 'showUpdateEvent'])->name('showUpdateEvent');
+        Route::post('/updateEvent', [EventController::class, 'updateEvent'])->name('updateEvent');
+
+      });
 
 
 

@@ -21,6 +21,7 @@ class ProgramController extends Controller
     {
         $data = [
             'organiser_id' => $request->get('organiser_id') ? $request->get('organiser_id') : false,
+            
         ];
        
         return view('ManageOrganiser.Modals.CreateProgram', $data);
@@ -41,11 +42,29 @@ class ProgramController extends Controller
     {
         $p = new Program();
         $p->day = $request->input('day');
-        $p->start_date = $request->input('start_date');
-        $p->end_date = $request->input('end_date');
+        $p->date = $request->input('date');
 
         $p->save();
-        return response()->json($p);
+        // return response()->json($p);
+        return response()->json([
+            'status'      => 'success',
+            'redirectUrl' => route('programs', [
+                'organiser_id'  => 2,
+            ]),
+        ]);
+    }
+
+    public function showUpdateProgram(Request $request)
+    {
+        $data = [
+            'organiser_id' => $request->get('organiser_id') ? $request->get('organiser_id') : false,
+            'prog_id' => $request->get('prog_id')
+        ];
+
+        $dataProg = Program::where('id', $data['prog_id'])->get();
+                
+       
+        return view('ManageOrganiser.Modals.updateProgram', $data)->with('program', $dataProg[0]);
     }
 
     public function updateProgram(Request $request)
@@ -53,8 +72,7 @@ class ProgramController extends Controller
         $data = Program::query()->where('id', $request->input('id'))
             ->update([
                 'day' => $request->input('day'),
-                'start_date' => $request->input('start_date'),
-                'end_date' => $request->input('end_date')
+                'date' => $request->input('date'),
             ]);
         if ($data) {
             return Response::json([
@@ -74,6 +92,7 @@ class ProgramController extends Controller
     public function listProgram(Request $request)
     {
         // Search by id.
+        
         if ($request->has('id')) {
             $data = Program::query();
              $data->where('id', $request->input('id'));
@@ -105,6 +124,31 @@ class ProgramController extends Controller
                 ]);
         }
         }
+    }
+
+    public function removeProgram(Request $request)
+    {
+        // remove by id.
+        if ($request->has('id')) {
+            
+            $data = Program::where('id', $request->input('id'))->delete();
+            if ($data) {
+                return Response::json([
+                    'message' => 'success',
+                    'status' => '1',
+                ]);
+            } else
+                return Response::json([
+                    'message' => 'failed',
+                    'status' => '0'
+                ]);
+        }else{
+            return response()->json([
+                'status'=>'0',
+                'message' => 'failed'
+                ]);
+        }
+        
     }
 
     // public function createMyProgram(Request $request)

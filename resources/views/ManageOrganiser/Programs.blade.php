@@ -29,43 +29,11 @@
             </div>
         </div>
     </div>
-    {{-- <div class="col-md-3">
-        {!! Form::open(array('url' => route('showOrganiserEvents', ['organiser_id'=>$organiser->id]), 'method' => 'get')) !!}
-        <div class="input-group">
-            <input name="q" value="{{$search['q'] or ''}}" placeholder="@lang('Organiser.search_placeholder')" type="text" class="form-control">
-        <span class="input-group-btn">
-            <button class="btn btn-default" type="submit"><i class="ico-search"></i></button>
-        </span>
-        </div>
-        <input type="hidden" name='sort_by' value="{{$search['sort_by']}}"/>
-        {!! Form::close() !!}
-    </div> --}}
 @stop
 
 @section('content')
 
-{{-- 
-    @if($programs->count())
-        <div class="row">
-            <div class="col-md-3 col-xs-6">
-                <div class="order_options">
-                    <span class="event_count">
-                        @lang("Event.num_events", ["num" => $organiser->programs->count()])
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-2 col-xs-6 col-md-offset-7">
-                <div class="order_options">
-                    {!!Form::select('sort_by_select', [
-                        'start_date' => trans("Controllers.sort.start_date"),
-                        'created_at' => trans("Controllers.sort.created_at"),
-                        'title' => trans("Controllers.sort.event_title")
 
-                        ], $search['sort_by'], ['class' => 'form-control pull right'])!!}
-                </div>
-            </div>
-        </div>
-    @endif --}}
 
     <div class="row">
         @if($programs->count())
@@ -75,17 +43,6 @@
                    
                 </div>
             @endforeach
-        @else
-            {{-- @if($search['q'])
-                @include('Shared.Partials.NoSearchResults')
-            @else
-                @include('ManageOrganiser.Partials.EventsBlankSlate')
-            @endif --}}
         @endif
     </div>
-    {{-- <div class="row">
-        <div class="col-md-12">
-            {!! $programs->appends(['q' =>$search['q'], 'past' => $search['showPast']])->render() !!}
-        </div>
-    </div> --}}
 @stop

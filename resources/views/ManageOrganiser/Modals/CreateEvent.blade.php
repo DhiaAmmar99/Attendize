@@ -14,71 +14,33 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="form-group" id="group-check">
-                        {!! Form::label('title', 'Session type', array('class'=>'control-label required event_type')) !!}<br/>
-                            <input type="checkbox" name="program" id="program" value="P">
-                            <label for="program" class="checkEvent">Professional program </label>
-                            <input type="checkbox" name="Social_events" id="Social_events" value="S">
-                            <label for="Social_events" class="checkEvent">Social events  </label>
-                            <input type="checkbox" name="Gala_dinner" id="Gala_dinner" value="G">
-                            <label for="Gala_dinner" class="checkEvent">Gala dinner</label>
-                            <input type="checkbox" name="workshops" id="workshops" value="W">
-                            <label for="workshops" class="checkEvent">Workshops</label>  
-                            <div id="event_error" style="color: #ED5466;"></div>  
-                        </div>
-
-                        {{-- <div class="form-group" id="selectBox">
-                            <div id="programSelect">
-                                <select class="form-control selectevent">
-                                    <option disabled selected>select program</option>
-                                    @foreach($events['program'] as $e)
-                                    <option>{{ $e->title }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div id="socialSelect">
-                                <select class="form-control selectevent">
-                                    <option disabled selected>select social events</option>
-                                    @foreach($events['social'] as $e)
-                                    <option>{{ $e->title }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div id="dinnerSelect">
-                                <select class="form-control selectevent">
-                                    <option disabled selected>select gala dinner</option>
-                                    @foreach($events['gala'] as $e)
-                                    <option>{{ $e->title }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div id="workshopsSelect">
-                                <select class="form-control selectevent">
-                                    <option disabled selected>select workshops</option>
-                                    @foreach($events['workshops'] as $e)
-                                    <option>{{ $e->title }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div> --}}
-
-
-
-                        <div class="form-group">
-                            {!! Form::label('title', "Session title", array('class'=>'control-label required')) !!}
-                            {!!  Form::text('title', old('title'),array('class'=>'form-control','placeholder'=>trans("Event.event_title_placeholder", ["name"=>Auth::user()->first_name]) ))  !!}
-                        </div>
-
-                        <div class="form-group custom-theme">
-                            {!! Form::label('description', "Session description", array('class'=>'control-label required')) !!}
-                            {!!  Form::textarea('description', old('description'),
-                                        array(
-                                        'class'=>'form-control  editable',
-                                        'rows' => 5
-                                        ))  !!}
-                        </div>
                         <div class="row">
                             <div class="col-sm-6">
+                                <div class="form-group">
+                                    {!! Form::label('title', "Session title", array('class'=>'control-label required')) !!}
+                                    {!!  Form::text('title', old('title'),array('class'=>'form-control','placeholder'=>"Enter your title session " ))  !!}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {!! Form::label("","program", array('class'=>'required control-label')) !!}
+                                    <select class="form-control" name="program" id="program">
+                                        <option selected disabled>Select program</option>
+                                        @foreach ($programs as $p)
+                                            <option data="{{$p->date}}" value="{{$p->id}}">{{$p->day}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <input type="hidden" name="start_date" id="start_date" value="2021-01-07 00:00">
+                            <input type="hidden" name="end_date" id="end_date"  value="2021-01-07 00:00">
+                        
+                        
+                        
+                        
+                            {{-- <div class="col-sm-6">
                                 <div class="form-group">
                                     {!! Form::label('start_date', "Session start date", array('class'=>'required control-label')) !!}
                                     {!!  Form::text('start_date', old('start_date'),
@@ -101,6 +63,7 @@
 
                                     {!!  Form::text('end_date', old('end_date'),
                                                 [
+                                            
                                             'class'=>'form-control end hasDatepicker ',
                                             'data-field'=>'datetime',
                                             'data-startend'=>'end',
@@ -108,10 +71,144 @@
                                             'readonly'=> ''
                                         ])  !!}
                                 </div>
+                            </div> --}}
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {!!  Form::label('Session time', "Session time",['class'=>'required control-label'])  !!}
+
+                                    <select class="form-control" id="time">
+                                        <option selected disabled>Select time</option>
+                                        <option value="1">09:00 - 11:00</option>
+                                        <option value="2">13:00 - 15:00</option>
+                                        <option value="3">16:00 - 18:00</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {!! Form::label("","language", array('class'=>'required control-label')) !!}
+                                    
+                                    <select class="form-control" name="language">
+                                        <option selected disabled>Select language</option>
+                                        <option value="RU">RU</option>
+                                        <option value="EN">EN</option>
+                                        <option value="FR">FR</option>
+                                        <option value="AR">AR</option>
+                                        <option value="ES">ES</option>
+                                    </select>
+                                </div>
+                            </div>
+                        
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="nb_session" class="required control-label">NUMBER OF SESSION</label>
+                                    <input type="number" class="form-control" name="nb_session" min="1" max="20" id="nb_session" placeholder="Enter your nomber of session"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="room" class="required control-label">NUMBER OF room</label>
+                                    <input  type="number" class="form-control" name="room" id="room" min="1" max="20"  placeholder="Enter your nomber of room"//>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {!! Form::label("","stream", array('class'=>'required control-label')) !!}
+                                    <select class="form-control" name="stream">
+                                        <option selected disabled>Select stream</option>
+                                        @foreach ($streams as $s)
+                                            <option  value="{{$s->id}}">{{$s->title}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {!! Form::label("","TypeOfSession", array('class'=>'required control-label')) !!}
+                                    <select class="form-control" name="TypeOfSession">
+                                        <option selected disabled>Select type of session</option>
+                                        @foreach ($tos as $t)
+                                            <option value="{{$t->id}}">{{$t->title}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-6">
+                                <div class="form-group" onclick="showCheckboxes('checkboxesSP')">
+                                    {!! Form::label("","speakers", array('class'=>'required control-label')) !!}
+                                    <select class="form-control"  style="pointer-events: none;">
+                                        <option selected disabled>Select speakers</option>
+                                    </select>
+                                    <div id="checkboxesSP" class="checkboxes">
+                                        @foreach ($speakers as $sp)
+                                            <label for="sp-{{$sp->id}}" class="speaker">
+                                                <input type="checkbox" id="sp-{{$sp->id}}" name="speaker[]"  value="{{$sp->id}}"/> &nbsp; {{$sp->firstname}} &nbsp; {{$sp->lastname}}</label>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group" onclick="showCheckboxes('checkboxesCH')">
+                                    {!! Form::label("","chairs", array('class'=>'control-label')) !!}
+                                    <select class="form-control"  style="pointer-events: none;">
+                                        <option selected disabled>Select chairs</option>
+                                    </select>
+                                    <div id="checkboxesCH" class="checkboxes">
+                                        @foreach ($chairs as $c)
+                                            <label for="ch-{{$c->id}}" class="speaker">
+                                                <input type="checkbox" id="ch-{{$c->id}}" name="chair[]" value="{{$c->id}}"/> &nbsp; {{$c->firstname}} &nbsp; {{$c->lastname}}</label>
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div>
-                            
+                       
+                      
+                        {{-- <script>
+                            direction='http://127.0.0.1:8000'
+                            $('.btn-success').click(function() {
+                                var speakers = [];
+                                $('#checkboxesSP input:checked').each(function() {
+                                    speakers.push(this.name);
+                                });
+                               
+                                var chairs = [];
+                                $('#checkboxesCH input:checked').each(function() {
+                                    chairs.push(this.name);
+                                });
+                                
+                                console.log('sp', speakers);
+                                console.log('ch', chairs);
+                                speakers.forEach(element => 
+                                
+                                function addSp(element, idS);
+                                
+                                );
+
+                                function addSp(idsp, idS){
+                                    jQuery.ajax({
+                                        type: "post",
+                                        url: direction + "/api/SessionSpeaker",
+                                        data: {"session_id": idS,"speaker_id": idsp},
+                                    });
+                                }
+                            });
+                        </script> --}}
+                       
+
+
+                        <div class="form-group custom-theme">
+                            {!! Form::label('description', "Session description", array('class'=>'control-label required')) !!}
+                            {!!  Form::textarea('description', old('description'),
+                                        array(
+                                        'class'=>'form-control  editable',
+                                        'rows' => 5
+                                        ))  !!}
                         </div>
                         {{-- <div>
                             <label for="fisrtName" class="required  control-label">Fisrt name</label>
@@ -277,7 +374,7 @@
                         @endif--}}
 
                         {{-- @if($organiser_id) --}}
-                            {!! Form::hidden('organiser_id', $organiser_id) !!}
+                            
                         {{-- @else --}}
                              {{--<div class="create_organiser" style="{{$organisers->isEmpty() ? '' : 'display:none;'}}">
                                 <h5>
@@ -360,6 +457,8 @@
                                 </span> 
                             @endif
                         @endif--}}
+
+                        {!! Form::hidden('organiser_id', $organiser_id) !!}
                     </div>
                 </div>
             </div>
@@ -372,3 +471,59 @@
         {!! Form::close() !!}
     </div>
 </div>
+<style>
+                                
+    .checkboxes {
+    display: none;
+    border: 1px #dadada solid;
+    padding: 10px 0;
+    }
+
+    .checkboxes label {
+    display: block;
+    }
+
+    .checkboxes label:hover {
+    background-color: #e0e0e0;
+    }
+    .checkboxes label {
+        padding: 0 10px;
+    }
+</style>
+<script>
+    var expanded = false;
+
+    function showCheckboxes(id) {
+    var checkboxes = document.getElementById(id);
+    if (!expanded) {
+        checkboxes.style.display = "block";
+        expanded = true;
+    } else {
+        checkboxes.style.display = "none";
+        expanded = false;
+    }
+    }
+
+    /* date input */
+    $date = '';
+    $("#program").change(function(){
+        $res = jQuery("#program option:selected").attr("data");
+        $date = $res.slice(0, 10);
+                                    
+        
+    });
+    $("#time").change(function(){
+        $time = jQuery("#time option:selected").attr("value");
+            
+        if ($time == 1){
+            $("#start_date").val($date +" "+ "09:00");
+            $("#end_date").val($date +" "+"11:00");
+        }else if($time == 2){
+            $("#start_date").val($date +" "+ "13:00");
+            $("#end_date").val($date +" "+"15:00");
+        }else if($time == 3){
+            $("#start_date").val($date +" "+ "16:00");
+            $("#end_date").val($date +" "+"18:00");
+        }
+    });
+</script>

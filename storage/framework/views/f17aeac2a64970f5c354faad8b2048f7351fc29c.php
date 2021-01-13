@@ -19,32 +19,59 @@
             <li>
                 <div class="section">
                     <h4 class="nm">
-                        <?php echo e($program->start_date); ?> 
+                        <?php echo e($program->date); ?> 
                     </h4>
-                    <p class="nm text-muted">Start date</p>
+                    <p class="nm text-muted">Date of program</p>
                 </div>
             </li>
            
-             <li>
-                <div class="section">
-                    <h4 class="nm">
-                        <?php echo e($program->end_date); ?> 
-                    </h4>
-                    <p class="nm text-muted">End date</p>
-                </div>
-            </li> 
+             
         </ul>
     </div>
     <div class="panel-footer">
         <ul class="nav nav-section nav-justified">
             <li>
-                <a href="">
-                    <i class="ico-edit"></i> <?php echo app('translator')->get("basic.edit"); ?>
-                </a>
+                <a href="" data-modal-id="updateProgram" data-href="<?php echo e(route('showUpdateProgram', ['organiser_id' => @$organiser->id, 'prog_id' => $program->id  ])); ?>" class="loadModal" id="<?php echo e($program->id); ?>"><i class="ico-edit"></i> <?php echo app('translator')->get("basic.edit"); ?></a>
+            </li>
+            <li>
+                
+                <a  data-modal-id="removeProgram"  id="<?php echo e($program->id); ?>" onclick="popupRMV(<?php echo e($program->id); ?>)"><i class="ico-remove"></i> Remove</a>
             </li>
 
              
         </ul>
     </div>
 </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    function popupRMV(id){
+       
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                jQuery.ajax({
+                    type: "get",
+                    url: window.location.origin+"/removeProgram",
+                    data: {"id": id},
+                });
+                // jQuery(`#${id}`).remove();
+
+                
+
+                swal("Poof! Your imaginary file has been deleted!", {
+                icon: "success",
+                buttons: false,
+                });
+                location.reload();
+
+            } 
+            });
+    }
+</script>
 <?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/ManageOrganiser/Partials/ProgramPanel.blade.php ENDPATH**/ ?>

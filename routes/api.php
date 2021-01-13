@@ -13,6 +13,7 @@ use App\Http\Controllers\TypeofsessionController;
 use App\Http\Controllers\ChairController;
 use App\Http\Controllers\EventSearchController;
 use App\Http\Controllers\RegistrationScheduleController;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -110,7 +111,7 @@ Route::post('/shuttles', [ShuttleController::class ,'createShuttle']);
  * ---------------
  */
 
-Route::put('/program', [ProgramController::class ,'updateProgram']);
+// Route::put('/program', [ProgramController::class ,'updateProgram']);
 Route::get('/programs', [ProgramController::class ,'listProgram']);
 // Route::post('/myprogram', [ProgramController::class ,'MyProgram']);
 // Route::post('/createMyProgram', [ProgramController::class ,'createMyProgram']);
@@ -144,7 +145,7 @@ Route::post('/updateImage/{id}', [ImageController::class ,'updateImg']);
 
 
  Route::post('/createStream', [StreamController::class ,'create']);
- Route::put('/updateStream', [StreamController::class ,'update']);
+ Route::post('/updateStream', [StreamController::class ,'update']);
  Route::get('/stream', [StreamController::class ,'listStream']);
 
 
@@ -159,7 +160,7 @@ Route::post('/updateImage/{id}', [ImageController::class ,'updateImg']);
  Route::post('/createSpeaker', [SpeakerController::class ,'create']);
  Route::post('/updateSpeaker', [SpeakerController::class ,'update']);
  Route::get('/speaker', [SpeakerController::class ,'listSpeaker']);
- Route::get('/SearchSessionSpeaker', [SpeakerController::class ,'SearchSessionSpeaker']);
+//  Route::get('/SearchSessionSpeaker', [SpeakerController::class ,'SearchSessionSpeaker']);
  
 
 /*
@@ -201,9 +202,12 @@ Route::post('/updateImage/{id}', [ImageController::class ,'updateImg']);
 
 /*
  * ---------------
- * Users
+ * Notification mobile
  * ---------------
  */
+
+Route::get('/notification', [NotificationController::class ,'notification']);
+
 
 /*
  * ---------------

@@ -40,13 +40,43 @@
     <div class="panel-footer">
         <ul class="nav nav-section nav-justified">
             <li>
-                <a href="<?php echo e(route('showEventCustomize', ['event_id' => $event->id])); ?>">
-                    <i class="ico-edit"></i> <?php echo app('translator')->get("basic.edit"); ?>
-                </a>
-            </li>
+                <a   data-modal-id="updateEvent" data-href="<?php echo e(route('updateEvent', ['organiser_id' => @$organiser->id, 'event_id' => $event->id])); ?>" class="loadModal" ><i class="ico-edit"></i> <?php echo app('translator')->get("basic.edit"); ?></a>
 
-            
+            </li>
+            <li>
+                <a data-modal-id="removeSession"  class="rmv"  id="<?php echo e($event->id); ?>" onclick="popup(<?php echo e($event->id); ?>)"><i class="ico-remove"></i> Remove</a>
+            </li>
         </ul>
     </div>
 </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+    function popup(id){
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                jQuery.ajax({
+                    type: "get",
+                    url: "http://127.0.0.1:8000/removeSession",
+                    data: {"id": id},
+                });
+                // jQuery(`#${id}`).remove();
+                
+
+                swal("Poof! Your imaginary file has been deleted!", {
+                icon: "success",
+                buttons: false,
+                });
+                location.reload();
+            } 
+            });
+    }
+</script>
 <?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/ManageOrganiser/Partials/EventPanel.blade.php ENDPATH**/ ?>

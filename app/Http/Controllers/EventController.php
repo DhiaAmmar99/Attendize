@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chair;
 use Log;
 use Auth;
 use Image;
-use Validator;
+use Response;
 use App\Models\Event;
 use App\Models\Speaker;
 use App\Models\Organiser;
 use App\Models\EventImage;
+use App\Models\Program;
+use App\Models\sessionChair;
+use App\Models\sessionSpeaker;
+use App\Models\Stream;
+use App\Models\Typeofsession;
 use Illuminate\Http\Request;
 use Spatie\GoogleCalendar\Event as GCEvent;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +36,52 @@ class EventController extends MyBaseController
             'organiser_id' => $request->get('organiser_id') ? $request->get('organiser_id') : false,
         ];
         $events = $this->listEventSelect();
-        return view('ManageOrganiser.Modals.CreateEvent', $data)->with('events', $events);
+        $programs = Program::all();
+        $streams = Stream::all();
+        $tos = Typeofsession::all();
+        $speakers = Speaker::all();
+        $chairs = Chair::all();
+        return view('ManageOrganiser.Modals.CreateEvent', $data)->with([
+            'events'=> $events,
+            'programs'=> $programs,
+            'streams'=> $streams,
+            'tos'=> $tos,
+            'speakers'=> $speakers,
+            'chairs'=> $chairs,
+            ]);
+    }
+
+    public function showUpdateEvent(Request $request)
+    {
+        $data = [
+            'event_id'     => $request->get('event_id'),
+            'modal_id'     => $request->get('modal_id'),
+            'organisers'   => Organiser::scope()->pluck('name', 'id'),
+            'organiser_id' => $request->get('organiser_id') ? $request->get('organiser_id') : false,
+        ];
+
+        $event = Event::select('id', 'title', 'description', 'start_date', 'end_date', 'language', 'room', 'nb_session', 'id_stream', 'id_TOS', 'id_program')->where('id', $data['event_id'])->get();
+        
+
+        $programs = Program::all();
+        $streams = Stream::all();
+        $tos = Typeofsession::all();
+        $speakers = Speaker::all();
+        $chairs = Chair::all();
+        $sessionSpeaker = sessionSpeaker::where('session_id', $event[0]->id)->get();
+        $sessionChair = sessionChair::where('session_id', $event[0]->id)->get();
+        return view('ManageOrganiser.Modals.updateEvent', $data)
+        ->with([
+            'organiser_id'=> $data['organiser_id'],
+            'event'=> $event[0],
+            'programs'=> $programs,
+            'streams'=> $streams,
+            'tos'=> $tos,
+            'speakers'=> $speakers,
+            'chairs'=> $chairs,
+            'sessionSpeaker'=> $sessionSpeaker,
+            'sessionChair'=> $sessionChair,
+            ]);
     }
 
     /**
@@ -241,49 +292,25 @@ class EventController extends MyBaseController
      * @param $event_id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function postEditEvent(Request $request, $event_id)
+    public function updateEvent(Request $request)
     {
-        $event = Event::scope()->findOrFail($event_id);
+        //$event = Event::scope()->findOrFail('id', $request->input('id'));
 
-        if (!$event->validate($request->all())) {
-            return response()->json([
-                'status'   => 'error',
-                'messages' => $event->errors(),
-            ]);
-        }
+        // if (!$event->validate($request->all())) {
+        //     return response()->json([
+        //         'status'   => 'error',
+        //         'messages' => $event->errors(),
+        //     ]);
+        // }
 
         // $event->is_live = $request->get('is_live');
         // $event->currency_id = $request->get('currency_id');
-        $event->title = $request->get('title');
-        $event->description = strip_tags($request->get('description'));
-        $event->start_date = $request->get('start_date');
         // $event->google_tag_manager_code = $request->get('google_tag_manager_code');
+
         
-        if ($request->get('program')){
-            $event->program_event = '1';
-        }else{
-            $event->program_event = '0'; 
-        }
-        if( $request->get('Social_events')) {
-            $event->social_event = '1';
-        }else{
-            $event->social_event = '0'; 
-        }
-        if( $request->get('Gala_dinner') ) {
-            $event->gala_event = '1';
-        }else{
-            $event->gala_event = '0'; 
-        }
-        if( $request->get('workshops') ) {
-            $event->workshops_event = '1';
-        }else{
-            $event->workshops_event = '0'; 
-        }
-
-        if(($event->program_event === '0')&&($event->social_event === '0')&&($event->gala_event === '0')&&($event->workshops_event === '0')){
-            return 'error';
-        }
-
+        
+       
+        // $event->save();
         /*
          * If the google place ID is the same as before then don't update the venue
          */
@@ -323,14 +350,14 @@ class EventController extends MyBaseController
         //     }
         // }
 
-        $event->end_date = $request->get('end_date');
+        
         // $event->event_image_position = $request->get('event_image_position');
 
         // if ($request->get('remove_current_image') == '1') {
         //     EventImage::where('event_id', '=', $event->id)->delete();
         // }
 
-        $event->save();
+        
 
         // if ($request->hasFile('event_image')) {
         //     $path = public_path() . '/' . config('attendize.event_images_path');
@@ -367,12 +394,26 @@ class EventController extends MyBaseController
         //     'phone' => $request->get('phone'),
         //     'description' => strip_tags($request->get('desc')),
         // ]);
+        $event = Event::where('id', $request->input('id'))->update([
+                'title' => $request->input('title'),
+                'description' => strip_tags($request->input('description')),
+                'start_date' => $request->input('start_date'),
+                'end_date' => $request->input('end_date'),
+                'language' => $request->input('language'),
+                'room' => $request->input('room') ,
+                'nb_session' => $request->input('nb_session') ,
+                'id_stream' => $request->input('stream') ,
+                'id_TOS' => $request->input('TypeOfSession') ,
+                'id_program' => $request->input('program') ,
+        ]);
 
         return response()->json([
             'status'      => 'success',
-            'id'          => $event->id,
+            'id'          => $request->input('id'),
             'message'     => trans("Controllers.event_successfully_updated"),
-            'redirectUrl' => '',
+            'redirectUrl' => route('showOrganiserDashboard', [
+                'organiser_id'  => $request->input('organiser_id'),
+            ]),
         ]);
     }
 
@@ -451,7 +492,7 @@ class EventController extends MyBaseController
  public function newEvent(Request $request)
    {
         $event = Event::createNew();
-        // $speaker = new Speaker();
+        
 
         if (!$event->validate($request->all())) {
             return response()->json([
@@ -459,71 +500,84 @@ class EventController extends MyBaseController
                 'messages' => $event->errors(),
             ]);
         }
+        
 
         $event->title = $request->get('title');
         $event->description = strip_tags($request->get('description'));
         $event->start_date = $request->get('start_date');
         $event->end_date = $request->get('end_date');
 
+        $event->language = $request->get('language');
+        $event->room = $request->get('room') ;
+        $event->nb_session = $request->get('nb_session') ;
+        $event->id_stream = $request->get('stream') ;
+        $event->id_TOS = $request->get('TypeOfSession') ;
+        $event->id_program = $request->get('program') ;
+
         $event->account_id = $request->get('organiser_id');
         $event->user_id = $request->get('organiser_id');
         $event->currency_id = $request->get('currency_id');
         $event->organiser_id = $request->get('organiser_id');
-
-        $event->language = 'EN' ;
-        $event->bg_color = '#ffffff' ;
-        $event->room = 'S4' ;
-        $event->nb_session = '4' ;
-        $event->id_stream = '1' ;
-        $event->id_TOS = '1' ;
-        $event->id_program = '1' ;
-        
         $event->venue_name = $request->get('title');
-
-        if ($request->get('program')){
-            $event->program_event = '1';
-        }else{
-            $event->program_event = '0'; 
-        }
-        if( $request->get('Social_events')) {
-            $event->social_event = '1';
-        }else{
-            $event->social_event = '0'; 
-        }
-        if( $request->get('Gala_dinner') ) {
-            $event->gala_event = '1';
-        }else{
-            $event->gala_event = '0'; 
-        }
-        if( $request->get('workshops') ) {
-            $event->workshops_event = '1';
-        }else{
-            $event->workshops_event = '0'; 
-        }
-
-        if(($event->program_event === '0')&&($event->social_event === '0')&&($event->gala_event === '0')&&($event->workshops_event === '0')){
-            return 'error';
-        }
-        $event->save();
        
+        $event->save();
+        $id_event = $event->id;
         
-        // $speaker->firstName = $request->get('fisrtName');
-        // $speaker->lastName = $request->get('lastName');
-        // $speaker->email = $request->get('email');
-        // $speaker->phone = $request->get('phone');
-        // $speaker->id_event = $event->id;
-        // $speaker->description = strip_tags($request->get('desc'));
-        // $speaker->save();
-    
+        $chairs = $request->get('chair');
+        $speakers = $request->get('speaker');
+        
+        if ($id_event != null)
+        {
+            foreach($speakers as  $sp){
+                $ss = new sessionSpeaker();
+        
+                $ss->session_id = $id_event;
+                $ss->speaker_id = $sp;
+                $ss->save();
+            }
+            foreach($chairs as  $ch){
+                $sc = new sessionChair();
+                $sc->session_id = $id_event;
+                $sc->chair_id = $ch;
+                $sc->save();
+            }
 
-        return response()->json([
-            'status'      => 'success',
-            'id'          => $event->id,
-            'redirectUrl' => route('showOrganiserDashboard', [
-                'organiser_id'  => $event->organiser->id,
-                
-            ]),
-        ]);
+            return response()->json([
+                'status'      => 'success',
+                'id'          => $id_event,
+                'redirectUrl' => route('showOrganiserDashboard', [
+                    'organiser_id'  => $event->organiser->id,
+                    
+                ]),
+            ]);
+
+        }
+        
+    }
+
+    public function removeSession(Request $request)
+    {
+        // remove by id.
+        if ($request->has('id')) {
+            
+            $data = Event::where('id', $request->input('id'))->delete();
+            if ($data) {
+                return Response::json([
+                    'message' => 'success',
+                    'status' => '1',
+                ]);
+            } else
+                return Response::json([
+                    'message' => 'failed',
+                    'status' => '0'
+                ]);
+        }else{
+            return response()->json([
+                'status'=>'0',
+                'message' => 'failed'
+                ]);
+        }
+        
     }
 }
 

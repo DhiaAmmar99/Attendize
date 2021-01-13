@@ -1,7 +1,5 @@
 <div role="dialog"  class="modal fade" style="display: none;">
-
     @include('ManageOrganiser.Partials.EventCreateAndEditJS');
-
     {!! Form::open(array('url' => route('createProgram'), 'class' => 'ajax gf')) !!}
     <div class="modal-dialog">
         <div class="modal-content">
@@ -14,350 +12,25 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        {{-- <div class="form-group" id="group-check">
-                        {!! Form::label('title', 'event type', array('class'=>'control-label required event_type')) !!}<br/>
-                            <input type="checkbox" name="program" id="program" value="P">
-                            <label for="program" class="checkEvent">Professional program </label>
-                            <input type="checkbox" name="Social_events" id="Social_events" value="S">
-                            <label for="Social_events" class="checkEvent">Social events  </label>
-                            <input type="checkbox" name="Gala_dinner" id="Gala_dinner" value="G">
-                            <label for="Gala_dinner" class="checkEvent">Gala dinner</label>
-                            <input type="checkbox" name="workshops" id="workshops" value="W">
-                            <label for="workshops" class="checkEvent">Workshops</label>  
-                            <div id="event_error" style="color: #ED5466;"></div>  
-                        </div> --}}
-
-                        {{-- <div class="form-group" id="selectBox">
-                            <div id="programSelect">
-                                <select class="form-control selectevent">
-                                    <option disabled selected>select program</option>
-                                    @foreach($events['program'] as $e)
-                                    <option>{{ $e->title }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div id="socialSelect">
-                                <select class="form-control selectevent">
-                                    <option disabled selected>select social events</option>
-                                    @foreach($events['social'] as $e)
-                                    <option>{{ $e->title }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div id="dinnerSelect">
-                                <select class="form-control selectevent">
-                                    <option disabled selected>select gala dinner</option>
-                                    @foreach($events['gala'] as $e)
-                                    <option>{{ $e->title }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div id="workshopsSelect">
-                                <select class="form-control selectevent">
-                                    <option disabled selected>select workshops</option>
-                                    @foreach($events['workshops'] as $e)
-                                    <option>{{ $e->title }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div> --}}
-
-
-
+                       
                         <div class="form-group">
-                            {!! Form::label('DAY', "DAY", array('class'=>'control-label required')) !!}
-                            {!!  Form::text('DAY', old('title'),array('class'=>'form-control','placeholder'=>trans("Event.event_title_placeholder", ["name"=>Auth::user()->first_name]) ))  !!}
+                            {!! Form::label(' PROGRAM title', "PROGRAM title", array('class'=>'control-label required')) !!}
+                            {!!  Form::text('day', old('title'),array('class'=>'form-control','placeholder'=>'Enter your title program' ))  !!}
                         </div>
 
-                        <div class="form-group custom-theme">
-                            {!! Form::label('description', "Program description", array('class'=>'control-label required')) !!}
-                            {!!  Form::textarea('description', old('description'),
-                                        array(
-                                        'class'=>'form-control  editable',
-                                        'rows' => 5
-                                        ))  !!}
-                        </div>
+                        
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <div class="form-group">
-                                    {!! Form::label('start_date', "Program start date", array('class'=>'required control-label')) !!}
-                                    {!!  Form::text('start_date', old('start_date'),
+                                    {!! Form::label('date', "Program date", array('class'=>'required control-label')) !!}
+                                    {!!  Form::text('date','2020-07-10 00:00:00', 
                                                         [
                                                     'class'=>'form-control start hasDatepicker ',
                                                     'data-field'=>'datetime',
-                                                    'data-startend'=>'start',
-                                                    'data-startendelem'=>'.end',
-                                                    'readonly'=>''
-
                                                 ])  !!}
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    {!!  Form::label('end_date', "Program end date",
-                                                [
-                                            'class'=>'required control-label '
-                                        ])  !!}
-
-                                    {!!  Form::text('end_date', old('end_date'),
-                                                [
-                                            'class'=>'form-control end hasDatepicker ',
-                                            'data-field'=>'datetime',
-                                            'data-startend'=>'end',
-                                            'data-startendelem'=>'.start',
-                                            'readonly'=> ''
-                                        ])  !!}
                                 </div>
                             </div>
                         </div>
-{{--                        
-                        <div>
-                            <label for="fisrtName" class="required  control-label">Fisrt name</label>
-                            <input type="text" id="fisrtName" name="fisrtName" class="form-control" />
-
-                            <label for="lastName" class="required control-label">Last name</label>
-                            <input type="text" id="lastName" name="lastName" class="form-control"/>
-
-                            <label for="email" class="required control-label">Email</label>
-                            <input type="email" id="email" name="email" class="form-control"/>
-
-                            <label for="phone" class="required control-label">Phone</label>
-                            <input type="tel" pattern="[0-9]{8}" id="phone" name="phone" class="form-control"/>
-
-                            <label for="desc" class="required control-label">Discription</label>
-                            
-                            {!!  Form::textarea('desc', old('desc'),
-                                        array(
-                                        'class'=>'form-control  editable',
-                                        'rows' => 5
-                                        ))  !!}
-                        </div> --}}
-
-                        {{-- <div class="form-group">
-                            {!! Form::label('event_image', trans("Event.event_image"), array('class'=>'control-label ')) !!}
-                            {!! Form::styledFile('event_image') !!}
-
-                        </div> --}}
-                        {{-- @if(!empty(config("attendize.google_maps_geocoding_key")))
-                        <div class="form-group address-automatic">
-                            {!! Form::label('name', trans("Event.venue_name"), array('class'=>'control-label required ')) !!}
-                            {!!  Form::text('venue_name_full', old('venue_name_full'),
-                                        array(
-                                        'class'=>'form-control geocomplete location_field',
-                                        'placeholder'=>trans("Event.venue_name_placeholder")
-                                        ))  !!}
-
-                                    <!--These are populated with the Google places info-->
-                            <div>
-                                {!! Form::hidden('formatted_address', '', ['class' => 'location_field']) !!}
-                                {!! Form::hidden('street_number', '', ['class' => 'location_field']) !!}
-                                {!! Form::hidden('country', '', ['class' => 'location_field']) !!}
-                                {!! Form::hidden('country_short', '', ['class' => 'location_field']) !!}
-                                {!! Form::hidden('place_id', '', ['class' => 'location_field']) !!}
-                                {!! Form::hidden('name', '', ['class' => 'location_field']) !!}
-                                {!! Form::hidden('location', '', ['class' => 'location_field']) !!}
-                                {!! Form::hidden('postal_code', '', ['class' => 'location_field']) !!}
-                                {!! Form::hidden('route', '', ['class' => 'location_field']) !!}
-                                {!! Form::hidden('lat', '', ['class' => 'location_field']) !!}
-                                {!! Form::hidden('lng', '', ['class' => 'location_field']) !!}
-                                {!! Form::hidden('administrative_area_level_1', '', ['class' => 'location_field']) !!}
-                                {!! Form::hidden('sublocality', '', ['class' => 'location_field']) !!}
-                                {!! Form::hidden('locality', '', ['class' => 'location_field']) !!}
-                            </div>
-                            <!-- /These are populated with the Google places info-->
-                        </div> 
-
-                        <div class="address-manual" style="display:none;">
-                            <h5>
-                                @lang("Event.address_details")
-                            </h5>
-
-                            <div class="form-group">
-                                {!! Form::label('location_venue_name', trans("Event.venue_name"), array('class'=>'control-label required ')) !!}
-                                {!!  Form::text('location_venue_name', old('location_venue_name'), [
-                                        'class'=>'form-control location_field',
-                                        'placeholder'=>trans("Event.venue_name_placeholder")
-                                        ])  !!}
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('location_address_line_1', trans("Event.address_line_1"), array('class'=>'control-label')) !!}
-                                {!!  Form::text('location_address_line_1', old('location_address_line_1'), [
-                                        'class'=>'form-control location_field',
-                                        'placeholder'=>trans("Event.address_line_1_placeholder")
-                                        ])  !!}
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('location_address_line_2', trans("Event.address_line_2"), array('class'=>'control-label')) !!}
-                                {!!  Form::text('location_address_line_2', old('location_address_line_2'), [
-                                        'class'=>'form-control location_field',
-                                        'placeholder'=>trans("Event.address_line_2_placeholder")
-                                        ])  !!}
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        {!! Form::label('location_state', trans("Event.city"), array('class'=>'control-label')) !!}
-                                        {!!  Form::text('location_state', old('location_state'), [
-                                                'class'=>'form-control location_field',
-                                                'placeholder'=>trans("Event.city_placeholder")
-                                                ])  !!}
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        {!! Form::label('location_post_code', trans("Event.post_code"), array('class'=>'control-label')) !!}
-                                        {!!  Form::text('location_post_code', old('location_post_code'), [
-                                                'class'=>'form-control location_field',
-                                                'placeholder'=>trans("Event.post_code_placeholder")
-                                                ])  !!}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <span>
-                            <a data-clear-field=".location_field"
-                               data-toggle-class=".address-automatic, .address-manual"
-                               data-show-less-text="@lang("Event.or(manual/existing_venue)") <b>@lang("Event.enter_existing")</b>" href="javascript:void(0);"
-                               class="in-form-link show-more-options clear_location">
-                            @lang("Event.or(manual/existing_venue)") <b>@lang("Event.enter_manual")</b>
-                            </a>
-                        </span>
-                        @else--}}
-                        {{-- <div class="address-manual">
-                            <h5>
-                                @lang("Event.address_details")
-                            </h5>
-
-                            <div class="form-group">
-                                {!! Form::label('location_venue_name', trans("Event.venue_name"), array('class'=>'control-label required ')) !!}
-                                {!!  Form::text('location_venue_name', old('location_venue_name'), [
-                                        'class'=>'form-control location_field',
-                                        'placeholder'=>trans("Event.venue_name_placeholder")
-                                        ])  !!}
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('location_address_line_1', trans("Event.address_line_1"), array('class'=>'control-label')) !!}
-                                {!!  Form::text('location_address_line_1', old('location_address_line_1'), [
-                                        'class'=>'form-control location_field',
-                                        'placeholder'=>trans("Event.address_line_1_placeholder")
-                                        ])  !!}
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('location_address_line_2', trans("Event.address_line_2"), array('class'=>'control-label')) !!}
-                                {!!  Form::text('location_address_line_2', old('location_address_line_2'), [
-                                        'class'=>'form-control location_field',
-                                        'placeholder'=>trans("Event.address_line_2_placeholder")
-                                        ])  !!}
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        {!! Form::label('location_state', trans("Event.city"), array('class'=>'control-label')) !!}
-                                        {!!  Form::text('location_state', old('location_state'), [
-                                                'class'=>'form-control location_field',
-                                                'placeholder'=>trans("Event.city_placeholder")
-                                                ])  !!}
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        {!! Form::label('location_post_code', trans("Event.post_code"), array('class'=>'control-label')) !!}
-                                        {!!  Form::text('location_post_code', old('location_post_code'), [
-                                                'class'=>'form-control location_field',
-                                                'placeholder'=>trans("Event.post_code_placeholder")
-                                                ])  !!}
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-                        @endif--}}
-
-                        {{-- @if($organiser_id) --}}
-                            {!! Form::hidden('organiser_id', $organiser_id) !!}
-                        {{-- @else --}}
-                             {{--<div class="create_organiser" style="{{$organisers->isEmpty() ? '' : 'display:none;'}}">
-                                <h5>
-                                    @lang("Organiser.organiser_details")
-                                </h5>
-
-                                <div class="form-group">
-                                    {!! Form::label('organiser_name', trans("Organiser.organiser_name"), array('class'=>'required control-label ')) !!}
-                                    {!!  Form::text('organiser_name', old('organiser_name'),
-                                                array(
-                                                'class'=>'form-control',
-                                                'placeholder'=>trans("Organiser.organiser_name_placeholder")
-                                                ))  !!}
-                                </div>
-                                <div class="form-group">
-                                    {!! Form::label('organiser_email', trans("Organiser.organiser_email"), array('class'=>'control-label required')) !!}
-                                    {!!  Form::text('organiser_email', old('organiser_email'),
-                                                array(
-                                                'class'=>'form-control ',
-                                                'placeholder'=>trans("Organiser.organiser_email_placeholder")
-                                                ))  !!}
-                                </div>
-                                <div class="form-group">
-                                    {!! Form::label('organiser_about', trans("Organiser.organiser_description"), array('class'=>'control-label ')) !!}
-                                    {!!  Form::textarea('organiser_about', old('organiser_about'),
-                                                array(
-                                                'class'=>'form-control editable2',
-                                                'placeholder'=>trans("Organiser.organiser_description_placeholder"),
-                                                'rows' => 4
-                                                ))  !!}
-                                </div>
-                                <div class="form-group more-options">
-                                    {!! Form::label('organiser_logo', trans("Organiser.organiser_logo"), array('class'=>'control-label ')) !!}
-                                    {!! Form::styledFile('organiser_logo') !!}
-                                </div>
-                                <div class="row more-options">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            {!! Form::label('organiser_facebook', trans("Organiser.organiser_facebook"), array('class'=>'control-label ')) !!}
-                                            {!!  Form::text('organiser_facebook', old('organiser_facebook'),
-                                                array(
-                                                'class'=>'form-control ',
-                                                'placeholder'=>trans("Organiser.organiser_facebook_placeholder")
-                                                ))  !!}
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            {!! Form::label('organiser_twitter', trans("Organiser.organiser_twitter"), array('class'=>'control-label ')) !!}
-                                            {!!  Form::text('organiser_twitter', old('organiser_twitter'),
-                                                array(
-                                                'class'=>'form-control ',
-                                                'placeholder'=>trans("Organiser.organiser_twitter_placeholder")
-                                                ))  !!}
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <a data-show-less-text="@lang("Organiser.hide_additional_organiser_options")" href="javascript:void(0);"
-                                   class="in-form-link show-more-options">
-                                    @lang("Organiser.additional_organiser_options")
-                                </a>
-                            </div> 
-
-                             @if(!$organisers->isEmpty()) 
-                                 <div class="form-group select_organiser" style="{{$organisers ? '' : 'display:none;'}}">
-
-                                    {!! Form::label('organiser_id', trans("Organiser.select_organiser"), array('class'=>'control-label ')) !!}
-                                    {!! Form::select('organiser_id', $organisers, $organiser_id, ['class' => 'form-control']) !!}
-
-                                </div>
-                                <span class="">
-                                    @lang("Organiser.or") <a data-toggle-class=".select_organiser, .create_organiser"
-                                       data-show-less-text="<b>@lang("Organiser.select_an_organiser")</b>" href="javascript:void(0);"
-                                       class="in-form-link show-more-options">
-                                        <b>@lang("Organiser.create_an_organiser")</b>
-                                    </a>
-                                </span> 
-                            @endif
-                        @endif--}}
                     </div>
                 </div>
             </div>
@@ -365,12 +38,27 @@
                 <span class="uploadProgress"></span>
                 {!! Form::button(trans("basic.cancel"), ['class'=>"btn modal-close btn-danger",'data-dismiss'=>'modal']) !!}
                 
-                {!! Form::submit("create program", ['class'=>"btn btn-success"]) !!}
-                
-                
+                {!! Form::submit("create program", ['class'=>"btn btn-success"]) !!}               
 
             </div>
         </div>
-        
     </div>
 </div>
+<style>
+    .hour a{
+        pointer-events: none !important;
+        cursor: default !important;
+    }
+    .hour input{
+        pointer-events: none !important;
+    }
+
+    .minutes a{
+        pointer-events: none !important;
+        cursor: default !important;
+    }
+    .minutes input{
+        pointer-events: none !important;
+    }
+
+</style>

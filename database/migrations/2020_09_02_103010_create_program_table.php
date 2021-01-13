@@ -16,8 +16,8 @@ class CreateProgramTable extends Migration
         Schema::create('program', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('day');
-            $table->datetime('start_date');
-            $table->datetime('end_date');
+            $table->datetime('date');
+
             $table->timestamps();
         });
     }

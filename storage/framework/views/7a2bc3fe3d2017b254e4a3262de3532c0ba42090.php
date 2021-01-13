@@ -29,7 +29,6 @@
             </div>
         </div>
     </div>
-    
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -44,11 +43,8 @@
                    
                 </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        <?php else: ?>
-            
         <?php endif; ?>
     </div>
-    
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('Shared.Layouts.Master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/ManageOrganiser/Programs.blade.php ENDPATH**/ ?>
