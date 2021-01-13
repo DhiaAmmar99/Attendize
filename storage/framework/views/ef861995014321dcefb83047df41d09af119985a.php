@@ -12,7 +12,7 @@
             <li class="<?php echo e(Request::is('*Session*') ? 'active' : ''); ?>">
                 <a href="<?php echo e(route('showOrganiserEvents', array('organiser_id' => $organiser->id))); ?>">
                     <span class="figure"><i class="ico-calendar"></i></span>
-                    <span class="text">Session</span>
+                    <span class="text">Sessions</span>
                 </a>
             </li>
 
@@ -21,7 +21,13 @@
             <li class="<?php echo e(Request::is('*program*') ? 'active' : ''); ?>">
                 <a href="<?php echo e(route('programs', array('organiser_id' => $organiser->id))); ?>">
                     <span class="figure"><i class="ico-code"></i></span>
-                    <span class="text">Program</span>
+                    <span class="text">Programs</span>
+                </a>
+            </li>
+            <li class="<?php echo e(Request::is('*speaker*') ? 'active' : ''); ?>">
+                <a href="<?php echo e(route('speakers', array('organiser_id' => $organiser->id))); ?>">
+                    <span class="figure"><i class="ico-cog"></i></span>
+                    <span class="text">speakers</span>
                 </a>
             </li>
             <li class="<?php echo e(Request::is('*users*') ? 'active' : ''); ?>">

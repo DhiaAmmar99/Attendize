@@ -1,18 +1,20 @@
 <div class="panel panel-success event">
     <div class="panel-heading" data-style="background-color: red; background-size: cover;">
-        {{-- <div class="event-date">
-            <div class="month">
+        <div class="event-date">
+            {{-- <div class="month">
                  {{strtoupper(explode("|", trans("basic.months_short"))[$program->start_date->format('n')])}} 
             </div>
             <div class="day">
                  {{$program->start_date->format('d')}} 
-            </div>
-        </div> --}}
+            </div> --}}
+            
+            <img src="{{$speaker->image}} " alt="" class="img">
+        </div>
         <ul class="event-meta">
             <li class="event-title">
                 <h4>
                 {{-- <h4 title="{{{$program->title}}}" href="{{route('showEventDashboard', ['event_id'=>$program->id])}}"> --}}
-                    {{{ Str::limit($program->day, $limit = 75, $end = '...') }}}
+                    {{{ Str::limit($speaker->firstname." ".$speaker->lastname , $limit = 75, $end = '...') }}}
                 </h4>
             </li>
             {{-- <li class="event-organiser">
@@ -27,18 +29,26 @@
             <li>
                 <div class="section">
                     <h4 class="nm">
-                        {{$program->date}} 
+                        {{$speaker->email}} 
                     </h4>
-                    <p class="nm text-muted">Date of program</p>
+                    <p class="nm text-muted">Email</p>
+                </div>
+            </li>
+            <li>
+                <div class="section">
+                    <h4 class="nm">
+                        {{$speaker->organization}} 
+                    </h4>
+                    <p class="nm text-muted">Organization</p>
                 </div>
             </li>
            
              {{-- <li>
                 <div class="section">
                     <h4 class="nm">
-                        {{$program->end_date}} 
+                        {{$speaker->country}} 
                     </h4>
-                    <p class="nm text-muted">End date</p>
+                    <p class="nm text-muted">country</p>
                 </div>
             </li>  --}}
         </ul>
@@ -46,11 +56,10 @@
     <div class="panel-footer">
         <ul class="nav nav-section nav-justified">
             <li>
-                <a href="" data-modal-id="updateProgram" data-href="{{route('showUpdateProgram', ['organiser_id' => @$organiser->id, 'prog_id' => $program->id  ])}}" class="loadModal" id="{{$program->id}}"><i class="ico-edit"></i> @lang("basic.edit")</a>
+                <a href="" data-modal-id="update" data-href="{{route('showUpdateSpeaker', ['organiser_id' => @$organiser->id, 'speaker_id' => $speaker->id  ])}}" class="loadModal" id="{{$speaker->id}}"><i class="ico-edit"></i> @lang("basic.edit")</a>
             </li>
             <li>
-                {{-- <a href="" data-modal-id="removeProgram" data-href="{{route('removeProgram', ['id' => $program->id  ])}}"  id="{{$program->id}}"><i class="ico-remove"></i> Remove</a> --}}
-                <a  data-modal-id="removeProgram"  id="{{$program->id}}" onclick="popupRMV({{$program->id}})"><i class="ico-remove"></i> Remove</a>
+                <a  data-modal-id="removeProgram"  id="{{$speaker->id}}" onclick="popupRMV({{$speaker->id}})"><i class="ico-remove"></i> Remove</a>
             </li>
 
              {{-- <li>
@@ -76,7 +85,7 @@
             if (willDelete) {
                 jQuery.ajax({
                     type: "get",
-                    url: window.location.origin+"/removeProgram",
+                    url: window.location.origin+"/removeSpeaker",
                     data: {"id": id},
                 });
                 // jQuery(`#${id}`).remove();
@@ -93,3 +102,8 @@
             });
     }
 </script>
+<style>
+    .img{
+        width: 80%;
+    }
+</style>

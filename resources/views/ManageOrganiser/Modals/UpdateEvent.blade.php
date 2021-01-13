@@ -7,7 +7,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h3 class="modal-title">
                     <i class="ico-calendar"></i>
-                    Update Event</h3> 
+                    Update Session</h3> 
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -18,7 +18,6 @@
                                 <div class="form-group">
                                     {!! Form::label('title', "Session title", array('class'=>'control-label required')) !!}
                                     {!!  Form::text('title', $event->title ,array('class'=>'form-control','placeholder'=>"Enter your title session " ))  !!}
-                                    
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -194,13 +193,14 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="form-group custom-theme">
-                                        {!! Form::label('description', "Session description", array('class'=>'control-label required')) !!}
+                                        {{--{!! Form::label('description', "Session description", array('class'=>'control-label required')) !!}
                                         {!!  Form::textarea('description', $event->description,
                                                     array(
                                                     'class'=>'form-control  editable',
                                                     'rows' => 5
-                                                    ))  !!}
-                                        {{-- <textarea  class="form-control  editable" name="description" rows="5" >{{$event->description}}</textarea> --}}
+                                                    ))  !!}}}
+                                                    --}}
+                                         <textarea  class="form-control  editable" name="description" rows="5" >{{$event->description}}</textarea> 
                                     </div>
                                 </div>
                             </div>        

@@ -1,11 +1,15 @@
 <div class="panel panel-success event">
     <div class="panel-heading" data-style="background-color: red; background-size: cover;">
-        
+        <div class="event-date">
+            
+            
+            <img src="<?php echo e($speaker->image); ?> " alt="" class="img">
+        </div>
         <ul class="event-meta">
             <li class="event-title">
                 <h4>
                 
-                    <?php echo e(Str::limit($program->day, $limit = 75, $end = '...')); ?>
+                    <?php echo e(Str::limit($speaker->firstname." ".$speaker->lastname , $limit = 75, $end = '...')); ?>
 
                 </h4>
             </li>
@@ -19,9 +23,17 @@
             <li>
                 <div class="section">
                     <h4 class="nm">
-                        <?php echo e($program->date); ?> 
+                        <?php echo e($speaker->email); ?> 
                     </h4>
-                    <p class="nm text-muted">Date of program</p>
+                    <p class="nm text-muted">Email</p>
+                </div>
+            </li>
+            <li>
+                <div class="section">
+                    <h4 class="nm">
+                        <?php echo e($speaker->organization); ?> 
+                    </h4>
+                    <p class="nm text-muted">Organization</p>
                 </div>
             </li>
            
@@ -31,11 +43,10 @@
     <div class="panel-footer">
         <ul class="nav nav-section nav-justified">
             <li>
-                <a href="" data-modal-id="updateProgram" data-href="<?php echo e(route('showUpdateProgram', ['organiser_id' => @$organiser->id, 'prog_id' => $program->id  ])); ?>" class="loadModal" id="<?php echo e($program->id); ?>"><i class="ico-edit"></i> <?php echo app('translator')->get("basic.edit"); ?></a>
+                <a href="" data-modal-id="update" data-href="<?php echo e(route('showUpdateSpeaker', ['organiser_id' => @$organiser->id, 'speaker_id' => $speaker->id  ])); ?>" class="loadModal" id="<?php echo e($speaker->id); ?>"><i class="ico-edit"></i> <?php echo app('translator')->get("basic.edit"); ?></a>
             </li>
             <li>
-                
-                <a  data-modal-id="removeProgram"  id="<?php echo e($program->id); ?>" onclick="popupRMV(<?php echo e($program->id); ?>)"><i class="ico-remove"></i> Remove</a>
+                <a  data-modal-id="removeProgram"  id="<?php echo e($speaker->id); ?>" onclick="popupRMV(<?php echo e($speaker->id); ?>)"><i class="ico-remove"></i> Remove</a>
             </li>
 
              
@@ -57,7 +68,7 @@
             if (willDelete) {
                 jQuery.ajax({
                     type: "get",
-                    url: window.location.origin+"/removeProgram",
+                    url: window.location.origin+"/removeSpeaker",
                     data: {"id": id},
                 });
                 // jQuery(`#${id}`).remove();
@@ -74,4 +85,9 @@
             });
     }
 </script>
-<?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/ManageOrganiser/Partials/ProgramPanel.blade.php ENDPATH**/ ?>
+<style>
+    .img{
+        width: 80%;
+    }
+</style>
+<?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/ManageOrganiser/Partials/SpeakerPanel.blade.php ENDPATH**/ ?>

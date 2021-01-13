@@ -8,7 +8,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h3 class="modal-title">
                     <i class="ico-calendar"></i>
-                    Update Event</h3> 
+                    Update Session</h3> 
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -21,7 +21,6 @@
 
                                     <?php echo Form::text('title', $event->title ,array('class'=>'form-control','placeholder'=>"Enter your title session " )); ?>
 
-                                    
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -204,15 +203,8 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="form-group custom-theme">
-                                        <?php echo Form::label('description', "Session description", array('class'=>'control-label required')); ?>
-
-                                        <?php echo Form::textarea('description', $event->description,
-                                                    array(
-                                                    'class'=>'form-control  editable',
-                                                    'rows' => 5
-                                                    )); ?>
-
                                         
+                                         <textarea  class="form-control  editable" name="description" rows="5" ><?php echo e($event->description); ?></textarea> 
                                     </div>
                                 </div>
                             </div>        

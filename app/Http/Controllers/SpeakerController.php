@@ -10,10 +10,31 @@ use App\Models\Stream;
 use App\Models\Typeofsession;
 use Illuminate\Http\Request;
 use Response;
+use App\Models\Organiser;
 
 class SpeakerController extends Controller
 {
-   
+    public function showCreatespeaker(Request $request)
+    {
+        $data = [
+            'organiser_id' => $request->get('organiser_id') ? $request->get('organiser_id') : false,
+        ];
+       
+        return view('ManageOrganiser.Modals.Createspeaker', $data);
+    }
+
+
+    public function speakers($organiser_id){
+
+        $organiser = Organiser::scope()->findOrFail($organiser_id);
+        $data = [
+            'organiser'=> $organiser,
+        ];
+        $speakers = Speaker::all();
+        return view('ManageOrganiser.Speakers', $data)->with('speakers', $speakers);
+    }
+
+
     public function create(Request $request)
     {
         $speaker = new Speaker();
@@ -36,6 +57,21 @@ class SpeakerController extends Controller
 
         $speaker->save();
         return response()->json($speaker);
+    }
+
+
+    public function showUpdateSpeaker(Request $request)
+    {
+        $data = [
+            'organiser_id' => $request->get('organiser_id') ? $request->get('organiser_id') : false,
+            'speaker_id' => $request->get('speaker_id')
+        ];
+
+        $dataSP = Speaker::where('id', $data['speaker_id'])->get();
+                
+       
+        return view('ManageOrganiser.Modals.updatespeaker', $data)
+        ->with('speaker', $dataSP[0]);
     }
 
     public function update(Request $request)
@@ -161,6 +197,31 @@ class SpeakerController extends Controller
         return response()->json($ss);
     }
 
+
+    public function removeSpeaker(Request $request)
+    {
+        // remove by id.
+        if ($request->has('id')) {
+            
+            $data = Speaker::where('id', $request->input('id'))->delete();
+            if ($data) {
+                return Response::json([
+                    'message' => 'success',
+                    'status' => '1',
+                ]);
+            } else
+                return Response::json([
+                    'message' => 'failed',
+                    'status' => '0'
+                ]);
+        }else{
+            return response()->json([
+                'status'=>'0',
+                'message' => 'failed'
+                ]);
+        }
+     
+    }
     // public function SearchSessionSpeaker(Request $request)
     // {
        
