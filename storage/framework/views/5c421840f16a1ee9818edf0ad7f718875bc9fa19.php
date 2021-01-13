@@ -27,7 +27,7 @@
                                 <div class="form-group">
                                     <?php echo Form::label('date', "Program date", array('class'=>'required control-label')); ?>
 
-                                    <?php echo Form::text('date', old('date'),
+                                    <?php echo Form::text('date','2020-07-10 00:00:00', 
                                                         [
                                                     'class'=>'form-control start hasDatepicker ',
                                                     'data-field'=>'datetime',

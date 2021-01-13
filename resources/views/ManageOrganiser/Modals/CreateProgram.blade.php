@@ -23,7 +23,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     {!! Form::label('date', "Program date", array('class'=>'required control-label')) !!}
-                                    {!!  Form::text('date', old('date'),
+                                    {!!  Form::text('date','2020-07-10 00:00:00', 
                                                         [
                                                     'class'=>'form-control start hasDatepicker ',
                                                     'data-field'=>'datetime',

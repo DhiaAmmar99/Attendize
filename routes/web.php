@@ -76,14 +76,31 @@ Route::get('/removeProgram',
                 [ProgramController::class, 'createProgram']
             )->name('createProgram');
 
-
-
             Route::get('/updateprog', [ProgramController::class, 'showUpdateProgram'])->name('showUpdateProgram');
             
         });
+
+
+        /*
+         * ----------
+         * Session
+         * ----------
+         */
+
+Route::get('/removeSession', 
+     [EventController::class ,'removeSession']
+     )->name('removeSession');
             
 
         
+     Route::group(['prefix' => 'events'], function () {
+
+        
+        
+        Route::get('/updateEvent', [EventController::class, 'showUpdateEvent'])->name('showUpdateEvent');
+        Route::post('/updateEvent', [EventController::class, 'updateEvent'])->name('updateEvent');
+
+      });
 
 
 

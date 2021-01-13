@@ -15,27 +15,27 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                {!! Form::label('title', "Session title", array('class'=>'control-label required')) !!}
-                                {!!  Form::text('title', old('title'),array('class'=>'form-control','placeholder'=>"Enter your title session " ))  !!}
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {!! Form::label('title', "Session title", array('class'=>'control-label required')) !!}
+                                    {!!  Form::text('title', old('title'),array('class'=>'form-control','placeholder'=>"Enter your title session " ))  !!}
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                {!! Form::label("","program", array('class'=>'required control-label')) !!}
-                                <select class="form-control" name="program" id="program">
-                                    <option selected disabled>Select program</option>
-                                    @foreach ($programs as $p)
-                                        <option data="{{$p->date}}" value="{{$p->id}}">{{$p->day}}</option>
-                                    @endforeach
-                                </select>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {!! Form::label("","program", array('class'=>'required control-label')) !!}
+                                    <select class="form-control" name="program" id="program">
+                                        <option selected disabled>Select program</option>
+                                        @foreach ($programs as $p)
+                                            <option data="{{$p->date}}" value="{{$p->id}}">{{$p->day}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
 
-                        <input type="hidden" name="start_date" id="start_date" value="2021-01-07 00:00">
-                        <input type="hidden" name="end_date" id="end_date"  value="2021-01-07 00:00">
+                            <input type="hidden" name="start_date" id="start_date" value="2021-01-07 00:00">
+                            <input type="hidden" name="end_date" id="end_date"  value="2021-01-07 00:00">
                         
                         
                         

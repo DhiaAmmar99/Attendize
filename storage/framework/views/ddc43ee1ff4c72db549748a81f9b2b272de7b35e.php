@@ -54,6 +54,12 @@
     .minutes input{
         pointer-events: none !important;
     }
+    .dtpicker-buttonClear{
+        display: none !important;;
+    }
+    .dtpicker-buttonSet{
+        width: 100% !important;;
+    }
 
 </style>
 

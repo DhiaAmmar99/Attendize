@@ -16,30 +16,30 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <?php echo Form::label('title', "Session title", array('class'=>'control-label required')); ?>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <?php echo Form::label('title', "Session title", array('class'=>'control-label required')); ?>
 
-                                <?php echo Form::text('title', old('title'),array('class'=>'form-control','placeholder'=>"Enter your title session " )); ?>
+                                    <?php echo Form::text('title', old('title'),array('class'=>'form-control','placeholder'=>"Enter your title session " )); ?>
 
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <?php echo Form::label("","program", array('class'=>'required control-label')); ?>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <?php echo Form::label("","program", array('class'=>'required control-label')); ?>
 
-                                <select class="form-control" name="program" id="program">
-                                    <option selected disabled>Select program</option>
-                                    <?php $__currentLoopData = $programs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <option data="<?php echo e($p->date); ?>" value="<?php echo e($p->id); ?>"><?php echo e($p->day); ?></option>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </select>
+                                    <select class="form-control" name="program" id="program">
+                                        <option selected disabled>Select program</option>
+                                        <?php $__currentLoopData = $programs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option data="<?php echo e($p->date); ?>" value="<?php echo e($p->id); ?>"><?php echo e($p->day); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
 
-                        <input type="hidden" name="start_date" id="start_date" value="2021-01-07 00:00">
-                        <input type="hidden" name="end_date" id="end_date"  value="2021-01-07 00:00">
+                            <input type="hidden" name="start_date" id="start_date" value="2021-01-07 00:00">
+                            <input type="hidden" name="end_date" id="end_date"  value="2021-01-07 00:00">
                         
                         
                         

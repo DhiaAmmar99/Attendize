@@ -34,11 +34,44 @@
                 <a href="" data-modal-id="updateProgram" data-href="<?php echo e(route('showUpdateProgram', ['organiser_id' => @$organiser->id, 'prog_id' => $program->id  ])); ?>" class="loadModal" id="<?php echo e($program->id); ?>"><i class="ico-edit"></i> <?php echo app('translator')->get("basic.edit"); ?></a>
             </li>
             <li>
-                <a href="" data-modal-id="removeProgram" data-href="<?php echo e(route('removeProgram', ['id' => $program->id  ])); ?>"  id="<?php echo e($program->id); ?>"><i class="ico-remove"></i>remove</a>
+                
+                <a  data-modal-id="removeProgram"  id="<?php echo e($program->id); ?>" onclick="popupRMV(<?php echo e($program->id); ?>)"><i class="ico-remove"></i> Remove</a>
             </li>
 
              
         </ul>
     </div>
 </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    function popupRMV(id){
+       
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                jQuery.ajax({
+                    type: "get",
+                    url: window.location.origin+"/removeProgram",
+                    data: {"id": id},
+                });
+                // jQuery(`#${id}`).remove();
+
+                
+
+                swal("Poof! Your imaginary file has been deleted!", {
+                icon: "success",
+                buttons: false,
+                });
+                location.reload();
+
+            } 
+            });
+    }
+</script>
 <?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/ManageOrganiser/Partials/ProgramPanel.blade.php ENDPATH**/ ?>
