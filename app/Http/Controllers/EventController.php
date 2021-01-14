@@ -70,7 +70,7 @@ class EventController extends MyBaseController
         $chairs = Chair::all();
         $sessionSpeaker = sessionSpeaker::where('session_id', $event[0]->id)->get();
         $sessionChair = sessionChair::where('session_id', $event[0]->id)->get();
-        return view('ManageOrganiser.Modals.updateEvent', $data)
+        return view('ManageOrganiser.Modals.UpdateEvent', $data)
         ->with([
             'organiser_id'=> $data['organiser_id'],
             'event'=> $event[0],

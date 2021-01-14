@@ -45,7 +45,7 @@ class ProgramController extends Controller
         $p->date = $request->input('date');
 
         $p->save();
-        // return response()->json($p);
+        
         return response()->json([
             'status'      => 'success',
             'redirectUrl' => route('programs', [
@@ -75,11 +75,15 @@ class ProgramController extends Controller
                 'date' => $request->input('date'),
             ]);
         if ($data) {
-            return Response::json([
+            return response()->json([
+                'status'      => 'success',
                 'message' => 'Data program updated',
-                'status' => '1',
-                'data' => $data,
+                'id'          => $request->input('id'),
+                'redirectUrl' => route('programs', [
+                    'organiser_id'  => $request->input('organiser_id'),
+                ]),
             ]);
+           
         } else {
             return Response::json([
                 'message' => 'This program does not exist',
@@ -151,34 +155,4 @@ class ProgramController extends Controller
         
     }
 
-    // public function createMyProgram(Request $request)
-    // {
-    //     $reservation = new RegistrationProgram();
-    //     $reservation->registration_id = $request->input('registration_id');
-    //     $reservation->program_id = $request->input('program_id');
-    //     $reservation->save();
-    //     return response()->json($reservation);
-    // }
-
-    // public function MyProgram(Request $request)
-    // {
-       
-    //     $results = RegistrationProgram::all()->where('registration_id', $request->input('id'));
-        
-    //     if(!$results->isEmpty()){
-    //         return Response::json([
-    //             'status'=>'1',
-    //             'message' => 'success',
-    //             'data'=>$results
-    //             ]);
-    //     }else{
-    //         return Response::json([
-    //             'status'=>'0',
-    //             'message' => 'failed',
-    //             'data'=>$results
-    //             ]);
-    //     }
-    // }
-
-   
 }

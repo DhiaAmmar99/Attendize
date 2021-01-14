@@ -21,7 +21,7 @@ class SpeakerController extends Controller
             'organiser_id' => $request->get('organiser_id') ? $request->get('organiser_id') : false,
         ];
        
-        return view('ManageOrganiser.Modals.Createspeaker', $data);
+        return view('ManageOrganiser.Modals.CreateSpeaker', $data)->with('organiser_id', $data['organiser_id']);
     }
 
 
@@ -77,7 +77,7 @@ class SpeakerController extends Controller
         $dataSP = Speaker::where('id', $data['speaker_id'])->get();
                 
        
-        return view('ManageOrganiser.Modals.updatespeaker', $data)
+        return view('ManageOrganiser.Modals.UpdateSpeaker', $data)
         ->with([
             'organiser_id'=> $data['organiser_id'],
             'speaker'=> $dataSP[0],
@@ -108,11 +108,13 @@ class SpeakerController extends Controller
             ]);
         
         if ($data) 
-        return view('ManageOrganiser.Speakers', [
-                    'organiser_id'  => $request->input('organiser_id'),
-                    'organiser'  => $request->input('organiser_id'),
-                    'id'  => $request->input('organiser_id'),
-                ]);
+        return response()->json([
+            'status'      => 'success',
+            'id'          => $request->input('id'),
+            'redirectUrl' => route('speakers', [
+                'organiser_id'  => $request->input('organiser_id'),
+            ]),
+        ]);
             // return response()->json([
             //     'status'      => 'Data Speaker updated',
             //     'redirectUrl' => route('speakers', [
@@ -240,35 +242,4 @@ class SpeakerController extends Controller
         }
      
     }
-    // public function SearchSessionSpeaker(Request $request)
-    // {
-       
-    //     // Set query builder
-    //     $data = sessionSpeaker::query();
-  
-        
-    //     // Search by session_id.
-    //     if ($request->has('session_id')) {
-    //          $data->where('session_id', $request->input('session_id'))->get();
-    //     }
-    //     // Search by speaker_id.
-    //     if ($request->has('speaker_id')) {
-    //         $data->where('speaker_id', $request->input('speaker_id'))->get();
-    //     }
-       
-
-    //     if(!$data->isEmpty()){
-    //         return Response::json([
-    //             'message' => 'success',
-    //             'status' => '1',
-    //             'data' => $data
-    //         ]);
-    //     } else
-    //         return Response::json([
-    //             'message' => 'failed',
-    //             'status' => '0',
-               
-    //         ]);
-    // }
-
 }

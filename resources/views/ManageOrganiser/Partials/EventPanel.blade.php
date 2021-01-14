@@ -67,7 +67,7 @@
             if (willDelete) {
                 jQuery.ajax({
                     type: "get",
-                    url: "http://127.0.0.1:8000/removeSession",
+                    url: window.location.origin+"/removeSession",
                     data: {"id": id},
                 });
                 // jQuery(`#${id}`).remove();
