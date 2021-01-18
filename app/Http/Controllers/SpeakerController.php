@@ -224,6 +224,7 @@ class SpeakerController extends Controller
         if ($request->has('id')) {
             
             $data = Speaker::where('id', $request->input('id'))->delete();
+            $sp = sessionSpeaker::where('speaker_id', $request->input('id'))->delete();
             if ($data) {
                 return Response::json([
                     'message' => 'success',
@@ -240,6 +241,6 @@ class SpeakerController extends Controller
                 'message' => 'failed'
                 ]);
         }
-     
+
     }
 }

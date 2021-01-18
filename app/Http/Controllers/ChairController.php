@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Models\Chair;
+use App\Models\Program;
 use App\Models\sessionChair;
+use App\Models\Stream;
+use App\Models\Typeofsession;
 use Response;
 
 class ChairController extends Controller
@@ -74,15 +78,33 @@ class ChairController extends Controller
     {
 
         // Search by Id.
-
-       if ($request->has('id')) {
-            $data = Chair::query();
-            $data->where('id', $request->input('id'));
-            if ($data->get()) {
+        if ($request->has('id')) {
+            
+            $data = Chair::where('id', $request->input('id'))->get();
+            if(!$data->isEmpty()){
+                foreach ($data as  $p) {
+                    $session = sessionChair::where('chair_id', $p->id)->get("session_id AS session");
+                    $p["sessions"] = $session;
+                    foreach ($p->sessions as  $l) {
+                        $sp = Event::select('id', 'title', 'description', 'start_date', 'end_date', 'language', 'room', 'nb_session', 'id_stream AS stream', 'id_TOS AS TypeOfSession', 'id_program AS program')->where('id', $l->session)->get();
+                        $l->session = $sp;
+                        
+                        foreach ($sp as  $c) {
+                            $dataStream = Stream::query()->where('id', $c->stream)->get();
+                            $c->stream = $dataStream[0];
+                
+                            $dataTOS = Typeofsession::query()->where('id', $c->TypeOfSession)->get();
+                            $c->TypeOfSession = $dataTOS[0];
+                
+                            $dataProgram = Program::query()->where('id', $c->program)->get();
+                            $c->program = $dataProgram[0]; 
+                        }
+                    }
+                }
                 return Response::json([
                     'message' => 'success',
                     'status' => '1',
-                    'data' => $data->get()
+                    'data' => $data
                 ]);
             } else
                 return Response::json([
@@ -92,11 +114,35 @@ class ChairController extends Controller
                 ]);
         }
 
-        // all Chair.
-        
+        // all chairs.
+
         else{
             $data = Chair::all();
         if ($data) {
+            foreach ($data as  $p) {
+                $session = sessionChair::where('chair_id', $p->id)->get("session_id AS session");
+                $p->sessions = $session;
+                foreach ($p->sessions as  $l) {
+                    $sp = Event::select('id', 'title', 'description', 'start_date', 'end_date', 'language', 'room', 'nb_session', 'id_stream AS stream', 'id_TOS AS TypeOfSession', 'id_program AS program')->where('id', $l->session)->get();
+                    $l->session = $sp;
+                    $datass [] = $l->session;
+                    $p->sessions = $datass;
+
+                    
+                        
+                    
+                    foreach ($sp as  $c) {
+                        $dataStream = Stream::query()->where('id', $c->stream)->get();
+                        $c->stream = $dataStream[0];
+            
+                        $dataTOS = Typeofsession::query()->where('id', $c->TypeOfSession)->get();
+                        $c->TypeOfSession = $dataTOS[0];
+            
+                        $dataProgram = Program::query()->where('id', $c->program)->get();
+                        $c->program = $dataProgram[0];
+                    }
+                }
+            }
             return Response::json([
                 'message' => 'success',
                 'status' => '1',

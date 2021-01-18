@@ -66,7 +66,7 @@
             .then((willDelete) => {
             if (willDelete) {
                 jQuery.ajax({
-                    type: "get",
+                    type: "post",
                     url: window.location.origin+"/removeSession",
                     data: {"id": id},
                 });
@@ -77,7 +77,7 @@
                 icon: "success",
                 buttons: false,
                 });
-                location.reload();
+                //setTimeout(function(){ location.reload(); }, 1000);
             } 
             });
     }

@@ -79,7 +79,7 @@
                 icon: "success",
                 buttons: false,
                 });
-                location.reload();
+                setTimeout(function(){ location.reload(); }, 1000);
 
             } 
             });

@@ -125,7 +125,7 @@ Route::get('/removeProgram',
          * ----------
          */
 
-Route::get('/removeSession', 
+Route::post('/removeSession', 
      [EventController::class ,'removeSession']
      )->name('removeSession');
             

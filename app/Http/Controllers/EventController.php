@@ -12,6 +12,7 @@ use App\Models\Speaker;
 use App\Models\Organiser;
 use App\Models\EventImage;
 use App\Models\Program;
+use App\Models\RegistrationSchedule;
 use App\Models\sessionChair;
 use App\Models\sessionSpeaker;
 use App\Models\Stream;
@@ -558,9 +559,13 @@ class EventController extends MyBaseController
     public function removeSession(Request $request)
     {
         // remove by id.
+
         if ($request->has('id')) {
             
-            $data = Event::where('id', $request->input('id'))->delete();
+            $id = $request->input('id');
+            $data = DB::select('DELETE from events where id =:id', ['id' => $id]);
+            
+            $sp = RegistrationSchedule::where('session_id', $id)->delete();
             if ($data) {
                 return Response::json([
                     'message' => 'success',
