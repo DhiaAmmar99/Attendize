@@ -420,32 +420,6 @@ class ApiregistrationController extends Controller
                 ]);
     }
 
-     public function listSponsors()
-    {
-        // if(($request->image != null) ||  ($request->title != null)){
-        //     $sp = new Sponsors();
-        //     $sp->image = $request->input('image');
-        //     $sp->title = $request->input('title');
-        //     $sp->save();
-        // }
-        $results = Sponsors::all();
-     
-
-        if(!$results->isEmpty()){
-            return response()->json([
-                'status'=>'1',
-                'message' => 'success',
-                'data'=>$results
-                ]);
-        }else{
-            return response()->json([
-                'status'=>'0',
-                'message' => 'success',
-                'data'=>$results
-                ]);
-        }
-        
-    }
 
     public function payment(Request $request)
     {
