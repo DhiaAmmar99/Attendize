@@ -3,12 +3,12 @@
         <div class="event-date">
 
             
-            <img src="<?php echo e($stream->icon); ?> " alt="" class="img">
+            <img src="<?php echo e($sponsor->image); ?> " alt="" class="img">
         </div>
         <ul class="event-meta">
             <li class="event-title">
                 <h4>
-                    <?php echo e(Str::limit($stream->title , $limit = 75, $end = '...')); ?>
+                    <?php echo e(Str::limit($sponsor->title , $limit = 75, $end = '...')); ?>
 
                 </h4>
             </li>
@@ -17,27 +17,14 @@
 
     </div>
 
-    <div class="panel-body">
-        <ul class="nav nav-section nav-justified mt5 mb5">
-            <li>
-                <div class="section">
-                    <h4 class="nm">
-                        <?php echo e($stream->couleur); ?> 
-                    </h4>
-                    <p class="nm text-muted">Color</p>
-                </div>
-            </li>
-
-           
-        </ul>
-    </div>
+    
     <div class="panel-footer">
         <ul class="nav nav-section nav-justified">
             <li>
-                <a href="" data-modal-id="update" data-href="<?php echo e(route('showUpdateStream', ['organiser_id' => @$organiser->id, 'id_stream' => $stream->id  ])); ?>" class="loadModal" id="<?php echo e($stream->id); ?>"><i class="ico-edit"></i> <?php echo app('translator')->get("basic.edit"); ?></a>
+                <a href="" data-modal-id="update" data-href="<?php echo e(route('showUpdateSponsor', ['organiser_id' => @$organiser->id, 'id_sponsor' => $sponsor->id  ])); ?>" class="loadModal" id="<?php echo e($sponsor->id); ?>"><i class="ico-edit"></i> <?php echo app('translator')->get("basic.edit"); ?></a>
             </li>
             <li>
-                <a  data-modal-id="removeProgram"  id="<?php echo e($stream->id); ?>" onclick="popupRMV(<?php echo e($stream->id); ?>)"><i class="ico-remove"></i> Remove</a>
+                <a  data-modal-id="removeSponsor"  id="<?php echo e($sponsor->id); ?>" onclick="popupRMV(<?php echo e($sponsor->id); ?>)"><i class="ico-remove"></i> Remove</a>
             </li>
         </ul>
     </div>
@@ -57,7 +44,7 @@
             if (willDelete) {
                 jQuery.ajax({
                     type: "get",
-                    url: window.location.origin+"/removeStream",
+                    url: window.location.origin+"/removeSponsor",
                     data: {"id": id},
                 });
 
@@ -75,5 +62,15 @@
     .img{
         width: 80%;
     }
+    .event .event-meta {
+
+        margin-left: 100px !important;
+    
+    }
+    .event .event-date {
+
+        width: 80px !important;
+        
+    }
 </style>
-<?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/ManageOrganiser/Partials/StreamPanel.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/ManageOrganiser/Partials/SponsorPanel.blade.php ENDPATH**/ ?>

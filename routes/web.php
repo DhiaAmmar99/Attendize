@@ -44,6 +44,7 @@ use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\SpeakerController;
 use App\Http\Controllers\StreamController;
 use App\Http\Controllers\TypeofsessionController;
+use App\Http\Controllers\SponsorsController;
 
 
 
@@ -151,6 +152,44 @@ Route::get('/removeProgram',
 
       });
 
+
+
+    /*
+     * ----------
+     * Sponsor
+     * ----------
+    */
+    Route::get('/{organiser_id}/sponsors', [SponsorsController::class, 'sponsors'])->name('sponsors');
+    Route::get('/removeSponsor', [SponsorsController::class ,'removeSponsor']);
+    Route::group(['prefix' => 'sponsors'], function () {
+    
+        /*
+         * ----------
+         * Create sponsors
+         * ----------
+         */
+        Route::get('/createSponsor',
+            [SponsorsController::class, 'showCreateSponsor']
+        )->name('showCreateSponsor');
+    
+        Route::post('/createSponsor',
+            [SponsorsController::class, 'createSponsor']
+        )->name('createSponsor');
+    
+        /*
+         * ----------
+         * Update sponsors
+         * ----------
+         */
+        Route::get('/updateSponsor',
+            [SponsorsController::class, 'showUpdateSponsor']
+        )->name('showUpdateSponsor');
+    
+        Route::post('/updateSponsor',
+            [SponsorsController::class, 'updateSponsor']
+        )->name('updateSponsor');
+        
+    });
 
 
     /*

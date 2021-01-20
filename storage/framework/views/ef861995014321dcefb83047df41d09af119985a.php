@@ -17,7 +17,7 @@
             </li>
             <li class="<?php echo e(Request::is('*typeofsessions*') ? 'active' : ''); ?>">
                 <a href="<?php echo e(route('typeofsessions', array('organiser_id' => $organiser->id))); ?>">
-                    <span class="figure"><i class="ico-calendar"></i></span>
+                    <span class="figure"><i class="ico-cog"></i></span>
                     <span class="text">type of sessions</span>
                 </a>
             </li>
@@ -40,6 +40,12 @@
                 <a href="<?php echo e(route('speakers', array('organiser_id' => $organiser->id))); ?>">
                     <span class="figure"><i class="ico-cog"></i></span>
                     <span class="text">speakers</span>
+                </a>
+            </li>
+            <li class="<?php echo e(Request::is('*sponsors*') ? 'active' : ''); ?>">
+                <a href="<?php echo e(route('sponsors', array('organiser_id' => $organiser->id))); ?>">
+                    <span class="figure"><i class="ico-code"></i></span>
+                    <span class="text">sponsors</span>
                 </a>
             </li>
             <li class="<?php echo e(Request::is('*users*') ? 'active' : ''); ?>">

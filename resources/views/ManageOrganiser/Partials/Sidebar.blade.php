@@ -17,7 +17,7 @@
             </li>
             <li class="{{ Request::is('*typeofsessions*') ? 'active' : '' }}">
                 <a href="{{route('typeofsessions', array('organiser_id' => $organiser->id))}}">
-                    <span class="figure"><i class="ico-calendar"></i></span>
+                    <span class="figure"><i class="ico-cog"></i></span>
                     <span class="text">type of sessions</span>
                 </a>
             </li>
@@ -45,6 +45,12 @@
                 <a href="{{route('speakers', array('organiser_id' => $organiser->id))}}">
                     <span class="figure"><i class="ico-cog"></i></span>
                     <span class="text">speakers</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('*sponsors*') ? 'active' : '' }}">
+                <a href="{{route('sponsors', array('organiser_id' => $organiser->id))}}">
+                    <span class="figure"><i class="ico-code"></i></span>
+                    <span class="text">sponsors</span>
                 </a>
             </li>
             <li class="{{ Request::is('*users*') ? 'active' : '' }}">
