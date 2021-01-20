@@ -42,6 +42,12 @@ use App\Http\Controllers\UserSignupController;
 use App\Http\Controllers\FirebaseController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\SpeakerController;
+use App\Http\Controllers\StreamController;
+use App\Http\Controllers\TypeofsessionController;
+
+
+
+
 
 Route::get('/firebase', [FirebaseController::class ,'index']);
 Route::get('/firestore', [FirebaseController::class ,'fire']);
@@ -73,6 +79,11 @@ Route::group(['prefix' => 'speakers'], function () {
         [SpeakerController::class, 'create']
     )->name('create');
 
+    /*
+     * ----------
+     * Update speakers
+     * ----------
+     */
     Route::get('/update',
         [SpeakerController::class, 'showUpdateSpeaker']
     )->name('showUpdateSpeaker');
@@ -119,15 +130,15 @@ Route::get('/removeProgram',
      
 
 
-        /*
-         * ----------
-         * Session
-         * ----------
-         */
+    /*
+     * ----------
+     * Session
+     * ----------
+    */
 
-Route::post('/removeSession', 
-     [EventController::class ,'removeSession']
-     )->name('removeSession');
+    Route::post('/removeSession', 
+        [EventController::class ,'removeSession']
+        )->name('removeSession');
             
 
         
@@ -139,6 +150,84 @@ Route::post('/removeSession',
         Route::post('/updateEvent', [EventController::class, 'updateEvent'])->name('updateEvent');
 
       });
+
+
+
+    /*
+     * ----------
+     * Stream
+     * ----------
+    */
+    Route::get('/{organiser_id}/streams', [StreamController::class, 'streams'])->name('streams');
+    Route::get('/removeStream', [StreamController::class ,'removeStream']);
+    Route::group(['prefix' => 'streams'], function () {
+    
+        /*
+         * ----------
+         * Create streams
+         * ----------
+         */
+        Route::get('/create',
+            [StreamController::class, 'showCreateStream']
+        )->name('showCreateStream');
+    
+        Route::post('/createStream',
+            [StreamController::class, 'create']
+        )->name('create');
+    
+        /*
+         * ----------
+         * Update streams
+         * ----------
+         */
+        Route::get('/update',
+            [StreamController::class, 'showUpdateStream']
+        )->name('showUpdateStream');
+    
+        Route::post('/update',
+            [StreamController::class, 'update']
+        )->name('update');
+        
+    });
+
+
+
+    /*
+     * ----------
+     * Typeofsession
+     * ----------
+    */
+    Route::get('/{organiser_id}/typeofsession', [TypeofsessionController::class, 'typeofsessions'])->name('typeofsessions');
+    Route::get('/removeTos', [TypeofsessionController::class ,'removeTypeofsession']);
+    Route::group(['prefix' => 'typeofsession'], function () {
+    
+        /*
+         * ----------
+         * Create Typeofsession
+         * ----------
+         */
+        Route::get('/create',
+            [TypeofsessionController::class, 'showCreateTypeofsession']
+        )->name('showCreateTypeofsession');
+    
+        Route::post('/create',
+            [TypeofsessionController::class, 'create']
+        )->name('create');
+    
+        /*
+         * ----------
+         * Update Typeofsession
+         * ----------
+         */
+        Route::get('/update',
+            [TypeofsessionController::class, 'showUpdateTypeofsession']
+        )->name('showUpdateTypeofsession');
+    
+        Route::post('/update',
+            [TypeofsessionController::class, 'update']
+        )->name('update');
+        
+    });
 
 
 

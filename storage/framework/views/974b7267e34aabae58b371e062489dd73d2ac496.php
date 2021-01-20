@@ -64,6 +64,9 @@
                                 </div>
                             </div>
                         </div>
+                        <?php echo Form::label('description', "description", array('class'=>'control-label required')); ?>
+
+
                         <textarea  class="form-control  editable" name="description" rows="5" ><?php echo e($speaker->description); ?></textarea>
                     </div>
                 </div>

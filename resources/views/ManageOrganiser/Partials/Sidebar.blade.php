@@ -9,6 +9,18 @@
                     <span class="text">DASHBOARD</span>
                 </a>
             </li>
+            <li class="{{ Request::is('*streams*') ? 'active' : '' }}">
+                <a href="{{route('streams', array('organiser_id' => $organiser->id))}}">
+                    <span class="figure"><i class="ico-calendar"></i></span>
+                    <span class="text">Streams</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('*typeofsessions*') ? 'active' : '' }}">
+                <a href="{{route('typeofsessions', array('organiser_id' => $organiser->id))}}">
+                    <span class="figure"><i class="ico-calendar"></i></span>
+                    <span class="text">type of sessions</span>
+                </a>
+            </li>
             <li class="{{ Request::is('*Session*') ? 'active' : '' }}">
                 <a href="{{route('showOrganiserEvents', array('organiser_id' => $organiser->id))}}">
                     <span class="figure"><i class="ico-calendar"></i></span>

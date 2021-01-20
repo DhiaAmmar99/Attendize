@@ -10,7 +10,6 @@ use App\Models\Stream;
 use App\Models\Typeofsession;
 use Illuminate\Http\Request;
 use Response;
-use Redirect;
 use App\Models\Organiser;
 
 class SpeakerController extends Controller
@@ -25,7 +24,8 @@ class SpeakerController extends Controller
     }
 
 
-    public function speakers($organiser_id){
+    public function speakers($organiser_id)
+    {
 
         $organiser = Organiser::scope()->findOrFail($organiser_id);
         $data = [
@@ -115,12 +115,7 @@ class SpeakerController extends Controller
                 'organiser_id'  => $request->input('organiser_id'),
             ]),
         ]);
-            // return response()->json([
-            //     'status'      => 'Data Speaker updated',
-            //     'redirectUrl' => route('speakers', [
-            //         'organiser_id'  => $request->input('organiser_id'),
-            //     ]),
-            // ]);
+ 
         } else {
             return Response::json([
                 'message' => 'this Speaker does not exist',

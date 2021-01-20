@@ -5,9 +5,33 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Typeofsession;
 use Response;
+use App\Models\Organiser;
 
 class TypeofsessionController extends Controller
 {
+
+
+    public function showCreateTypeofsession(Request $request)
+    {
+        $data = [
+            'organiser_id' => $request->get('organiser_id') ? $request->get('organiser_id') : false,
+        ];
+       
+        return view('ManageOrganiser.Modals.CreateTypeofsession', $data)->with('organiser_id', $data['organiser_id']);
+    }
+
+
+    public function typeofsessions($organiser_id){
+
+        $organiser = Organiser::scope()->findOrFail($organiser_id);
+        $data = [
+            'organiser'=> $organiser,
+        ];
+        $Typeofsessions = Typeofsession::all();
+        return view('ManageOrganiser.Typeofsessions', $data)->with('Typeofsessions', $Typeofsessions);
+    }
+
+
     public function create(Request $request)
     {
         $time=date('Y-m-d-H-i-s');
@@ -25,9 +49,31 @@ class TypeofsessionController extends Controller
         }
         
         $tos->save();
-        return response()->json($tos);
+        return response()->json([
+            'status'      => 'success',
+            'redirectUrl' => route('typeofsessions', [
+                'organiser_id'  => $request->get('organiser_id'),
+            ]),
+        ]);
     }
 
+
+    public function showUpdateTypeofsession(Request $request)
+    {
+        $data = [
+            'organiser_id' => $request->get('organiser_id') ? $request->get('organiser_id') : false,
+            'id_tos' => $request->get('id_tos')
+        ];
+
+        $dataS = Typeofsession::where('id', $data['id_tos'])->get();
+                
+        return view('ManageOrganiser.Modals.UpdateTypeofsession', $data)
+        ->with([
+            'organiser_id'=> $data['organiser_id'],
+            'tos'=> $dataS[0],
+
+            ]);
+    }
 
     public function update(Request $request)
     {
@@ -49,9 +95,14 @@ class TypeofsessionController extends Controller
                 'description' => $request->input('description'),
             ]);
         if ($data) 
-            return Response::json([
+            
+            return response()->json([
                 'message' => 'Data type of session updated',
-                'status' => '1',
+                'id' => $request->input('id'),
+                'status'      => '1',
+                'redirectUrl' => route('streams', [
+                    'organiser_id'  => $request->get('organiser_id'),
+                ]),
             ]);
         } else {
             return Response::json([
@@ -120,4 +171,31 @@ class TypeofsessionController extends Controller
             ]);
         }
     }
+
+    public function removeTypeofsession(Request $request)
+    {
+        // remove by id.
+        if ($request->has('id')) {
+            
+            $data = Typeofsession::where('id', $request->input('id'))->delete();
+            //$sp = Event::where('id_stream', $request->input('id'))->delete();
+            if ($data) {
+                return Response::json([
+                    'message' => 'success',
+                    'status' => '1',
+                ]);
+            } else
+                return Response::json([
+                    'message' => 'failed',
+                    'status' => '0'
+                ]);
+        }else{
+            return response()->json([
+                'status'=>'0',
+                'message' => 'failed'
+                ]);
+        }
+
+    }
 }
+

@@ -5,9 +5,32 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Stream;
 use Response;
+use App\Models\Organiser;
 
 class StreamController extends Controller
 {
+
+    public function showCreateStream(Request $request)
+    {
+        $data = [
+            'organiser_id' => $request->get('organiser_id') ? $request->get('organiser_id') : false,
+        ];
+       
+        return view('ManageOrganiser.Modals.CreateStream', $data)->with('organiser_id', $data['organiser_id']);
+    }
+
+
+    public function streams($organiser_id){
+
+        $organiser = Organiser::scope()->findOrFail($organiser_id);
+        $data = [
+            'organiser'=> $organiser,
+        ];
+        $streams = Stream::all();
+        return view('ManageOrganiser.Streams', $data)->with('streams', $streams);
+    }
+
+
     public function create(Request $request)
     {
         $time=date('Y-m-d-H-i-s');
@@ -25,7 +48,30 @@ class StreamController extends Controller
             $stream->icon = '/assets/icons/'.$fileName ;
         }
         $stream->save();
-        return response()->json($stream);
+        // return response()->json($stream);
+        return response()->json([
+            'status'      => 'success',
+            'redirectUrl' => route('streams', [
+                'organiser_id'  => $request->get('organiser_id'),
+            ]),
+        ]);
+    }
+
+    public function showUpdateStream(Request $request)
+    {
+        $data = [
+            'organiser_id' => $request->get('organiser_id') ? $request->get('organiser_id') : false,
+            'id_stream' => $request->get('id_stream')
+        ];
+
+        $dataS = Stream::where('id', $data['id_stream'])->get();
+                
+        return view('ManageOrganiser.Modals.UpdateStream', $data)
+        ->with([
+            'organiser_id'=> $data['organiser_id'],
+            'stream'=> $dataS[0],
+
+            ]);
     }
 
 
@@ -48,11 +94,17 @@ class StreamController extends Controller
                 'icon' => $stream->icon,
             ]);
         
-        if ($data) 
-            return Response::json([
+         if ($data) 
+           
+            return response()->json([
                 'message' => 'Data Stream updated',
-                'status' => '1',
+                'id' => $request->input('id'),
+                'status'      => '1',
+                'redirectUrl' => route('streams', [
+                    'organiser_id'  => $request->get('organiser_id'),
+                ]),
             ]);
+
         } else {
             return Response::json([
                 'message' => 'this Stream does not exist',
@@ -116,5 +168,31 @@ class StreamController extends Controller
                 'data' => $data
             ]);
         }
+    }
+
+    public function removeStream(Request $request)
+    {
+        // remove by id.
+        if ($request->has('id')) {
+            
+            $data = Stream::where('id', $request->input('id'))->delete();
+            //$sp = Event::where('id_stream', $request->input('id'))->delete();
+            if ($data) {
+                return Response::json([
+                    'message' => 'success',
+                    'status' => '1',
+                ]);
+            } else
+                return Response::json([
+                    'message' => 'failed',
+                    'status' => '0'
+                ]);
+        }else{
+            return response()->json([
+                'status'=>'0',
+                'message' => 'failed'
+                ]);
+        }
+
     }
 }

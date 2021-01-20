@@ -52,6 +52,8 @@
                                 </div>
                             </div>
                         </div>
+                        {!! Form::label('description', "description", array('class'=>'control-label required')) !!}
+
                         <textarea  class="form-control  editable" name="description" rows="5" >{{$speaker->description}}</textarea>
                     </div>
                 </div>
