@@ -17,7 +17,7 @@ class Event extends MyBaseModel
 {
     use SoftDeletes;
 
-    protected $fillable =['language', 'room', 'nb_session', 'id_stream', 'id_TOS', 'id_program'];
+    protected $fillable =['language', 'room', 'nb_session', 'id_stream', 'id_TOS', 'id_program', 'nb_places'];
 
     protected $dates = ['start_date', 'end_date', 'on_sale_date'];
     /**

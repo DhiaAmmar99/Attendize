@@ -19,6 +19,7 @@ class CreateRegistrationSchedule extends Migration
             $table->foreign('registration_id')->references('id')->on('registrations')->onDelete('cascade');
             $table->bigInteger('session_id')->unsigned();
             $table->foreign('session_id')->references('id')->on('event')->onDelete('cascade');
+            $table->int('status');
             $table->timestamps();
         });
     }

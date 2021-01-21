@@ -18,8 +18,30 @@ class RegistrationScheduleController extends Controller
         $schedule = new RegistrationSchedule();
         $schedule->registration_id = $request->input('registration_id');
         $schedule->session_id = $request->input('session_id');
-        $schedule->save();
-        return response()->json($schedule);
+        
+        
+        $data = Event::select("nb_places")->where('id', $schedule->session_id)->get();
+        if(!$data->isEmpty()){
+            
+            $nb_places = $data[0]->nb_places;
+
+            if($nb_places > 0){
+                $rest = $nb_places - 1;
+                $schedule->status = 1;
+                Event::where('id', $schedule->session_id)->update([
+                    'nb_places' => $rest,
+                ]);
+                $schedule->save();
+                return response()->json(['status'=> '1']);
+            }else{
+                $schedule->status = 0;
+                
+                $schedule->save();
+                return response()->json(['status'=> '0']);
+            }
+            
+        }
+        
     }
 
     public function MySchedule(Request $request)
@@ -59,7 +81,6 @@ class RegistrationScheduleController extends Controller
             return Response::json([
                 'message' => 'failed',
                 'status' => '0',
-               
             ]);
     }
 }
