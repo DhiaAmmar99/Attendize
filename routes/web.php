@@ -45,8 +45,14 @@ use App\Http\Controllers\SpeakerController;
 use App\Http\Controllers\StreamController;
 use App\Http\Controllers\TypeofsessionController;
 use App\Http\Controllers\SponsorsController;
+use App\Http\Controllers\NotificationController;
 
 
+
+
+
+// Route::get('/sendNotification', [NotificationController::class ,'sendNotification']);
+// Route::post('/sendNot', [NotificationController::class ,'sendNot']);
 
 
 
