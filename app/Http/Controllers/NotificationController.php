@@ -7,6 +7,8 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Response;
+use App\Models\RegistrationSchedule;
+use App\Models\Event;
 
 
 
@@ -90,5 +92,41 @@ class NotificationController extends Controller
         $result = curl_exec($ch );
         //dd($result);
         curl_close( $ch );
+        if($request->input('status') == 1){
+
+            return response()->json([
+                'status'=> '1',
+                ]);
+        }else{
+            return response()->json([
+                'status'=> '0',
+                ]);
+        }
+    }
+
+    public function listNotification(Request $request)
+    {  
+        // Search by registration_id.
+        
+        if ($request->has('registration_id')) {
+            $data = RegistrationSchedule::select("status","session_id as session_title")->where('registration_id', $request->input('registration_id'))->get();
+        }
+        if(!$data->isEmpty()){
+            foreach ($data as  $p) {
+                $session = Event::select('title')->where('id', $p->session_title)->get();
+                $p["session_title"] = $session[0]->title;
+                $datasession [] = $p->session;
+                $p = $datasession;
+                
+            }
+            return Response::json([
+                'message' => 'success',
+                'data' => $data
+            ]);
+        } else
+            return Response::json([
+                'message' => 'failed',
+            ]);
+
     }
 }

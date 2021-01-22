@@ -101,18 +101,7 @@
                                 </div>
                             </div>
                         
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="nb_session" class="required control-label">NUMBER OF SESSION</label>
-                                    <input type="number" class="form-control" name="nb_session" min="1" max="20" id="nb_session" placeholder="Enter your nomber of session"/>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="room" class="required control-label">NUMBER OF room</label>
-                                    <input  type="number" class="form-control" name="room" id="room" min="1" max="20"  placeholder="Enter your nomber of room"//>
-                                </div>
-                            </div>
+                           
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     {!! Form::label("","stream", array('class'=>'required control-label')) !!}
@@ -168,7 +157,24 @@
                             </div>
                         </div>
                        
-                      
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="nb_session" class="required control-label">NUMBER OF SESSION</label>
+                                <input type="number" class="form-control" name="nb_session" min="1" max="20" id="nb_session" placeholder="Enter your nomber of session"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="room" class="required control-label">NUMBER OF room</label>
+                                <input  type="number" class="form-control" name="room" id="room" min="1" max="20"  placeholder="Enter your nomber of room"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="nb_places" class="required control-label">NUMBER OF participate</label>
+                                <input  type="number" class="form-control" name="nb_places" id="nb_places" min="1" max="20"  placeholder="Enter your nomber of room"/>
+                            </div>
+                        </div>
                         {{-- <script>
                             direction='http://127.0.0.1:8000'
                             $('.btn-success').click(function() {

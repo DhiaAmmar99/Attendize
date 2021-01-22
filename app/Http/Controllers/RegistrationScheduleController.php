@@ -10,17 +10,20 @@ use App\Models\Stream;
 use App\Models\Typeofsession;
 use Illuminate\Http\Request;
 use Response;
+use App\Http\Controllers\NotificationController;
+
 
 class RegistrationScheduleController extends Controller
 { 
     public function createMySchedule(Request $request)
     {
         $schedule = new RegistrationSchedule();
+        
         $schedule->registration_id = $request->input('registration_id');
         $schedule->session_id = $request->input('session_id');
         
         
-        $data = Event::select("nb_places")->where('id', $schedule->session_id)->get();
+        $data = Event::select("title" , "nb_places")->where('id', $schedule->session_id)->get();
         if(!$data->isEmpty()){
             
             $nb_places = $data[0]->nb_places;
@@ -32,12 +35,23 @@ class RegistrationScheduleController extends Controller
                     'nb_places' => $rest,
                 ]);
                 $schedule->save();
-                return response()->json(['status'=> '1']);
+                return redirect()->action([NotificationController::class, 'sendNotification'], 
+                    [
+                    'token' => $request->input('token'),
+                    'title' => $data[0]->title,
+                    'body' => "Participate",
+                    'status' => 1,
+                    ]);
             }else{
                 $schedule->status = 0;
                 
-                $schedule->save();
-                return response()->json(['status'=> '0']);
+                return redirect()->action([NotificationController::class, 'sendNotification'], 
+                    [
+                    'token' => $request->input('token'),
+                    'title' => $data[0]->title,
+                    'body' => "Waiting",
+                    'status' => 0,
+                    ]);
             }
             
         }

@@ -219,8 +219,8 @@ Route::post('/updateImage/{id}', [ImageController::class ,'updateImg']);
  */
 
 Route::post('/notification/chat', [NotificationController::class ,'notification']);
-Route::post('/notification/participate', [NotificationController::class ,'sendNotification']);
-
+Route::get('/notification/participate', [NotificationController::class ,'sendNotification']);
+Route::get('/listNotification', [NotificationController::class ,'listNotification']);
 
 /*
  * ---------------

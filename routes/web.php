@@ -78,26 +78,26 @@ Route::group(['prefix' => 'speakers'], function () {
      * Create speakers
      * ----------
      */
-    Route::get('/create',
+    Route::get('/createSpeaker',
         [SpeakerController::class, 'showCreateSpeaker']
     )->name('showCreateSpeaker');
 
-    Route::post('/create',
-        [SpeakerController::class, 'create']
-    )->name('create');
+    Route::post('/createSpeaker',
+        [SpeakerController::class, 'createSpeaker']
+    )->name('createSpeaker');
 
     /*
      * ----------
      * Update speakers
      * ----------
      */
-    Route::get('/update',
+    Route::get('/updateSpeaker',
         [SpeakerController::class, 'showUpdateSpeaker']
     )->name('showUpdateSpeaker');
 
-    Route::post('/update',
-        [SpeakerController::class, 'update']
-    )->name('update');
+    Route::post('/updateSpeaker',
+        [SpeakerController::class, 'updateSpeaker']
+    )->name('updateSpeaker');
     
 });
 

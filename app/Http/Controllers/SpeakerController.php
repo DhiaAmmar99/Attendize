@@ -36,7 +36,7 @@ class SpeakerController extends Controller
     }
 
 
-    public function create(Request $request)
+    public function createSpeaker(Request $request)
     {
         $speaker = new Speaker();
         $time=date('Y-m-d-H-i-s');
@@ -57,6 +57,10 @@ class SpeakerController extends Controller
         }
 
         $speaker->save();
+        // return redirect()->action([SpeakerController::class, 'speakers'], 
+        // [
+        //     'organiser_id'  => $request->get('organiser_id'),
+        //     ]);
 
         return response()->json([
             'status'      => 'success',
@@ -85,38 +89,49 @@ class SpeakerController extends Controller
             ]);
     }
 
-    public function update(Request $request)
-    {
+    public function updateSpeaker(Request $request)
+    {        
         if($file = $request->hasFile('image')) {
-        $speaker = new Speaker();
-        $time=date('Y-m-d-H-i-s');
-        $file = $request->file('image') ;
-        $fN = $file->getClientOriginalName() ;
-        $fileName = $time."_".$fN ;
-        $destinationPath = public_path().'/assets/imgSpeaker/' ;
-        $file->move($destinationPath,$fileName);
-        $speaker->image = '/assets/imgSpeaker/'.$fileName ;
-        
-        $data = Speaker::where('id', $request->input('id'))->update([
+            $speaker = new Speaker();
+            $time=date('Y-m-d-H-i-s');
+            $file = $request->file('image') ;
+            $fN = $file->getClientOriginalName() ;
+            $fileName = $time."_".$fN ;
+            $destinationPath = public_path().'/assets/imgSpeaker/' ;
+            $file->move($destinationPath,$fileName);
+            $speaker->image = '/assets/imgSpeaker/'.$fileName ;
+
+            $data = Speaker::where('id', $request->input('id'))->update([
                 'firstname' => $request->input('firstname'),
                 'lastname' => $request->input('lastname'),
                 'email' => $request->input('email'),
                 'country' => $request->input('country'),
                 'organization' => $request->input('organization'),
                 'description' => $request->input('description'),
-                'image' => $speaker->image,
+                'image' => $speaker->image
             ]);
+
+        }else{
+            $data = Speaker::where('id', $request->input('id'))->update([
+                'firstname' => $request->input('firstname'),
+                'lastname' => $request->input('lastname'),
+                'email' => $request->input('email'),
+                'country' => $request->input('country'),
+                'organization' => $request->input('organization'),
+                'description' => $request->input('description'),
+            ]);
+        }
         
-        if ($data) 
-        return response()->json([
-            'status'      => 'success',
-            'id'          => $request->input('id'),
-            'redirectUrl' => route('speakers', [
-                'organiser_id'  => $request->input('organiser_id'),
-            ]),
-        ]);
+        if($data){
+            return response()->json([
+                'status'      => 'success',
+                'id'          => $request->input('id'),
+                'redirectUrl' => route('speakers', [
+                    'organiser_id'  => $request->input('organiser_id'),
+                ]),
+            ]);
  
-        } else {
+        }else {
             return Response::json([
                 'message' => 'this Speaker does not exist',
                 'status' => '0',
