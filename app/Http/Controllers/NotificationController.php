@@ -18,7 +18,7 @@ class NotificationController extends Controller
 
     public function notification(Request $request)
     {
-
+        if ($request->has('token')) {
         $token = $request->input('token');
         $from = "AAAAM9hpnTk:APA91bH3aPlfBIqHOXMWOBG6eTyJAR8nE0FlzMq0amcv45YY1TPmwSzFsP6Tu_J-fS8GmvrJs4M7z0aKd4wVHeinL3xpN54JTaV3BIxL1ZA3uRA6hRqwBT3gPij86WYDhyrcY6y5NpF2";
         $msg = array
@@ -52,6 +52,16 @@ class NotificationController extends Controller
         $result = curl_exec($ch );
         curl_close( $ch );
 
+        return Response::json([
+            'message' => 'success',
+            'status' => "1"
+        ]);
+        }else{
+            return Response::json([
+                'message' => 'failed',
+                'status' => "0"
+            ]);
+        }
        
     }
  

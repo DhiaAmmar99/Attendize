@@ -31,7 +31,7 @@ class StreamController extends Controller
     }
 
 
-    public function create(Request $request)
+    public function createStream(Request $request)
     {
         $time=date('Y-m-d-H-i-s');
         $stream = new Stream();
@@ -75,7 +75,7 @@ class StreamController extends Controller
     }
 
 
-    public function update(Request $request)
+    public function updateStream(Request $request)
     {
         if($file = $request->hasFile('icon')) {
             $time=date('Y-m-d-H-i-s');
@@ -93,19 +93,28 @@ class StreamController extends Controller
                 'description' => $request->input('description'),
                 'icon' => $stream->icon,
             ]);
+
+        } else{
+            $data = Stream::where('id', $request->input('id'))->update([
+                'title' => $request->input('title'),
+                'couleur' => $request->input('couleur'),
+                'description' => $request->input('description'),
+                ]);
+        }
         
-         if ($data) 
-           
+        if ($data) {
+            // return redirect()->action([StreamController::class, 'streams'], 
+            //     [
+            //         'organiser_id'  => $request->get('organiser_id'),
+            //     ]);
             return response()->json([
                 'message' => 'Data Stream updated',
                 'id' => $request->input('id'),
-                'status'      => '1',
                 'redirectUrl' => route('streams', [
-                    'organiser_id'  => $request->get('organiser_id'),
+                    'organiser_id'  => $request->input('organiser_id'),
                 ]),
             ]);
-
-        } else {
+        }else {
             return Response::json([
                 'message' => 'this Stream does not exist',
                 'status' => '0',

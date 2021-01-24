@@ -71,11 +71,7 @@
                         <div class="form-group custom-theme">
                             <?php echo Form::label('description', "description", array('class'=>'control-label required')); ?>
 
-                            <?php echo Form::textarea('description', old('description'),
-                                        array(
-                                        'class'=>'form-control  editable',
-                                        'rows' => 5
-                                        )); ?>
+                            <textarea  class="form-control  w-100" name="description" rows="5" required></textarea> 
 
                         </div>
                     </div>

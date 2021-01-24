@@ -32,7 +32,7 @@ class TypeofsessionController extends Controller
     }
 
 
-    public function create(Request $request)
+    public function createTos(Request $request)
     {
         $time=date('Y-m-d-H-i-s');
         $tos = new Typeofsession();
@@ -75,9 +75,9 @@ class TypeofsessionController extends Controller
             ]);
     }
 
-    public function update(Request $request)
+    public function updateTos(Request $request)
     {
-        $time=date('Y-m-d-H-i-s');
+        
         if($file = $request->hasFile('icon')) {
             $time=date('Y-m-d-H-i-s');
             $tos = new Typeofsession();
@@ -94,13 +94,21 @@ class TypeofsessionController extends Controller
                 'icon' => $tos->icon,
                 'description' => $request->input('description'),
             ]);
-        if ($data) 
-            
-            return response()->json([
+        }else{
+            $data = Typeofsession::query()->where('id', $request->input('id'))
+            ->update([
+                'title' => $request->input('title'),
+                'description' => $request->input('description'),
+            ]);
+  
+        }
+        if ($data) {
+           
+            return Response::json([
                 'message' => 'Data type of session updated',
                 'id' => $request->input('id'),
                 'status'      => '1',
-                'redirectUrl' => route('streams', [
+                'redirectUrl' => route('typeofsessions', [
                     'organiser_id'  => $request->get('organiser_id'),
                 ]),
             ]);
@@ -110,6 +118,7 @@ class TypeofsessionController extends Controller
                 'status' => '0',
             ]);
         }
+      
     }
 
     public function listTypeofsession(Request $request)

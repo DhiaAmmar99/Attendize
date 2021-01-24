@@ -31,17 +31,22 @@
                         </div>
                         {!! Form::label('description', "description", array('class'=>'control-label required')) !!}
 
-                        <textarea  class="form-control  editable" name="description" rows="5" >{{$sponsor->description}}</textarea>
+                        <textarea  class="form-control  w-100" name="description" rows="5" >{{$sponsor->description}}</textarea>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <span class="uploadProgress"></span>
                 {!! Form::button(trans("basic.cancel"), ['class'=>"btn modal-close btn-danger",'data-dismiss'=>'modal']) !!}
-                {!! Form::submit("update Stream", ['class'=>"btn btn-success"]) !!}
+                {!! Form::submit("update Stream", ['class'=>"btn btn-success success"]) !!}
             </div>
         </div>
     </div>
 </div>
 
+<script>
 
+    $(".success").click(function(){
+        setTimeout(function(){ location.reload(); }, 1000);
+    });
+</script>

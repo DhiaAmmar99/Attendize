@@ -27,7 +27,7 @@ class Event extends MyBaseModel
      */
     protected $messages = [
         // 'eventType.required'                   => '',
-        'title.required'                       => 'You must at least give a title for your event.',
+        //'title.required'                       => 'You must at least give a title for your event.',
         'organiser_name.required_without'      => 'Please create an organiser or select an existing organiser.',
         'event_image.mimes'                    => 'Please ensure you are uploading an image (JPG, PNG, JPEG)',
         'event_image.max'                      => 'Please ensure the image is not larger then 3MB',
@@ -45,8 +45,8 @@ class Event extends MyBaseModel
         $format = config('attendize.default_datetime_format');
         return [
             // 'multiSelect'           => 'required',
-            'title'               => 'required',
-            'description'         => 'required',
+            //'title'               => 'required',
+            //'description'         => 'required',
             // 'location_venue_name' => 'required_without:venue_name_full',
             // 'venue_name_full'     => 'required_without:location_venue_name',
             'start_date'          => 'required|date_format:"' . $format . '"',

@@ -90,8 +90,14 @@ class SponsorsController extends Controller
                 'description' => $request->input('description'),
                 'image' => $Sponsor->image,
             ]);
+        }else{
+            $data = Sponsors::where('id', $request->input('id'))->update([
+                'title' => $request->input('title'),
+                'description' => $request->input('description'),
+            ]);
+        }
         
-         if ($data) 
+        if ($data) {
            
             return response()->json([
                 'message' => 'Data Sponsor updated',

@@ -49,7 +49,7 @@ class ProgramController extends Controller
         return response()->json([
             'status'      => 'success',
             'redirectUrl' => route('programs', [
-                'organiser_id'  => 2,
+                'organiser_id'  => $request->get('organiser_id'),
             ]),
         ]);
     }

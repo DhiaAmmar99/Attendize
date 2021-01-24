@@ -63,6 +63,7 @@ class RegistrationScheduleController extends Controller
        
         
         // Search by registration_id.
+        
         if ($request->has('registration_id')) {
             $data = RegistrationSchedule::select( "session_id As session")->where('registration_id', $request->input('registration_id'))->get();
         }

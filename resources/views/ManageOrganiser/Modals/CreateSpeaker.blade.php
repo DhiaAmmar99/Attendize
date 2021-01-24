@@ -57,11 +57,8 @@
                         </div>
                         <div class="form-group custom-theme">
                             {!! Form::label('description', "description", array('class'=>'control-label required')) !!}
-                            {!!  Form::textarea('description', old('description'),
-                                        array(
-                                        'class'=>'form-control  editable',
-                                        'rows' => 5
-                                        ))  !!}
+                            <textarea  class="form-control  w-100" name="description" rows="5" required></textarea> 
+
                         </div>
                     </div>
                 </div>

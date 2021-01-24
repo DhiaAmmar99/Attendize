@@ -1,6 +1,7 @@
 <div role="dialog"  class="modal fade" style="display: none;">
-    @include('ManageOrganiser.Partials.EventCreateAndEditJS');
-    {!! Form::open(array('url' => route('updateEvent'), 'class' => 'ajax gf')) !!}
+    <?php echo $__env->make('ManageOrganiser.Partials.EventCreateAndEditJS', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>;
+    <?php echo Form::open(array('url' => route('updateEvent'), 'class' => 'ajax gf')); ?>
+
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header text-center">
@@ -13,91 +14,96 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <input  type="hidden" name="id" value="{{ $event->id }}">
-                            <input  type="hidden" name="organiser_id" value="{{ $organiser_id }}">
+                            <input  type="hidden" name="id" value="<?php echo e($event->id); ?>">
+                            <input  type="hidden" name="organiser_id" value="<?php echo e($organiser_id); ?>">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    {!! Form::label('title', "Session title", array('class'=>'control-label required')) !!}
-                                    {!!  Form::text('title', $event->title ,array('class'=>'form-control','placeholder'=>"Enter your title session " ))  !!}
+                                    <?php echo Form::label('title', "Session title", array('class'=>'control-label required')); ?>
+
+                                    <?php echo Form::text('title', $event->title ,array('class'=>'form-control','placeholder'=>"Enter your title session " )); ?>
+
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    {!! Form::label("","program", array('class'=>'required control-label')) !!}
+                                    <?php echo Form::label("","program", array('class'=>'required control-label')); ?>
+
                                     <select class="form-control" name="program" id="program">
                                         <option  disabled>Select program</option>
-                                         @foreach ($programs as $p)
-                                            @if($p->id == $event->id_program)
-                                                <option selected data="{{$p->date}}" value="{{$p->id}}">{{$p->day}} : {{Str::limit($p->date, $limit = 10, $end = '')}}</option>
-                                            @else
-                                                <option data="{{$p->date}}" value="{{$p->id}}">{{$p->day}} : {{Str::limit($p->date, $limit = 10, $end = '')}}</option>
-                                            @endif
-                                        @endforeach
+                                         <?php $__currentLoopData = $programs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php if($p->id == $event->id_program): ?>
+                                                <option selected data="<?php echo e($p->date); ?>" value="<?php echo e($p->id); ?>"><?php echo e($p->day); ?> : <?php echo e(Str::limit($p->date, $limit = 10, $end = '')); ?></option>
+                                            <?php else: ?>
+                                                <option data="<?php echo e($p->date); ?>" value="<?php echo e($p->id); ?>"><?php echo e($p->day); ?> : <?php echo e(Str::limit($p->date, $limit = 10, $end = '')); ?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
                             </div> 
 
 
-                            <input type="hidden" name="start_date" id="start_date" value="{{ $event->start_date }}">
-                            <input type="hidden" name="end_date" id="end_date"  value="{{ $event->end_date }}">
+                            <input type="hidden" name="start_date" id="start_date" value="<?php echo e($event->start_date); ?>">
+                            <input type="hidden" name="end_date" id="end_date"  value="<?php echo e($event->end_date); ?>">
                         
 
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    {!!  Form::label('Session time', "Session time",['class'=>'required control-label'])  !!}
+                                    <?php echo Form::label('Session time', "Session time",['class'=>'required control-label']); ?>
+
 
                                     <select class="form-control" id="time">
                                         <option  disabled>Select time</option>
-                                        @if($event->start_date->format('H') == '09')
+                                        <?php if($event->start_date->format('H') == '09'): ?>
                                             <option selected value="1">09:00 - 11:00</option>
-                                        @else 
+                                        <?php else: ?> 
                                             <option  value="1">09:00 - 11:00</option>
-                                        @endif
-                                        @if($event->start_date->format('H') == '13')
+                                        <?php endif; ?>
+                                        <?php if($event->start_date->format('H') == '13'): ?>
                                             <option selected value="2">13:00 - 15:00</option>
-                                        @else 
+                                        <?php else: ?> 
                                             <option value="2">13:00 - 15:00</option>
-                                        @endif
-                                        @if($event->start_date->format('H') == '16')
+                                        <?php endif; ?>
+                                        <?php if($event->start_date->format('H') == '16'): ?>
                                             <option selected value="3">16:00 - 18:00</option>
-                                        @else 
+                                        <?php else: ?> 
                                             <option value="3">16:00 - 18:00</option>
-                                        @endif
+                                        <?php endif; ?>
                                     </select>
 
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    {!! Form::label("","language", array('class'=>'required control-label')) !!}
+                                    <?php echo Form::label("","language", array('class'=>'required control-label')); ?>
+
                                     
                                     <select class="form-control" name="language" id="selectLang">
                                         <option  disabled>Select language</option>
-                                        @if ($event->language == 'RU')
+                                        <?php if($event->language == 'RU'): ?>
                                             <option selected value="RU">RU</option>
-                                        @else
+                                        <?php else: ?>
                                             <option value="RU">RU</option>
-                                        @endif
-                                        @if ($event->language == 'EN')
+                                        <?php endif; ?>
+                                        <?php if($event->language == 'EN'): ?>
                                             <option selected value="EN">EN</option>
-                                        @else
+                                        <?php else: ?>
                                             <option value="EN">EN</option>
-                                        @endif
-                                        @if ($event->language == 'FR')
+                                        <?php endif; ?>
+                                        <?php if($event->language == 'FR'): ?>
                                             <option selected value="FR">FR</option>
-                                        @else
+                                        <?php else: ?>
                                             <option value="FR">FR</option>
-                                        @endif
-                                        @if ($event->language == 'AR')
+                                        <?php endif; ?>
+                                        <?php if($event->language == 'AR'): ?>
                                             <option selected value="AR">AR</option>
-                                        @else
+                                        <?php else: ?>
                                             <option value="AR">AR</option>
-                                        @endif
-                                        @if ($event->language == 'ES')
+                                        <?php endif; ?>
+                                        <?php if($event->language == 'ES'): ?>
                                             <option selected value="ES">ES</option>
-                                        @else
+                                        <?php else: ?>
                                             <option value="ES">ES</option>
-                                        @endif
+                                        <?php endif; ?>
                                     </select>
                                 </div>
                             </div>
@@ -105,70 +111,73 @@
                             
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    {!! Form::label("","stream", array('class'=>'required control-label')) !!}
+                                    <?php echo Form::label("","stream", array('class'=>'required control-label')); ?>
+
                                     <select class="form-control" name="stream">
                                         <option  disabled>Select stream</option>
-                                         @foreach ($streams as $s)
-                                            @if($s->id == $event->id_stream)
-                                                <option selected value="{{$s->id}}">{{$s->title}}</option>
-                                            @else
-                                                <option  value="{{$s->id}}">{{$s->title}}</option>
-                                            @endif
-                                        @endforeach 
+                                         <?php $__currentLoopData = $streams; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $s): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php if($s->id == $event->id_stream): ?>
+                                                <option selected value="<?php echo e($s->id); ?>"><?php echo e($s->title); ?></option>
+                                            <?php else: ?>
+                                                <option  value="<?php echo e($s->id); ?>"><?php echo e($s->title); ?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
                                     </select>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    {!! Form::label("","TypeOfSession", array('class'=>'required control-label')) !!}
+                                    <?php echo Form::label("","TypeOfSession", array('class'=>'required control-label')); ?>
+
                                     <select class="form-control" name="TypeOfSession">
                                         <option  disabled>Select type of session</option>
-                                         @foreach ($tos as $t)
-                                         @if($t->id == $event->id_TOS)
-                                            <option selected value="{{$t->id}}">{{$t->title}}</option>
-                                        @else
-                                            <option value="{{$t->id}}">{{$t->title}}</option>
-                                        @endif
+                                         <?php $__currentLoopData = $tos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                         <?php if($t->id == $event->id_TOS): ?>
+                                            <option selected value="<?php echo e($t->id); ?>"><?php echo e($t->title); ?></option>
+                                        <?php else: ?>
+                                            <option value="<?php echo e($t->id); ?>"><?php echo e($t->title); ?></option>
+                                        <?php endif; ?>
                                        
-                                        @endforeach 
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
                                     </select>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="nb_session" class="required control-label">NUMBER OF SESSION</label>
-                                    <input type="number" class="form-control" name="nb_session" value="{{$event->nb_session}}" min="1" max="20" id="nb_session" placeholder="Enter your nomber of session"/>
+                                    <input type="number" class="form-control" name="nb_session" value="<?php echo e($event->nb_session); ?>" min="1" max="20" id="nb_session" placeholder="Enter your nomber of session"/>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="room" class="required control-label">NUMBER OF room</label>
-                                    <input  type="number" class="form-control" name="room" value="{{$event->room}}" id="room" min="1" max="20"  placeholder="Enter your nomber of room"//>
+                                    <input  type="number" class="form-control" name="room" value="<?php echo e($event->room); ?>" id="room" min="1" max="20"  placeholder="Enter your nomber of room"//>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="nb_places" class="required control-label">NUMBER OF participate</label>
-                                    <input  type="number" class="form-control" name="nb_places" value="{{$event->nb_places}}" id="nb_places" min="1" max="20"  placeholder="Enter your nomber of room"/>
+                                    <input  type="number" class="form-control" name="nb_places" value="<?php echo e($event->nb_places); ?>" id="nb_places" min="1" max="20"  placeholder="Enter your nomber of room"/>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group" onclick="showCheckboxes('checkboxesSP')">
-                                    {!! Form::label("","speakers", array('class'=>'required control-label')) !!}
+                                    <?php echo Form::label("","speakers", array('class'=>'required control-label')); ?>
+
                                     <select class="form-control"  style="pointer-events: none;">
                                         <option selected disabled>Select speakers</option>
                                     </select>
                                     <div id="checkboxesSP" class="checkboxes" style="display: block;">
-                                         @foreach ($speakers as $sp)
-                                            <label for="sp-{{$sp->id}}" class="speaker">
-                                                <input type="checkbox" id="sp-{{$sp->id}}" name="speaker[]"  value="{{$sp->id}}"/> &nbsp; {{$sp->firstname}} &nbsp; {{$sp->lastname}}</label>
-                                        @endforeach
-                                        @foreach ($sessionSpeaker as $sp)
+                                         <?php $__currentLoopData = $speakers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <label for="sp-<?php echo e($sp->id); ?>" class="speaker">
+                                                <input type="checkbox" id="sp-<?php echo e($sp->id); ?>" name="speaker[]"  value="<?php echo e($sp->id); ?>"/> &nbsp; <?php echo e($sp->firstname); ?> &nbsp; <?php echo e($sp->lastname); ?></label>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        <?php $__currentLoopData = $sessionSpeaker; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <script>
                                                 var val = <?php echo json_encode($sp->speaker_id); ?>;
                                                 $(`#sp-${val}`).attr('checked', 'checked');
                                             </script>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </div>
                                 </div>
                             </div>
@@ -176,21 +185,22 @@
 
                             <div class="col-sm-6">
                                 <div class="form-group" onclick="showCheckboxes('checkboxesCH')">
-                                    {!! Form::label("","chairs", array('class'=>'control-label')) !!}
+                                    <?php echo Form::label("","chairs", array('class'=>'control-label')); ?>
+
                                     <select class="form-control"  style="pointer-events: none;">
                                         <option selected disabled>Select chairs</option>
                                     </select>
                                     <div id="checkboxesCH" class="checkboxes" style="display: block;">
-                                        @foreach ($chairs as $c)
-                                            <label for="ch-{{$c->id}}" class="speaker">
-                                            <input type="checkbox"  id="ch-{{$c->id}}" name="chair[]" value="{{$c->id}}"/> &nbsp; {{$c->firstname}} &nbsp; {{$c->lastname}}</label>
-                                        @endforeach
-                                        @foreach ($sessionChair as $sc)
+                                        <?php $__currentLoopData = $chairs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <label for="ch-<?php echo e($c->id); ?>" class="speaker">
+                                            <input type="checkbox"  id="ch-<?php echo e($c->id); ?>" name="chair[]" value="<?php echo e($c->id); ?>"/> &nbsp; <?php echo e($c->firstname); ?> &nbsp; <?php echo e($c->lastname); ?></label>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        <?php $__currentLoopData = $sessionChair; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <script>
                                                 var val = <?php echo json_encode($sc->chair_id); ?>;
                                                 $(`#ch-${val}`).attr('checked', 'checked');
                                             </script>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </div>
                                 </div>
                             </div>
@@ -199,9 +209,10 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="form-group custom-theme">
-                                        {!! Form::label('description', "Session description", array('class'=>'control-label required')) !!}
+                                        <?php echo Form::label('description', "Session description", array('class'=>'control-label required')); ?>
+
                                         
-                                         <textarea  class="form-control w-100 " name="description" rows="5" selected>{{$event->description}}</textarea> 
+                                         <textarea  class="form-control w-100 " name="description" rows="5" selected><?php echo e($event->description); ?></textarea> 
                                     </div>
                                 </div>
                             </div>        
@@ -211,8 +222,10 @@
             </div>
             <div class="modal-footer">
                 <span class="uploadProgress"></span>
-                {!! Form::button(trans("basic.cancel"), ['class'=>"btn modal-close btn-danger",'data-dismiss'=>'modal']) !!}
-                {!! Form::submit("update event", ['class'=>"btn btn-success"]) !!}
+                <?php echo Form::button(trans("basic.cancel"), ['class'=>"btn modal-close btn-danger",'data-dismiss'=>'modal']); ?>
+
+                <?php echo Form::submit("update event", ['class'=>"btn btn-success"]); ?>
+
             </div>
         </div>
     </div>
@@ -297,3 +310,4 @@
 
 </script>
 
+<?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/ManageOrganiser/Modals/UpdateEvent.blade.php ENDPATH**/ ?>

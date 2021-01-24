@@ -1,6 +1,7 @@
 <div role="dialog"  class="modal fade" style="display: none;">
-    @include('ManageOrganiser.Partials.EventCreateAndEditJS');
-    {!! Form::open(array('url' => route('createProgram'), 'class' => 'ajax gf')) !!}
+    <?php echo $__env->make('ManageOrganiser.Partials.EventCreateAndEditJS', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>;
+    <?php echo Form::open(array('url' => route('createProgram'), 'class' => 'ajax gf')); ?>
+
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header text-center">
@@ -12,21 +13,25 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <input  type="hidden" name="organiser_id" value="{{ $organiser_id }}">
+                        <input  type="hidden" name="organiser_id" value="<?php echo e($organiser_id); ?>">
                         <div class="form-group">
-                            {!! Form::label(' PROGRAM title', "PROGRAM title", array('class'=>'control-label required')) !!}
-                            {!!  Form::text('day', old('title'),array('class'=>'form-control','placeholder'=>'Enter your title program' ))  !!}
+                            <?php echo Form::label(' PROGRAM title', "PROGRAM title", array('class'=>'control-label required')); ?>
+
+                            <?php echo Form::text('day', old('title'),array('class'=>'form-control','placeholder'=>'Enter your title program' )); ?>
+
                         </div>
 
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    {!! Form::label('date', "Program date", array('class'=>'required control-label')) !!}
-                                    {!!  Form::text('date','2020-07-10 00:00:00', 
+                                    <?php echo Form::label('date', "Program date", array('class'=>'required control-label')); ?>
+
+                                    <?php echo Form::text('date','2020-07-10 00:00:00', 
                                                         [
                                                     'class'=>'form-control start hasDatepicker ',
                                                     'data-field'=>'datetime',
-                                                ])  !!}
+                                                ]); ?>
+
                                 </div>
                             </div>
                         </div>
@@ -35,9 +40,10 @@
             </div>
             <div class="modal-footer">
                 <span class="uploadProgress"></span>
-                {!! Form::button(trans("basic.cancel"), ['class'=>"btn modal-close btn-danger",'data-dismiss'=>'modal']) !!}
+                <?php echo Form::button(trans("basic.cancel"), ['class'=>"btn modal-close btn-danger",'data-dismiss'=>'modal']); ?>
+
                 
-                {!! Form::submit("create program", ['class'=>"btn btn-success"]) !!}               
+                <?php echo Form::submit("create program", ['class'=>"btn btn-success"]); ?>               
 
             </div>
         </div>
@@ -67,3 +73,4 @@
     }
 
 </style>
+<?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/ManageOrganiser/Modals/CreateProgram.blade.php ENDPATH**/ ?>

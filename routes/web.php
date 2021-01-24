@@ -212,26 +212,26 @@ Route::get('/removeProgram',
          * Create streams
          * ----------
          */
-        Route::get('/create',
+        Route::get('/createStream',
             [StreamController::class, 'showCreateStream']
         )->name('showCreateStream');
     
         Route::post('/createStream',
-            [StreamController::class, 'create']
-        )->name('create');
+            [StreamController::class, 'createStream']
+        )->name('createStream');
     
         /*
          * ----------
          * Update streams
          * ----------
          */
-        Route::get('/update',
+        Route::get('/updateStream',
             [StreamController::class, 'showUpdateStream']
         )->name('showUpdateStream');
     
-        Route::post('/update',
-            [StreamController::class, 'update']
-        )->name('update');
+        Route::post('/updateStream',
+            [StreamController::class, 'updateStream']
+        )->name('updateStream');
         
     });
 
@@ -242,22 +242,22 @@ Route::get('/removeProgram',
      * Typeofsession
      * ----------
     */
-    Route::get('/{organiser_id}/typeofsession', [TypeofsessionController::class, 'typeofsessions'])->name('typeofsessions');
+    Route::get('/{organiser_id}/typeofsessions', [TypeofsessionController::class, 'typeofsessions'])->name('typeofsessions');
     Route::get('/removeTos', [TypeofsessionController::class ,'removeTypeofsession']);
-    Route::group(['prefix' => 'typeofsession'], function () {
+    Route::group(['prefix' => 'typeofsessions'], function () {
     
         /*
          * ----------
          * Create Typeofsession
          * ----------
          */
-        Route::get('/create',
+        Route::get('/createTos',
             [TypeofsessionController::class, 'showCreateTypeofsession']
         )->name('showCreateTypeofsession');
     
-        Route::post('/create',
-            [TypeofsessionController::class, 'create']
-        )->name('create');
+        Route::post('/createTos',
+            [TypeofsessionController::class, 'createTos']
+        )->name('createTos');
     
         /*
          * ----------
@@ -268,9 +268,9 @@ Route::get('/removeProgram',
             [TypeofsessionController::class, 'showUpdateTypeofsession']
         )->name('showUpdateTypeofsession');
     
-        Route::post('/update',
-            [TypeofsessionController::class, 'update']
-        )->name('update');
+        Route::post('/updateTos',
+            [TypeofsessionController::class, 'updateTos']
+        )->name('updateTos');
         
     });
 

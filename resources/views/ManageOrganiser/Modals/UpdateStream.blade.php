@@ -1,6 +1,6 @@
 <div role="dialog"  class="modal fade" style="display: none;">
     @include('ManageOrganiser.Partials.EventCreateAndEditJS');
-    {!! Form::open(array('url' => route('update'), 'class' => 'ajax gf')) !!}
+    {!! Form::open(array('url' => route('updateStream'), 'class' => 'ajax gf')) !!}
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header text-center">
@@ -25,7 +25,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {!! Form::label('color', "color", array('class'=>'control-label required')) !!}
-                                    {!!  Form::text('couleur', $stream->couleur,array('class'=>'form-control','placeholder'=>'Enter color of your stream' ))  !!}
+                                    {!!  Form::color('couleur', $stream->couleur,array('class'=>'form-control','placeholder'=>'Enter color of your stream' ))  !!}
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -37,17 +37,22 @@
                         </div>
                         {!! Form::label('description', "description", array('class'=>'control-label required')) !!}
 
-                        <textarea  class="form-control  editable" name="description" rows="5" >{{$stream->description}}</textarea>
+                        <textarea  class="form-control  w-100" name="description" rows="5" >{{$stream->description}}</textarea>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <span class="uploadProgress"></span>
                 {!! Form::button(trans("basic.cancel"), ['class'=>"btn modal-close btn-danger",'data-dismiss'=>'modal']) !!}
-                {!! Form::submit("update Stream", ['class'=>"btn btn-success"]) !!}
+                {!! Form::submit("update Stream", ['class'=>"btn btn-success success"]) !!}
             </div>
         </div>
     </div>
 </div>
 
+<script>
 
+    $(".success").click(function(){
+        setTimeout(function(){ location.reload(); }, 1000);
+    });
+</script>
