@@ -11,7 +11,7 @@
             </li>
             <li class="{{ Request::is('*streams*') ? 'active' : '' }}">
                 <a href="{{route('streams', array('organiser_id' => $organiser->id))}}">
-                    <span class="figure"><i class="ico-calendar"></i></span>
+                    <span class="figure"><i class="ico-money"></i></span>
                     <span class="text">Streams</span>
                 </a>
             </li>
@@ -21,9 +21,9 @@
                     <span class="text">type of sessions</span>
                 </a>
             </li>
-            <li class="{{ Request::is('*Session*') ? 'active' : '' }}">
+            <li class="{{ Request::is('*events*') ? 'active' : '' }}">
                 <a href="{{route('showOrganiserEvents', array('organiser_id' => $organiser->id))}}">
-                    <span class="figure"><i class="ico-calendar"></i></span>
+                    <span class="figure"><i class="ico-checkbox-checked"></i></span>
                     <span class="text">Sessions</span>
                 </a>
             </li>
@@ -35,21 +35,27 @@
                 </a>
             </li> --}}
 
-            <li class="{{ Request::is('*program*') ? 'active' : '' }}">
+            <li class="{{ Request::is('*programs*') ? 'active' : '' }}">
                 <a href="{{route('programs', array('organiser_id' => $organiser->id))}}">
                     <span class="figure"><i class="ico-code"></i></span>
                     <span class="text">Programs</span>
                 </a>
             </li>
-            <li class="{{ Request::is('*speaker*') ? 'active' : '' }}">
+            <li class="{{ Request::is('*speakers*') ? 'active' : '' }}">
                 <a href="{{route('speakers', array('organiser_id' => $organiser->id))}}">
-                    <span class="figure"><i class="ico-cog"></i></span>
+                    <span class="figure"><i class="ico-bullhorn"></i></span>
                     <span class="text">speakers</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('*chairs*') ? 'active' : '' }}">
+                <a href="{{route('chairs', array('organiser_id' => $organiser->id))}}">
+                    <span class="figure"><i class="ico-user"></i></span>
+                    <span class="text">chairs</span>
                 </a>
             </li>
             <li class="{{ Request::is('*sponsors*') ? 'active' : '' }}">
                 <a href="{{route('sponsors', array('organiser_id' => $organiser->id))}}">
-                    <span class="figure"><i class="ico-code"></i></span>
+                    <span class="figure"><i class="ico-ticket"></i></span>
                     <span class="text">sponsors</span>
                 </a>
             </li>

@@ -10,10 +10,33 @@ use App\Models\sessionChair;
 use App\Models\Stream;
 use App\Models\Typeofsession;
 use Response;
+use App\Models\Organiser;
 
 class ChairController extends Controller
 {
-    public function create(Request $request)
+
+    public function showCreateChair(Request $request)
+    {
+        $data = [
+            'organiser_id' => $request->get('organiser_id') ? $request->get('organiser_id') : false,
+        ];
+       
+        return view('ManageOrganiser.Modals.CreateChair', $data)->with('organiser_id', $data['organiser_id']);
+    }
+
+
+    public function chairs($organiser_id)
+    {
+
+        $organiser = Organiser::scope()->findOrFail($organiser_id);
+        $data = [
+            'organiser'=> $organiser,
+        ];
+        $Chairs = Chair::all();
+        return view('ManageOrganiser.Chairs', $data)->with('chairs', $Chairs);
+    }
+    
+    public function createChair(Request $request)
     {
         $chair = new Chair();
         $time=date('Y-m-d-H-i-s');
@@ -35,10 +58,34 @@ class ChairController extends Controller
         }
 
         $chair->save();
-        return response()->json($chair);
+        return response()->json([
+            'status'      => 'success',
+            'redirectUrl' => route('chairs', [
+                'organiser_id'  => $request->get('organiser_id'),
+            ]),
+        ]);
     }
 
-    public function update(Request $request)
+
+    public function showUpdateChair(Request $request)
+    {
+        $data = [
+            'organiser_id' => $request->get('organiser_id') ? $request->get('organiser_id') : false,
+            'chair_id' => $request->get('chair_id')
+        ];
+
+        $dataCH = Chair::where('id', $data['chair_id'])->get();
+                
+       
+        return view('ManageOrganiser.Modals.UpdateChair', $data)
+        ->with([
+            'organiser_id'=> $data['organiser_id'],
+            'chair'=> $dataCH[0],
+
+            ]);
+    }
+
+    public function updateChair(Request $request)
     {
         if($file = $request->hasFile('image')) {
         $chair = new Chair();
@@ -59,11 +106,27 @@ class ChairController extends Controller
                 'description' => $request->input('description'),
                 'image' => $chair->image,
             ]);
+        }else{
+            $data = Chair::where('id', $request->input('id'))->update([
+                'firstname' => $request->input('firstname'),
+                'lastname' => $request->input('lastname'),
+                'email' => $request->input('email'),
+                'country' => $request->input('country'),
+                'organization' => $request->input('organization'),
+                'description' => $request->input('description'),
+            ]);
         }
         if ($data) {
-            return Response::json([
-                'message' => 'Data Chair updated',
-                'status' => '1',
+            // return Response::json([
+            //     'message' => 'Data Chair updated',
+            //     'status' => '1',
+            // ]);
+            return response()->json([
+                'status'      => 'success',
+                'id'          => $request->input('id'),
+                'redirectUrl' => route('chairs', [
+                    'organiser_id'  => $request->input('organiser_id'),
+                ]),
             ]);
         } else {
             return Response::json([
@@ -195,5 +258,31 @@ class ChairController extends Controller
                 'status' => '0',
                
             ]);
+    }
+
+    public function removeChair(Request $request)
+    {
+        // remove by id.
+        if ($request->has('id')) {
+            
+            $data = Chair::where('id', $request->input('id'))->delete();
+            sessionChair::where('chair_id', $request->input('id'))->delete();
+            if ($data) {
+                return Response::json([
+                    'message' => 'success',
+                    'status' => '1',
+                ]);
+            } else
+                return Response::json([
+                    'message' => 'failed',
+                    'status' => '0'
+                ]);
+        }else{
+            return response()->json([
+                'status'=>'0',
+                'message' => 'failed'
+                ]);
+        }
+
     }
 }

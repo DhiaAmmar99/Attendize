@@ -57,10 +57,7 @@ class SpeakerController extends Controller
         }
 
         $speaker->save();
-        // return redirect()->action([SpeakerController::class, 'speakers'], 
-        // [
-        //     'organiser_id'  => $request->get('organiser_id'),
-        //     ]);
+
 
         return response()->json([
             'status'      => 'success',
@@ -110,7 +107,6 @@ class SpeakerController extends Controller
                 'description' => $request->input('description'),
                 'image' => $speaker->image
             ]);
-
         }else{
             $data = Speaker::where('id', $request->input('id'))->update([
                 'firstname' => $request->input('firstname'),
@@ -121,7 +117,6 @@ class SpeakerController extends Controller
                 'description' => $request->input('description'),
             ]);
         }
-        
         if($data){
             return response()->json([
                 'status'      => 'success',

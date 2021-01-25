@@ -6,7 +6,7 @@
 @stop
 
 @section('page_title')
-   <p> Session</p>
+   <p> Sessions</p>
 @stop
 
 @section('top_nav')

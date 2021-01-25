@@ -45,7 +45,7 @@ use App\Http\Controllers\SpeakerController;
 use App\Http\Controllers\StreamController;
 use App\Http\Controllers\TypeofsessionController;
 use App\Http\Controllers\SponsorsController;
-use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ChairController;
 
 
 
@@ -98,6 +98,46 @@ Route::group(['prefix' => 'speakers'], function () {
     Route::post('/updateSpeaker',
         [SpeakerController::class, 'updateSpeaker']
     )->name('updateSpeaker');
+    
+});
+
+
+
+
+/*
+ * ----------
+ * chairs
+ * ----------
+ */            
+Route::get('/{organiser_id}/chairs', [ChairController::class, 'chairs'])->name('chairs');
+Route::get('/removeChair', [ChairController::class ,'removeChair']);
+Route::group(['prefix' => 'chairs'], function () {
+
+    /*
+     * ----------
+     * Create Chairs
+     * ----------
+     */
+    Route::get('/createChair',
+        [ChairController::class, 'showCreateChair']
+    )->name('showCreateChair');
+
+    Route::post('/createChair',
+        [ChairController::class, 'createChair']
+    )->name('createChair');
+
+    /*
+     * ----------
+     * Update Chairs
+     * ----------
+     */
+    Route::get('/updateChair',
+        [ChairController::class, 'showUpdateChair']
+    )->name('showUpdateChair');
+
+    Route::post('/updateChair',
+        [ChairController::class, 'updateChair']
+    )->name('updateChair');
     
 });
 

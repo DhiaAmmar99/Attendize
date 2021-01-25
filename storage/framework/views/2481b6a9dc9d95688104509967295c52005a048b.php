@@ -4,7 +4,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('page_title'); ?>
-   <p> Session</p>
+   <p> Sessions</p>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('top_nav'); ?>
