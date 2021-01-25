@@ -30,8 +30,7 @@
                                 <div class="form-group">
                                     <?php echo Form::label('icon', "icon", array('class'=>'control-label required')); ?>
 
-                                    <?php echo Form::file('icon', old('title'),array('class'=>'form-control','placeholder'=>'Upload your icon' )); ?>
-
+                                    <input type="file" value="icon" name="icon" class="form-control" id="icon">
                                 </div>
                             </div> 
                         </div>
@@ -51,8 +50,4 @@
             </div>
         </div>
     </div>
-</div>
-
-
-
-<?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/ManageOrganiser/Modals/UpdateTypeofsession.blade.php ENDPATH**/ ?>
+</div><?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/ManageOrganiser/Modals/UpdateTypeofsession.blade.php ENDPATH**/ ?>

@@ -60,9 +60,6 @@
                     url: window.location.origin+"/removeProgram",
                     data: {"id": id},
                 });
-                // jQuery(`#${id}`).remove();
-
-                
 
                 swal("Poof! Your imaginary file has been deleted!", {
                 icon: "success",

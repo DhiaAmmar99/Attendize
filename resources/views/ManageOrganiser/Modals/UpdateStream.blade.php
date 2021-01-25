@@ -31,7 +31,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {!! Form::label('icon', "icon", array('class'=>'control-label required')) !!}
-                                    {!!  Form::file('icon', old('icon'),array('class'=>'form-control','placeholder'=>'Upload your icon' ))  !!}
+                                    <input type="file" value="icon" name="icon" class="form-control" id="icon">
                                 </div>
                             </div> 
                         </div>

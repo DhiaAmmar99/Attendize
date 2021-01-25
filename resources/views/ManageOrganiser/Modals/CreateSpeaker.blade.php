@@ -47,7 +47,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {!! Form::label('image', "image", array('class'=>'control-label required')) !!}
-                                    {!!  Form::file('image', old('title'),array('class'=>'form-control','placeholder'=>'Upload your image' ))  !!}
+                                    {{-- {!!  Form::file('image', old('title'),array('class'=>'form-control','placeholder'=>'Upload your image' ))  !!} --}}
+                                    <input type="file" value="image" name="image" class="form-control" id="picture">
                                 </div>
                             </div>
 
