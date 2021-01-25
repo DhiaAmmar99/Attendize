@@ -104,12 +104,11 @@ class TypeofsessionController extends Controller
         }
         if ($data) {
            
-            return Response::json([
-                'message' => 'Data type of session updated',
-                'id' => $request->input('id'),
-                'status'      => '1',
+            return response()->json([
+                'status'      => 'success',
+                'id'          => $request->input('id'),
                 'redirectUrl' => route('typeofsessions', [
-                    'organiser_id'  => $request->get('organiser_id'),
+                    'organiser_id'  => $request->input('organiser_id'),
                 ]),
             ]);
         } else {

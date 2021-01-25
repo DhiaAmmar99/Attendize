@@ -71,15 +71,12 @@
                     url: window.location.origin+"/removeChair",
                     data: {"id": id},
                 });
-                // jQuery(`#${id}`).remove();
-
-                
 
                 swal("Poof! Your imaginary file has been deleted!", {
                 icon: "success",
                 buttons: false,
                 });
-                //setTimeout(function(){ location.reload(); }, 1000);
+                setTimeout(function(){ location.reload(); }, 1000);
 
             } 
             });

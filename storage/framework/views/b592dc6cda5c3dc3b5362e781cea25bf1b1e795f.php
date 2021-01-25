@@ -60,10 +60,5 @@
     </div>
 </div>
 
-<script>
 
-    $(".success").click(function(){
-        setTimeout(function(){ location.reload(); }, 1000);
-    });
-</script>
 <?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/ManageOrganiser/Modals/UpdateStream.blade.php ENDPATH**/ ?>

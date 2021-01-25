@@ -3,7 +3,7 @@ Typeofsessions
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('page_title'); ?>
-   <p> Typeofsessions</p>
+   <p> Type of sessions</p>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('top_nav'); ?>

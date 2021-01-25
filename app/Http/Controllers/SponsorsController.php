@@ -100,11 +100,10 @@ class SponsorsController extends Controller
         if ($data) {
            
             return response()->json([
-                'message' => 'Data Sponsor updated',
-                'id' => $request->input('id'),
-                'status'      => '1',
+                'status'      => 'success',
+                'id'          => $request->input('id'),
                 'redirectUrl' => route('sponsors', [
-                    'organiser_id'  => $request->get('organiser_id'),
+                    'organiser_id'  => $request->input('organiser_id'),
                 ]),
             ]);
 

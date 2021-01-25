@@ -103,13 +103,9 @@ class StreamController extends Controller
         }
         
         if ($data) {
-            // return redirect()->action([StreamController::class, 'streams'], 
-            //     [
-            //         'organiser_id'  => $request->get('organiser_id'),
-            //     ]);
             return response()->json([
-                'message' => 'Data Stream updated',
-                'id' => $request->input('id'),
+                'status'      => 'success',
+                'id'          => $request->input('id'),
                 'redirectUrl' => route('streams', [
                     'organiser_id'  => $request->input('organiser_id'),
                 ]),

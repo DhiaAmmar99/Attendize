@@ -46,18 +46,13 @@
                 <span class="uploadProgress"></span>
                 <?php echo Form::button(trans("basic.cancel"), ['class'=>"btn modal-close btn-danger",'data-dismiss'=>'modal']); ?>
 
-                <?php echo Form::submit("update tos", ['class'=>"btn btn-success"]); ?>
+                <?php echo Form::submit("update tos", ['class'=>"btn btn-success success"]); ?>
 
             </div>
         </div>
     </div>
 </div>
-<script>
 
-$(".btn-success").click(function(){
-    setTimeout(function(){ location.reload(); }, 1000);
-});
-</script>
 
 
 <?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/ManageOrganiser/Modals/UpdateTypeofsession.blade.php ENDPATH**/ ?>
