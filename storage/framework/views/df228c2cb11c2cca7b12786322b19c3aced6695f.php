@@ -123,8 +123,8 @@
                                 <div class="form-group" onclick="showCheckboxes('checkboxesSP')">
                                     <?php echo Form::label("","speakers", array('class'=>'required control-label')); ?>
 
-                                    <select class="form-control"  style="pointer-events: none;">
-                                        <option selected disabled>Select speakers</option>
+                                    <select class="form-control" required style="pointer-events: none;" id="SPselect">
+                                        <option selected disabled value="">Select speakers</option>
                                     </select>
                                     <div id="checkboxesSP" class="checkboxes">
                                         <?php $__currentLoopData = $speakers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -140,8 +140,8 @@
                                 <div class="form-group" onclick="showCheckboxes('checkboxesCH')">
                                     <?php echo Form::label("","chairs", array('class'=>'control-label')); ?>
 
-                                    <select class="form-control"  style="pointer-events: none;">
-                                        <option selected disabled>Select chairs</option>
+                                    <select class="form-control" required style="pointer-events: none;">
+                                        <option selected disabled value="">Select chairs</option>
                                     </select>
                                     <div id="checkboxesCH" class="checkboxes">
                                         <?php $__currentLoopData = $chairs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -234,7 +234,6 @@
         $SD = jQuery("#start_date").val();
         $ED = jQuery("#end_date").val();
         $date = $res.slice(0, 10);
-        // console.log($date +" "+ $SD.slice(10, 16));
         $("#time").removeAttr('disabled');
         $("#start_date").val($date+$SD.slice(10, 16));
         $("#end_date").val($date+$ED.slice(10, 16));
@@ -252,6 +251,10 @@
             $("#start_date").val($date +" "+ "16:00");
             $("#end_date").val($date +" "+"18:00");
         }
+    });
+
+    $("input:checkbox[name='speaker[]']").change(function(){
+        $("#SPselect").removeAttr("required");
     });
 </script>
 <?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/ManageOrganiser/Modals/CreateEvent.blade.php ENDPATH**/ ?>

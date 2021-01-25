@@ -115,8 +115,8 @@
                             <div class="col-sm-6">
                                 <div class="form-group" onclick="showCheckboxes('checkboxesSP')">
                                     {!! Form::label("","speakers", array('class'=>'required control-label')) !!}
-                                    <select class="form-control"  style="pointer-events: none;">
-                                        <option selected disabled>Select speakers</option>
+                                    <select class="form-control" required style="pointer-events: none;" id="SPselect">
+                                        <option selected disabled value="">Select speakers</option>
                                     </select>
                                     <div id="checkboxesSP" class="checkboxes">
                                         @foreach ($speakers as $sp)
@@ -131,8 +131,8 @@
                             <div class="col-sm-6">
                                 <div class="form-group" onclick="showCheckboxes('checkboxesCH')">
                                     {!! Form::label("","chairs", array('class'=>'control-label')) !!}
-                                    <select class="form-control"  style="pointer-events: none;">
-                                        <option selected disabled>Select chairs</option>
+                                    <select class="form-control" required style="pointer-events: none;">
+                                        <option selected disabled value="">Select chairs</option>
                                     </select>
                                     <div id="checkboxesCH" class="checkboxes">
                                         @foreach ($chairs as $c)
@@ -503,5 +503,9 @@
             $("#start_date").val($date +" "+ "16:00");
             $("#end_date").val($date +" "+"18:00");
         }
+    });
+
+    $("input:checkbox[name='speaker[]']").change(function(){
+        $("#SPselect").removeAttr("required");
     });
 </script>

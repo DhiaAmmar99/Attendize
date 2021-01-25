@@ -251,7 +251,7 @@
     }
 
     /* date input */
-
+    $date = '';
     $("document").ready(function(){
         $res = jQuery("#program option:selected").attr("data");
         $SD = jQuery("#start_date").val();
@@ -271,7 +271,7 @@
         }        
     });
 
-    $date = '';
+    
     $("#program").change(function(){
         $res = jQuery("#program option:selected").attr("data");
         $SD = jQuery("#start_date").val();
@@ -282,16 +282,17 @@
     });
     $("#time").change(function(){
         $time = jQuery("#time option:selected").attr("value");
-                
+        $res = jQuery("#start_date").val(); 
+        $SD=$res.slice(0, 10)  ;
         if ($time == 1){
-            $("#start_date").val($date +" "+ "09:00");
-            $("#end_date").val($date +" "+"11:00");
+            $("#start_date").val($SD +" "+ "09:00");
+            $("#end_date").val($SD +" "+"11:00");
         }else if($time == 2){
-            $("#start_date").val($date +" "+ "13:00");
-            $("#end_date").val($date +" "+"15:00");
+            $("#start_date").val($SD +" "+ "13:00");
+            $("#end_date").val($SD +" "+"15:00");
         }else if($time == 3){
-            $("#start_date").val($date +" "+ "16:00");
-            $("#end_date").val($date +" "+"18:00");
+            $("#start_date").val($SD +" "+ "16:00");
+            $("#end_date").val($SD +" "+"18:00");
         }
     });
 
