@@ -1,6 +1,6 @@
 <div role="dialog"  class="modal fade" style="display: none;">
     @include('ManageOrganiser.Partials.EventCreateAndEditJS');
-    {!! Form::open(array('url' => route('create'), 'class' => 'ajax gf')) !!}
+    {!! Form::open(array('url' => route('createSpeaker'), 'class' => 'ajax gf')) !!}
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header text-center">
@@ -12,6 +12,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
+                        <input  type="hidden" name="organiser_id" value="{{ $organiser_id }}">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -55,12 +56,9 @@
                            
                         </div>
                         <div class="form-group custom-theme">
-                            {!! Form::label('description', "Session description", array('class'=>'control-label required')) !!}
-                            {!!  Form::textarea('description', old('description'),
-                                        array(
-                                        'class'=>'form-control  editable',
-                                        'rows' => 5
-                                        ))  !!}
+                            {!! Form::label('description', "description", array('class'=>'control-label required')) !!}
+                            <textarea  class="form-control  w-100" name="description" rows="5" required></textarea> 
+
                         </div>
                     </div>
                 </div>

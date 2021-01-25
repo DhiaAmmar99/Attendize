@@ -1,6 +1,6 @@
 <div role="dialog"  class="modal fade" style="display: none;">
     <?php echo $__env->make('ManageOrganiser.Partials.EventCreateAndEditJS', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>;
-    <?php echo Form::open(array('url' => route('create'), 'class' => 'ajax gf')); ?>
+    <?php echo Form::open(array('url' => route('createSpeaker'), 'class' => 'ajax gf')); ?>
 
     <div class="modal-dialog">
         <div class="modal-content">
@@ -13,6 +13,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
+                        <input  type="hidden" name="organiser_id" value="<?php echo e($organiser_id); ?>">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -68,13 +69,9 @@
                            
                         </div>
                         <div class="form-group custom-theme">
-                            <?php echo Form::label('description', "Session description", array('class'=>'control-label required')); ?>
+                            <?php echo Form::label('description', "description", array('class'=>'control-label required')); ?>
 
-                            <?php echo Form::textarea('description', old('description'),
-                                        array(
-                                        'class'=>'form-control  editable',
-                                        'rows' => 5
-                                        )); ?>
+                            <textarea  class="form-control  w-100" name="description" rows="5" required></textarea> 
 
                         </div>
                     </div>

@@ -10,16 +10,52 @@ use App\Models\Stream;
 use App\Models\Typeofsession;
 use Illuminate\Http\Request;
 use Response;
+use App\Http\Controllers\NotificationController;
+
 
 class RegistrationScheduleController extends Controller
 { 
     public function createMySchedule(Request $request)
     {
         $schedule = new RegistrationSchedule();
+        
         $schedule->registration_id = $request->input('registration_id');
         $schedule->session_id = $request->input('session_id');
-        $schedule->save();
-        return response()->json($schedule);
+        
+        
+        $data = Event::select("title" , "nb_places")->where('id', $schedule->session_id)->get();
+        if(!$data->isEmpty()){
+            
+            $nb_places = $data[0]->nb_places;
+
+            if($nb_places > 0){
+                $rest = $nb_places - 1;
+                $schedule->status = 1;
+                Event::where('id', $schedule->session_id)->update([
+                    'nb_places' => $rest,
+                ]);
+                $schedule->save();
+                return redirect()->action([NotificationController::class, 'sendNotification'], 
+                    [
+                    'token' => $request->input('token'),
+                    'title' => $data[0]->title,
+                    'body' => "Participate",
+                    'status' => 1,
+                    ]);
+            }else{
+                $schedule->status = 0;
+                
+                return redirect()->action([NotificationController::class, 'sendNotification'], 
+                    [
+                    'token' => $request->input('token'),
+                    'title' => $data[0]->title,
+                    'body' => "Waiting",
+                    'status' => 0,
+                    ]);
+            }
+            
+        }
+        
     }
 
     public function MySchedule(Request $request)
@@ -27,6 +63,7 @@ class RegistrationScheduleController extends Controller
        
         
         // Search by registration_id.
+        
         if ($request->has('registration_id')) {
             $data = RegistrationSchedule::select( "session_id As session")->where('registration_id', $request->input('registration_id'))->get();
         }
@@ -59,7 +96,6 @@ class RegistrationScheduleController extends Controller
             return Response::json([
                 'message' => 'failed',
                 'status' => '0',
-               
             ]);
     }
 }

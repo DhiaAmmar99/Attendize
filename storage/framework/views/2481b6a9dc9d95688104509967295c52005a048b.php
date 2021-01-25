@@ -4,7 +4,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('page_title'); ?>
-   <p> Session</p>
+   <p> Sessions</p>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('top_nav'); ?>
@@ -26,7 +26,7 @@
     <div class="col-md-9">
         <div class="btn-toolbar">
             <div class="btn-group btn-group-responsive">
-                <a href="#" data-modal-id="CreateEvent" data-href="<?php echo e(route('showCreateEvent', ['organiser_id' => @$organiser->id])); ?>" class="btn btn-success loadModal"><i class="ico-plus"></i>create Session</a>
+                <a href="#" data-modal-id="CreateEvent" data-href="<?php echo e(route('showCreateEvent', ['organiser_id' => @$organiser->id])); ?>" class="btn btn-success loadModal"><i class="ico-plus"></i> create Session</a>
             </div>
         </div>
     </div>

@@ -42,6 +42,19 @@ use App\Http\Controllers\UserSignupController;
 use App\Http\Controllers\FirebaseController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\SpeakerController;
+use App\Http\Controllers\StreamController;
+use App\Http\Controllers\TypeofsessionController;
+use App\Http\Controllers\SponsorsController;
+use App\Http\Controllers\ChairController;
+
+
+
+
+
+// Route::get('/sendNotification', [NotificationController::class ,'sendNotification']);
+// Route::post('/sendNot', [NotificationController::class ,'sendNot']);
+
+
 
 Route::get('/firebase', [FirebaseController::class ,'index']);
 Route::get('/firestore', [FirebaseController::class ,'fire']);
@@ -65,21 +78,66 @@ Route::group(['prefix' => 'speakers'], function () {
      * Create speakers
      * ----------
      */
-    Route::get('/create',
+    Route::get('/createSpeaker',
         [SpeakerController::class, 'showCreateSpeaker']
     )->name('showCreateSpeaker');
 
-    Route::post('/create',
-        [SpeakerController::class, 'create']
-    )->name('create');
+    Route::post('/createSpeaker',
+        [SpeakerController::class, 'createSpeaker']
+    )->name('createSpeaker');
 
-    Route::get('/update',
+    /*
+     * ----------
+     * Update speakers
+     * ----------
+     */
+    Route::get('/updateSpeaker',
         [SpeakerController::class, 'showUpdateSpeaker']
     )->name('showUpdateSpeaker');
 
-    Route::post('/update',
-        [SpeakerController::class, 'update']
-    )->name('update');
+    Route::post('/updateSpeaker',
+        [SpeakerController::class, 'updateSpeaker']
+    )->name('updateSpeaker');
+    
+});
+
+
+
+
+/*
+ * ----------
+ * chairs
+ * ----------
+ */            
+Route::get('/{organiser_id}/chairs', [ChairController::class, 'chairs'])->name('chairs');
+Route::get('/removeChair', [ChairController::class ,'removeChair']);
+Route::group(['prefix' => 'chairs'], function () {
+
+    /*
+     * ----------
+     * Create Chairs
+     * ----------
+     */
+    Route::get('/createChair',
+        [ChairController::class, 'showCreateChair']
+    )->name('showCreateChair');
+
+    Route::post('/createChair',
+        [ChairController::class, 'createChair']
+    )->name('createChair');
+
+    /*
+     * ----------
+     * Update Chairs
+     * ----------
+     */
+    Route::get('/updateChair',
+        [ChairController::class, 'showUpdateChair']
+    )->name('showUpdateChair');
+
+    Route::post('/updateChair',
+        [ChairController::class, 'updateChair']
+    )->name('updateChair');
     
 });
 
@@ -119,15 +177,15 @@ Route::get('/removeProgram',
      
 
 
-        /*
-         * ----------
-         * Session
-         * ----------
-         */
+    /*
+     * ----------
+     * Session
+     * ----------
+    */
 
-Route::get('/removeSession', 
-     [EventController::class ,'removeSession']
-     )->name('removeSession');
+    Route::post('/removeSession', 
+        [EventController::class ,'removeSession']
+        )->name('removeSession');
             
 
         
@@ -139,6 +197,122 @@ Route::get('/removeSession',
         Route::post('/updateEvent', [EventController::class, 'updateEvent'])->name('updateEvent');
 
       });
+
+
+
+    /*
+     * ----------
+     * Sponsor
+     * ----------
+    */
+    Route::get('/{organiser_id}/sponsors', [SponsorsController::class, 'sponsors'])->name('sponsors');
+    Route::get('/removeSponsor', [SponsorsController::class ,'removeSponsor']);
+    Route::group(['prefix' => 'sponsors'], function () {
+    
+        /*
+         * ----------
+         * Create sponsors
+         * ----------
+         */
+        Route::get('/createSponsor',
+            [SponsorsController::class, 'showCreateSponsor']
+        )->name('showCreateSponsor');
+    
+        Route::post('/createSponsor',
+            [SponsorsController::class, 'createSponsor']
+        )->name('createSponsor');
+    
+        /*
+         * ----------
+         * Update sponsors
+         * ----------
+         */
+        Route::get('/updateSponsor',
+            [SponsorsController::class, 'showUpdateSponsor']
+        )->name('showUpdateSponsor');
+    
+        Route::post('/updateSponsor',
+            [SponsorsController::class, 'updateSponsor']
+        )->name('updateSponsor');
+        
+    });
+
+
+    /*
+     * ----------
+     * Stream
+     * ----------
+    */
+    Route::get('/{organiser_id}/streams', [StreamController::class, 'streams'])->name('streams');
+    Route::get('/removeStream', [StreamController::class ,'removeStream']);
+    Route::group(['prefix' => 'streams'], function () {
+    
+        /*
+         * ----------
+         * Create streams
+         * ----------
+         */
+        Route::get('/createStream',
+            [StreamController::class, 'showCreateStream']
+        )->name('showCreateStream');
+    
+        Route::post('/createStream',
+            [StreamController::class, 'createStream']
+        )->name('createStream');
+    
+        /*
+         * ----------
+         * Update streams
+         * ----------
+         */
+        Route::get('/updateStream',
+            [StreamController::class, 'showUpdateStream']
+        )->name('showUpdateStream');
+    
+        Route::post('/updateStream',
+            [StreamController::class, 'updateStream']
+        )->name('updateStream');
+        
+    });
+
+
+
+    /*
+     * ----------
+     * Typeofsession
+     * ----------
+    */
+    Route::get('/{organiser_id}/typeofsessions', [TypeofsessionController::class, 'typeofsessions'])->name('typeofsessions');
+    Route::get('/removeTos', [TypeofsessionController::class ,'removeTypeofsession']);
+    Route::group(['prefix' => 'typeofsessions'], function () {
+    
+        /*
+         * ----------
+         * Create Typeofsession
+         * ----------
+         */
+        Route::get('/createTos',
+            [TypeofsessionController::class, 'showCreateTypeofsession']
+        )->name('showCreateTypeofsession');
+    
+        Route::post('/createTos',
+            [TypeofsessionController::class, 'createTos']
+        )->name('createTos');
+    
+        /*
+         * ----------
+         * Update Typeofsession
+         * ----------
+         */
+        Route::get('/update',
+            [TypeofsessionController::class, 'showUpdateTypeofsession']
+        )->name('showUpdateTypeofsession');
+    
+        Route::post('/updateTos',
+            [TypeofsessionController::class, 'updateTos']
+        )->name('updateTos');
+        
+    });
 
 
 

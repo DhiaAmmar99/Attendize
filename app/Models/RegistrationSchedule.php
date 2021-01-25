@@ -10,7 +10,8 @@ class RegistrationSchedule extends Model
 
     protected $fillable = [
         'registration_id',
-        'session_id'      
+        'session_id',
+        'status'     
 
     ];
 }

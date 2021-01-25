@@ -12,7 +12,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                       
+                        <input  type="hidden" name="organiser_id" value="{{ $organiser_id }}">
                         <div class="form-group">
                             {!! Form::label(' PROGRAM title', "PROGRAM title", array('class'=>'control-label required')) !!}
                             {!!  Form::text('day', old('title'),array('class'=>'form-control','placeholder'=>'Enter your title program' ))  !!}

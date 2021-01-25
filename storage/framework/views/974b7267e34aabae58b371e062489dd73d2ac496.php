@@ -1,6 +1,6 @@
 <div role="dialog"  class="modal fade" style="display: none;">
     <?php echo $__env->make('ManageOrganiser.Partials.EventCreateAndEditJS', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>;
-    <?php echo Form::open(array('url' => route('update'), 'class' => 'ajax gf')); ?>
+    <?php echo Form::open(array('url' => route('updateSpeaker'), 'class' => 'ajax gf')); ?>
 
     <div class="modal-dialog">
         <div class="modal-content">
@@ -64,7 +64,10 @@
                                 </div>
                             </div>
                         </div>
-                        <textarea  class="form-control  editable" name="description" rows="5" ><?php echo e($speaker->description); ?></textarea>
+                        <?php echo Form::label('description', "description", array('class'=>'control-label required')); ?>
+
+
+                        <textarea  class="form-control  w-100" name="description" rows="5" ><?php echo e($speaker->description); ?></textarea>
                     </div>
                 </div>
             </div>

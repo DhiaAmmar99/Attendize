@@ -20,18 +20,20 @@
                                 <div class="form-group">
                                     <?php echo Form::label('title', "Session title", array('class'=>'control-label required')); ?>
 
-                                    <?php echo Form::text('title', old('title'),array('class'=>'form-control','placeholder'=>"Enter your title session " )); ?>
-
+                                    
+                                    <input type="text" name="title" required class="form-control" placeholder="Enter your title session">
                                 </div>
                             </div>
+                            
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <?php echo Form::label("","program", array('class'=>'required control-label')); ?>
 
-                                    <select class="form-control" name="program" id="program">
-                                        <option selected disabled>Select program</option>
+                                    <select class="form-control" name="program" id="program" required>
+                                        <option value="" selected disabled>Select program</option>
                                         <?php $__currentLoopData = $programs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option data="<?php echo e($p->date); ?>" value="<?php echo e($p->id); ?>"><?php echo e($p->day); ?></option>
+                                            
+                                            <option data="<?php echo e($p->date); ?>" value="<?php echo e($p->id); ?>"><?php echo e($p->day); ?> : <?php echo e(Str::limit($p->date, $limit = 10, $end = '')); ?></option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
@@ -42,17 +44,13 @@
                             <input type="hidden" name="end_date" id="end_date"  value="2021-01-07 00:00">
                         
                         
-                        
-                        
-                            
-
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <?php echo Form::label('Session time', "Session time",['class'=>'required control-label']); ?>
 
 
-                                    <select class="form-control" id="time">
-                                        <option selected disabled>Select time</option>
+                                    <select class="form-control" id="time" required disabled>
+                                        <option value="" selected disabled>Select time</option>
                                         <option value="1">09:00 - 11:00</option>
                                         <option value="2">13:00 - 15:00</option>
                                         <option value="3">16:00 - 18:00</option>
@@ -65,8 +63,8 @@
                                     <?php echo Form::label("","language", array('class'=>'required control-label')); ?>
 
                                     
-                                    <select class="form-control" name="language">
-                                        <option selected disabled>Select language</option>
+                                    <select class="form-control" name="language" required>
+                                        <option value="" selected disabled>Select language</option>
                                         <option value="RU">RU</option>
                                         <option value="EN">EN</option>
                                         <option value="FR">FR</option>
@@ -76,24 +74,13 @@
                                 </div>
                             </div>
                         
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="nb_session" class="required control-label">NUMBER OF SESSION</label>
-                                    <input type="number" class="form-control" name="nb_session" min="1" max="20" id="nb_session" placeholder="Enter your nomber of session"/>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="room" class="required control-label">NUMBER OF room</label>
-                                    <input  type="number" class="form-control" name="room" id="room" min="1" max="20"  placeholder="Enter your nomber of room"//>
-                                </div>
-                            </div>
+                           
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <?php echo Form::label("","stream", array('class'=>'required control-label')); ?>
 
-                                    <select class="form-control" name="stream">
-                                        <option selected disabled>Select stream</option>
+                                    <select class="form-control" name="stream" required>
+                                        <option value="" selected disabled>Select stream</option>
                                         <?php $__currentLoopData = $streams; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $s): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option  value="<?php echo e($s->id); ?>"><?php echo e($s->title); ?></option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -104,8 +91,8 @@
                                 <div class="form-group">
                                     <?php echo Form::label("","TypeOfSession", array('class'=>'required control-label')); ?>
 
-                                    <select class="form-control" name="TypeOfSession">
-                                        <option selected disabled>Select type of session</option>
+                                    <select class="form-control" name="TypeOfSession" required>
+                                        <option value="" selected disabled>Select type of session</option>
                                         <?php $__currentLoopData = $tos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option value="<?php echo e($t->id); ?>"><?php echo e($t->title); ?></option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -113,6 +100,25 @@
                                 </div>
                             </div>
                             
+                            
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="nb_session" class="required control-label">NUMBER OF SESSION</label>
+                                    <input type="number" required class="form-control" name="nb_session" min="1" max="20" id="nb_session" placeholder="Enter your nomber of session"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="room" class="required control-label">NUMBER OF room</label>
+                                    <input  type="number" required class="form-control" name="room" id="room" min="1" max="20"  placeholder="Enter your nomber of room"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="nb_places" class="required control-label">NUMBER OF participate</label>
+                                    <input  type="number" required class="form-control" name="nb_places" id="nb_places" min="1" max="20"  placeholder="Enter your nomber of room"/>
+                                </div>
+                            </div>
                             <div class="col-sm-6">
                                 <div class="form-group" onclick="showCheckboxes('checkboxesSP')">
                                     <?php echo Form::label("","speakers", array('class'=>'required control-label')); ?>
@@ -145,9 +151,10 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                        
-                      
+                       
                         
                        
 
@@ -155,12 +162,9 @@
                         <div class="form-group custom-theme">
                             <?php echo Form::label('description', "Session description", array('class'=>'control-label required')); ?>
 
-                            <?php echo Form::textarea('description', old('description'),
-                                        array(
-                                        'class'=>'form-control  editable',
-                                        'rows' => 5
-                                        )); ?>
+                            <textarea  class="form-control  w-100" name="description" rows="5" required></textarea> 
 
+                           
                         </div>
                         
 
@@ -227,13 +231,17 @@
     $date = '';
     $("#program").change(function(){
         $res = jQuery("#program option:selected").attr("data");
+        $SD = jQuery("#start_date").val();
+        $ED = jQuery("#end_date").val();
         $date = $res.slice(0, 10);
-                                    
-        
+        // console.log($date +" "+ $SD.slice(10, 16));
+        $("#time").removeAttr('disabled');
+        $("#start_date").val($date+$SD.slice(10, 16));
+        $("#end_date").val($date+$ED.slice(10, 16));
     });
     $("#time").change(function(){
         $time = jQuery("#time option:selected").attr("value");
-            
+                
         if ($time == 1){
             $("#start_date").val($date +" "+ "09:00");
             $("#end_date").val($date +" "+"11:00");

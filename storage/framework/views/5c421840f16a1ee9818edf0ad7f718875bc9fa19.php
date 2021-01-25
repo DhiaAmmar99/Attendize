@@ -13,7 +13,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                       
+                        <input  type="hidden" name="organiser_id" value="<?php echo e($organiser_id); ?>">
                         <div class="form-group">
                             <?php echo Form::label(' PROGRAM title', "PROGRAM title", array('class'=>'control-label required')); ?>
 
@@ -21,7 +21,6 @@
 
                         </div>
 
-                        
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">

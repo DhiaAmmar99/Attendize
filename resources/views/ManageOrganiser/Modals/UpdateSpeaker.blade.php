@@ -1,6 +1,6 @@
 <div role="dialog"  class="modal fade" style="display: none;">
     @include('ManageOrganiser.Partials.EventCreateAndEditJS');
-    {!! Form::open(array('url' => route('update'), 'class' => 'ajax gf')) !!}
+    {!! Form::open(array('url' => route('updateSpeaker'), 'class' => 'ajax gf')) !!}
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header text-center">
@@ -52,7 +52,9 @@
                                 </div>
                             </div>
                         </div>
-                        <textarea  class="form-control  editable" name="description" rows="5" >{{$speaker->description}}</textarea>
+                        {!! Form::label('description', "description", array('class'=>'control-label required')) !!}
+
+                        <textarea  class="form-control  w-100" name="description" rows="5" >{{$speaker->description}}</textarea>
                     </div>
                 </div>
             </div>

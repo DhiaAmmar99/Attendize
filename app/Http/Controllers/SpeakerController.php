@@ -10,7 +10,6 @@ use App\Models\Stream;
 use App\Models\Typeofsession;
 use Illuminate\Http\Request;
 use Response;
-use Redirect;
 use App\Models\Organiser;
 
 class SpeakerController extends Controller
@@ -25,7 +24,8 @@ class SpeakerController extends Controller
     }
 
 
-    public function speakers($organiser_id){
+    public function speakers($organiser_id)
+    {
 
         $organiser = Organiser::scope()->findOrFail($organiser_id);
         $data = [
@@ -36,7 +36,7 @@ class SpeakerController extends Controller
     }
 
 
-    public function create(Request $request)
+    public function createSpeaker(Request $request)
     {
         $speaker = new Speaker();
         $time=date('Y-m-d-H-i-s');
@@ -57,6 +57,7 @@ class SpeakerController extends Controller
         }
 
         $speaker->save();
+
 
         return response()->json([
             'status'      => 'success',
@@ -85,43 +86,47 @@ class SpeakerController extends Controller
             ]);
     }
 
-    public function update(Request $request)
-    {
+    public function updateSpeaker(Request $request)
+    {        
         if($file = $request->hasFile('image')) {
-        $speaker = new Speaker();
-        $time=date('Y-m-d-H-i-s');
-        $file = $request->file('image') ;
-        $fN = $file->getClientOriginalName() ;
-        $fileName = $time."_".$fN ;
-        $destinationPath = public_path().'/assets/imgSpeaker/' ;
-        $file->move($destinationPath,$fileName);
-        $speaker->image = '/assets/imgSpeaker/'.$fileName ;
-        
-        $data = Speaker::where('id', $request->input('id'))->update([
+            $speaker = new Speaker();
+            $time=date('Y-m-d-H-i-s');
+            $file = $request->file('image') ;
+            $fN = $file->getClientOriginalName() ;
+            $fileName = $time."_".$fN ;
+            $destinationPath = public_path().'/assets/imgSpeaker/' ;
+            $file->move($destinationPath,$fileName);
+            $speaker->image = '/assets/imgSpeaker/'.$fileName ;
+
+            $data = Speaker::where('id', $request->input('id'))->update([
                 'firstname' => $request->input('firstname'),
                 'lastname' => $request->input('lastname'),
                 'email' => $request->input('email'),
                 'country' => $request->input('country'),
                 'organization' => $request->input('organization'),
                 'description' => $request->input('description'),
-                'image' => $speaker->image,
+                'image' => $speaker->image
             ]);
-        
-        if ($data) 
-        return response()->json([
-            'status'      => 'success',
-            'id'          => $request->input('id'),
-            'redirectUrl' => route('speakers', [
-                'organiser_id'  => $request->input('organiser_id'),
-            ]),
-        ]);
-            // return response()->json([
-            //     'status'      => 'Data Speaker updated',
-            //     'redirectUrl' => route('speakers', [
-            //         'organiser_id'  => $request->input('organiser_id'),
-            //     ]),
-            // ]);
-        } else {
+        }else{
+            $data = Speaker::where('id', $request->input('id'))->update([
+                'firstname' => $request->input('firstname'),
+                'lastname' => $request->input('lastname'),
+                'email' => $request->input('email'),
+                'country' => $request->input('country'),
+                'organization' => $request->input('organization'),
+                'description' => $request->input('description'),
+            ]);
+        }
+        if($data){
+            return response()->json([
+                'status'      => 'success',
+                'id'          => $request->input('id'),
+                'redirectUrl' => route('speakers', [
+                    'organiser_id'  => $request->input('organiser_id'),
+                ]),
+            ]);
+ 
+        }else {
             return Response::json([
                 'message' => 'this Speaker does not exist',
                 'status' => '0',
@@ -224,6 +229,7 @@ class SpeakerController extends Controller
         if ($request->has('id')) {
             
             $data = Speaker::where('id', $request->input('id'))->delete();
+            $sp = sessionSpeaker::where('speaker_id', $request->input('id'))->delete();
             if ($data) {
                 return Response::json([
                     'message' => 'success',
@@ -240,6 +246,6 @@ class SpeakerController extends Controller
                 'message' => 'failed'
                 ]);
         }
-     
+
     }
 }

@@ -32,9 +32,9 @@
                                         <option  disabled>Select program</option>
                                          <?php $__currentLoopData = $programs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <?php if($p->id == $event->id_program): ?>
-                                                <option selected data="<?php echo e($p->date); ?>" value="<?php echo e($p->id); ?>"><?php echo e($p->day); ?></option>
+                                                <option selected data="<?php echo e($p->date); ?>" value="<?php echo e($p->id); ?>"><?php echo e($p->day); ?> : <?php echo e(Str::limit($p->date, $limit = 10, $end = '')); ?></option>
                                             <?php else: ?>
-                                                <option data="<?php echo e($p->date); ?>" value="<?php echo e($p->id); ?>"><?php echo e($p->day); ?></option>
+                                                <option data="<?php echo e($p->date); ?>" value="<?php echo e($p->id); ?>"><?php echo e($p->day); ?> : <?php echo e(Str::limit($p->date, $limit = 10, $end = '')); ?></option>
                                             <?php endif; ?>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
@@ -42,8 +42,8 @@
                             </div> 
 
 
-                            <input type="hidden" name="start_date" id="start_date" value="2021-01-07 00:00">
-                            <input type="hidden" name="end_date" id="end_date"  value="2021-01-07 00:00">
+                            <input type="hidden" name="start_date" id="start_date" value="<?php echo e($event->start_date); ?>">
+                            <input type="hidden" name="end_date" id="end_date"  value="<?php echo e($event->end_date); ?>">
                         
 
                             <div class="col-sm-6">
@@ -108,18 +108,7 @@
                                 </div>
                             </div>
                         
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="nb_session" class="required control-label">NUMBER OF SESSION</label>
-                                    <input type="number" class="form-control" name="nb_session" value="<?php echo e($event->nb_session); ?>" min="1" max="20" id="nb_session" placeholder="Enter your nomber of session"/>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="room" class="required control-label">NUMBER OF room</label>
-                                    <input  type="number" class="form-control" name="room" value="<?php echo e($event->room); ?>" id="room" min="1" max="20"  placeholder="Enter your nomber of room"//>
-                                </div>
-                            </div>
+                            
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <?php echo Form::label("","stream", array('class'=>'required control-label')); ?>
@@ -153,7 +142,24 @@
                                     </select>
                                 </div>
                             </div>
-                            
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="nb_session" class="required control-label">NUMBER OF SESSION</label>
+                                    <input type="number" class="form-control" name="nb_session" value="<?php echo e($event->nb_session); ?>" min="1" max="20" id="nb_session" placeholder="Enter your nomber of session"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="room" class="required control-label">NUMBER OF room</label>
+                                    <input  type="number" class="form-control" name="room" value="<?php echo e($event->room); ?>" id="room" min="1" max="20"  placeholder="Enter your nomber of room"//>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="nb_places" class="required control-label">NUMBER OF participate</label>
+                                    <input  type="number" class="form-control" name="nb_places" value="<?php echo e($event->nb_places); ?>" id="nb_places" min="1" max="20"  placeholder="Enter your nomber of room"/>
+                                </div>
+                            </div>
                             <div class="col-sm-6">
                                 <div class="form-group" onclick="showCheckboxes('checkboxesSP')">
                                     <?php echo Form::label("","speakers", array('class'=>'required control-label')); ?>
@@ -161,7 +167,7 @@
                                     <select class="form-control"  style="pointer-events: none;">
                                         <option selected disabled>Select speakers</option>
                                     </select>
-                                    <div id="checkboxesSP" class="checkboxes">
+                                    <div id="checkboxesSP" class="checkboxes" style="display: block;">
                                          <?php $__currentLoopData = $speakers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <label for="sp-<?php echo e($sp->id); ?>" class="speaker">
                                                 <input type="checkbox" id="sp-<?php echo e($sp->id); ?>" name="speaker[]"  value="<?php echo e($sp->id); ?>"/> &nbsp; <?php echo e($sp->firstname); ?> &nbsp; <?php echo e($sp->lastname); ?></label>
@@ -184,7 +190,7 @@
                                     <select class="form-control"  style="pointer-events: none;">
                                         <option selected disabled>Select chairs</option>
                                     </select>
-                                    <div id="checkboxesCH" class="checkboxes">
+                                    <div id="checkboxesCH" class="checkboxes" style="display: block;">
                                         <?php $__currentLoopData = $chairs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <label for="ch-<?php echo e($c->id); ?>" class="speaker">
                                             <input type="checkbox"  id="ch-<?php echo e($c->id); ?>" name="chair[]" value="<?php echo e($c->id); ?>"/> &nbsp; <?php echo e($c->firstname); ?> &nbsp; <?php echo e($c->lastname); ?></label>
@@ -199,11 +205,14 @@
                                 </div>
                             </div>
                            
+                           
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="form-group custom-theme">
+                                        <?php echo Form::label('description', "Session description", array('class'=>'control-label required')); ?>
+
                                         
-                                         <textarea  class="form-control  editable" name="description" rows="5" ><?php echo e($event->description); ?></textarea> 
+                                         <textarea  class="form-control w-100 " name="description" rows="5" selected><?php echo e($event->description); ?></textarea> 
                                     </div>
                                 </div>
                             </div>        
@@ -241,7 +250,7 @@
     }
 </style>
 <script>
-    var expanded = false;
+    var expanded = true;
 
     function showCheckboxes(id) {
     var checkboxes = document.getElementById(id);
@@ -255,16 +264,38 @@
     }
 
     /* date input */
+
+    $("document").ready(function(){
+        $res = jQuery("#program option:selected").attr("data");
+        $SD = jQuery("#start_date").val();
+        $ED = jQuery("#end_date").val();
+        $date = $res.slice(0, 10);
+        $time = jQuery("#time option:selected").attr("value");
+            
+        if ($time == 1){
+            $("#start_date").val($date +" "+ "09:00");
+            $("#end_date").val($date +" "+"11:00");
+        }else if($time == 2){
+            $("#start_date").val($date +" "+ "13:00");
+            $("#end_date").val($date +" "+"15:00");
+        }else if($time == 3){
+            $("#start_date").val($date +" "+ "16:00");
+            $("#end_date").val($date +" "+"18:00");
+        }        
+    });
+
     $date = '';
     $("#program").change(function(){
         $res = jQuery("#program option:selected").attr("data");
+        $SD = jQuery("#start_date").val();
+        $ED = jQuery("#end_date").val();
         $date = $res.slice(0, 10);
-                                    
-        
+        $("#start_date").val($date+$SD.slice(10, 16));
+        $("#end_date").val($date+$ED.slice(10, 16));
     });
     $("#time").change(function(){
         $time = jQuery("#time option:selected").attr("value");
-            
+                
         if ($time == 1){
             $("#start_date").val($date +" "+ "09:00");
             $("#end_date").val($date +" "+"11:00");
@@ -279,4 +310,4 @@
 
 </script>
 
-<?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/ManageOrganiser/Modals/updateEvent.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/ManageOrganiser/Modals/UpdateEvent.blade.php ENDPATH**/ ?>

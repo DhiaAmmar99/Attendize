@@ -1,9 +1,9 @@
 <?php $__env->startSection('title'); ?>
-Speakers
+Streams
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('page_title'); ?>
-   <p> Speakers</p>
+   <p> Streams</p>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('top_nav'); ?>
@@ -25,7 +25,7 @@ Speakers
     <div class="col-md-9">
         <div class="btn-toolbar">
             <div class="btn-group btn-group-responsive">
-                <a href="#" data-modal-id="CreateSpeaker" data-href="<?php echo e(route('showCreateSpeaker', ['organiser_id' => @$organiser->id])); ?>" class="btn btn-success loadModal"><i class="ico-plus"></i> create speaker</a>
+                <a href="#" data-modal-id="CreateStream" data-href="<?php echo e(route('showCreateStream', ['organiser_id' => @$organiser->id])); ?>" class="btn btn-success loadModal"><i class="ico-plus"></i> create stream</a>
             </div>
         </div>
     </div>
@@ -34,14 +34,14 @@ Speakers
 <?php $__env->startSection('content'); ?>
 
     <div class="row">
-        <?php if($speakers->count()): ?>
-            <?php $__currentLoopData = $speakers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $speaker): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <?php if($streams->count()): ?>
+            <?php $__currentLoopData = $streams; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $stream): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <?php echo $__env->make('ManageOrganiser.Partials.SpeakerPanel', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                    <?php echo $__env->make('ManageOrganiser.Partials.StreamPanel', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         <?php endif; ?>
     </div>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('Shared.Layouts.Master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/ManageOrganiser/speakers.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('Shared.Layouts.Master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/ManageOrganiser/Streams.blade.php ENDPATH**/ ?>

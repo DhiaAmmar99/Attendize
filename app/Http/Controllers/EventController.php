@@ -12,6 +12,7 @@ use App\Models\Speaker;
 use App\Models\Organiser;
 use App\Models\EventImage;
 use App\Models\Program;
+use App\Models\RegistrationSchedule;
 use App\Models\sessionChair;
 use App\Models\sessionSpeaker;
 use App\Models\Stream;
@@ -60,7 +61,7 @@ class EventController extends MyBaseController
             'organiser_id' => $request->get('organiser_id') ? $request->get('organiser_id') : false,
         ];
 
-        $event = Event::select('id', 'title', 'description', 'start_date', 'end_date', 'language', 'room', 'nb_session', 'id_stream', 'id_TOS', 'id_program')->where('id', $data['event_id'])->get();
+        $event = Event::select('id', 'title', 'description', 'start_date', 'end_date', 'language', 'room', 'nb_session', 'id_stream', 'id_TOS', 'id_program', 'nb_places')->where('id', $data['event_id'])->get();
         
 
         $programs = Program::all();
@@ -386,35 +387,53 @@ class EventController extends MyBaseController
         //     $eventImage->save();
         // }
 
-        // DB::connection('mysql')->table('speakers')->where('id_event', $event_id)
-        // ->update([
-        //     'firstName' => $request->get('firstName'),
-        //     'lastName' => $request->get('lastName'),
-        //     'email' => $request->get('email'),
-        //     'phone' => $request->get('phone'),
-        //     'description' => strip_tags($request->get('desc')),
-        // ]);
-        $event = Event::where('id', $request->input('id'))->update([
+
+        $id = $request->input('id');
+
+        Event::where('id', $id)->update([
                 'title' => $request->input('title'),
                 'description' => strip_tags($request->input('description')),
                 'start_date' => $request->input('start_date'),
                 'end_date' => $request->input('end_date'),
                 'language' => $request->input('language'),
-                'room' => $request->input('room') ,
-                'nb_session' => $request->input('nb_session') ,
-                'id_stream' => $request->input('stream') ,
-                'id_TOS' => $request->input('TypeOfSession') ,
-                'id_program' => $request->input('program') ,
+                'room' => $request->input('room'),
+                'nb_session' => $request->input('nb_session'),
+                'id_stream' => $request->input('stream'),
+                'id_TOS' => $request->input('TypeOfSession'),
+                'id_program' => $request->input('program'),
+                'nb_places' => $request->input('nb_places'),
         ]);
+        sessionSpeaker::where('session_id', $id)->delete();
+        sessionChair::where('session_id', $id)->delete();
+        $chairs = $request->get('chair');
+        $speakers = $request->get('speaker');
+        
+        if ($id != null)
+        {
+            foreach($speakers as  $sp){
+                $ss = new sessionSpeaker();
+                $ss->session_id = $id;
+                $ss->speaker_id = $sp;
+                $ss->save();
+            }
+            foreach($chairs as  $ch){
+                $sc = new sessionChair();
+                $sc->session_id = $id;
+                $sc->chair_id = $ch;
+                $sc->save();
+            }
 
-        return response()->json([
-            'status'      => 'success',
-            'id'          => $request->input('id'),
-            'message'     => trans("Controllers.event_successfully_updated"),
-            'redirectUrl' => route('showOrganiserDashboard', [
-                'organiser_id'  => $request->input('organiser_id'),
-            ]),
-        ]);
+            return response()->json([
+                'status'      => 'success',
+                'id'          => $request->input('id'),
+                'message'     => trans("Controllers.event_successfully_updated"),
+                'redirectUrl' => route('showOrganiserDashboard', [
+                    'organiser_id'  => $request->input('organiser_id'),
+                ]),
+            ]);
+        }
+
+       
     }
 
     /**
@@ -507,6 +526,7 @@ class EventController extends MyBaseController
         $event->start_date = $request->get('start_date');
         $event->end_date = $request->get('end_date');
 
+        $event->nb_places = $request->get('nb_places');
         $event->language = $request->get('language');
         $event->room = $request->get('room') ;
         $event->nb_session = $request->get('nb_session') ;
@@ -558,9 +578,13 @@ class EventController extends MyBaseController
     public function removeSession(Request $request)
     {
         // remove by id.
+
         if ($request->has('id')) {
             
-            $data = Event::where('id', $request->input('id'))->delete();
+            $id = $request->input('id');
+            $data = DB::select('DELETE from events where id =:id', ['id' => $id]);
+            
+            $sp = RegistrationSchedule::where('session_id', $id)->delete();
             if ($data) {
                 return Response::json([
                     'message' => 'success',

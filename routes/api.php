@@ -14,6 +14,7 @@ use App\Http\Controllers\ChairController;
 use App\Http\Controllers\EventSearchController;
 use App\Http\Controllers\RegistrationScheduleController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\SponsorsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,7 +71,6 @@ Route::post('/password', [ApiregistrationController::class ,'password']);
 Route::post('/email/password', [ApiregistrationController::class ,'emailPassword']);
 Route::post('/verifEmail', [ApiregistrationController::class ,'verifEmail']);
 Route::post('/payment', [ApiregistrationController::class ,'payment']);
-Route::get('/listSponsors', [ApiregistrationController::class ,'listSponsors']);
 Route::get('/allusers', [ApiregistrationController::class ,'allUsers']);
 Route::get('/listspeakers', [ApiregistrationController::class ,'listSpeakers']);
 Route::get('/listEvent', [ApiregistrationController::class ,'listNamesEvent']);
@@ -126,6 +126,18 @@ Route::post('/createprogram', [ProgramController::class ,'createProgram']);
 
 
 Route::post('/PaymentConfirmation', [PaymentController::class ,'PaymentEmail']);
+
+
+/*
+ * ---------------
+ * Sponsors
+ * ---------------
+ */
+
+
+Route::get('/listSponsors', [SponsorsController::class ,'listSponsors']);
+
+
 
 /*
  * ---------------
@@ -206,8 +218,9 @@ Route::post('/updateImage/{id}', [ImageController::class ,'updateImg']);
  * ---------------
  */
 
-Route::get('/notification', [NotificationController::class ,'notification']);
-
+Route::post('/notification/chat', [NotificationController::class ,'notification']);
+Route::get('/notification/participate', [NotificationController::class ,'sendNotification']);
+Route::get('/listNotification', [NotificationController::class ,'listNotification']);
 
 /*
  * ---------------
