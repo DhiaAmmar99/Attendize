@@ -317,7 +317,7 @@ select.MP, select.payment {
 
 
 <script type="text/javascript">
-var direction = 'http://127.0.0.1:8000';
+var direction = window.location.origin;
 
 
 
