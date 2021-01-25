@@ -131,7 +131,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group" onclick="showCheckboxes('checkboxesCH')">
                                     {!! Form::label("","chairs", array('class'=>'control-label')) !!}
-                                    <select class="form-control" required style="pointer-events: none;">
+                                    <select class="form-control" required style="pointer-events: none;" id="CHselect">
                                         <option selected disabled value="">Select chairs</option>
                                     </select>
                                     <div id="checkboxesCH" class="checkboxes">
@@ -506,6 +506,15 @@
     });
 
     $("input:checkbox[name='speaker[]']").change(function(){
-        $("#SPselect").removeAttr("required");
+        if($("input:checkbox[name='speaker[]']:checked").length > 0)
+            $("#SPselect").removeAttr("required");
+        else
+        $("#SPselect").attr("required", "required");
+    });
+    $("input:checkbox[name='chair[]']").change(function(){
+        if($("input:checkbox[name='chair[]']:checked").length > 0)
+            $("#CHselect").removeAttr("required");
+        else
+        $("#CHselect").attr("required", "required");
     });
 </script>
