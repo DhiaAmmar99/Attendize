@@ -46,6 +46,7 @@ use App\Http\Controllers\StreamController;
 use App\Http\Controllers\TypeofsessionController;
 use App\Http\Controllers\SponsorsController;
 use App\Http\Controllers\ChairController;
+use App\Http\Controllers\AbstractController;
 
 
 
@@ -311,6 +312,44 @@ Route::get('/removeProgram',
         Route::post('/updateTos',
             [TypeofsessionController::class, 'updateTos']
         )->name('updateTos');
+        
+    });
+
+
+    /*
+     * ----------
+     * Abstract
+     * ----------
+    */
+    Route::get('/{organiser_id}/abstracts', [AbstractController::class, 'abstracts'])->name('abstracts');
+    Route::get('/removeAbstract', [AbstractController::class ,'removeAbstract']);
+    Route::group(['prefix' => 'abstracts'], function () {
+    
+        /*
+         * ----------
+         * Create abstracts
+         * ----------
+         */
+        Route::get('/createAbstract',
+            [AbstractController::class, 'showCreateAbstract']
+        )->name('showCreateAbstract');
+    
+        Route::post('/createAbstract',
+            [AbstractController::class, 'createAbstract']
+        )->name('createAbstract');
+    
+        /*
+         * ----------
+         * Update abstracts
+         * ----------
+         */
+        Route::get('/updateAbstract',
+            [AbstractController::class, 'showUpdateAbstract']
+        )->name('showUpdateAbstract');
+    
+        Route::post('/updateAbstract',
+            [AbstractController::class, 'updateAbstract']
+        )->name('updateAbstract');
         
     });
 
