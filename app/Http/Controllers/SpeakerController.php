@@ -46,6 +46,10 @@ class SpeakerController extends Controller
         $speaker->Country = $request->get('country');
         $speaker->organization = $request->get('organization');
         $speaker->description = $request->get('description');
+        $speaker->description = $request->get('facebook');
+        $speaker->description = $request->get('twitter');
+        $speaker->description = $request->get('linkedin');
+        $speaker->description = $request->get('instagram');
 
         if($file = $request->hasFile('image')) {
             $file = $request->file('image') ;
@@ -105,6 +109,10 @@ class SpeakerController extends Controller
                 'country' => $request->input('country'),
                 'organization' => $request->input('organization'),
                 'description' => $request->input('description'),
+                'facebook' => $request->input('facebook'),
+                'twitter' => $request->input('twitter'),
+                'linkedin' => $request->input('linkedin'),
+                'instagram' => $request->input('instagram'),
                 'image' => $speaker->image
             ]);
         }else{
@@ -115,6 +123,10 @@ class SpeakerController extends Controller
                 'country' => $request->input('country'),
                 'organization' => $request->input('organization'),
                 'description' => $request->input('description'),
+                'facebook' => $request->input('facebook'),
+                'twitter' => $request->input('twitter'),
+                'linkedin' => $request->input('linkedin'),
+                'instagram' => $request->input('instagram'),
             ]);
         }
         if($data){
