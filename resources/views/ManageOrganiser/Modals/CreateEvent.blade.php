@@ -112,7 +112,7 @@
                                     <input  type="number" required class="form-control" name="nb_places" id="nb_places" min="1" max="20"  placeholder="Enter your nomber of room"/>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <div class="form-group" onclick="showCheckboxes('checkboxesSP')">
                                     {!! Form::label("","speakers", array('class'=>'required control-label')) !!}
                                     <select class="form-control" required style="pointer-events: none;" id="SPselect">
@@ -128,7 +128,7 @@
                             </div>
 
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <div class="form-group" onclick="showCheckboxes('checkboxesCH')">
                                     {!! Form::label("","chairs", array('class'=>'control-label')) !!}
                                     <select class="form-control" required style="pointer-events: none;" id="CHselect">
@@ -138,6 +138,20 @@
                                         @foreach ($chairs as $c)
                                             <label for="ch-{{$c->id}}" class="speaker">
                                                 <input type="checkbox" id="ch-{{$c->id}}" name="chair[]" value="{{$c->id}}"/> &nbsp; {{$c->firstname}} &nbsp; {{$c->lastname}}</label>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group" onclick="showCheckboxes('checkboxesAB')">
+                                    {!! Form::label("","abstracts", array('class'=>'control-label')) !!}
+                                    <select class="form-control" required style="pointer-events: none;" id="ABselect">
+                                        <option selected disabled value="">Select abstracts</option>
+                                    </select>
+                                    <div id="checkboxesAB" class="checkboxes">
+                                        @foreach ($abstracts as $a)
+                                            <label for="ab-{{$a->id}}" class="speaker">
+                                                <input type="checkbox" id="ab-{{$a->id}}" name="abstract[]" value="{{$a->id}}"/> &nbsp; {{$a->title}}</label>
                                         @endforeach
                                     </div>
                                 </div>
@@ -235,5 +249,11 @@
             $("#CHselect").removeAttr("required");
         else
         $("#CHselect").attr("required", "required");
+    });
+    $("input:checkbox[name='abstract[]']").change(function(){
+        if($("input:checkbox[name='abstract[]']:checked").length > 0)
+            $("#ABselect").removeAttr("required");
+        else
+        $("#ABselect").attr("required", "required");
     });
 </script>

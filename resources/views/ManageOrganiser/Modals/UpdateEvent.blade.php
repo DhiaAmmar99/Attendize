@@ -1,111 +1,4 @@
-<style>
-                                
-    .checkboxes {
-    display: none;
-    border: 1px #dadada solid;
-    padding: 10px 0;
-    }
 
-    .checkboxes label {
-    display: block;
-    }
-
-    .checkboxes label:hover {
-    background-color: #e0e0e0;
-    }
-    .checkboxes label {
-        padding: 0 10px;
-    }
-</style>
-<script>
-    var expanded = true;
-
-    function showCheckboxes(id) {
-    var checkboxes = document.getElementById(id);
-    if (!expanded) {
-        checkboxes.style.display = "block";
-        expanded = true;
-    } else {
-        checkboxes.style.display = "none";
-        expanded = false;
-    }
-    }
-
-    /* date input */
-    $date = '';
-    $("document").ready(function(){
-        $res = jQuery("#program option:selected").attr("data");
-        $SD = jQuery("#start_date").val();
-        $ED = jQuery("#end_date").val();
-        $date = $res.slice(0, 10);
-        $time = jQuery("#time option:selected").attr("value");
-            
-        if ($time == 1){
-            $("#start_date").val($date +" "+ "09:00");
-            $("#end_date").val($date +" "+"11:00");
-        }else if($time == 2){
-            $("#start_date").val($date +" "+ "13:00");
-            $("#end_date").val($date +" "+"15:00");
-        }else if($time == 3){
-            $("#start_date").val($date +" "+ "16:00");
-            $("#end_date").val($date +" "+"18:00");
-        } 
-        console.log($("input:checkbox[name='chair[]']:checked").length);
-        console.log('speaker',$("input:checkbox[name='speaker[]']:checked").length);
-        if($("input:checkbox[name='chair[]']:checked").length > 0){
-            $("#CHselect").removeAttr("required");
-        }  
-        else{
-            $("#CHselect").attr("required", "required");
-        }
-
-        if($("input:checkbox[name='speaker[]']:checked").length > 0){
-            $("#SPselect").removeAttr("required");
-        }
-        else{
-            $("#SPselect").attr("required", "required");
-        }
-    });
-
-    
-    $("#program").change(function(){
-        $res = jQuery("#program option:selected").attr("data");
-        $SD = jQuery("#start_date").val();
-        $ED = jQuery("#end_date").val();
-        $date = $res.slice(0, 10);
-        $("#start_date").val($date+$SD.slice(10, 16));
-        $("#end_date").val($date+$ED.slice(10, 16));
-    });
-    $("#time").change(function(){
-        $time = jQuery("#time option:selected").attr("value");
-        $res = jQuery("#start_date").val(); 
-        $SD=$res.slice(0, 10)  ;
-        if ($time == 1){
-            $("#start_date").val($SD +" "+ "09:00");
-            $("#end_date").val($SD +" "+"11:00");
-        }else if($time == 2){
-            $("#start_date").val($SD +" "+ "13:00");
-            $("#end_date").val($SD +" "+"15:00");
-        }else if($time == 3){
-            $("#start_date").val($SD +" "+ "16:00");
-            $("#end_date").val($SD +" "+"18:00");
-        }
-    });
-
-    $("input:checkbox[name='speaker[]']").change(function(){
-        if($("input:checkbox[name='speaker[]']:checked").length > 0)
-            $("#SPselect").removeAttr("required");
-        else
-        $("#SPselect").attr("required", "required");
-    });
-    $("input:checkbox[name='chair[]']").change(function(){
-        if($("input:checkbox[name='chair[]']:checked").length > 0)
-            $("#CHselect").removeAttr("required");
-        else
-        $("#CHselect").attr("required", "required");
-    });
-
-</script>
 
 
 <div role="dialog"  class="modal fade" style="display: none;">
@@ -263,7 +156,7 @@
                                     <input  type="number" class="form-control" required name="nb_places" value="{{$event->nb_places}}" id="nb_places" min="1" max="20"  placeholder="Enter your nomber of room"/>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <div class="form-group" onclick="showCheckboxes('checkboxesSP')">
                                     {!! Form::label("","speakers", array('class'=>'required control-label')) !!}
                                     <select class="form-control"  style="pointer-events: none;" id="SPselect">
@@ -283,9 +176,7 @@
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <div class="form-group" onclick="showCheckboxes('checkboxesCH')">
                                     {!! Form::label("","chairs", array('class'=>'control-label')) !!}
                                     <select class="form-control"  style="pointer-events: none;" id="CHselect">
@@ -300,6 +191,26 @@
                                             <script>
                                                 var val = <?php echo json_encode($sc->chair_id); ?>;
                                                 $(`#ch-${val}`).attr('checked', 'checked');
+                                            </script>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group" onclick="showCheckboxes('checkboxesAB')">
+                                    {!! Form::label("","abstracts", array('class'=>'control-label')) !!}
+                                    <select class="form-control"  style="pointer-events: none;" id="ABselect">
+                                        <option selected disabled  value="">Select abstracts</option>
+                                    </select>
+                                    <div id="checkboxesAB" class="checkboxes" style="display: block;">
+                                        @foreach ($abstracts as $a)
+                                            <label for="ab-{{$a->id}}" class="speaker">
+                                            <input type="checkbox"  id="ab-{{$a->id}}" name="abstract[]" value="{{$a->id}}"/> &nbsp; {{$a->title}}</label>
+                                        @endforeach
+                                        @foreach ($sessionAbstract as $sb)
+                                            <script>
+                                                var val = <?php echo json_encode($sb->abstract_id); ?>;
+                                                $(`#ab-${val}`).attr('checked', 'checked');
                                             </script>
                                         @endforeach
                                     </div>
@@ -328,3 +239,126 @@
         </div>
     </div>
 </div>
+<style>
+                                
+                                .checkboxes {
+                                display: none;
+                                border: 1px #dadada solid;
+                                padding: 10px 0;
+                                }
+                            
+                                .checkboxes label {
+                                display: block;
+                                }
+                            
+                                .checkboxes label:hover {
+                                background-color: #e0e0e0;
+                                }
+                                .checkboxes label {
+                                    padding: 0 10px;
+                                }
+                            </style>
+                            <script>
+                                var expanded = true;
+                            
+                                function showCheckboxes(id) {
+                                var checkboxes = document.getElementById(id);
+                                if (!expanded) {
+                                    checkboxes.style.display = "block";
+                                    expanded = true;
+                                } else {
+                                    checkboxes.style.display = "none";
+                                    expanded = false;
+                                }
+                                }
+                            
+                                /* date input */
+                                $date = '';
+                                $("document").ready(function(){
+                                    $res = jQuery("#program option:selected").attr("data");
+                                    $SD = jQuery("#start_date").val();
+                                    $ED = jQuery("#end_date").val();
+                                    $date = $res.slice(0, 10);
+                                    $time = jQuery("#time option:selected").attr("value");
+                                        
+                                    if ($time == 1){
+                                        $("#start_date").val($date +" "+ "09:00");
+                                        $("#end_date").val($date +" "+"11:00");
+                                    }else if($time == 2){
+                                        $("#start_date").val($date +" "+ "13:00");
+                                        $("#end_date").val($date +" "+"15:00");
+                                    }else if($time == 3){
+                                        $("#start_date").val($date +" "+ "16:00");
+                                        $("#end_date").val($date +" "+"18:00");
+                                    } 
+                                    console.log($("input:checkbox[name='chair[]']:checked").length);
+                                    console.log('speaker',$("input:checkbox[name='speaker[]']:checked").length);
+                                    if($("input:checkbox[name='chair[]']:checked").length > 0){
+                                        $("#CHselect").removeAttr("required");
+                                    }  
+                                    else{
+                                        $("#CHselect").attr("required", "required");
+                                    }
+                            
+                                    if($("input:checkbox[name='speaker[]']:checked").length > 0){
+                                        $("#SPselect").removeAttr("required");
+                                    }
+                                    else{
+                                        $("#SPselect").attr("required", "required");
+                                    }
+                            
+                                    if($("input:checkbox[name='abstract[]']:checked").length > 0){
+                                        $("#ABselect").removeAttr("required");
+                                    }
+                                    else{
+                                        $("#ABselect").attr("required", "required");
+                                    }
+                                });
+                            
+                                
+                                $("#program").change(function(){
+                                    $res = jQuery("#program option:selected").attr("data");
+                                    $SD = jQuery("#start_date").val();
+                                    $ED = jQuery("#end_date").val();
+                                    $date = $res.slice(0, 10);
+                                    $("#start_date").val($date+$SD.slice(10, 16));
+                                    $("#end_date").val($date+$ED.slice(10, 16));
+                                });
+                                $("#time").change(function(){
+                                    $time = jQuery("#time option:selected").attr("value");
+                                    $res = jQuery("#start_date").val(); 
+                                    $SD=$res.slice(0, 10)  ;
+                                    if ($time == 1){
+                                        $("#start_date").val($SD +" "+ "09:00");
+                                        $("#end_date").val($SD +" "+"11:00");
+                                    }else if($time == 2){
+                                        $("#start_date").val($SD +" "+ "13:00");
+                                        $("#end_date").val($SD +" "+"15:00");
+                                    }else if($time == 3){
+                                        $("#start_date").val($SD +" "+ "16:00");
+                                        $("#end_date").val($SD +" "+"18:00");
+                                    }
+                                });
+                            
+                                $("input:checkbox[name='speaker[]']").change(function(){
+                                    if($("input:checkbox[name='speaker[]']:checked").length > 0)
+                                        $("#SPselect").removeAttr("required");
+                                    else
+                                    $("#SPselect").attr("required", "required");
+                                });
+                            
+                                $("input:checkbox[name='chair[]']").change(function(){
+                                    if($("input:checkbox[name='chair[]']:checked").length > 0)
+                                        $("#CHselect").removeAttr("required");
+                                    else
+                                    $("#CHselect").attr("required", "required");
+                                });
+                            
+                                $("input:checkbox[name='abstract[]']").change(function(){
+                                    if($("input:checkbox[name='abstract[]']:checked").length > 0)
+                                        $("#ABselect").removeAttr("required");
+                                    else
+                                    $("#ABselect").attr("required", "required");
+                                });
+                            
+                            </script>

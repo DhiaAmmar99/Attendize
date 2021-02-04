@@ -9,12 +9,14 @@ use Image;
 use Response;
 use App\Models\Event;
 use App\Models\Speaker;
+use App\Models\Abstracts;
 use App\Models\Organiser;
 use App\Models\EventImage;
 use App\Models\Program;
 use App\Models\RegistrationSchedule;
 use App\Models\sessionChair;
 use App\Models\sessionSpeaker;
+use App\Models\sessionAbstract;
 use App\Models\Stream;
 use App\Models\Typeofsession;
 use Illuminate\Http\Request;
@@ -42,6 +44,7 @@ class EventController extends MyBaseController
         $tos = Typeofsession::all();
         $speakers = Speaker::all();
         $chairs = Chair::all();
+        $abstracts = Abstracts::all();
         return view('ManageOrganiser.Modals.CreateEvent', $data)->with([
             'events'=> $events,
             'programs'=> $programs,
@@ -49,6 +52,7 @@ class EventController extends MyBaseController
             'tos'=> $tos,
             'speakers'=> $speakers,
             'chairs'=> $chairs,
+            'abstracts'=> $abstracts,
             ]);
     }
 
@@ -64,11 +68,13 @@ class EventController extends MyBaseController
         $event = Event::select('id', 'title', 'description', 'start_date', 'end_date', 'language', 'room', 'nb_session', 'id_stream', 'id_TOS', 'id_program', 'nb_places')->where('id', $data['event_id'])->get();
         
 
+        $abstracts = Abstracts::all();
         $programs = Program::all();
         $streams = Stream::all();
         $tos = Typeofsession::all();
         $speakers = Speaker::all();
         $chairs = Chair::all();
+        $sessionAbstract = sessionAbstract::where('session_id', $event[0]->id)->get();
         $sessionSpeaker = sessionSpeaker::where('session_id', $event[0]->id)->get();
         $sessionChair = sessionChair::where('session_id', $event[0]->id)->get();
         return view('ManageOrganiser.Modals.UpdateEvent', $data)
@@ -80,8 +86,10 @@ class EventController extends MyBaseController
             'tos'=> $tos,
             'speakers'=> $speakers,
             'chairs'=> $chairs,
+            'abstracts'=> $abstracts,
             'sessionSpeaker'=> $sessionSpeaker,
             'sessionChair'=> $sessionChair,
+            'sessionAbstract'=> $sessionAbstract,
             ]);
     }
 
@@ -403,10 +411,12 @@ class EventController extends MyBaseController
                 'id_program' => $request->input('program'),
                 'nb_places' => $request->input('nb_places'),
         ]);
+        sessionAbstract::where('session_id', $id)->delete();
         sessionSpeaker::where('session_id', $id)->delete();
         sessionChair::where('session_id', $id)->delete();
         $chairs = $request->get('chair');
         $speakers = $request->get('speaker');
+        $abstracts = $request->get('abstract');
         
         if ($id != null)
         {
@@ -421,6 +431,12 @@ class EventController extends MyBaseController
                 $sc->session_id = $id;
                 $sc->chair_id = $ch;
                 $sc->save();
+            }
+            foreach($abstracts as  $a){
+                $ab = new sessionAbstract();
+                $ab->session_id = $id;
+                $ab->Abstract_id = $a;
+                $ab->save();
             }
 
             return response()->json([
@@ -545,6 +561,7 @@ class EventController extends MyBaseController
         
         $chairs = $request->get('chair');
         $speakers = $request->get('speaker');
+        $abstracts = $request->get('abstract');
         
         if ($id_event != null)
         {
@@ -560,6 +577,12 @@ class EventController extends MyBaseController
                 $sc->session_id = $id_event;
                 $sc->chair_id = $ch;
                 $sc->save();
+            }
+            foreach($abstracts as  $a){
+                $ab = new sessionAbstract();
+                $ab->session_id = $id_event;
+                $ab->Abstract_id = $a;
+                $ab->save();
             }
 
             return response()->json([
@@ -584,7 +607,10 @@ class EventController extends MyBaseController
             $id = $request->input('id');
             $data = DB::select('DELETE from events where id =:id', ['id' => $id]);
             
-            $sp = RegistrationSchedule::where('session_id', $id)->delete();
+            RegistrationSchedule::where('session_id', $id)->delete();
+            sessionSpeaker::where('session_id', $id)->delete();
+            sessionChair::where('session_id', $id)->delete();
+            sessionAbstract::where('session_id', $id)->delete();
             if ($data) {
                 return Response::json([
                     'message' => 'success',
