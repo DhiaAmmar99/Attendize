@@ -119,7 +119,7 @@
                                     <input  type="number" required class="form-control" name="nb_places" id="nb_places" min="1" max="20"  placeholder="Enter your nomber of room"/>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <div class="form-group" onclick="showCheckboxes('checkboxesSP')">
                                     <?php echo Form::label("","speakers", array('class'=>'required control-label')); ?>
 
@@ -136,7 +136,7 @@
                             </div>
 
 
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <div class="form-group" onclick="showCheckboxes('checkboxesCH')">
                                     <?php echo Form::label("","chairs", array('class'=>'control-label')); ?>
 
@@ -151,21 +151,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
-                                <div class="form-group" onclick="showCheckboxes('checkboxesAB')">
-                                    <?php echo Form::label("","abstracts", array('class'=>'control-label')); ?>
-
-                                    <select class="form-control" required style="pointer-events: none;" id="ABselect">
-                                        <option selected disabled value="">Select abstracts</option>
-                                    </select>
-                                    <div id="checkboxesAB" class="checkboxes">
-                                        <?php $__currentLoopData = $abstracts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $a): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <label for="ab-<?php echo e($a->id); ?>" class="speaker">
-                                                <input type="checkbox" id="ab-<?php echo e($a->id); ?>" name="abstract[]" value="<?php echo e($a->id); ?>"/> &nbsp; <?php echo e($a->title); ?></label>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    </div>
-                                </div>
-                            </div>
+                           
 
                         </div>
                         <div class="form-group custom-theme">
@@ -264,12 +250,6 @@
             $("#CHselect").removeAttr("required");
         else
         $("#CHselect").attr("required", "required");
-    });
-    $("input:checkbox[name='abstract[]']").change(function(){
-        if($("input:checkbox[name='abstract[]']:checked").length > 0)
-            $("#ABselect").removeAttr("required");
-        else
-        $("#ABselect").attr("required", "required");
     });
 </script>
 <?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/ManageOrganiser/Modals/CreateEvent.blade.php ENDPATH**/ ?>
