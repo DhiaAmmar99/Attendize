@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="21.907" height="19.387" viewBox="0 0 21.907 19.387">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #6078ea;
+      }
+    </style>
+  </defs>
+  <g id="ux" transform="translate(0 -29.447)">
+    <path id="Tracé_10257" data-name="Tracé 10257" class="cls-1" d="M12.108,33.645l3.5-4.2H0v4.2ZM8.187,30.88H9.47v1.291H8.187Zm-2.76,0H6.711v1.291H5.427Zm-2.76,0H3.951v1.291H2.667Z" transform="translate(0)"/>
+    <path id="Tracé_10258" data-name="Tracé 10258" class="cls-1" d="M17.282,29.447l-4.573,5.481H0V48.834H21.907V29.447ZM10.038,42.756a2.375,2.375,0,1,1-4.749,0v-4H6.572v4a1.091,1.091,0,0,0,2.182,0v-4h1.284Zm6.316,2.4H14.885l-1.048-1.887L12.79,45.152H11.322L13.1,41.943l-1.782-3.209H12.79l1.048,1.887,1.048-1.887h1.468l-1.782,3.209Z" transform="translate(0 0)"/>
+  </g>
+</svg>

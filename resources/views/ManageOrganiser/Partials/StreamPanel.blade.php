@@ -3,7 +3,7 @@
         <div class="event-date">
 
             
-            <img src="{{$stream->icon}} " alt="" class="img">
+            <img src="{{$stream->icon}}" alt="icon" class="img" id="img-{{$stream->id}}"  onload="colorsFN('{{$stream->couleur}}', 'img-{{$stream->id}}')" />
         </div>
         <ul class="event-meta">
             <li class="event-title">
@@ -68,7 +68,7 @@
 
             } 
             });
-    }
+    }             
 </script>
 <style>
     .img{
