@@ -25,7 +25,7 @@
                                 <div class="form-group">
                                     {!! Form::label('image', "image", array('class'=>'control-label required')) !!}
                                     {{-- {!!  Form::file('image', old('title'),array('class'=>'form-control','placeholder'=>'Upload your image' ))  !!} --}}
-                                    <input type="file" value="image" name="image" class="form-control" id="picture">
+                                    <input type="file" value="image" name="image" class="form-control" id="picture" accept="image/*">
                                 </div>
                             </div> 
                         </div>

@@ -18,10 +18,9 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {!! Form::label('title', "title", array('class'=>'control-label required')) !!}
-                                    {!!  Form::text('title', $abstract->title,array('class'=>'form-control','placeholder'=>'Enter title of your stream' ))  !!}
+                                    {!!  Form::text('title', $abstract->title,array('class'=>'form-control','placeholder'=>'Enter title of your stream', 'required' ))  !!}
                                 </div>
                             </div>
-                           
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     {!! Form::label("","speakers", array('class'=>'required control-label')) !!}

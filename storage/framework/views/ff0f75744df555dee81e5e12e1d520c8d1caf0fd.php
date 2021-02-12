@@ -32,8 +32,11 @@ Streams
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
+
+    
+
     <script>
-               class Color {
+        class Color {
          constructor(r, g, b) {
            this.set(r, g, b);
          }
@@ -337,8 +340,11 @@ Streams
            $('.realPixel').css('background-color', color.toString());
            $(`#${id}`).attr('style', result.filter);
        
-         }
+        }
     </script>
+
+    
+    
     <div class="row">
         <?php if($streams->count()): ?>
             <?php $__currentLoopData = $streams; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $stream): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

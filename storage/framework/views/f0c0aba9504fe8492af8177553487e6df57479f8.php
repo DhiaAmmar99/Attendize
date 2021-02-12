@@ -37,57 +37,6 @@
     });
 
 
-    /*        JS group checkbox        */
-    
-//     jQuery('.btn-success').click(function() {
-//     if ((jQuery("#program").is(':checked')) || (jQuery("#Social_events").is(':checked')) || (jQuery("#Gala_dinner").is(':checked')) || (jQuery("#workshops").is(':checked'))) {
-//         jQuery(`#event_error`).text("");
-//         jQuery(".event_type").css("color", "#6f6f6f", "!important");
-            
-//     } else {
-//         jQuery("#event_error").text("Please check event.");
-//         jQuery(".event_type").css("color", "#ED5466", "!important");
-//     }
-// });
-
-//     /*        JS group select         */
-// jQuery("#programSelect, #socialSelect, #dinnerSelect, #workshopsSelect").hide();
-// jQuery('#program').click(function() {
-//     if(this.checked) {
-//         jQuery("#programSelect").show();
-//      }else{
-//         jQuery("#programSelect").hide();
-//      }
-// });
-// jQuery('#Social_events').click(function() {
-//     if(this.checked) {
-//         jQuery("#socialSelect").show();
-//      }else{
-//         jQuery("#socialSelect").hide();
-//      }
-// });
-// jQuery('#Gala_dinner').click(function() {
-//     if(this.checked) {
-//         jQuery("#dinnerSelect").show();
-//      }else{
-//         jQuery("#dinnerSelect").hide();
-//      }
-// });
-// jQuery('#workshops').click(function() {
-//     if(this.checked) {
-//         jQuery("#workshopsSelect").show();
-//      }else{
-//         jQuery("#workshopsSelect").hide();
-//      }
-// });
-
-
-    /*        JS update program         */
-    
-
-    
-
-
 </script>
 <style>
     .editor-toolbar {

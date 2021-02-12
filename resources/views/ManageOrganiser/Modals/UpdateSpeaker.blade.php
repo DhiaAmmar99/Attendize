@@ -18,37 +18,37 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {!! Form::label('first name', "first name", array('class'=>'control-label required')) !!}
-                                    {!!  Form::text('firstname',  $speaker->firstname ,array('class'=>'form-control','placeholder'=>'Enter your first name' ))  !!}
+                                    {!!  Form::text('firstname',  $speaker->firstname ,array('class'=>'form-control','placeholder'=>'Enter your first name' , 'required'))  !!}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {!! Form::label('last name', "last name", array('class'=>'control-label required')) !!}
-                                    {!!  Form::text('lastname',  $speaker->lastname ,array('class'=>'form-control','placeholder'=>'Enter your last name' ))  !!}
+                                    {!!  Form::text('lastname',  $speaker->lastname ,array('class'=>'form-control','placeholder'=>'Enter your last name' , 'required'))  !!}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {!! Form::label('email', "email", array('class'=>'control-label required')) !!}
-                                    {!!  Form::email('email',  $speaker->email ,array('class'=>'form-control','placeholder'=>'Enter your email' ))  !!}
+                                    {!!  Form::email('email',  $speaker->email ,array('class'=>'form-control','placeholder'=>'Enter your email' , 'required'))  !!}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {!! Form::label('organization', "organization", array('class'=>'control-label required')) !!}
-                                    {!!  Form::text('organization', $speaker->organization ,array('class'=>'form-control','placeholder'=>'Enter your organization' ))  !!}
+                                    {!!  Form::text('organization', $speaker->organization ,array('class'=>'form-control','placeholder'=>'Enter your organization' , 'required'))  !!}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {!! Form::label('country', "country", array('class'=>'control-label required')) !!}
-                                    {!!  Form::text('country', $speaker->country ,array('class'=>'form-control','placeholder'=>'Enter your country' ))  !!}
+                                    {!!  Form::text('country', $speaker->country ,array('class'=>'form-control','placeholder'=>'Enter your country' , 'required'))  !!}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {!! Form::label('picture', "picture", array('class'=>'control-label required')) !!}
-                                    <input type="file" value="image" name="image" class="form-control" id="picture">
+                                    <input type="file" value="image" name="image" class="form-control" id="picture" accept="image/*" />
                                 </div>
                             </div>
                             <div class="col-md-6">

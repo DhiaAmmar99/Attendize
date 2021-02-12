@@ -47,7 +47,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {!! Form::label('image', "image", array('class'=>'control-label required')) !!}
-                                    <input type="file" value="image" name="image" class="form-control" id="picture" required>
+                                    <input type="file" value="image" name="image" class="form-control" id="picture"  accept="image/*" required>
                                 </div>
                             </div>
                             <div class="col-md-6">

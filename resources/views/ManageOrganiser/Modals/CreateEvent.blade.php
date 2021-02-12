@@ -19,7 +19,7 @@
                                 <div class="form-group">
                                     {!! Form::label('title', "Session title", array('class'=>'control-label required')) !!}
                                     {{-- {!!  Form::text('title', old('title'),array('class'=>'form-control','placeholder'=>"Enter your title session " ))  !!} --}}
-                                    <input type="text" name="title" required class="form-control" placeholder="Enter your title session">
+                                    <input type="text" name="title" required class="form-control" placeholder="Enter your title session" required>
                                 </div>
                             </div>
                             

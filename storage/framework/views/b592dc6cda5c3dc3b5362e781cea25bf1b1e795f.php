@@ -20,7 +20,7 @@
                                 <div class="form-group">
                                     <?php echo Form::label('title', "title", array('class'=>'control-label required')); ?>
 
-                                    <?php echo Form::text('title', $stream->title,array('class'=>'form-control','placeholder'=>'Enter title of your stream' )); ?>
+                                    <?php echo Form::text('title', $stream->title,array('class'=>'form-control','placeholder'=>'Enter title of your stream', 'required')); ?>
 
                                 </div>
                             </div>
@@ -29,22 +29,22 @@
                                 <div class="form-group">
                                     <?php echo Form::label('color', "color", array('class'=>'control-label required')); ?>
 
-                                    <?php echo Form::color('couleur', $stream->couleur,array('class'=>'form-control','placeholder'=>'Enter color of your stream' )); ?>
+                                    <?php echo Form::color('couleur', $stream->couleur,array('class'=>'form-control','placeholder'=>'Enter color of your stream', 'required' )); ?>
 
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <?php echo Form::label('icon', "icon", array('class'=>'control-label required')); ?>
+                                    <?php echo Form::label('icon', "icon (svg)", array('class'=>'control-label required')); ?>
 
-                                    <input type="file" value="icon" name="icon" class="form-control" id="icon">
+                                    <input type="file" value="icon" name="icon" class="form-control" id="icon" accept=".svg">
                                 </div>
                             </div> 
                         </div>
                         <?php echo Form::label('description', "description", array('class'=>'control-label required')); ?>
 
 
-                        <textarea  class="form-control  w-100" name="description" rows="5" ><?php echo e($stream->description); ?></textarea>
+                        <textarea  class="form-control  w-100"  required name="description" rows="5" ><?php echo e($stream->description); ?></textarea>
                     </div>
                 </div>
             </div>
