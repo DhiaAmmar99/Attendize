@@ -19,7 +19,7 @@
                                 <div class="form-group">
                                     <?php echo Form::label('first name', "first name", array('class'=>'control-label required')); ?>
 
-                                    <?php echo Form::text('firstname', old('title'),array('class'=>'form-control','placeholder'=>'Enter your first name' )); ?>
+                                    <?php echo Form::text('firstname', old('title'),array('class'=>'form-control','placeholder'=>'Enter your first name', 'required' )); ?>
 
                                 </div>
                             </div>
@@ -27,7 +27,7 @@
                                 <div class="form-group">
                                     <?php echo Form::label('last name', "last name", array('class'=>'control-label required')); ?>
 
-                                    <?php echo Form::text('lastname', old('title'),array('class'=>'form-control','placeholder'=>'Enter your last name' )); ?>
+                                    <?php echo Form::text('lastname', old('title'),array('class'=>'form-control','placeholder'=>'Enter your last name', 'required' )); ?>
 
                                 </div>
                             </div>
@@ -35,7 +35,7 @@
                                 <div class="form-group">
                                     <?php echo Form::label('email', "email", array('class'=>'control-label required')); ?>
 
-                                    <?php echo Form::email('email', old('title'),array('class'=>'form-control','placeholder'=>'Enter your email' )); ?>
+                                    <?php echo Form::email('email', old('title'),array('class'=>'form-control','placeholder'=>'Enter your email', 'required' )); ?>
 
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                                 <div class="form-group">
                                     <?php echo Form::label('organization', "organization", array('class'=>'control-label required')); ?>
 
-                                    <?php echo Form::text('organization', old('title'),array('class'=>'form-control','placeholder'=>'Enter your organization' )); ?>
+                                    <?php echo Form::text('organization', old('title'),array('class'=>'form-control','placeholder'=>'Enter your organization', 'required' )); ?>
 
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
                                 <div class="form-group">
                                     <?php echo Form::label('country', "country", array('class'=>'control-label required')); ?>
 
-                                    <?php echo Form::text('country', old('title'),array('class'=>'form-control','placeholder'=>'Enter your country' )); ?>
+                                    <?php echo Form::text('country', old('title'),array('class'=>'form-control','placeholder'=>'Enter your country', 'required' )); ?>
 
                                 </div>
                             </div>
@@ -59,20 +59,46 @@
                                 <div class="form-group">
                                     <?php echo Form::label('image', "image", array('class'=>'control-label required')); ?>
 
-                                    
-                                    <input type="file" value="image" name="image" class="form-control" id="picture">
+                                    <input type="file" value="image" name="image" class="form-control" id="picture"  accept="image/*" required>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <?php echo Form::label('facebook', "facebook", array('class'=>'control-label required')); ?>
 
-                            
-                        
-                           
+                                    <?php echo Form::url('facebook', old('facebook'),array('class'=>'form-control','placeholder'=>'Enter your link facebook', 'required' )); ?>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <?php echo Form::label('twitter', "twitter", array('class'=>'control-label required')); ?>
+
+                                    <?php echo Form::url('twitter', old('twitter'),array('class'=>'form-control','placeholder'=>'Enter your link twitter', 'required' )); ?>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <?php echo Form::label('linkedin', "linkedin", array('class'=>'control-label required')); ?>
+
+                                    <?php echo Form::url('linkedin', old('linkedin'),array('class'=>'form-control','placeholder'=>'Enter your link linkedin', 'required' )); ?>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <?php echo Form::label('instagram', "instagram", array('class'=>'control-label required')); ?>
+
+                                    <?php echo Form::url('instagram', old('instagram'),array('class'=>'form-control','placeholder'=>'Enter your link instagram', 'required' )); ?>
+
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group custom-theme">
                             <?php echo Form::label('description', "description", array('class'=>'control-label required')); ?>
 
                             <textarea  class="form-control  w-100" name="description" rows="5" required></textarea> 
-
                         </div>
                     </div>
                 </div>
@@ -81,7 +107,7 @@
                 <span class="uploadProgress"></span>
                 <?php echo Form::button(trans("basic.cancel"), ['class'=>"btn modal-close btn-danger",'data-dismiss'=>'modal']); ?>
 
-                
+
                 <?php echo Form::submit("create Speaker", ['class'=>"btn btn-success"]); ?>               
 
             </div>

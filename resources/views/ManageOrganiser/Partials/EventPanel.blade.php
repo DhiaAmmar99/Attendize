@@ -26,18 +26,18 @@
             <li>
                 <div class="section">
                     <h4 class="nm">
-                        {{ $event->tickets->sum('quantity_sold') }}
+                        {{ $event->nb_session }}
                     </h4>
-                    <p class="nm text-muted">@lang("Attendees")</p>
+                    <p class="nm text-muted">Number of session</p>
                 </div>
             </li>
            
-            {{-- <li>
+            <li>
                 <div class="section">
-                    <h4 class="nm">{{ $event->getEventRevenueAmount()->display() }}</h4>
-                    <p class="nm text-muted">@lang("Event.revenue")</p>
+                    <h4 class="nm">{{ $event->language }}</h4>
+                    <p class="nm text-muted">Language</p>
                 </div>
-            </li> --}}
+            </li>
         </ul>
     </div>
     <div class="panel-footer">

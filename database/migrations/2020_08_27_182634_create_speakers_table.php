@@ -22,6 +22,10 @@ class CreateSpeakersTable extends Migration
             $table->string('organization');
             $table->binary('image');
             $table->string('description');
+            $table->string('facebook');
+            $table->string('twitter');
+            $table->string('linkedin');
+            $table->string('instagram');
             $table->timestamps();
         });
     }

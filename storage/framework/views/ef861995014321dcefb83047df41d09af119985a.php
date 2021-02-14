@@ -54,6 +54,12 @@
                     <span class="text">sponsors</span>
                 </a>
             </li>
+            <li class="<?php echo e(Request::is('*abstracts*') ? 'active' : ''); ?>">
+                <a href="<?php echo e(route('abstracts', array('organiser_id' => $organiser->id))); ?>">
+                    <span class="figure"><i class="ico-cog"></i></span>
+                    <span class="text">abstracts</span>
+                </a>
+            </li>
             <li class="<?php echo e(Request::is('*users*') ? 'active' : ''); ?>">
                 <a href="<?php echo e(route('list', array('organiser_id' => $organiser->id))); ?>">
                     <span class="figure"><i class="ico-table"></i></span>

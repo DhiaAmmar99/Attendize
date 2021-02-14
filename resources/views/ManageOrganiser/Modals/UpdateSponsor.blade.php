@@ -18,21 +18,20 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {!! Form::label('title', "title", array('class'=>'control-label required')) !!}
-                                    {!!  Form::text('title', $sponsor->title,array('class'=>'form-control','placeholder'=>'Enter title of your stream' ))  !!}
+                                    {!!  Form::text('title', $sponsor->title,array('class'=>'form-control','placeholder'=>'Enter title of your stream', 'required' ))  !!}
                                 </div>
                             </div>
                            
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {!! Form::label('image', "image", array('class'=>'control-label required')) !!}
-                                    {{-- {!!  Form::file('image', old('image'),array('class'=>'form-control','placeholder'=>'Upload your image' ))  !!} --}}
-                                    <input type="file" value="image" name="image" class="form-control" id="picture">
+                                    <input type="file" value="image" name="image" class="form-control" id="picture" accept="image/*" >
                                 </div>
                             </div> 
                         </div>
                         {!! Form::label('description', "description", array('class'=>'control-label required')) !!}
 
-                        <textarea  class="form-control  w-100" name="description" rows="5" >{{$sponsor->description}}</textarea>
+                        <textarea  class="form-control  w-100" required name="description" rows="5" >{{$sponsor->description}}</textarea>
                     </div>
                 </div>
             </div>

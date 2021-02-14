@@ -9,12 +9,14 @@ use Image;
 use Response;
 use App\Models\Event;
 use App\Models\Speaker;
+use App\Models\Abstracts;
 use App\Models\Organiser;
 use App\Models\EventImage;
 use App\Models\Program;
 use App\Models\RegistrationSchedule;
 use App\Models\sessionChair;
 use App\Models\sessionSpeaker;
+use App\Models\sessionAbstract;
 use App\Models\Stream;
 use App\Models\Typeofsession;
 use Illuminate\Http\Request;
@@ -403,6 +405,7 @@ class EventController extends MyBaseController
                 'id_program' => $request->input('program'),
                 'nb_places' => $request->input('nb_places'),
         ]);
+        sessionAbstract::where('session_id', $id)->delete();
         sessionSpeaker::where('session_id', $id)->delete();
         sessionChair::where('session_id', $id)->delete();
         $chairs = $request->get('chair');
@@ -422,7 +425,6 @@ class EventController extends MyBaseController
                 $sc->chair_id = $ch;
                 $sc->save();
             }
-
             return response()->json([
                 'status'      => 'success',
                 'id'          => $request->input('id'),
@@ -561,7 +563,6 @@ class EventController extends MyBaseController
                 $sc->chair_id = $ch;
                 $sc->save();
             }
-
             return response()->json([
                 'status'      => 'success',
                 'id'          => $id_event,
@@ -584,7 +585,9 @@ class EventController extends MyBaseController
             $id = $request->input('id');
             $data = DB::select('DELETE from events where id =:id', ['id' => $id]);
             
-            $sp = RegistrationSchedule::where('session_id', $id)->delete();
+            RegistrationSchedule::where('session_id', $id)->delete();
+            sessionSpeaker::where('session_id', $id)->delete();
+            sessionChair::where('session_id', $id)->delete();
             if ($data) {
                 return Response::json([
                     'message' => 'success',

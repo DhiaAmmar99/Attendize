@@ -21,7 +21,7 @@
                                     <?php echo Form::label('title', "Session title", array('class'=>'control-label required')); ?>
 
                                     
-                                    <input type="text" name="title" required class="form-control" placeholder="Enter your title session">
+                                    <input type="text" name="title" required class="form-control" placeholder="Enter your title session" required>
                                 </div>
                             </div>
                             
@@ -151,14 +151,9 @@
                                     </div>
                                 </div>
                             </div>
+                           
 
                         </div>
-                       
-                       
-                        
-                       
-
-
                         <div class="form-group custom-theme">
                             <?php echo Form::label('description', "Session description", array('class'=>'control-label required')); ?>
 
@@ -166,16 +161,7 @@
 
                            
                         </div>
-                        
-
-                        
-                        
-                        
-
-                        
-                            
-                        
-                             
+                    
 
                         <?php echo Form::hidden('organiser_id', $organiser_id); ?>
 

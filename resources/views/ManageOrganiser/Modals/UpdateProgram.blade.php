@@ -17,7 +17,7 @@
                             <input  type="hidden" name="organiser_id" value="{{ $organiser_id }}">
 
                             {!! Form::label(' PROGRAM title', "PROGRAM title", array('class'=>'control-label required')) !!}
-                            <input class="form-control" placeholder="Enter your title program" name="day" type="text" value="{{ $program->day }}">
+                            <input class="form-control" placeholder="Enter your title program" name="day" type="text" value="{{ $program->day }}" required>
                         </div>
                         <div class="form-group">
                             {!! Form::label(' PROGRAM date', "PROGRAM date", array('class'=>'control-label required')) !!}

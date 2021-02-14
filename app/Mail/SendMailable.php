@@ -10,8 +10,8 @@ use Illuminate\Queue\SerializesModels;
 class SendMailable extends Mailable
 {
     use Queueable, SerializesModels;
-   public $id; 
-   public $dataLead; 
+   public $id;
+   public $dataLead;
    public $tabDelegate;
     /**
      * Create a new message instance.

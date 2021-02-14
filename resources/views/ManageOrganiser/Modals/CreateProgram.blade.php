@@ -15,7 +15,7 @@
                         <input  type="hidden" name="organiser_id" value="{{ $organiser_id }}">
                         <div class="form-group">
                             {!! Form::label(' PROGRAM title', "PROGRAM title", array('class'=>'control-label required')) !!}
-                            {!!  Form::text('day', old('title'),array('class'=>'form-control','placeholder'=>'Enter your title program' ))  !!}
+                            {!!  Form::text('day', old('title'),array('class'=>'form-control','placeholder'=>'Enter your title program' , 'required'))  !!}
                         </div>
 
                         <div class="row">

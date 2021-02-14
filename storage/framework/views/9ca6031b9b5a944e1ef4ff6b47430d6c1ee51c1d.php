@@ -3,7 +3,7 @@
         <div class="event-date">
 
             
-            <img src="<?php echo e($stream->icon); ?> " alt="" class="img">
+            <img src="<?php echo e($stream->icon); ?>" alt="icon" class="img" id="img-<?php echo e($stream->id); ?>"  onload="colorsFN('<?php echo e($stream->couleur); ?>', 'img-<?php echo e($stream->id); ?>')" />
         </div>
         <ul class="event-meta">
             <li class="event-title">
@@ -69,7 +69,7 @@
 
             } 
             });
-    }
+    }             
 </script>
 <style>
     .img{

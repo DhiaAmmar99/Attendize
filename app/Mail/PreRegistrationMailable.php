@@ -12,8 +12,8 @@ class PreRegistrationMailable extends Mailable
     use Queueable, SerializesModels;
 
 
-    public $id; 
-    public $data; 
+    public $id;
+    public $data;
     public $tabname;
     public $payment;
     /**
@@ -41,6 +41,6 @@ class PreRegistrationMailable extends Mailable
             'data' => $this->data,
             'tabname' => $this->tabname,
             'payment' => $this->payment,
-        ]);    
+        ]);
      }
 }

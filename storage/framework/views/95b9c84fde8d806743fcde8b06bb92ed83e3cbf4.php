@@ -27,14 +27,19 @@
             <li>
                 <div class="section">
                     <h4 class="nm">
-                        <?php echo e($event->tickets->sum('quantity_sold')); ?>
+                        <?php echo e($event->nb_session); ?>
 
                     </h4>
-                    <p class="nm text-muted"><?php echo app('translator')->get("Attendees"); ?></p>
+                    <p class="nm text-muted">Number of session</p>
                 </div>
             </li>
            
-            
+            <li>
+                <div class="section">
+                    <h4 class="nm"><?php echo e($event->language); ?></h4>
+                    <p class="nm text-muted">Language</p>
+                </div>
+            </li>
         </ul>
     </div>
     <div class="panel-footer">

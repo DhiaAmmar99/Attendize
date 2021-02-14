@@ -63,6 +63,39 @@
                                     <input type="file" value="image" name="image" class="form-control" id="picture">
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <?php echo Form::label('facebook', "facebook", array('class'=>'control-label required')); ?>
+
+                                    <?php echo Form::url('facebook', $speaker->facebook ,array('class'=>'form-control','placeholder'=>'Enter your facebook', 'required' )); ?>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <?php echo Form::label('twitter', "twitter", array('class'=>'control-label required')); ?>
+
+                                    <?php echo Form::url('twitter', $speaker->twitter ,array('class'=>'form-control','placeholder'=>'Enter your twitter', 'required' )); ?>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <?php echo Form::label('linkedin', "linkedin", array('class'=>'control-label required')); ?>
+
+                                    <?php echo Form::url('linkedin', $speaker->linkedin ,array('class'=>'form-control','placeholder'=>'Enter your linkedin', 'required' )); ?>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <?php echo Form::label('instagram', "instagram", array('class'=>'control-label required')); ?>
+
+                                    <?php echo Form::url('instagram', $speaker->instagram ,array('class'=>'form-control','placeholder'=>'Enter your instagram', 'required' )); ?>
+
+                                </div>
+                            </div>
+
                         </div>
                         <?php echo Form::label('description', "description", array('class'=>'control-label required')); ?>
 
