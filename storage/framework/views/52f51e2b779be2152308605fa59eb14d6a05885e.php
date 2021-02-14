@@ -249,144 +249,144 @@
 			/*@editable*/font-weight:normal;
 			/*@editable*/text-decoration:underline;
 		}
-	@media only screen and (min-width:768px){
+	@media  only screen and (min-width:768px){
 		.templateContainer{
 			width:600px !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		body,table,td,p,a,li,blockquote{
 			-webkit-text-size-adjust:none !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		body{
 			width:100% !important;
 			min-width:100% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnRetinaImage{
 			max-width:100% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnImage{
 			width:100% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnCartContainer,.mcnCaptionTopContent,.mcnRecContentContainer,.mcnCaptionBottomContent,.mcnTextContentContainer,.mcnBoxedTextContentContainer,.mcnImageGroupContentContainer,.mcnCaptionLeftTextContentContainer,.mcnCaptionRightTextContentContainer,.mcnCaptionLeftImageContentContainer,.mcnCaptionRightImageContentContainer,.mcnImageCardLeftTextContentContainer,.mcnImageCardRightTextContentContainer,.mcnImageCardLeftImageContentContainer,.mcnImageCardRightImageContentContainer{
 			max-width:100% !important;
 			width:100% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnBoxedTextContentContainer{
 			min-width:100% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnImageGroupContent{
 			padding:9px !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnCaptionLeftContentOuter .mcnTextContent,.mcnCaptionRightContentOuter .mcnTextContent{
 			padding-top:9px !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnImageCardTopImageContent,.mcnCaptionBottomContent:last-child .mcnCaptionBottomImageContent,.mcnCaptionBlockInner .mcnCaptionTopContent:last-child .mcnTextContent{
 			padding-top:18px !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnImageCardBottomImageContent{
 			padding-bottom:9px !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnImageGroupBlockInner{
 			padding-top:0 !important;
 			padding-bottom:0 !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnImageGroupBlockOuter{
 			padding-top:9px !important;
 			padding-bottom:9px !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnTextContent,.mcnBoxedTextContentColumn{
 			padding-right:18px !important;
 			padding-left:18px !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcnImageCardLeftImageContent,.mcnImageCardRightImageContent{
 			padding-right:18px !important;
 			padding-bottom:0 !important;
 			padding-left:18px !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 		.mcpreview-image-uploader{
 			display:none !important;
 			width:100% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 
 		h1{
 			/*@editable*/font-size:30px !important;
 			/*@editable*/line-height:125% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 
 		h2{
 			/*@editable*/font-size:26px !important;
 			/*@editable*/line-height:125% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 
 		h3{
 			/*@editable*/font-size:20px !important;
 			/*@editable*/line-height:150% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 
 		h4{
 			/*@editable*/font-size:18px !important;
 			/*@editable*/line-height:150% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 
 		.mcnBoxedTextContentContainer .mcnTextContent,.mcnBoxedTextContentContainer .mcnTextContent p{
 			/*@editable*/font-size:14px !important;
 			/*@editable*/line-height:150% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 
 		.headerContainer .mcnTextContent,.headerContainer .mcnTextContent p{
 			/*@editable*/font-size:16px !important;
 			/*@editable*/line-height:150% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 
 		.bodyContainer .mcnTextContent,.bodyContainer .mcnTextContent p{
 			/*@editable*/font-size:16px !important;
 			/*@editable*/line-height:150% !important;
 		}
 
-}	@media only screen and (max-width: 480px){
+}	@media  only screen and (max-width: 480px){
 
 		.footerContainer .mcnTextContent,.footerContainer .mcnTextContent p{
 			/*@editable*/font-size:14px !important;
@@ -397,7 +397,7 @@
 <script>var w=window;if(w.performance||w.mozPerformance||w.msPerformance||w.webkitPerformance){var d=document;AKSB=w.AKSB||{},AKSB.q=AKSB.q||[],AKSB.mark=AKSB.mark||function(e,_){AKSB.q.push(["mark",e,_||(new Date).getTime()])},AKSB.measure=AKSB.measure||function(e,_,t){AKSB.q.push(["measure",e,_,t||(new Date).getTime()])},AKSB.done=AKSB.done||function(e){AKSB.q.push(["done",e])},AKSB.mark("firstbyte",(new Date).getTime()),AKSB.prof={custid:"391383",ustr:"",originlat:"0",clientrtt:"12",ghostip:"2.21.231.21",ipv6:false,pct:"10",clientip:"86.99.230.242",requestid:"27759bb1",region:"32344",protocol:"h2",blver:14,akM:"x",akN:"ae",akTT:"O",akTX:"1",akTI:"27759bb1",ai:"255430",ra:"false",pmgn:"",pmgi:"",pmp:"",qc:""},function(e){var _=d.createElement("script");_.async="async",_.src=e;var t=d.getElementsByTagName("script"),t=t[t.length-1];t.parentNode.insertBefore(_,t)}(("https:"===d.location.protocol?"https:":"http:")+"//ds-aksb-a.akamaihd.net/aksb.min.js")}</script>
 </head>
     <body>
-        @if ($payment == 'Bank Transfer')
+        <?php if($payment == 'Bank Transfer'): ?>
         <!--*|IF:MC_PREVIEW_TEXT|*-->
         <!--[if !gte mso 9]><!----><span class="mcnPreviewText" style="display:none; font-size:0px; line-height:0px; max-height:0px; max-width:0px; opacity:0; overflow:hidden; visibility:hidden; mso-hide:all;">*|MC_PREVIEW_TEXT|*</span><!--<![endif]-->
         <!--*|END:IF|*-->
@@ -873,7 +873,7 @@ ACCOUNT NUMBER: 019000058343</span></span>
         </center>
     </body>
 </html>
-@else
+<?php else: ?>
 
 
         <!--*|IF:MC_PREVIEW_TEXT|*-->
@@ -1015,7 +1015,7 @@ ACCOUNT NUMBER: 019000058343</span></span>
 
                             <h4 style="text-align: left;"><span style="font-size:16px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">You are successfully pre-registered to attend the ICA Congress Abu Dhabi 2020.</span></span></h4>
 
-<h1 style="text-align: left;"><span style="font-size:21px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Your unique registration number&nbsp;(URN) is:&nbsp;{{ $id }}</span> </span></h1>
+<h1 style="text-align: left;"><span style="font-size:21px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Your unique registration number&nbsp;(URN) is:&nbsp;</span> <?php echo e($id); ?></span></h1>
 
                         </td>
                     </tr>
@@ -1374,7 +1374,7 @@ A copy of your registration invoice will be emailed to you separately to your re
 
                             <h4 style="text-align: left;"><span style="font-size:16px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Vous vous êtes inscrit pour assister au congrès ICA Abu Dhabi 2020.</span></span></h4>
 
-<h1 style="text-align: left;"><span style="font-size:21px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Votre numéro unique d'enregistrement (NUR) est: &nbsp;{{ $id }}</span></span></h1>
+<h1 style="text-align: left;"><span style="font-size:21px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Votre numéro unique d'enregistrement (NUR) est: &nbsp;</span> <?php echo e($id); ?></span></h1>
 
                         </td>
                     </tr>
@@ -1892,4 +1892,5 @@ A copy of your registration invoice will be emailed to you separately to your re
                 </tr>
             </table>
         </center>
-@endif
+<?php endif; ?>
+<?php /**PATH C:\wamp64\www\laravel\ica-backoffice\resources\views/PreRegistrationMail.blade.php ENDPATH**/ ?>

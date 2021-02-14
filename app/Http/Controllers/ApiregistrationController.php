@@ -55,8 +55,8 @@ class ApiregistrationController extends Controller
     }
     public function newdelegate(Request $request){
         $D = new Delegate();
-       
-        
+
+
         $D->first_name = $request->input('first_name');
         $D->last_name = $request->input('last_name');
         $D->job_title = $request->input('job_title');
@@ -81,7 +81,7 @@ class ApiregistrationController extends Controller
             'data'=>$D
           ]
         );
-    }else{ 
+    }else{
             return Response::json([
                 'message'=>'registration failed',
                 'status'=>'0',
@@ -118,8 +118,8 @@ class ApiregistrationController extends Controller
                                     'eventG' => $request->input('eventG'),
                                     'eventW' => $request->input('eventW'),
                                     'guests' => $request->input('guests'),
-                                    'price' => $request->input('price'),                                 
-                                    'lead' => $request->input('lead'),                                 
+                                    'price' => $request->input('price'),
+                                    'lead' => $request->input('lead'),
     ]);
     }else {
           $data=DB::connection('mysql')->table('delegates')->where('id', $id)
@@ -154,7 +154,7 @@ class ApiregistrationController extends Controller
             ]
         );
         }
-        
+
     }
 
     public function mailapi(Request $request){
@@ -164,7 +164,7 @@ class ApiregistrationController extends Controller
         return response()->json($mail);
     }
 
-    
+
 
     public function mail($tab, $id)
     {
@@ -189,7 +189,7 @@ class ApiregistrationController extends Controller
         $data_u = DB::connection('mysql')->select('select * from registrations where id =:id', ['id' => $id]);
         $data_d = DB::connection('mysql')->select('select * from delegates where register_id =:id', ['id' => $id]);
         $img = ImagesUser::select('image')->where("id_registration",$id)->first();
-        
+
         if($data_u){
         return Response::json([
             'message'=>'Your URN is valid',
@@ -207,7 +207,7 @@ class ApiregistrationController extends Controller
         );
         }
     }
-  
+
 
 
     public function ARcountry()
@@ -235,8 +235,8 @@ class ApiregistrationController extends Controller
     public function listNamesEvent()
     {
         $data = DB::connection('mysql')->select('select * from events');
-        
-       
+
+
         if($data){
         return Response::json([
             'message'=>'success',
@@ -272,7 +272,7 @@ class ApiregistrationController extends Controller
     }
 
     public function fetchOneEvent($id)
-    {   
+    {
         $data_u = DB::connection('mysql')->select('select * from registrations where id =:id', ['id' => $id]);
         $titleP = $data_u[0]->eventP;
         $titleS = $data_u[0]->eventS;
@@ -406,10 +406,10 @@ class ApiregistrationController extends Controller
                 ];
         $email  = DB::connection('mysql')->table($data['table'])->where('id', $data['id'])->first();
         $tomail= $email->email_address;
-        
+
         $toid = $data['password'];
-        
-        
+
+
         $pwd = new PasswordMailable($toid);
 
 
@@ -433,7 +433,7 @@ class ApiregistrationController extends Controller
     {
         $fetchR = Registration::where('email_address', $request->input('email'))->get();
         $fetchD = Delegate::where('email_address', $request->input('email'))->get();
-       
+
         if(!$fetchR->isEmpty()){
             $data_d = Delegate::where('register_id', $fetchR[0]->id)->get();
             $img = ImagesUser::select('image')->where("id_registration",$fetchR[0]->id)->first();
@@ -464,7 +464,7 @@ class ApiregistrationController extends Controller
                 ]
             );
         }
-        
+
     }
 
     public function password(Request $request)
@@ -475,21 +475,21 @@ class ApiregistrationController extends Controller
         ]);
     }
 
-    
-    
+
+
 
     public function generatepdf(Request $request)
     {
 
         // $html = file_get_contents('test.html');
-            
+
         $html2pdf = new Html2Pdf();
         $html2pdf->writeHTML($request->text_box); // pass in the HTML
         $html2pdf->output('Bank transfer registration summary - ICA Congress Abu Dhabi 2020.pdf', 'D'); // Generate the PDF and start download
 
     }
 
-    
-   
-    
+
+
+
 }
