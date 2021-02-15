@@ -1016,42 +1016,42 @@ A copy of your registration invoice will be emailed to you separately to your re
                                         <div style="text-align: left;">
                                             <div style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Registration information:</div><br>
 
-                                            <div>Full name : <?php echo e($dataLead->first_name); ?> <?php echo e($dataLead->last_name); ?></div><br>
-                                            <div>Email : <?php echo e($dataLead->email_address); ?></div><br>
-                                            <div>Job title : <?php echo e($dataLead->job_title); ?></div><br>
-                                            <div>Organization : <?php echo e($dataLead->organization); ?></div><br>
-                                            <div>Dietary : <?php echo e($dataLead->dietary); ?></div><br>
-                                            <div>Experience : <?php echo e($dataLead->experience); ?></div><br>
-                                            <div>Language translation : <?php echo e($dataLead->language_translation); ?></div><br>
+                                            <div>Nom et prénom : <?php echo e($dataLead->first_name); ?> <?php echo e($dataLead->last_name); ?></div><br>
+                                            <div>Adresse de courriel : <?php echo e($dataLead->email_address); ?></div><br>
+                                            <div>Fonction : <?php echo e($dataLead->job_title); ?></div><br>
+                                            <div>Organisation : <?php echo e($dataLead->organization); ?></div><br>
+                                            <div>Régime spécifique : <?php echo e($dataLead->dietary); ?></div><br>
+                                            <div>Expérience : <?php echo e($dataLead->experience); ?></div><br>
+                                            <div>Language de traduction : <?php echo e($dataLead->language_translation); ?></div><br>
                                             <div>Languages : <?php echo e($dataLead->languages); ?></div><br>
-                                            <div>Guests : <?php echo e($dataLead->guests); ?></div><br>
-                                            <div>Lead : <?php echo e($dataLead->lead); ?></div><br>
-                                            <div>Do you agree to share your name, job title and organisation in the Congress attendees list ? : <?php echo e($dataLead->first_check); ?></div><br>
-                                            <div>Do you agree for your name, organisation and email address to be added to the recipients list to receive event updates ? : <?php echo e($dataLead->second_check); ?></div><br>
-                                            <div>Postal address : <?php echo e($dataLead->postal_address); ?></div><br>
-                                            <div>Type registration : <?php echo e($dataLead->registration_as); ?></div><br>
-                                            <div>Membership number : <?php echo e($dataLead->membership_number); ?></div><br>
-                                            <div>Country : <?php echo e($dataLead->country); ?></div><br>
-                                            <div>Number of delegates : <?php echo e($dataLead->membership); ?></div><br>
-                                            <div>Mode of payment : <?php echo e($dataLead->mode_payment); ?></div><br>
-                                            <div>Events : <?php echo e($dataLead->eventP); ?> <?php echo e($dataLead->eventS); ?> <?php echo e($dataLead->eventG); ?> <?php echo e($dataLead->eventW); ?></div><br>
-                                            <div>Price : <?php echo e($dataLead->price); ?> EUR</div><br>
+                                            <div>Délégué : <?php echo e($dataLead->guests); ?></div><br>
+                                            <div>Représentant principal : <?php echo e($dataLead->lead); ?></div><br>
+                                            <div>Acceptez-vous de faire figurer votre nom, votre fonction et le nom de votre organisation dans la liste des participants au Congrès ? : <?php echo e($dataLead->first_check); ?></div><br>
+                                            <div>Acceptez-vous que votre nom, votre oarganisation et votre adresse de courriel soient ajoutés à la liste des personnes recevant des informations sur l’événement ? : <?php echo e($dataLead->second_check); ?></div><br>
+                                            <div>Address Postal : <?php echo e($dataLead->postal_address); ?></div><br>
+                                            <div>Type d'enregistrement : <?php echo e($dataLead->registration_as); ?></div><br>
+                                            <div>Numéro de membre : <?php echo e($dataLead->membership_number); ?></div><br>
+                                            <div>Pays : <?php echo e($dataLead->country); ?></div><br>
+                                            <div>Nombre de délégués : <?php echo e($dataLead->membership); ?></div><br>
+                                            <div>Méthode de paiement : <?php echo e($dataLead->mode_payment); ?></div><br>
+                                            <div>Evénement : <?php echo e($dataLead->eventP); ?> <?php echo e($dataLead->eventS); ?> <?php echo e($dataLead->eventG); ?> <?php echo e($dataLead->eventW); ?></div><br>
+                                            <div>Prix : <?php echo e($dataLead->price); ?> EUR</div><br>
 
 
 
                                             <?php $__empty_1 = true; $__currentLoopData = $tabDelegate; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                                                <div>Delegate <?php echo e($key + 1); ?> :</div><br>
-                                                <div>Full name : <?php echo e($val->first_name); ?> <?php echo e($val->last_name); ?></div><br>
-                                                <div>Email : <?php echo e($val->email_address); ?></div><br>
-                                                <div>Job title : <?php echo e($val->job_title); ?></div><br>
-                                                <div>Organization : <?php echo e($val->organization); ?></div><br>
-                                                <div>Dietary : <?php echo e($val->dietary); ?></div><br>
-                                                <div>Experience : <?php echo e($val->experience); ?></div><br>
-                                                <div>Language translation : <?php echo e($val->language_translation); ?></div><br>
+                                                <div>Délégué <?php echo e($key + 1); ?> :</div><br>
+                                                <div>Nom et prénom : <?php echo e($val->first_name); ?> <?php echo e($val->last_name); ?></div><br>
+                                                <div>Adresse de courriel : <?php echo e($val->email_address); ?></div><br>
+                                                <div>Fonction : <?php echo e($val->job_title); ?></div><br>
+                                                <div>Organisation : <?php echo e($val->organization); ?></div><br>
+                                                <div>Régime spécifique : <?php echo e($val->dietary); ?></div><br>
+                                                <div>Expérience : <?php echo e($val->experience); ?></div><br>
+                                                <div>Language de traduction : <?php echo e($val->language_translation); ?></div><br>
                                                 <div>Languages : <?php echo e($val->languages); ?></div><br>
-                                                <div>Guests : <?php echo e($val->guests); ?></div><br>
-                                                <div>Do you agree to share your name, job title and organisation in the Congress attendees list ? : <?php echo e($val->first_check); ?></div><br>
-                                                <div>Do you agree for your name, organisation and email address to be added to the recipients list to receive event updates ? : <?php echo e($val->second_check); ?></div><br>
+                                                <div>Délégué : <?php echo e($val->guests); ?></div><br>
+                                                <div>Acceptez-vous de faire figurer votre nom, votre fonction et le nom de votre organisation dans la liste des participants au Congrès ? : <?php echo e($val->first_check); ?></div><br>
+                                                <div>Acceptez-vous que votre nom, votre oarganisation et votre adresse de courriel soient ajoutés à la liste des personnes recevant des informations sur l’événement ? : <?php echo e($val->second_check); ?></div><br>
 
 
 
