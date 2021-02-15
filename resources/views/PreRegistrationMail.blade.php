@@ -1088,16 +1088,50 @@ ACCOUNT NUMBER: 019000058343</span></span>
                             <table border="0" cellspacing="0" class="mcnTextContentContainer" width="100%" style="min-width: 100% !important;background-color: #404040;">
                                 <tbody><tr>
                                     <td valign="top" class="mcnTextContent" style="padding: 18px;color: #F2F2F2;font-family: Helvetica;font-size: 14px;font-weight: normal;text-align: center;">
-                                        <div style="text-align: left;"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Registration information:</span><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-&nbsp;</div>
+                                        <div style="text-align: left;">
+                                            <div style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Registration information:</div><br>
+
+                                            <div>Full name : {{$data->first_name}} {{$data->last_name}}</div><br>
+                                            <div>Email : {{$data->email_address}}</div><br>
+                                            <div>Job title : {{$data->job_title}}</div><br>
+                                            <div>Organization : {{$data->organization}}</div><br>
+                                            <div>Dietary : {{$data->dietary}}</div><br>
+                                            <div>Experience : {{$data->experience}}</div><br>
+                                            <div>Language translation : {{$data->language_translation}}</div><br>
+                                            <div>Languages : {{$data->languages}}</div><br>
+                                            <div>Guests : {{$data->guests}}</div><br>
+                                            <div>Lead : {{$data->lead}}</div><br>
+                                            <div>Do you agree to share your name, job title and organisation in the Congress attendees list ? : {{$data->first_check}}</div><br>
+                                            <div>Do you agree for your name, organisation and email address to be added to the recipients list to receive event updates ? : {{$data->second_check}}</div><br>
+                                            <div>Postal address : {{$data->postal_address}}</div><br>
+                                            <div>Type registration : {{$data->registration_as}}</div><br>
+                                            <div>Membership number : {{$data->membership_number}}</div><br>
+                                            <div>Country : {{$data->country}}</div><br>
+                                            <div>Number of delegates : {{$data->membership}}</div><br>
+                                            <div>Mode of payment : {{$data->mode_payment}}</div><br>
+                                            <div>Events : {{$data->eventP}} {{$data->eventS}} {{$data->eventG}} {{$data->eventW}}</div><br>
+                                            <div>Price : {{$data->price}} EUR</div><br>
+
+
+                                            @forelse($tabDel as $key => $val)
+                                                <div>Delegate {{ $key + 1 }} :</div><br>
+                                                <div>Full name : {{$val->first_name}} {{$val->last_name}}</div><br>
+                                                <div>Email : {{$val->email_address}}</div><br>
+                                                <div>Job title : {{$val->job_title}}</div><br>
+                                                <div>Organization : {{$val->organization}}</div><br>
+                                                <div>Dietary : {{$val->dietary}}</div><br>
+                                                <div>Experience : {{$val->experience}}</div><br>
+                                                <div>Language translation : {{$val->language_translation}}</div><br>
+                                                <div>Languages : {{$val->languages}}</div><br>
+                                                <div>Guests : {{$val->guests}}</div><br>
+                                                <div>Do you agree to share your name, job title and organisation in the Congress attendees list ? : {{$val->first_check}}</div><br>
+                                                <div>Do you agree for your name, organisation and email address to be added to the recipients list to receive event updates ? : {{$val->second_check}}</div><br>
+
+                                            @empty
+                                                <p></p>
+                                            @endforelse
+
+                                        &nbsp;</div>
 
                                     </td>
                                 </tr>
@@ -1447,15 +1481,50 @@ A copy of your registration invoice will be emailed to you separately to your re
                             <table border="0" cellspacing="0" class="mcnTextContentContainer" width="100%" style="min-width: 100% !important;background-color: #404040;">
                                 <tbody><tr>
                                     <td valign="top" class="mcnTextContent" style="padding: 18px;color: #F2F2F2;font-family: Helvetica;font-size: 14px;font-weight: normal;text-align: center;">
-                                        <div style="text-align: left;"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Informations d'enregistrement:&nbsp;</span><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-&nbsp;</div>
+                                        <div style="text-align: left;">
+                                            <div style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Registration information:</div><br>
+
+                                            <div>Nom et prénom : {{$data->first_name}} {{$data->last_name}}</div><br>
+                                            <div>Adresse de courriel : {{$data->email_address}}</div><br>
+                                            <div>Fonction : {{$data->job_title}}</div><br>
+                                            <div>Organisation : {{$data->organization}}</div><br>
+                                            <div>Régime spécifique : {{$data->dietary}}</div><br>
+                                            <div>Expérience : {{$data->experience}}</div><br>
+                                            <div>Language de traduction : {{$data->language_translation}}</div><br>
+                                            <div>Languages : {{$data->languages}}</div><br>
+                                            <div>Délégué : {{$data->guests}}</div><br>
+                                            <div>Représentant principal : {{$data->lead}}</div><br>
+                                            <div>Acceptez-vous de faire figurer votre nom, votre fonction et le nom de votre organisation dans la liste des participants au Congrès ? : {{$data->first_check}}</div><br>
+                                            <div>Acceptez-vous que votre nom, votre oarganisation et votre adresse de courriel soient ajoutés à la liste des personnes recevant des informations sur l’événement ? : {{$data->second_check}}</div><br>
+                                            <div>Address Postal : {{$data->postal_address}}</div><br>
+                                            <div>Type d'enregistrement : {{$data->registration_as}}</div><br>
+                                            <div>Numéro de membre : {{$data->membership_number}}</div><br>
+                                            <div>Pays : {{$data->country}}</div><br>
+                                            <div>Nombre de délégués : {{$data->membership}}</div><br>
+                                            <div>Méthode de paiement : {{$data->mode_payment}}</div><br>
+                                            <div>Evénement : {{$data->eventP}} {{$data->eventS}} {{$data->eventG}} {{$data->eventW}}</div><br>
+                                            <div>Prix : {{$data->price}} EUR</div><br>
+
+
+                                            @forelse($tabDel as $key => $val)
+                                                <div>Délégué {{ $key + 1 }} :</div><br>
+                                                <div>Nom et prénom : {{$val->first_name}} {{$val->last_name}}</div><br>
+                                                <div>Adresse de courriel : {{$val->email_address}}</div><br>
+                                                <div>Fonction : {{$val->job_title}}</div><br>
+                                                <div>Organisation : {{$val->organization}}</div><br>
+                                                <div>Régime spécifique : {{$val->dietary}}</div><br>
+                                                <div>Expérience : {{$val->experience}}</div><br>
+                                                <div>Language de traduction : {{$val->language_translation}}</div><br>
+                                                <div>Languages : {{$val->languages}}</div><br>
+                                                <div>Délégué : {{$val->guests}}</div><br>
+                                                <div>Acceptez-vous de faire figurer votre nom, votre fonction et le nom de votre organisation dans la liste des participants au Congrès ? : {{$val->first_check}}</div><br>
+                                                <div>Acceptez-vous que votre nom, votre oarganisation et votre adresse de courriel soient ajoutés à la liste des personnes recevant des informations sur l’événement ? : {{$val->second_check}}</div><br>
+
+                                            @empty
+                                                <p></p>
+                                            @endforelse
+
+                                        &nbsp;</div>
 
                                     </td>
                                 </tr>

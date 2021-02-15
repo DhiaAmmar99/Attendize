@@ -350,6 +350,7 @@ class ApiregistrationController extends Controller
                 "paiment" => $request->input('paiment'),
                 ];
         $datamail  = DB::connection('mysql')->table($data['table'])->where('id', $data['id'])->first();
+        $datadel  = Delegate::where('register_id', $data['id'])->get();
         $tomail= $datamail->email_address;
 
         if($data['table'] == 'registrations'){
@@ -358,7 +359,7 @@ class ApiregistrationController extends Controller
             $toid= $datamail->register_id;
         }
 
-        $BT = new PreRegistrationMailable($toid, $datamail, $data['table'], $data['paiment']);
+        $BT = new PreRegistrationMailable($toid, $datamail, $datadel, $data['paiment']);
         $ED = new EditMailable($toid, $datamail, $data['table']);
         $OP = new SendMailable($toid, $datamail, $data['table']);
 

@@ -14,18 +14,18 @@ class PreRegistrationMailable extends Mailable
 
     public $id;
     public $data;
-    public $tabname;
+    public $tabDel;
     public $payment;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($id, $data, $tabname, $payment)
+    public function __construct($id, $data, $tabDel, $payment)
     {
         $this->id=$id;
         $this->data=$data;
-        $this->tabname=$tabname;
+        $this->tabDel=$tabDel;
         $this->payment=$payment;
     }
 
@@ -39,7 +39,7 @@ class PreRegistrationMailable extends Mailable
         return $this->subject('Registration')->view('PreRegistrationMail')->with([
             'id' => $this->id,
             'data' => $this->data,
-            'tabname' => $this->tabname,
+            'tabDel' => $this->tabDel,
             'payment' => $this->payment,
         ]);
      }

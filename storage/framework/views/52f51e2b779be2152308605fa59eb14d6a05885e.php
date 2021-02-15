@@ -1015,7 +1015,7 @@ ACCOUNT NUMBER: 019000058343</span></span>
 
                             <h4 style="text-align: left;"><span style="font-size:16px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">You are successfully pre-registered to attend the ICA Congress Abu Dhabi 2020.</span></span></h4>
 
-<h1 style="text-align: left;"><span style="font-size:21px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Your unique registration number&nbsp;(URN) is:&nbsp;</span> <?php echo e($id); ?></span></h1>
+<h1 style="text-align: left;"><span style="font-size:21px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Your unique registration number&nbsp;(URN) is:&nbsp;<?php echo e($id); ?></span> </span></h1>
 
                         </td>
                     </tr>
@@ -1088,16 +1088,50 @@ ACCOUNT NUMBER: 019000058343</span></span>
                             <table border="0" cellspacing="0" class="mcnTextContentContainer" width="100%" style="min-width: 100% !important;background-color: #404040;">
                                 <tbody><tr>
                                     <td valign="top" class="mcnTextContent" style="padding: 18px;color: #F2F2F2;font-family: Helvetica;font-size: 14px;font-weight: normal;text-align: center;">
-                                        <div style="text-align: left;"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Registration information:</span><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-&nbsp;</div>
+                                        <div style="text-align: left;">
+                                            <div style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Registration information:</div><br>
+
+                                            <div>Full name : <?php echo e($data->first_name); ?> <?php echo e($data->last_name); ?></div><br>
+                                            <div>Email : <?php echo e($data->email_address); ?></div><br>
+                                            <div>Job title : <?php echo e($data->job_title); ?></div><br>
+                                            <div>Organization : <?php echo e($data->organization); ?></div><br>
+                                            <div>Dietary : <?php echo e($data->dietary); ?></div><br>
+                                            <div>Experience : <?php echo e($data->experience); ?></div><br>
+                                            <div>Language translation : <?php echo e($data->language_translation); ?></div><br>
+                                            <div>Languages : <?php echo e($data->languages); ?></div><br>
+                                            <div>Guests : <?php echo e($data->guests); ?></div><br>
+                                            <div>Lead : <?php echo e($data->lead); ?></div><br>
+                                            <div>Do you agree to share your name, job title and organisation in the Congress attendees list ? : <?php echo e($data->first_check); ?></div><br>
+                                            <div>Do you agree for your name, organisation and email address to be added to the recipients list to receive event updates ? : <?php echo e($data->second_check); ?></div><br>
+                                            <div>Postal address : <?php echo e($data->postal_address); ?></div><br>
+                                            <div>Type registration : <?php echo e($data->registration_as); ?></div><br>
+                                            <div>Membership number : <?php echo e($data->membership_number); ?></div><br>
+                                            <div>Country : <?php echo e($data->country); ?></div><br>
+                                            <div>Number of delegates : <?php echo e($data->membership); ?></div><br>
+                                            <div>Mode of payment : <?php echo e($data->mode_payment); ?></div><br>
+                                            <div>Events : <?php echo e($data->eventP); ?> <?php echo e($data->eventS); ?> <?php echo e($data->eventG); ?> <?php echo e($data->eventW); ?></div><br>
+                                            <div>Price : <?php echo e($data->price); ?> EUR</div><br>
+
+
+                                            <?php $__empty_1 = true; $__currentLoopData = $tabDel; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                <div>Delegate <?php echo e($key + 1); ?> :</div><br>
+                                                <div>Full name : <?php echo e($val->first_name); ?> <?php echo e($val->last_name); ?></div><br>
+                                                <div>Email : <?php echo e($val->email_address); ?></div><br>
+                                                <div>Job title : <?php echo e($val->job_title); ?></div><br>
+                                                <div>Organization : <?php echo e($val->organization); ?></div><br>
+                                                <div>Dietary : <?php echo e($val->dietary); ?></div><br>
+                                                <div>Experience : <?php echo e($val->experience); ?></div><br>
+                                                <div>Language translation : <?php echo e($val->language_translation); ?></div><br>
+                                                <div>Languages : <?php echo e($val->languages); ?></div><br>
+                                                <div>Guests : <?php echo e($val->guests); ?></div><br>
+                                                <div>Do you agree to share your name, job title and organisation in the Congress attendees list ? : <?php echo e($val->first_check); ?></div><br>
+                                                <div>Do you agree for your name, organisation and email address to be added to the recipients list to receive event updates ? : <?php echo e($val->second_check); ?></div><br>
+
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                <p></p>
+                                            <?php endif; ?>
+
+                                        &nbsp;</div>
 
                                     </td>
                                 </tr>
@@ -1374,7 +1408,7 @@ A copy of your registration invoice will be emailed to you separately to your re
 
                             <h4 style="text-align: left;"><span style="font-size:16px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Vous vous êtes inscrit pour assister au congrès ICA Abu Dhabi 2020.</span></span></h4>
 
-<h1 style="text-align: left;"><span style="font-size:21px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Votre numéro unique d'enregistrement (NUR) est: &nbsp;</span> <?php echo e($id); ?></span></h1>
+<h1 style="text-align: left;"><span style="font-size:21px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Votre numéro unique d'enregistrement (NUR) est: &nbsp;<?php echo e($id); ?></span></span></h1>
 
                         </td>
                     </tr>
@@ -1447,15 +1481,50 @@ A copy of your registration invoice will be emailed to you separately to your re
                             <table border="0" cellspacing="0" class="mcnTextContentContainer" width="100%" style="min-width: 100% !important;background-color: #404040;">
                                 <tbody><tr>
                                     <td valign="top" class="mcnTextContent" style="padding: 18px;color: #F2F2F2;font-family: Helvetica;font-size: 14px;font-weight: normal;text-align: center;">
-                                        <div style="text-align: left;"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Informations d'enregistrement:&nbsp;</span><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-&nbsp;</div>
+                                        <div style="text-align: left;">
+                                            <div style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Registration information:</div><br>
+
+                                            <div>Nom et prénom : <?php echo e($data->first_name); ?> <?php echo e($data->last_name); ?></div><br>
+                                            <div>Adresse de courriel : <?php echo e($data->email_address); ?></div><br>
+                                            <div>Fonction : <?php echo e($data->job_title); ?></div><br>
+                                            <div>Organisation : <?php echo e($data->organization); ?></div><br>
+                                            <div>Régime spécifique : <?php echo e($data->dietary); ?></div><br>
+                                            <div>Expérience : <?php echo e($data->experience); ?></div><br>
+                                            <div>Language de traduction : <?php echo e($data->language_translation); ?></div><br>
+                                            <div>Languages : <?php echo e($data->languages); ?></div><br>
+                                            <div>Délégué : <?php echo e($data->guests); ?></div><br>
+                                            <div>Représentant principal : <?php echo e($data->lead); ?></div><br>
+                                            <div>Acceptez-vous de faire figurer votre nom, votre fonction et le nom de votre organisation dans la liste des participants au Congrès ? : <?php echo e($data->first_check); ?></div><br>
+                                            <div>Acceptez-vous que votre nom, votre oarganisation et votre adresse de courriel soient ajoutés à la liste des personnes recevant des informations sur l’événement ? : <?php echo e($data->second_check); ?></div><br>
+                                            <div>Address Postal : <?php echo e($data->postal_address); ?></div><br>
+                                            <div>Type d'enregistrement : <?php echo e($data->registration_as); ?></div><br>
+                                            <div>Numéro de membre : <?php echo e($data->membership_number); ?></div><br>
+                                            <div>Pays : <?php echo e($data->country); ?></div><br>
+                                            <div>Nombre de délégués : <?php echo e($data->membership); ?></div><br>
+                                            <div>Méthode de paiement : <?php echo e($data->mode_payment); ?></div><br>
+                                            <div>Evénement : <?php echo e($data->eventP); ?> <?php echo e($data->eventS); ?> <?php echo e($data->eventG); ?> <?php echo e($data->eventW); ?></div><br>
+                                            <div>Prix : <?php echo e($data->price); ?> EUR</div><br>
+
+
+                                            <?php $__empty_1 = true; $__currentLoopData = $tabDel; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                <div>Délégué <?php echo e($key + 1); ?> :</div><br>
+                                                <div>Nom et prénom : <?php echo e($val->first_name); ?> <?php echo e($val->last_name); ?></div><br>
+                                                <div>Adresse de courriel : <?php echo e($val->email_address); ?></div><br>
+                                                <div>Fonction : <?php echo e($val->job_title); ?></div><br>
+                                                <div>Organisation : <?php echo e($val->organization); ?></div><br>
+                                                <div>Régime spécifique : <?php echo e($val->dietary); ?></div><br>
+                                                <div>Expérience : <?php echo e($val->experience); ?></div><br>
+                                                <div>Language de traduction : <?php echo e($val->language_translation); ?></div><br>
+                                                <div>Languages : <?php echo e($val->languages); ?></div><br>
+                                                <div>Délégué : <?php echo e($val->guests); ?></div><br>
+                                                <div>Acceptez-vous de faire figurer votre nom, votre fonction et le nom de votre organisation dans la liste des participants au Congrès ? : <?php echo e($val->first_check); ?></div><br>
+                                                <div>Acceptez-vous que votre nom, votre oarganisation et votre adresse de courriel soient ajoutés à la liste des personnes recevant des informations sur l’événement ? : <?php echo e($val->second_check); ?></div><br>
+
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                <p></p>
+                                            <?php endif; ?>
+
+                                        &nbsp;</div>
 
                                     </td>
                                 </tr>

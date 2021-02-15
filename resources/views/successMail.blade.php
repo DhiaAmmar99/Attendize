@@ -1016,42 +1016,42 @@ A copy of your registration invoice will be emailed to you separately to your re
                                         <div style="text-align: left;">
                                             <div style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Registration information:</div><br>
 
-                                            <div>Full name : {{$dataLead->first_name}} {{$dataLead->last_name}}</div><br>
-                                            <div>Email : {{$dataLead->email_address}}</div><br>
-                                            <div>Job title : {{$dataLead->job_title}}</div><br>
-                                            <div>Organization : {{$dataLead->organization}}</div><br>
-                                            <div>Dietary : {{$dataLead->dietary}}</div><br>
-                                            <div>Experience : {{$dataLead->experience}}</div><br>
-                                            <div>Language translation : {{$dataLead->language_translation}}</div><br>
+                                            <div>Nom et prénom : {{$dataLead->first_name}} {{$dataLead->last_name}}</div><br>
+                                            <div>Adresse de courriel : {{$dataLead->email_address}}</div><br>
+                                            <div>Fonction : {{$dataLead->job_title}}</div><br>
+                                            <div>Organisation : {{$dataLead->organization}}</div><br>
+                                            <div>Régime spécifique : {{$dataLead->dietary}}</div><br>
+                                            <div>Expérience : {{$dataLead->experience}}</div><br>
+                                            <div>Language de traduction : {{$dataLead->language_translation}}</div><br>
                                             <div>Languages : {{$dataLead->languages}}</div><br>
-                                            <div>Guests : {{$dataLead->guests}}</div><br>
-                                            <div>Lead : {{$dataLead->lead}}</div><br>
-                                            <div>Do you agree to share your name, job title and organisation in the Congress attendees list ? : {{$dataLead->first_check}}</div><br>
-                                            <div>Do you agree for your name, organisation and email address to be added to the recipients list to receive event updates ? : {{$dataLead->second_check}}</div><br>
-                                            <div>Postal address : {{$dataLead->postal_address}}</div><br>
-                                            <div>Type registration : {{$dataLead->registration_as}}</div><br>
-                                            <div>Membership number : {{$dataLead->membership_number}}</div><br>
-                                            <div>Country : {{$dataLead->country}}</div><br>
-                                            <div>Number of delegates : {{$dataLead->membership}}</div><br>
-                                            <div>Mode of payment : {{$dataLead->mode_payment}}</div><br>
-                                            <div>Events : {{$dataLead->eventP}} {{$dataLead->eventS}} {{$dataLead->eventG}} {{$dataLead->eventW}}</div><br>
-                                            <div>Price : {{$dataLead->price}} EUR</div><br>
+                                            <div>Délégué : {{$dataLead->guests}}</div><br>
+                                            <div>Représentant principal : {{$dataLead->lead}}</div><br>
+                                            <div>Acceptez-vous de faire figurer votre nom, votre fonction et le nom de votre organisation dans la liste des participants au Congrès ? : {{$dataLead->first_check}}</div><br>
+                                            <div>Acceptez-vous que votre nom, votre oarganisation et votre adresse de courriel soient ajoutés à la liste des personnes recevant des informations sur l’événement ? : {{$dataLead->second_check}}</div><br>
+                                            <div>Address Postal : {{$dataLead->postal_address}}</div><br>
+                                            <div>Type d'enregistrement : {{$dataLead->registration_as}}</div><br>
+                                            <div>Numéro de membre : {{$dataLead->membership_number}}</div><br>
+                                            <div>Pays : {{$dataLead->country}}</div><br>
+                                            <div>Nombre de délégués : {{$dataLead->membership}}</div><br>
+                                            <div>Méthode de paiement : {{$dataLead->mode_payment}}</div><br>
+                                            <div>Evénement : {{$dataLead->eventP}} {{$dataLead->eventS}} {{$dataLead->eventG}} {{$dataLead->eventW}}</div><br>
+                                            <div>Prix : {{$dataLead->price}} EUR</div><br>
 
 
 
                                             @forelse($tabDelegate as $key => $val)
-                                                <div>Delegate {{ $key + 1 }} :</div><br>
-                                                <div>Full name : {{$val->first_name}} {{$val->last_name}}</div><br>
-                                                <div>Email : {{$val->email_address}}</div><br>
-                                                <div>Job title : {{$val->job_title}}</div><br>
-                                                <div>Organization : {{$val->organization}}</div><br>
-                                                <div>Dietary : {{$val->dietary}}</div><br>
-                                                <div>Experience : {{$val->experience}}</div><br>
-                                                <div>Language translation : {{$val->language_translation}}</div><br>
+                                                <div>Délégué {{ $key + 1 }} :</div><br>
+                                                <div>Nom et prénom : {{$val->first_name}} {{$val->last_name}}</div><br>
+                                                <div>Adresse de courriel : {{$val->email_address}}</div><br>
+                                                <div>Fonction : {{$val->job_title}}</div><br>
+                                                <div>Organisation : {{$val->organization}}</div><br>
+                                                <div>Régime spécifique : {{$val->dietary}}</div><br>
+                                                <div>Expérience : {{$val->experience}}</div><br>
+                                                <div>Language de traduction : {{$val->language_translation}}</div><br>
                                                 <div>Languages : {{$val->languages}}</div><br>
-                                                <div>Guests : {{$val->guests}}</div><br>
-                                                <div>Do you agree to share your name, job title and organisation in the Congress attendees list ? : {{$val->first_check}}</div><br>
-                                                <div>Do you agree for your name, organisation and email address to be added to the recipients list to receive event updates ? : {{$val->second_check}}</div><br>
+                                                <div>Délégué : {{$val->guests}}</div><br>
+                                                <div>Acceptez-vous de faire figurer votre nom, votre fonction et le nom de votre organisation dans la liste des participants au Congrès ? : {{$val->first_check}}</div><br>
+                                                <div>Acceptez-vous que votre nom, votre oarganisation et votre adresse de courriel soient ajoutés à la liste des personnes recevant des informations sur l’événement ? : {{$val->second_check}}</div><br>
 
 
 
