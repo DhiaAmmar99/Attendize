@@ -114,3 +114,7 @@
 #53 C:\\wamp64\\www\\laravel\\ica-backoffice\\server.php(21): require_once('C:\\\\wamp64\\\\www\\\\l...')
 #54 {main}
 "} 
+[2021-02-15 15:17:06] production.ERROR: syntax error, unexpected ''first_name'' (T_CONSTANT_ENCAPSED_STRING), expecting function (T_FUNCTION) or const (T_CONST) {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 4): syntax error, unexpected ''first_name'' (T_CONSTANT_ENCAPSED_STRING), expecting function (T_FUNCTION) or const (T_CONST) at C:\\wamp64\\www\\laravel\\ica-backoffice\\app\\Models\\Brochure.php:10)
+[stacktrace]
+#0 {main}
+"} 

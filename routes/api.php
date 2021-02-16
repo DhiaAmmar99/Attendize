@@ -173,7 +173,7 @@ Route::post('/updateImage/{id}', [ImageController::class ,'updateImg']);
  Route::post('/updateSpeaker', [SpeakerController::class ,'update']);
  Route::get('/speaker', [SpeakerController::class ,'listSpeaker']);
 //  Route::get('/SearchSessionSpeaker', [SpeakerController::class ,'SearchSessionSpeaker']);
- 
+
 
 /*
  * ---------------
@@ -187,7 +187,7 @@ Route::post('/updateImage/{id}', [ImageController::class ,'updateImg']);
  Route::post('/updateChair', [ChairController::class ,'update']);
  Route::get('/Chair', [ChairController::class ,'listChair']);
  Route::get('/SearchSessionChair', [ChairController::class ,'SearchSessionChair']);
- 
+
 
 
 /*
@@ -221,6 +221,14 @@ Route::post('/updateImage/{id}', [ImageController::class ,'updateImg']);
 Route::post('/notification/chat', [NotificationController::class ,'notification']);
 Route::get('/notification/participate', [NotificationController::class ,'sendNotification']);
 Route::get('/listNotification', [NotificationController::class ,'listNotification']);
+
+/*
+ * ---------------
+ * DOWNLOAD BROCHURE
+ * ---------------
+ */
+
+Route::post('/download/brochure', [ApiregistrationController::class ,'downloadBrochure']);
 
 /*
  * ---------------

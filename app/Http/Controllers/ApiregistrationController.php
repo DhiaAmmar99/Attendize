@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Delegate;
 use App\Mail\SendMailable;
 use App\Mail\EditMailable;
+use App\Mail\infoMailable;
 use App\Mail\PreRegistrationMailable;
 use App\Mail\PasswordMailable;
+use App\Models\Brochure;
 use App\Models\Registration;
 use App\Models\Mailapi;
 use App\Models\Sponsors;
@@ -342,8 +344,8 @@ class ApiregistrationController extends Controller
         }
     }
 
-       public function Email(Request $request)
-       {
+    public function Email(Request $request)
+    {
         $data = [
                 "id" => $request->input('id'),
                 "table" => $request->input('table'),
@@ -359,6 +361,7 @@ class ApiregistrationController extends Controller
             $toid= $datamail->register_id;
         }
 
+        $infoBT = new infoMailable($toid);
         $BT = new PreRegistrationMailable($toid, $datamail, $datadel, $data['paiment']);
         $ED = new EditMailable($toid, $datamail, $data['table']);
         $OP = new SendMailable($toid, $datamail, $data['table']);
@@ -371,9 +374,19 @@ class ApiregistrationController extends Controller
                 'data'=>$data,
                 ]);
 
-        }else if(($data['paiment'] == 'Onsite payment') || ($data['paiment'] == 'Bank Transfer')){
+        }else if($data['paiment'] == 'Onsite payment'){
 
             Mail::to($tomail)->send($BT);
+            return response()->json([
+                'status'=>'1',
+                'message' => 'Email was sent',
+                'data'=>$data,
+                ]);
+
+        }else if($data['paiment'] == 'Bank Transfer'){
+            Mail::to($tomail)->send($infoBT);
+            Mail::to($tomail)->send($BT);
+
             return response()->json([
                 'status'=>'1',
                 'message' => 'Email was sent',
@@ -491,6 +504,21 @@ class ApiregistrationController extends Controller
     }
 
 
+
+    // DOWNLOAD BROCHURE
+
+    public function downloadBrochure(Request $request)
+    {
+        $b = new Brochure();
+        $b->first_name = $request->input('first_name');
+        $b->last_name = $request->input('last_name');
+        $b->job_title = $request->input('job_title');
+        $b->company = $request->input('company');
+        $b->email = $request->input('email');
+        $b->tel = $request->input('tel');
+        $b->save();
+        return Redirect::to('https://devica.digitalresearch.ae/wp-content/uploads/2019/07/ICA-Congress-Abu-Dhabi-2020-Sponsorship-Prospectus_web.pdf');
+    }
 
 
 }

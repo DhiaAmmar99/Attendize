@@ -7,26 +7,22 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class PreRegistrationMailable extends Mailable
+class infoMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
 
     public $id;
-    public $data;
-    public $tabDel;
-    public $payment;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($id, $data, $tabDel, $payment)
+    public function __construct($id)
     {
         $this->id=$id;
-        $this->data=$data;
-        $this->tabDel=$tabDel;
-        $this->payment=$payment;
+
     }
 
     /**
@@ -36,11 +32,8 @@ class PreRegistrationMailable extends Mailable
      */
     public function build()
     {
-        return $this->subject('ICA registration follow-up')->view('PreRegistrationMail')->with([
+        return $this->subject('ICA bank transfer information')->view('Emails/InfoBT')->with([
             'id' => $this->id,
-            'data' => $this->data,
-            'tabDel' => $this->tabDel,
-            'payment' => $this->payment,
         ]);
      }
 }

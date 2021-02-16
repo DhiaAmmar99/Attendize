@@ -32,7 +32,7 @@ class SendMailable extends Mailable
      */
     public function build()
     {
-        return $this->subject('Registration summary')->view('successMail')->with([
+        return $this->subject('ICA registration follow-up')->view('successMail')->with([
             'id' => $this->id,
             'dataLead' => $this->dataLead,
             'tabDelegate' => $this->tabDelegate,
