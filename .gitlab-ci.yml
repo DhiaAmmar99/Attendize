@@ -1,0 +1,43 @@
+variables:
+  DB_DATABASE: test
+  DB_HOST: 127.0.0.1
+  DB_USERNAME: dhia
+  DB_PASSWORD: dhiaammar
+  x
+stages:
+  - test
+  - deploy
+
+unit_test:
+  stage: test
+  script:
+    - cp .env.example .env
+    - composer install
+    - php artisan key:generate
+   # - php artisan migrate
+   # - vendor/bin/phpunit
+    
+deploy_production:
+  stage: deploy
+  script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - echo ' eni chkoun ?:' && whoami
+   # - cd /var/www/html/test.com/SMS
+    - php artisan down || true
+    - git pull origin master
+    - composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+    - php artisan migrate --force
+    - php artisan cache:clear
+    - php artisan auth:clear-resets
+    - php artisan up
+    - echo "deploy done"
+  environment:
+    name: production
+    url: http://192.168.161.132
+  when: manual
+  only:
+    - master
+

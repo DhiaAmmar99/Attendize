@@ -1,0 +1,1 @@
+<?php /**PATH /var/www/html/myapp/ica-backoffice/resources/views/Shared/Layouts/ViewJavascript.blade.php ENDPATH**/ ?>
