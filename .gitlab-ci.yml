@@ -3,7 +3,7 @@ variables:
   DB_HOST: 127.0.0.1
   DB_USERNAME: dhia
   DB_PASSWORD: dhiaammar
-  x
+  
 stages:
   - test
   - deploy
