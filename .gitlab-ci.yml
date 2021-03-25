@@ -11,7 +11,7 @@ stages:
 unit_test:
   stage: test
   script:
-    - cp .env.example .env
+    #
     - composer install
    #- php artisan key:generate
     - vendor/bin/phpunit
@@ -29,7 +29,8 @@ deploy_production:
     - php artisan down || true
     - git pull origin master
     - composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
-    - echo dhiaammar | sudo php artisan key:generate -n --force  
+    - cp .env.example .env
+    - sudo php artisan key:generate --no-interaction --force  
 #    - chmod -R a+w storage/ bootstrap/cache .env -S dhiaammar
   #  - php artisan cache:clear
    # - php artisan auth:clear-resets
