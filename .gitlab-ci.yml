@@ -29,7 +29,7 @@ deploy_production:
     - php artisan down || true
     - git pull origin master
     - composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
-    - cp .env.example .env
+   # - cp .env.example .env
     #- echo dhiaammar | sudo php artisan key:generate --no-interaction -S 
     - cat .env
   #  - php artisan cache:clear
