@@ -1,9 +1,9 @@
 variables:
-  DB_DATABASE: test
   DB_HOST: 127.0.0.1
-  DB_USERNAME: dhia
-  DB_PASSWORD: dhiaammar
-  
+  DB_DATABASE: preprodica
+  DB_USERNAME: root
+  DB_PASSWORD: Str0ngDBP@ssw0rd
+
 stages:
   - test
   - deploy
@@ -14,8 +14,7 @@ unit_test:
     - cp .env.example .env
     - composer install
     - php artisan key:generate
-   # - php artisan migrate
-   # - vendor/bin/phpunit
+   #- vendor/bin/phpunit
     
 deploy_production:
   stage: deploy
@@ -25,13 +24,13 @@ deploy_production:
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
     - echo ' eni chkoun ?:' && whoami
+    - pwd
    # - cd /var/www/html/test.com/SMS
     - php artisan down || true
     - git pull origin master
     - composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
-    - php artisan migrate --force
-    - php artisan cache:clear
-    - php artisan auth:clear-resets
+  #  - php artisan cache:clear
+   # - php artisan auth:clear-resets
     - php artisan up
     - echo "deploy done"
   environment:
