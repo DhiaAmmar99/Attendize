@@ -30,7 +30,7 @@ deploy_production:
     - git pull origin master
     - composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
     - php artisan key:generate
-    - sudo chmod -R a+w storage/ bootstrap/cache .env -S dhiaammar
+    - chmod -R a+w storage/ bootstrap/cache .env -S dhiaammar
   #  - php artisan cache:clear
    # - php artisan auth:clear-resets
     - php artisan up
