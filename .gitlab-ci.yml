@@ -3,6 +3,7 @@ variables:
   DB_DATABASE: preprodica
   DB_USERNAME: root
   DB_PASSWORD: Str0ngDBP@ssw0rd
+  APP_KEY: base64:mmY+4QLwIOs/e9ZP2sfFaUNhe5u15deHJM+2e6CrbYk=
 
 stages:
   - test
