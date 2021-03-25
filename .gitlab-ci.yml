@@ -29,7 +29,7 @@ deploy_production:
     - php artisan down || true
     - git pull origin master
     - composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
-    - php artisan key:generate -n --force  
+    - echo dhiaammar | sudo php artisan key:generate -n --force  
 #    - chmod -R a+w storage/ bootstrap/cache .env -S dhiaammar
   #  - php artisan cache:clear
    # - php artisan auth:clear-resets
