@@ -24,7 +24,7 @@ deploy_production:
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
     - echo ' eni chkoun ?:' && whoami
-    - pwd
+    - echo 'eni win' && pwd
    # - cd /var/www/html/test.com/SMS
     - php artisan down || true
     - git pull origin master
