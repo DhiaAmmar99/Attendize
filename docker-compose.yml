@@ -1,89 +1,57 @@
-version: '3.2'
-
+version: "3.8"
 services:
-  web:
+
+  attendize_app:
     build:
-      context: .
-      dockerfile: Dockerfile-nginx
-    env_file:
-      - ./.env
-    ports:
-    - "8080:80"
-    - "8081:443"
-    networks:
-      - attendizenet
+      context: . # The path of the Dockerfile
     volumes:
-      - .:/usr/share/nginx/html/attendize
+      - .:/usr/src/app
     depends_on:
-      - php
-  php:
-    build:
-      context: .
-      dockerfile: Dockerfile-php
-    env_file:
-      - ./.env
-    depends_on:
-      - db
-      - maildev
-      - redis
-    volumes:
-      - .:/usr/share/nginx/html/attendize
-    networks: 
-      - attendizenet
-  composer:
-    build:
-      context: .
-      dockerfile: Dockerfile-composer
-    depends_on:
-      - php
-    volumes:
-      - .:/usr/share/nginx/html/attendize
-    networks:
-      - attendizenet
-  php-worker:
-    build:
-      context: .
-      dockerfile: Dockerfile-php
-    depends_on:
-      - db
-      - maildev
-      - redis
-    volumes:
-      - .:/usr/share/nginx/html/attendize
-    command: php artisan queue:work --daemon
-    networks:
-      - attendizenet
-  db:
-    image: mysql:5.7.23
-    restart: always
-    env_file:
-      - ./.env
+      - attendize_db
+    working_dir: /usr/src/app
     environment:
-      MYSQL_ROOT_PASSWORD: "yes"
-      MYSQL_HOST: ${DB_HOST}
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_USER: ${DB_USERNAME}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
+      SERVICE_NAME: attendize-app
+      DB_CONNECTION: mysql
+      DB_DRIVER: mysql
+      DB_HOST: attendize_db
+      DB_PORT: 3306
+    networks:
+      - app_network
+
+  attendize_nginx:
+    build:
+      context: ./docker-nginx/. # The path of the Dockerfile
+    volumes:
+    - "./public:/usr/src/app/public"
+    environment:
+      NGINX_FPM_HOST: attendize_app
+      NGINX_ROOT: /usr/src/app/public
+    ports:
+      - "8000:80"
+    depends_on:
+      - attendize_app
+    networks:
+      - app_network
+
+  attendize_db:
+    image: mysql:5
+    restart: always
+    
+    environment:
+      MYSQL_DATABASE: "preprodica"
+      MYSQL_ROOT_PASSWORD: "Str0ngDBP@ssw0rd"
+      MYSQL_USER: "dhia"
+      MYSQL_PASSWORD: "dhiaammar"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"      
     ports:
       - "3306:3306"
     volumes:
-      - "mysql-data:/var/lib/mysql"
+      - "./storage/db-data:/var/lib/mysql"
+
     networks:
-    - attendizenet
-  maildev:
-    image: djfarrelly/maildev
-    ports:
-      - "1080:80"
-    networks:
-      - attendizenet
-  redis:
-    image: redis
-    networks:
-      - attendizenet
+      - app_network
 
 networks:
-  attendizenet:
+  app_network:
     driver: bridge
 
-volumes:
-    mysql-data:

@@ -1,0 +1,1 @@
+<?php /**PATH /usr/src/app/resources/views/Shared/Layouts/ViewJavascript.blade.php ENDPATH**/ ?>

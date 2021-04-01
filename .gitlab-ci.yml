@@ -16,6 +16,15 @@ unit_test:
     - composer install
    #- php artisan key:generate
     - vendor/bin/phpunit
+quality:
+  image: jramcast/gitlab-ci-sonarqube
+  stage: test
+  env:
+    SONAR_URL: '...',
+    SONAR_LOGIN: 'sonarqube login token'
+  script:
+    - sonar-scanner-preview: -Dsonar.projectVersion=${CI_COMMIT_SHA}
+    - sonar-scanner: -Dsonar.projectVersion=${CI_COMMIT_SHA}
     
 deploy_production:
   stage: deploy
