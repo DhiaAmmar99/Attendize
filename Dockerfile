@@ -1,4 +1,3 @@
-#Multi Stage Test 1 By Dhia
 #Php image 
 FROM php:7.3.12-fpm
 RUN apt-get update && apt-get install -y \

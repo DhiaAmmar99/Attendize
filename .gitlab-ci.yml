@@ -1,55 +1,19 @@
 variables:
-  DB_HOST: 127.0.0.1
-  DB_DATABASE: preprodica
-  DB_USERNAME: root
-  DB_PASSWORD: Str0ngDBP@ssw0rd
-  APP_KEY: base64:mmY+4QLwIOs/e9ZP2sfFaUNhe5u15deHJM+2e6CrbYk=
+  DOCKER_DRIVER: overlay2
+
+services:
+  - docker:dind
 
 stages:
-  - test
-  - deploy
+  - publish
 
-unit_test:
-  stage: test
+publish-docker:
+  stage: publish
+  image: docker
   script:
-    #
-    - composer install
-   #- php artisan key:generate
-    - vendor/bin/phpunit
-quality:
-  image: jramcast/gitlab-ci-sonarqube
-  stage: test
-  env:
-    SONAR_URL: '...',
-    SONAR_LOGIN: 'sonarqube login token'
-  script:
-    - sonar-scanner-preview: -Dsonar.projectVersion=${CI_COMMIT_SHA}
-    - sonar-scanner: -Dsonar.projectVersion=${CI_COMMIT_SHA}
-    
-deploy_production:
-  stage: deploy
-  script:
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-    - eval $(ssh-agent -s)
-    - ssh-add <(echo "$SSH_PRIVATE_KEY")
-    - mkdir -p ~/.ssh
-    - echo ' eni chkoun ?:' && whoami
-    - echo 'eni win' && pwd
-   # - cd /var/www/html/test.com/SMS
-    - php artisan down || true
-    - git pull origin master
-    - composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
-   # - cp .env.example .env
-    #- echo dhiaammar | sudo php artisan key:generate --no-interaction -S 
-    - cat .env
-  #  - php artisan cache:clear
-   # - php artisan auth:clear-resets
-    - php artisan up
-    - echo "deploy done"
-  environment:
-    name: production
-    url: http://192.168.161.132
-  when: manual
-  only:
-    - master
-
+   - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
+   - export IMAGE_NAME="dolking/diginov"
+   - export VERSION_TAG_nginx="nginx-v.1"
+   - docker-compose build 
+   - docker commit -m 'Added My nginx ' ica-backoffice_attendize_nginx_1 ${IMAGE_NAME}:${VERSION_TAG_nginx}
+   - docker push ${IMAGE_NAME}:${VERSION_TAG_nginx}
