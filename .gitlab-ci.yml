@@ -5,6 +5,7 @@ before_script:
 - apk add python python-dev py-pip build-base
 - pip install docker-compose
 - docker-compose -v
+- echo "bla bla"
 variables:
   DOCKER_DRIVER: overlay2
 
