@@ -21,14 +21,11 @@ docker-build:
     # Use the overlayfs driver for improved performance:
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
+    
   script:
     # Download bash:
-    - apk add --no-cache bash python3
-    # GitLab has a built-in Docker image registry, whose parameters are set automatically.
-    # See https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#using-the-gitlab-contai
-    #
-    # CHANGEME: You can use some other Docker registry though by changing the
-    # login and image name.
+   - apk add --no-cache bash python3
+   
    - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
    - export IMAGE_NAME="dolking/diginov"
    - export VERSION_TAG_nginx="nginx-v.1"
@@ -39,3 +36,5 @@ docker-build:
   # Only build off of master branch:
   only:
     - master
+
+    
