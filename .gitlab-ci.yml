@@ -23,9 +23,9 @@ docker-build:
     DOCKER_TLS_CERTDIR: ""
     
   script:
-    # Download bash:
+    # Download bash: 
+   - apk add 'py-pip==8.1.2-r0'
    - apk add --no-cache bash python3
-   - apk add --update --no-cache curl py-pip
    - apk add py-pip python-dev libffi-dev openssl-dev gcc libc-dev make
    - pip install docker-compose
    - docker-compose version
