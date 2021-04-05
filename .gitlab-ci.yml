@@ -23,6 +23,7 @@ docker-build:
     DOCKER_TLS_CERTDIR: ""
 
   before_script:
+     - apk update
      - apk add python2 
      - apk add --no-cache --quiet py-pip
      - pip install docker-compose
