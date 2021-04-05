@@ -25,6 +25,7 @@ docker-build:
   script:
     # Download bash:
    - apk add --no-cache bash python3
+   - apk add --update --no-cache curl py-pip
    - apk add py-pip python-dev libffi-dev openssl-dev gcc libc-dev make
    - pip install docker-compose
    - docker-compose version
