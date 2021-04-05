@@ -24,7 +24,6 @@ docker-build:
 
   before_script:
      - apk add python2 
-     - apk add --no-cache python python-dev libffi-dev openssl-dev gcc libc-dev make
      - pip install docker-compose 
      - docker-compose version
      - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD} 
