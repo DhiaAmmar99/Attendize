@@ -24,7 +24,7 @@ docker-build:
 
   before_script:
      - apk update
-     - apk install -y python3-pip
+     - apk add py3-pip
      - pip3 install docker-compose 
      - docker-compose version
      - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD} 
