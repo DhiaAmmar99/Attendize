@@ -25,7 +25,7 @@ docker-build:
   before_script:
      - apk add python2 
      - apk add --no-cache --quiet py-pip
-     - pip install --quiet docker-compose~=1.23.0
+     - pip install --quiet docker-compose~=3.3
      - pip install docker-compose 
      - docker-compose version
      - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD} 
