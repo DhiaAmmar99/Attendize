@@ -29,6 +29,7 @@ docker-build:
      - apk add python3
      - apk add py3-pip
      - pip --version 
+     - apk install --upgrade pip
      #- pip install cryptography
      #- apk --update --upgrade add gcc musl-dev jpeg-dev zlib-dev libffi-dev cairo-dev pango-dev gdk-pixbuf-dev
      - pip install docker-compose 
