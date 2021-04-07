@@ -25,6 +25,7 @@ docker-build:
     DOCKER_TLS_CERTDIR: ""
 
   before_script:
+     - yum update -y
      - apk update 
      - apk add python3
      - apk add py3-pip
