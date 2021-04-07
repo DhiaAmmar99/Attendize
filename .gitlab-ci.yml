@@ -28,16 +28,17 @@ docker-build:
      - apk add py3-pip
      - pip --version 
      - pip install cryptography
+     - apk --update --upgrade add gcc musl-dev jpeg-dev zlib-dev libffi-dev cairo-dev pango-dev gdk-pixbuf-dev
      - pip install docker-compose 
      - docker-compose version
      - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD} 
   script:
     # Download bash:   
-   - export IMAGE_NAME="dolking/diginov"
-   - export VERSION_TAG_nginx="nginx-v.1"
-   - docker-compose build 
-   - docker commit -m 'Added My nginx ' ica-backoffice_attendize_nginx_1 ${IMAGE_NAME}:${VERSION_TAG_nginx}
-   - docker push ${IMAGE_NAME}:${VERSION_TAG_nginx}
+     - export IMAGE_NAME="dolking/diginov"
+     - export VERSION_TAG_nginx="nginx-v.1"
+     - docker-compose build 
+     - docker commit -m 'Added My nginx ' ica-backoffice_attendize_nginx_1 ${IMAGE_NAME}:${VERSION_TAG_nginx}
+     - docker push ${IMAGE_NAME}:${VERSION_TAG_nginx}
 
   # Only build off of master branch:
   only:
