@@ -24,8 +24,11 @@ docker-build:
 
   before_script:
      - apk update 
-     - apk add --no-cache python3-dev openssl-dev libffi-dev gcc && pip3 install --upgrade pip
+     - apk add python3
+     - apk build-essential libssl-dev libffi-dev python3-dev
+     - apk add py3-pip
      - pip --version 
+     - pip install cryptography
      - pip install docker-compose 
      - docker-compose version
      - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD} 
