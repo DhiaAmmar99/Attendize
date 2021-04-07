@@ -23,9 +23,10 @@ docker-build:
     DOCKER_TLS_CERTDIR: ""
 
   before_script:
-     - apk update && apk add openssh
-   #  - apk add -U --no-cache bash python3 python3-dev libpq postgresql-dev unixodbc-dev musl-dev g++ libffi-dev && pip3 install --upgrade --no-cache-dir pip setuptools==49.6.0 && pip3 install --no-cache-dir -r requirements.txt && ln -s /usr/bin/python3 /usr/bin/python && apk del --no-cache python3-dev unixodbc-dev musl-dev g++ libffi-dev
-     - apk add --update-cache python python-dev py-pip
+     - apk update 
+     - apk add python3
+     - apk add py3-pip
+     - pip --version 
      - pip install docker-compose 
      - docker-compose version
      - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD} 
