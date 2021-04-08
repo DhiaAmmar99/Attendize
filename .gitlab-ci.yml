@@ -25,15 +25,17 @@ docker-build:
     DOCKER_TLS_CERTDIR: ""
 
   before_script:
+     - pwd 
+     - ls 
+     - whoami
      - docker-compose --version 
      - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD} 
   script:
     # Download bash:   
      - export IMAGE_NAME="dolking/diginov"
-     - export VERSION_TAG_nginx="nginx-v.1"
      - docker-compose build 
-     - docker commit -m 'Added My nginx ' ica-backoffice_attendize_nginx_1 ${IMAGE_NAME}:${VERSION_TAG_nginx}
-     - docker push ${IMAGE_NAME}:${VERSION_TAG_nginx}
+     - docker commit -m 'Added My nginx ' ica-backoffice_attendize_nginx_1 ${IMAGE_NAME}:${VERSION_TAG}
+     - docker push ${IMAGE_NAME}:${VERSION_TAG}
 
   # Only build off of master branch:
   only:
