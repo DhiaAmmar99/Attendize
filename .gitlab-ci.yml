@@ -35,7 +35,7 @@ build-push-image:
   stage: build_push
   # the tag 'dind' advices only GitLab runners using this tag to pick up that job
   tags: 
-    - tom
+    - dhia
   script:
     - pwd
     
