@@ -2,9 +2,9 @@
 # of Gitlab CI support in https://pythonspeed.com/products/pythoncontainer/
 docker-build:
   tags:
-  - final
+  - tom
   stage: build
-  
+
   # This will run a Docker daemon in a container (Docker-In-Docker), which will
   # be available at thedockerhost:2375. If you make e.g. port 5000 public in Docker
   # (`docker run -p 5000:5000 yourimage`) it will be exposed at thedockerhost:5000.
