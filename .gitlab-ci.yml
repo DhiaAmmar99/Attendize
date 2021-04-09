@@ -11,6 +11,6 @@ build-push-image:
   script:
     - pwd
     - apk update -y
-    - apk install net-tools -y
+    - apk install -y net-tools 
     - ifconfig
     
