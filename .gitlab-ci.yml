@@ -21,6 +21,9 @@ docker-build:
     DOCKER_TLS_CERTDIR: ""
 
   before_script:
+     - pwd 
+     - ls
+     - whoami
      - docker-compose --version 
      - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD} 
   script:
