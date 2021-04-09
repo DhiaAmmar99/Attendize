@@ -1,8 +1,4 @@
-image: docker:19.03.1
 
-# Pinning the right Docker version for the service also
-services:
-  - docker:19.03.1-dind
 
 variables:
   # see https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#tls-enabled for Dind configuration
