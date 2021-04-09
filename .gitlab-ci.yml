@@ -28,10 +28,6 @@ docker-build:
      - pwd 
      - ls 
      - whoami
-     - apk update
-     - apk --no-cache add curl
-     - curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-     - chmod +x /usr/local/bin/docker-compose
      - docker-compose --version 
      - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD} 
   script:
