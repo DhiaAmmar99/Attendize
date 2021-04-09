@@ -37,5 +37,5 @@ build-push-image:
   tags: 
     - tom
   script:
-    - ls /var/www/html/myapp/ica-backoffice
-    - docker info
+    - pwd
+    
