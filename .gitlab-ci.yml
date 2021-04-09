@@ -10,7 +10,7 @@ build-push-image:
     - dhia
   script:
     - pwd
-    - apk update -y
-    - apk install -y net-tools 
+    - apk update 
+    - apk install net-tools 
     - ifconfig
     
