@@ -2,7 +2,7 @@
 # of Gitlab CI support in https://pythonspeed.com/products/pythoncontainer/
 docker-build:
   tags:
-  - dind
+  - final
   stage: build
 
   image:
