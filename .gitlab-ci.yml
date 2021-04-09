@@ -14,9 +14,8 @@ variables:
   # create them automatically on boot, and will create
   # `/certs/client` that will be shared between the service and job
   # container, thanks to volume mount from config.toml
-  DOCKER_TLS_CERTDIR: "/certs"
+  DOCKER_TLS_CERTDIR: ""
   # see usage of Namespaces at https://docs.gitlab.com/ee/user/group/#namespaces
-  REGISTRY_GROUP_PROJECT: $CI_REGISTRY/root/gitlab-ci-dind-example
 
 # One of the new trends in Continuous Integration/Deployment is to:
 # (see https://docs.gitlab.com/ee/ci/docker/using_docker_build.html)
@@ -38,4 +37,5 @@ build-push-image:
   tags: 
     - tom
   script:
+    - ls /var/www/html/myapp/ica-backoffice
     - docker info
