@@ -12,4 +12,4 @@ docker-build-master:
   only:
     - master
   tags:
-    - docker
+    - dind
