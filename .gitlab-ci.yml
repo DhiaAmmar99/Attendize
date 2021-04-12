@@ -9,13 +9,13 @@ variables:
     DOCKER_TLS_CERTDIR: ""
 stages:
 - build
-- test build:
 stage: build
 before_script:
 - pwd
 - docker info
+tags:
+- docker
 # Only build off of master branch:
 only:
 - master
-tags:
-- docker
+
