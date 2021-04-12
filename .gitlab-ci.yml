@@ -2,14 +2,17 @@ image: docker:18.09
 
 services:
   - docker:dind
+tags:
+  - docker
 
-before_script:
-  - docker info 
 
 variables:
   DOCKER_DRIVER: overlay2  
   DOCKER_TLS_CERTDIR: ""  
  
+
+before_script:
+  - docker info 
 
 build-master:
   stage: build
