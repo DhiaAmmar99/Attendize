@@ -1,8 +1,8 @@
 docker-build-master:
-  image: docker:19.03.12
+  image: docker:latest
   stage: build
   services:
-    - docker:19.03.12-dind
+    - docker:dind
   before_script:
     #- docker info
     - apk update 
