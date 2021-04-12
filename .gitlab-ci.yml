@@ -7,6 +7,8 @@ docker-build-master:
     - pwd 
     - docker info
     - docker-compose --version
+    - docker-compose build 
+    - docker-compose up 
   tags:
     - dind
   only:
