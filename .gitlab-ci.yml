@@ -2,11 +2,11 @@ image: docker:19.03.12
 
 stages:
   - build
-
-services:
-  - docker:19.03.12-dind
 tags:
    - docker
+   
+services:
+  - docker:19.03.12-dind
 
 before_script:
   - docker info
