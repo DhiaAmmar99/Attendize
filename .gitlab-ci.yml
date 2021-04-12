@@ -1,38 +1,19 @@
-# Build and push the Docker image off of merges to master; based off
-# of Gitlab CI support in https://pythonspeed.com/products/pythoncontainer/
-docker-build:
-  tags:
-  - tom
+# Official docker image.
+image: docker:19.03.0-dind
+
+services:
+  - docker:19.03.0-dind
+
+before_script:
+  - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+
+build-master:
   stage: build
-
-  # This will run a Docker daemon in a container (Docker-In-Docker), which will
-  # be available at thedockerhost:2375. If you make e.g. port 5000 public in Docker
-  # (`docker run -p 5000:5000 yourimage`) it will be exposed at thedockerhost:5000. 
-  services:
-   - name: docker:dind
-     alias: thedockerhost
-
-  variables:
-    # Tell docker CLI how to talk to Docker daemon; see
-    # https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-docker-in-docker-executor
- #   DOCKER_HOST: tcp://thedockerhost:2375/
-    # Use the overlayfs driver for improved performance:
-    DOCKER_DRIVER: overlay2
-    DOCKER_TLS_CERTDIR: ""
-
-  before_script:
-     - pwd 
-     - ls
-     - whoami
-     - docker-compose --version 
-     - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD} 
   script:
-    # Download bash:   
-     - export IMAGE_NAME="dolking/diginov"
-     - docker-compose build 
-     - docker commit -m 'Added My nginx ' ica-backoffice_attendize_nginx_1 ${IMAGE_NAME}:${VERSION_TAG}
-     - docker push ${IMAGE_NAME}:${VERSION_TAG}
-
+    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
+    - docker push "$CI_REGISTRY_IMAGE"
+  tags:
+    - docker
   # Only build off of master branch:
   only:
     - master
