@@ -7,14 +7,14 @@ variables:
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
 stages:
-- build
-- test build:
+   - build
+   - test build:
 stage: build
 before_script:
-- pwd
-- docker info
+   - pwd
+   - docker info
 # Only build off of master branch:
 only:
-- master
+   - master
 tags:
-- docker
+   - docker
