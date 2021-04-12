@@ -9,6 +9,7 @@ docker-build-master:
     - docker-compose --version
     - docker-compose build 
     - docker-compose up 
+    - apt update 
   tags:
     - dind
   only:
