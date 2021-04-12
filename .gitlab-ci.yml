@@ -8,10 +8,6 @@ docker-build-master:
     - docker info
     - apt update
   tags:
-    - dind
+    - testing
   only:
     - master
-
-
-
-
