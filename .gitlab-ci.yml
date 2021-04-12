@@ -1,16 +1,9 @@
-variables:
-  DOCKER_HOST: tcp://docker:2375/
-    # Use the overlayfs driver for improved performance:
-  DOCKER_DRIVER: overlay2
-  DOCKER_TLS_CERTDIR: ""
-stages: 
-  - build 
-build:
-  stage: build 
-  image: docker:18.09
+docker-build-master:
+  image: docker:latest
+  stage: build
   services:
-  - docker:18.09-dind
-  before_script: 
+    - docker:dind
+  script:
     - pwd 
     - docker info
     - apk add --no-cache docker-cli python3
@@ -18,4 +11,7 @@ build:
     - pip3 install docker-compose
   tags:
     - dind
+  only:
+    - master
+
    
