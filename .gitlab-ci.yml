@@ -1,27 +1,20 @@
-docker-build-master:
-  image: docker:latest
-  stage: build
-  services:
-    - docker:dind
-  before_script:
-    #- docker info
-    - apt update 
-    - apk add python3
-    - apk add python-pip
-    - apk add py3-pip
-    - pip --version 
-    - pip install cryptography
-    - apk --update --upgrade add gcc musl-dev jpeg-dev zlib-dev libffi-dev cairo-dev pango-dev gdk-pixbuf-dev
-    - pip install docker-compose 
-    - docker-compose --version
-    - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD} 
-
-  script:
-     - export IMAGE_NAME="dolking/diginov"
-     - docker-compose build 
-     - docker commit -m 'Added My nginx ' ica-backoffice_attendize_nginx_1 ${IMAGE_NAME}:${VERSION_TAG}
-     - docker push ${IMAGE_NAME}:${VERSION_TAG}
-  only:
-    - master
-  tags:
-    - dind
+image: docker:18.09
+services:
+    - docker:18.09-dind
+variables:
+#DOCKER_HOST: tcp://docker:2375/
+# Use the overlayfs driver for improved performance:
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ""
+stages:
+   - build
+   - test build:
+stage: build
+before_script:
+   - pwd
+   - docker info
+# Only build off of master branch:
+only:
+   - master
+tags:
+   - docker
