@@ -9,8 +9,8 @@ docker-build-master:
     - apk add python3
     - apk add py3-pip
     - pip --version 
-     #- pip install cryptography
-     #- apk --update --upgrade add gcc musl-dev jpeg-dev zlib-dev libffi-dev cairo-dev pango-dev gdk-pixbuf-dev
+    - pip install cryptography
+    - apk --update --upgrade add gcc musl-dev jpeg-dev zlib-dev libffi-dev cairo-dev pango-dev gdk-pixbuf-dev
     - pip install docker-compose 
     - docker-compose --version
     - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD} 
