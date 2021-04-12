@@ -4,14 +4,13 @@ services:
 variables:
        DOCKER_DRIVER: overlay2
        DOCKER_TLS_CERTDIR: ""
-stages:
-      - build
-stage: build
-before_script:
-- pwd
-- docker info
-only:
+build:
+ stage: build
+ before_script:
+ - pwd
+ - docker info
+ only:
        - master
-tags:
+ tags:
        - dind
    
