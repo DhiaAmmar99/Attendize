@@ -1,22 +1,20 @@
-  image: docker:18.09
-  
-  stage: build
+docker-build:
   tags:
   - docker
+  stage: build
+
   services:
    - name: docker:dind
-
-
+  image:
+   - docker:latest
   variables:
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
 
   before_script:
      - pwd 
-     - ls
-     - whoami
      - docker info
-     - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD} 
+     
   script:
     # Download bash:   
      - export IMAGE_NAME="dolking/diginov"
