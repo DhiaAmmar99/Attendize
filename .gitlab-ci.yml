@@ -6,6 +6,10 @@ docker-build-master:
     - docker:dind
   script:
     - docker info
+    - apt update
   only:
     - master
+
+
+
 
