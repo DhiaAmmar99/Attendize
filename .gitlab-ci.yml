@@ -5,7 +5,7 @@ docker-build-master:
     - docker:dind
   before_script:
     #- docker info
-    - apk update 
+    - apt update 
     - apk add python3
     - apk add python-pip
     - apk add py3-pip
