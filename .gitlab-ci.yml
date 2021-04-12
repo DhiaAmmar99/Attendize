@@ -7,7 +7,7 @@ docker-build-master:
     - pwd 
     - docker info
     - apk add --no-cache docker-cli 
-    - apk add --no-cache --virtual .docker-compose-deps python3-dev libffi-dev openssl-dev gcc libc-dev make pip python-dev
+    - apk add --no-cache --virtual docker-compose-deps pip libffi-dev openssl-dev gcc libc-dev make python-dev
     - pip install docker-compose
   tags:
     - dind
