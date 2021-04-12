@@ -4,11 +4,14 @@ docker-build-master:
   services:
     - docker:19.03.12-dind
   before_script:
-    - docker info
-    - apk update
-    - apk add curl
-    - curl -L "https://github.com/docker/compose/releases/download/1.29.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-    - chmod +x /usr/local/bin/docker-compose
+    #- docker info
+    - apk update 
+    - apk add python3
+    - apk add py3-pip
+    - pip --version 
+     #- pip install cryptography
+     #- apk --update --upgrade add gcc musl-dev jpeg-dev zlib-dev libffi-dev cairo-dev pango-dev gdk-pixbuf-dev
+    - pip install docker-compose 
     - docker-compose --version
     - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD} 
 
