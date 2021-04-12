@@ -17,4 +17,4 @@ before_script:
 only:
    - master
 tags:
-   - docker
+   - dind
