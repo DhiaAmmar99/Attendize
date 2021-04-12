@@ -7,6 +7,7 @@ docker-build-master:
     #- docker info
     - apk update 
     - apk add python3
+    - apk add python-pip
     - apk add py3-pip
     - pip --version 
     - pip install cryptography
@@ -15,7 +16,6 @@ docker-build-master:
     - docker-compose --version
     - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD} 
 
-    
   script:
      - export IMAGE_NAME="dolking/diginov"
      - docker-compose build 
