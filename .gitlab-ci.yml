@@ -1,14 +1,12 @@
 docker-build-master:
-  image: docker:latest
+  image: tmaier/docker-compose:latest
   stage: build
   services:
     - docker:dind
   script:
     - pwd 
     - docker info
-    - apk add --no-cache docker-cli 
-    - apk add --no-cache --virtual docker-compose-deps pip libffi-dev openssl-dev gcc libc-dev make python-dev
-    - pip install docker-compose
+    - docker-compose --version
   tags:
     - dind
   only:
