@@ -14,5 +14,4 @@ docker-build-master:
     - dind
   only:
     - master
-
    
