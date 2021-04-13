@@ -1,13 +1,10 @@
-docker-build-master:
-  image: tmaier/docker-compose:latest
-  stages: 
+  stages:
    - build
-   - push 
-   
-  build:
+   - push
+  image: tmaier/docker-compose:latest
+  stage: build
   services:
     - docker:dind
-
   before_script:
     - pwd
     - apk update
@@ -18,18 +15,10 @@ docker-build-master:
     - git pull origin master
    
   script: 
-    - docker info
-    - docker-compose --version
     - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"   
     - docker-compose build 
     - docker-compose up -d
-
-  push:
-
-  before_script:
-    - echo hello
-  script: 
-    - echo helllo
+  
   tags:
     - dind
   only:
