@@ -12,6 +12,7 @@ docker-build-master:
     - git config --global user.email "dammar@stage.diginov.tech"
     - git fetch --all
     - git reset --hard origin/master
+    - git pull
     - docker info
     - docker-compose --version
     - docker-compose build 
