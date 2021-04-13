@@ -5,9 +5,7 @@ docker-build-master:
     - docker:dind
   script:
     - pwd
-    - cd 
-    - pwd
-    - cd /var/www/html/myapp/ica-backoffice
+    - git pull
     - docker info
     - docker-compose --version
     - docker-compose build 
