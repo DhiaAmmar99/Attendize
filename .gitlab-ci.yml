@@ -5,7 +5,8 @@ docker-build-master:
     - docker:dind
   script:
     - pwd
-    - git pull
+    - git version 
+    - git config --global --list
     - docker info
     - docker-compose --version
     - docker-compose build 
