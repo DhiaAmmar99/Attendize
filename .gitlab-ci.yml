@@ -5,7 +5,11 @@ docker-build-master:
     - docker:dind
   script:
     - pwd
+    - apk update
+    - apk add git
     - git version 
+    - git config --global user.name "Dhiaedddine Ammar"
+    - git config --global user.email "dammar@stage.diginov.tech"
     - git config --global --list
     - docker info
     - docker-compose --version
