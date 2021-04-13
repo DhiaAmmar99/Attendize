@@ -1,6 +1,10 @@
 docker-build-master:
   image: tmaier/docker-compose:latest
-  stage: build
+  stages: 
+   - build
+   - push 
+   
+  build:
   services:
     - docker:dind
 
@@ -12,11 +16,20 @@ docker-build-master:
     - git config --global user.name "Dhiaedddine Ammar"
     - git config --global user.email "dammar@stage.diginov.tech"
     - git pull origin master
-
- script:
-    - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" --password-stdin
+   
+  script: 
+    - docker info
+    - docker-compose --version
+    - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"   
     - docker-compose build 
     - docker-compose up -d
+
+  push:
+
+  before_script:
+    - echo hello
+  script: 
+    - echo helllo
   tags:
     - dind
   only:
