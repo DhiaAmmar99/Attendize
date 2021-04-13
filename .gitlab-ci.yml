@@ -10,7 +10,8 @@ docker-build-master:
     - git version 
     - git config --global user.name "Dhiaedddine Ammar"
     - git config --global user.email "dammar@stage.diginov.tech"
-    - git pull origin master
+    - git fetch --all
+    - git reset --hard origin/master
     - docker info
     - docker-compose --version
     - docker-compose build 
