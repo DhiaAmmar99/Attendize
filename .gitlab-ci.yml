@@ -1,6 +1,4 @@
-  stages:
-   - build
-   - push
+docker-build-master:
   image: tmaier/docker-compose:latest
   stage: build
   services:
@@ -18,6 +16,8 @@
     - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"   
     - docker-compose build 
     - docker-compose up -d
+    - docker tag dolking/diginov:${CI_COMMIT_SHORT_SHA}
+    - docker push dolking/diginov:${CI_COMMIT_SHORT_SHA}
   
   tags:
     - dind
