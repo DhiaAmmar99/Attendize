@@ -9,7 +9,8 @@ docker-build-master:
     - docker info
     - docker-compose --version
     - docker-compose build 
-    - docker-compose up -d 
+    - docker-compose up -d
+    - echo done 
   tags:
     - dind
   only:
