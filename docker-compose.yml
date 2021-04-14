@@ -22,7 +22,7 @@ services:
     build:
       context: ./docker-nginx/. # The path of the Dockerfile
     volumes:
-    - "./public:/usr/src/app/public"
+    - ./public:/usr/src/app/public
     environment:
       NGINX_FPM_HOST: attendize_app
       NGINX_ROOT: /usr/src/app/public
