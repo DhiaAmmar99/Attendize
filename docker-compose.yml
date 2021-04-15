@@ -3,6 +3,7 @@ services:
 
   attendize_app:
     build:
+    image: dolking/app
       context: . # The path of the Dockerfile
     volumes:
       - .:/usr/src/app
@@ -19,6 +20,7 @@ services:
       - app_network
 
   attendize_nginx:
+    image: dolking/nginx
     build:
       context: ./docker-nginx/. # The path of the Dockerfile
     volumes:
