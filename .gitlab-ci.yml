@@ -9,6 +9,7 @@ docker-build-master:
   script: 
     - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
     - docker-compose build --pull
+    - docker images
     - docker-compose push
     - docker logout
     

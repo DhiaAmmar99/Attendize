@@ -2,7 +2,6 @@ version: "3.8"
 services:
 
   attendize_app:
-    image: dolking/app
     build:
       context: . # The path of the Dockerfile
     volumes:
@@ -20,7 +19,6 @@ services:
       - app_network
 
   attendize_nginx:
-    image: dolking/nginx
     build:
       context: ./docker-nginx/. # The path of the Dockerfile
     volumes:
