@@ -8,11 +8,9 @@ docker-build-master:
     - docker info  
   script: 
     - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
-    - docker-compose build --pull
+    - docker-compose build
+    - docker-compose up 
     - docker images
-    - docker push devopslaravel_attendize_nginx
-    - docker push devopslaravel_attendize_app 
-    - docker logout
     
   tags:
     - dind
