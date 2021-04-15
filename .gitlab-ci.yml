@@ -5,23 +5,13 @@ docker-build-master:
     - docker:dind
   before_script:
     - pwd
-    - apk update
-    - apk add git
-    - git version 
-    - git config --global user.name "Dhiaedddine Ammar"
-    - git config --global user.email "dammar@stage.diginov.tech"
-    - git fetch; [ $(git rev-parse HEAD) = $(git rev-parse @{u}) ] \ && echo "Up to date" || echo "Not up to date"
-    - git remote -v
-    - git pull origin master
-    - git status
-    - git fetch; [ $(git rev-parse HEAD) = $(git rev-parse @{u}) ] \ && echo "Up to date" || echo "Not up to date"
-
-   
+    - docker info  
   script: 
     - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
-    - docker-compose build 
-    - docker-compose up -d
-    - echo hello world
+    - docker-compose build --pull
+    - docker-compose push
+    - docker logout
+    
   tags:
     - dind
   only:
