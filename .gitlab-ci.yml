@@ -5,12 +5,14 @@ docker-build-master:
     - docker:dind
   before_script:
     - pwd
+    - git version
     - apk update
     - apk add git
     - git version 
     - git config --global user.name "Dhiaedddine Ammar"
     - git config --global user.email "dammar@stage.diginov.tech"
     - git pull origin master
+    - git status
    
   script: 
     - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
