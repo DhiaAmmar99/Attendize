@@ -11,7 +11,7 @@ docker-build-master:
     
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval $(ssh-agent -s)
-    - ssh-add <(echo "$GIT_SSH_PRIV_KEY")
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - git config --global user.name "Dhiaedddine Ammar"
     - git config --global user.email "dammar@stage.diginov.tech"
     - mkdir -p ~/.ssh
