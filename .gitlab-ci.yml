@@ -10,6 +10,15 @@ docker-build-master:
     - git version 
     - git config --global user.name "Dhiaedddine Ammar"
     - git config --global user.email "dammar@stage.diginov.tech"
+    
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$GIT_SSH_PRIV_KEY")
+    - git config --global user.email "kll@dev.terastrm.net"
+    - git config --global user.name "Mr. Robot"
+    - mkdir -p ~/.ssh
+    - cat gitlab-known-hosts >> ~/.ssh/known_hosts
+    
     - git pull origin master
     - git status
    
