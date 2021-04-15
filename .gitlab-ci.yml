@@ -8,9 +8,14 @@ docker-build-master:
     - docker info  
   script: 
     - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
-    - docker-compose build --pull
+    - docker-compose build
+    - docker-compose up 
     - docker images
+<<<<<<< HEAD
     - docker logout
+=======
+    - docker ps 
+>>>>>>> 546d2f290b775191d46f6ac3b830d7c27207b912
     
   tags:
     - dind
