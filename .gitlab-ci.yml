@@ -10,15 +10,12 @@ docker-build-master:
     - git version 
     - git config --global user.name "Dhiaedddine Ammar"
     - git config --global user.email "dammar@stage.diginov.tech"
+    - git fetch; [ $(git rev-parse HEAD) = $(git rev-parse @{u}) ] \ && echo "Up to date" || echo "Not up to date"
     - git remote -v
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'                                                                 
-    - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
-
     - git pull origin master
     - git status
+    - git fetch; [ $(git rev-parse HEAD) = $(git rev-parse @{u}) ] \ && echo "Up to date" || echo "Not up to date"
+
    
   script: 
     - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
