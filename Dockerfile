@@ -20,6 +20,3 @@ RUN php -r "unlink('composer-setup.php');"
 WORKDIR /usr/share/nginx/html/attendize
 
 COPY ./laravel.ini /usr/local/etc/php/conf.d/laravel.ini
-
-WORKDIR  /usr/src/app/public
-COPY ./public/* /usr/src/app/public/
