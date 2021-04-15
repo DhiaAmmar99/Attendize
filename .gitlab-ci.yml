@@ -8,13 +8,15 @@ docker-build-master:
     - apk update
     - apk add git
     - git version 
-    
+    - git config --global user.name "Dhiaedddine Ammar"
+    - git config --global user.email "dammar@stage.diginov.tech"
+    - git remote -v
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'                                                                 
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
-    
+
     - git pull origin master
     - git status
    
