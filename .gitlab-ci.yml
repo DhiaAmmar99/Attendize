@@ -12,8 +12,8 @@ docker-build-master:
     - docker-compose build
     - docker-compose up -d
     - docker tag devopslaravel_attendize_nginx:latest dolking/diginov:nginx-v-1
-    - docker tag devopslaravel_attendize_app_1 dolking/diginov:app-v-1
-    - docker tag devopslaravel_attendize_db_1 dolking/diginov:db-v-1
+    - docker tag devopslaravel_attendize_app dolking/diginov:app-v-1
+    - docker tag mysql:5 dolking/diginov:db-v-1
     - docker push dolking/diginov:nginx-v-1
     - docker push dolking/diginov:app-v-1
     - docker push dolking/diginov:db-v-1
