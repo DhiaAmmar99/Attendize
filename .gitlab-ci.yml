@@ -8,18 +8,16 @@ docker-build-master:
     - ls 
     - whoami
   script: 
-    - ls 
     - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
-    - ls
     - docker-compose build
     - docker-compose up -d
     - docker tag devopslaravel_attendize_nginx:latest dolking/diginov:nginx-v-1
-    - docker tag devopslaravel_attendize_app_1:latest dolking/diginov:app-v-1
-    - docker tag devopslaravel_attendize_db_1:latest dolking/diginov:db-v-1
+    - docker tag devopslaravel_attendize_app_1 dolking/diginov:app-v-1
+    - docker tag devopslaravel_attendize_db_1 dolking/diginov:db-v-1
     - docker push dolking/diginov:nginx-v-1
     - docker push dolking/diginov:app-v-1
     - docker push dolking/diginov:db-v-1
-    
+
   tags:
     - dind
   only:
