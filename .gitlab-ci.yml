@@ -5,6 +5,9 @@ docker-build-master:
     - docker:dind
   before_script:
     - pwd
+    - ls 
+    - whoami
+    - cd 
     - docker info  
   script: 
     - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
