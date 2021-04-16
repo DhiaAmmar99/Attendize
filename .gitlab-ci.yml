@@ -10,7 +10,7 @@ docker-build-master:
     - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
     - docker-compose build --pull
     - docker images
-    - docker logout
+    - echo what should i do !
     
   tags:
     - dind
