@@ -8,7 +8,9 @@ docker-build-master:
     - ls 
     - whoami
   script: 
+    - ls 
     - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
+    - ls
     - docker-compose build
     - docker-compose up -d
          
