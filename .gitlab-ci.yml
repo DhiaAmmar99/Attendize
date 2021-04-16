@@ -7,14 +7,11 @@ docker-build-master:
     - pwd
     - ls 
     - whoami
-    - su deploy 
-    - docker info  
   script: 
     - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
-    - docker-compose build --pull
-    - docker images
-    - echo what should i do !
-    
+    - docker-compose build
+    - docker-compose up -d
+         
   tags:
     - dind
   only:
