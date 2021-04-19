@@ -7,11 +7,9 @@ docker-build-master:
     - pwd
     - ls 
     - whoami
-    - apk update
-    - apk add git
-    - git version 
-    - git clone https://gitlab.diginov.tech/root/devopslaravel.git
-
+    - cd 
+    - ls 
+    - cd /var/www/html/myapp/ica-backoffice/
   script: 
     - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
     - docker-compose build
