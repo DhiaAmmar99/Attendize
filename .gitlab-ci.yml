@@ -10,15 +10,8 @@ docker-build-master:
     - apk update
     - apk add git
     - git version 
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-    - eval $(ssh-agent -s)
-    - ssh-add <(echo "$GIT_SSH_PRIV_KEY")
-    - git config --global user.name "Dhiaedddine Ammar"
-    - git config --global user.email "dammar@stage.diginov.tech"
-    - mkdir -p ~/.ssh
-    - cat gitlab-known-hosts >> ~/.ssh/known_hosts
-    - git clone git@gitlab.diginov.tech:root/devopslaravel.git
-    - ls 
+    - git clone https://gitlab.diginov.tech/root/devopslaravel.git
+
   script: 
     - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
     - docker-compose build
