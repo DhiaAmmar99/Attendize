@@ -13,7 +13,7 @@ docker-build-master:
     - git config --global user.name "Dhiaedddine Ammar"
     - git config --global user.email "dammar@stage.diginov.tech"
     - git remote -v
-    - git clone https://gitlab.diginov.tech/root/devopslaravel.git
+    - git clone git@gitlab.diginov.tech:root/devopslaravel.git
     - ls 
   script: 
     - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
