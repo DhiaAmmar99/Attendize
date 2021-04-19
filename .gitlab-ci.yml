@@ -11,6 +11,8 @@ docker-build-master:
     - ls 
     - cd /var/www/html/myapp/ica-backoffice/
   script: 
+    - pwd
+    - ls /home/ubuntu
     - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
     - docker-compose build
     - docker-compose up -d
@@ -22,7 +24,7 @@ docker-build-master:
     - docker push dolking/diginov:db-v-1
 
   tags:
-    - dind
+    - odoo
   only:
     - master
    
